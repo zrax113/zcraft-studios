@@ -153,6 +153,24 @@
       </article>`;
   }
 
+  function parseBBCode(text) {
+    return text
+      .replace(/\[b\](.*?)\[\/b\]/gi, '<strong>$1</strong>')
+      .replace(/\[i\](.*?)\[\/i\]/gi, '<em>$1</em>')
+      .replace(/\[u\](.*?)\[\/u\]/gi, '<u>$1</u>')
+      .replace(/\[s\](.*?)\[\/s\]/gi, '<s>$1</s>')
+      .replace(/\[color=(.*?)\](.*?)\[\/color\]/gi, '<span style="color:$1">$2</span>')
+      .replace(/\[size=(.*?)\](.*?)\[\/size\]/gi, '<span style="font-size:$1">$2</span>')
+      .replace(/\[url=(.*?)\](.*?)\[\/url\]/gi, '<a href="$1" target="_blank" rel="noopener">$2</a>')
+      .replace(/\[url\](.*?)\[\/url\]/gi, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+      .replace(/\[img\](.*?)\[\/img\]/gi, '<img src="$1" alt="" style="max-width:100%;height:auto;" />')
+      .replace(/\[list\](.*?)\[\/list\]/gi, '<ul>$1</ul>')
+      .replace(/\[li\](.*?)\[\/li\]/gi, '<li>$1</li>')
+      .replace(/\[code\](.*?)\[\/code\]/gi, '<code>$1</code>')
+      .replace(/\[quote\](.*?)\[\/quote\]/gi, '<blockquote>$1</blockquote>')
+      .replace(/\n/g, '<br>');
+  }
+
   function closeResourceDetail() {
     const overlay = document.getElementById('resource-detail-overlay');
     if (!overlay) return;
@@ -177,7 +195,7 @@
             <span class="resource-detail-price">${esc(resource.status || 'free')}</span>
           </div>
           <h2 class="resource-detail-title">${esc(resource.title)}</h2>
-          <p class="resource-detail-copy">${esc(resource.summary)}</p>
+          <div class="resource-detail-copy">${parseBBCode(esc(resource.summary))}</div>
           <div class="tags">${(resource.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
           <div class="resource-detail-actions">
             ${(resource.links||[]).map(l => `<a class="btn btn-primary" href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}
@@ -606,7 +624,7 @@
 
   /* ---------- BOOT ---------- */
 
-  fetch('/config/config.json').then(r => r.json()).then(cfg => {
+  fetch('/config/config.json?v=' + Date.now()).then(r => r.json()).then(cfg => {
     applySEO(cfg);
     const app = $('#app');
     const renderer = PAGES[pageKey] || renderHome;
