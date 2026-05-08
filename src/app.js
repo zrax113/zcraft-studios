@@ -413,8 +413,8 @@
       </div>`;
 
     return `
-      <section class="page-hero page-hero-about">
-        <div class="page-label">// about</div>
+      <section class="page-hero">
+        <span class="page-label">// about</span>
         <h1>Studio-first craft for modern Minecraft products.</h1>
         <p class="page-copy">ZCraft Studios builds server systems, plugins, and web experiences for teams, communities, and creators. We combine design, performance, and polished delivery for commercial-grade releases.</p>
       </section>
@@ -488,8 +488,8 @@
     const resourceCards = cfg.resources.map((r, i) => resourceCard(r, i)).join('');
 
     return `
-      <section class="page-hero page-hero-resources">
-        <div class="page-label">// resources</div>
+      <section class="page-hero">
+        <span class="page-label">// resources</span>
         <h1>Tools, configs, and kits built for real servers.</h1>
         <p class="page-copy">A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly.</p>
       </section>
@@ -541,8 +541,8 @@
       </a>`).join('');
 
     return `
-      <section class="page-hero page-hero-contact">
-        <div class="page-label">${esc(c.kicker)}</div>
+      <section class="page-hero">
+        <span class="page-label">${esc(c.kicker)}</span>
         <h1>${esc(c.title)}</h1>
         <p class="page-copy">${esc(c.copy)}</p>
       </section>
@@ -589,8 +589,8 @@
     }).join('');
 
     return `
-      <section class="page-hero page-hero-team">
-        <div class="page-label">// team</div>
+      <section class="page-hero">
+        <span class="page-label">// team</span>
         <h1>Built by a small but experienced studio crew.</h1>
         <p class="page-copy">Every release is reviewed, supported, and polished for real server environments. Meet the people who ship the experience.</p>
       </section>
