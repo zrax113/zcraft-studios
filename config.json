@@ -1,0 +1,254 @@
+{
+  "site": {
+    "name": "ZCraft Studios",
+    "domain": "https://zcraft.studio",
+    "tagline": "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
+    "author": "ZCraft Studios",
+    "year": 2025
+  },
+  "branding": {
+    "favicon": "https://starlightskins.lunareclipse.studio/render/head/zraxgaming/face",
+    "logo": "https://starlightskins.lunareclipse.studio/render/head/zraxgaming/face",
+    "ogImage": "https://starlightskins.lunareclipse.studio/render/dungeons/zraxgaming/full",
+    "themeColor": "#ef4444"
+  },
+  "nav": [
+    { "label": "home", "href": "/index.html" },
+    { "label": "portfolio", "href": "/portfolio.html" },
+    { "label": "resources", "href": "/resources.html" },
+    { "label": "about", "href": "/about.html" },
+    { "label": "contact", "href": "/contact.html" }
+  ],
+  "seo": {
+    "home": {
+      "title": "ZCraft Studios — Premium Developer Studio",
+      "description": "ZCraft Studios crafts premium Minecraft plugins, server setups, resources, and modern web experiences.",
+      "keywords": "ZCraft Studios, Minecraft, plugins, server setup, resources, web design",
+      "canonical": "/"
+    },
+    "portfolio": {
+      "title": "Portfolio — ZCraft Studios",
+      "description": "Featured Minecraft resources, plugins, and web projects shipped by ZCraft Studios.",
+      "keywords": "portfolio, Minecraft, plugins, web projects, ZCraft",
+      "canonical": "/portfolio"
+    },
+    "resources": {
+      "title": "Resources — ZCraft Studios",
+      "description": "Premium Minecraft resources, configs and plugins built for performance and polish.",
+      "keywords": "resources, Minecraft, configs, plugins, ZCraft",
+      "canonical": "/resources"
+    },
+    "about": {
+      "title": "About — ZCraft Studios",
+      "description": "About Zain Abusal — Minecraft developer delivering fast, polished resources and server systems.",
+      "keywords": "about, Zain Abusal, ZCraft, Minecraft developer",
+      "canonical": "/about"
+    },
+    "contact": {
+      "title": "Contact — ZCraft Studios",
+      "description": "Get in touch with ZCraft Studios for plugins, server setups, and web work.",
+      "keywords": "contact, Minecraft, ZCraft, Discord, email",
+      "canonical": "/contact"
+    },
+    "notfound": {
+      "title": "404 — ZCraft Studios",
+      "description": "Page not found.",
+      "keywords": "404, not found",
+      "canonical": "/404"
+    }
+  },
+  "hero": {
+    "prompt": "./zcraft --boot",
+    "name": "ZCraft",
+    "nameAccent": "Studios",
+    "role": "// premium developer studio",
+    "status": "studio open · taking commissions",
+    "description": "We design and ship polished Minecraft resources, performance-first plugins, and modern web experiences. Production-ready from day one.",
+    "actions": [
+      { "label": "view portfolio", "href": "/portfolio.html", "variant": "primary" },
+      { "label": "start a project", "href": "/contact.html", "variant": "ghost" }
+    ],
+    "boot": [
+      "$ ./zcraft --boot",
+      "› loading studio.config ......... ok",
+      "› spinning up plugin pipeline ... ok",
+      "› warming web services .......... ok",
+      "› status: ready to ship"
+    ],
+    "services": [
+      { "icon": "{ }", "title": "plugin dev", "desc": "Custom Paper / Spigot plugins built for performance." },
+      { "icon": "[ ]", "title": "server setup", "desc": "Optimized configs, hardening, and full server tuning." },
+      { "icon": "< >", "title": "web design", "desc": "Modern, fast, responsive websites for studios & creators." },
+      { "icon": "( )", "title": "resources", "desc": "Premium configs, templates, and UI kits to drop in." }
+    ]
+  },
+  "stats": [
+    { "value": 120, "suffix": "+", "label": "projects shipped" },
+    { "value": 80, "suffix": "+", "label": "happy clients" },
+    { "value": 5, "suffix": "yr", "label": "experience" },
+    { "value": 99, "suffix": "%", "label": "satisfaction" }
+  ],
+  "about": {
+    "bio": "// developer profile\nconst zain = {\n  name: 'Zain Abusal',\n  studio: 'ZCraft Studios',\n  focus: ['minecraft', 'plugins', 'web'],\n  stack: ['Java', 'JavaScript', 'TypeScript', 'Node'],\n  shipping: true,\n};\n\n// always building. always shipping.",
+    "skills": [
+      { "name": "Java / Paper", "value": 95 },
+      { "name": "JavaScript", "value": 92 },
+      { "name": "Node.js", "value": 88 },
+      { "name": "HTML / CSS", "value": 94 },
+      { "name": "Server Ops", "value": 86 }
+    ],
+    "techGroups": [
+      { "label": "languages", "tags": ["Java", "JavaScript", "TypeScript", "SQL", "Bash"] },
+      { "label": "tools", "tags": ["Paper", "Spigot", "Node", "Vite", "Docker", "Git"] },
+      { "label": "design", "tags": ["Figma", "Photoshop", "Blockbench"] }
+    ]
+  },
+  "portfolio": {
+    "featured": {
+      "logo": "https://starlightskins.lunareclipse.studio/render/head/zraxgaming/face",
+      "title": "ZCraft Studios",
+      "description": "A developer studio focused on premium Minecraft systems and modern web experiences. From custom plugins to full server setups, every release is polished, performant, and production-ready.",
+      "nums": [
+        { "value": "120+", "label": "releases" },
+        { "value": "80+", "label": "clients" },
+        { "value": "5yr", "label": "running" }
+      ]
+    },
+    "commissions": [
+      { "title": "plugin dev", "desc": "Custom Paper / Spigot plugins built for performance and polish." },
+      { "title": "server setup", "desc": "Full server configuration, optimization, and tuning." },
+      { "title": "web design", "desc": "Modern, fast, responsive websites for studios and creators." }
+    ]
+  },
+  "projects": [
+    {
+      "image": "https://starlightskins.lunareclipse.studio/render/dungeons/zraxgaming/full",
+      "title": "CraftCore",
+      "brand": "plugin",
+      "summary": "Modular core plugin powering economy, ranks, and cosmetics across modern Paper servers.",
+      "tags": ["Java", "Paper", "MySQL"],
+      "status": "live",
+      "featured": true,
+      "category": "plugin",
+      "links": [
+        { "label": "view", "href": "https://Zain.z-craft.xyz", "variant": "primary" },
+        { "label": "docs", "href": "https://Zain.z-craft.xyz", "variant": "ghost" }
+      ]
+    },
+    {
+      "image": "https://starlightskins.lunareclipse.studio/render/walking/zraxgaming/full",
+      "title": "ZServer Setup",
+      "brand": "service",
+      "summary": "Turnkey Minecraft server setup with optimized configs, plugins, and hosting guidance.",
+      "tags": ["Paper", "Configs", "Ops"],
+      "status": "available",
+      "featured": true,
+      "category": "service",
+      "links": [
+        { "label": "request", "href": "/contact", "variant": "primary" }
+      ]
+    },
+    {
+      "image": "https://starlightskins.lunareclipse.studio/render/ultimate/zraxgaming/full",
+      "title": "ZCraft Web",
+      "brand": "web",
+      "summary": "Premium web template system for Minecraft studios — fast, responsive, and dev-friendly.",
+      "tags": ["HTML", "CSS", "JS"],
+      "status": "live",
+      "featured": false,
+      "category": "web",
+      "links": [
+        { "label": "demo", "href": "https://Zain.z-craft.xyz", "variant": "primary" },
+        { "label": "source", "href": "https://Zain.z-craft.xyz", "variant": "ghost" }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "image": "https://starlightskins.lunareclipse.studio/render/head/zraxgaming/face",
+      "title": "Optimized server.properties",
+      "brand": "config",
+      "summary": "Battle-tested server.properties tuned for performance and stability.",
+      "tags": ["config", "performance"],
+      "status": "free",
+      "featured": true,
+      "category": "config",
+      "links": [{ "label": "download", "href": "https://Zain.z-craft.xyz", "variant": "primary" }]
+    },
+    {
+      "image": "https://starlightskins.lunareclipse.studio/render/walking/zraxgaming/full",
+      "title": "Paper Plugin Starter",
+      "brand": "template",
+      "summary": "Modern Paper plugin starter with Gradle, command framework, and config system.",
+      "tags": ["Java", "Paper", "Gradle"],
+      "status": "free",
+      "featured": false,
+      "category": "template",
+      "links": [{ "label": "github", "href": "https://Zain.z-craft.xyz", "variant": "primary" }]
+    },
+    {
+      "image": "https://starlightskins.lunareclipse.studio/render/ultimate/zraxgaming/full",
+      "title": "ZCraft UI Kit",
+      "brand": "kit",
+      "summary": "Terminal-inspired UI kit with windows, cards, and tokens for developer sites.",
+      "tags": ["CSS", "UI", "kit"],
+      "status": "premium",
+      "featured": true,
+      "category": "ui",
+      "links": [{ "label": "preview", "href": "https://Zain.z-craft.xyz", "variant": "primary" }]
+    }
+  ],
+  "reviews": [
+    {
+      "name": "Alex M.",
+      "handle": "@alexm",
+      "avatar": "https://starlightskins.lunareclipse.studio/render/head/notch/face",
+      "rating": 5,
+      "text": "Shipped a custom plugin in days. Clean code, great docs, zero issues in production."
+    },
+    {
+      "name": "Sora K.",
+      "handle": "@sorak",
+      "avatar": "https://starlightskins.lunareclipse.studio/render/head/jeb_/face",
+      "rating": 4.5,
+      "text": "ZCraft built our entire server stack — fast, polished, and incredibly responsive."
+    },
+    {
+      "name": "Mira J.",
+      "handle": "@miraj",
+      "avatar": "https://starlightskins.lunareclipse.studio/render/head/dinnerbone/face",
+      "rating": 5,
+      "text": "Best web work I've commissioned. The terminal aesthetic is perfect for our studio."
+    }
+  ],
+  "contact": {
+    "kicker": "// reach out",
+    "title": "let's build something premium.",
+    "copy": "Open for plugin commissions, server setups, and modern web work. Discord is the fastest way to reach me — replies usually within a few hours.",
+    "notes": [
+      { "label": "timezone", "value": "GMT+3 · Mon–Sat" },
+      { "label": "response", "value": "< 6 hours, usually faster" }
+    ],
+    "primary": {
+      "badge": "fastest reply",
+      "platform": "discord",
+      "handle": "@zraxgaming",
+      "cta": "open discord →",
+      "href": "https://discord.com/users/zraxgaming"
+    },
+    "platforms": [
+      { "platform": "email", "handle": "zain@z-craft.xyz", "meta": "business inquiries", "icon": "✉", "href": "mailto:zain@z-craft.xyz" },
+      { "platform": "github", "handle": "@zraxgaming", "meta": "open source", "icon": "⌥", "href": "https://github.com/zraxgaming" },
+      { "platform": "website", "handle": "z-craft.xyz", "meta": "studio site", "icon": "◈", "href": "https://Zain.z-craft.xyz" },
+      { "platform": "twitter", "handle": "@zraxgaming", "meta": "updates", "icon": "𝕏", "href": "https://twitter.com/zraxgaming" }
+    ]
+  },
+  "footer": {
+    "left": "ZCraft Studios — crafted by Zain Abusal",
+    "links": [
+      { "label": "github", "href": "https://github.com/zraxgaming" },
+      { "label": "discord", "href": "https://discord.com/users/zraxgaming" },
+      { "label": "email", "href": "mailto:zain@z-craft.xyz" }
+    ]
+  }
+}
