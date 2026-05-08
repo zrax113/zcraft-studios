@@ -99,7 +99,7 @@
     ],
     "techGroups": [
       { "label": "backend", "tags": ["Java", "Paper", "Spigot", "MySQL", "Node.js"] },
-      { "label": "frontend", "tags": ["HTML", "CSS", "JavaScript", "TypeScript"] ,
+      { "label": "frontend", "tags": ["HTML", "CSS", "JavaScript", "TypeScript"] },
       { "label": "Bots", "tags": ["Discord", "NodeJS", "Git", "Python"] }
     ]
   },
