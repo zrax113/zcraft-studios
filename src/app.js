@@ -128,26 +128,87 @@
       </article>`;
   }
 
-  function resourceCard(r) {
+  function resourceCard(r, index) {
     const icons = { config: '⚙', template: '📦', kit: '🎨', ui: '✨', plugin: '🔧', other: '📄' };
     const icon = icons[r.category] || icons.other;
     return `
-      <article class="resource-card">
-        <div class="resource-icon">
-          <div style="font-size: 48px; color: var(--main); opacity: 0.4;">${icon}</div>
-        </div>
-        <div class="resource-content">
-          <div class="resource-head">
-            <h3 class="resource-name">${esc(r.title)}</h3>
-            <span class="resource-status">${esc(r.status)}</span>
+      <article class="resource-card" data-resource-index="${index}">
+        <img class="resource-card-image" src="${esc(r.image)}" alt="${esc(r.title)}" loading="lazy" />
+        <div class="resource-card-body">
+          <div class="resource-card-header">
+            <div class="resource-card-icon">
+              <div style="font-size: 48px; color: var(--main); opacity: 0.4;">${icon}</div>
+            </div>
+            <div class="resource-card-status">${esc(r.status)}</div>
           </div>
-          <p class="resource-summary">${esc(r.summary)}</p>
-          <div class="tags">${(r.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-          <div class="resource-actions">
-            ${(r.links||[]).map(l => `<a class="btn btn-${l.variant||'primary'}" href="${esc(l.href)}" ${/^https?:/.test(l.href)?'target="_blank" rel="noopener"':''}>${esc(l.label)}</a>`).join('')}
+          <div class="resource-card-content">
+            <h3 class="resource-card-title">${esc(r.title)}</h3>
+            <p class="resource-card-summary">${esc(r.summary)}</p>
+            <div class="tags">${(r.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+            <div class="resource-card-actions">
+              ${(r.links||[]).map(l => `<a class="btn btn-${l.variant||'primary'}" href="${esc(l.href)}" ${/^https?:/.test(l.href)?'target="_blank" rel="noopener"':''}>${esc(l.label)}</a>`).join('')}
+            </div>
           </div>
         </div>
       </article>`;
+  }
+
+  function closeResourceDetail() {
+    const overlay = document.getElementById('resource-detail-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    overlay.addEventListener('transitionend', () => overlay.remove(), { once: true });
+  }
+
+  function openResourceDetail(resource) {
+    closeResourceDetail();
+    const overlay = document.createElement('div');
+    overlay.id = 'resource-detail-overlay';
+    overlay.className = 'resource-detail-overlay';
+    overlay.innerHTML = `
+      <div class="resource-detail-panel">
+        <button type="button" class="resource-detail-close" aria-label="Close product detail">×</button>
+        <div class="resource-detail-media">
+          <img class="resource-detail-image" src="${esc(resource.image)}" alt="${esc(resource.title)}" loading="lazy" />
+        </div>
+        <div class="resource-detail-body">
+          <div class="resource-detail-meta">
+            <span class="resource-detail-tag">${esc(resource.category || 'resource')}</span>
+            <span class="resource-detail-price">${esc(resource.status || 'free')}</span>
+          </div>
+          <h2 class="resource-detail-title">${esc(resource.title)}</h2>
+          <p class="resource-detail-copy">${esc(resource.summary)}</p>
+          <div class="tags">${(resource.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+          <div class="resource-detail-actions">
+            ${(resource.links||[]).map(l => `<a class="btn btn-primary" href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}
+          </div>
+        </div>
+      </div>`;
+
+    overlay.addEventListener('click', event => {
+      if (event.target === overlay) closeResourceDetail();
+    });
+
+    overlay.querySelector('.resource-detail-close').addEventListener('click', closeResourceDetail);
+    document.body.appendChild(overlay);
+    requestAnimationFrame(() => overlay.classList.add('open'));
+    document.addEventListener('keydown', function escHandler(event) {
+      if (event.key === 'Escape') {
+        closeResourceDetail();
+        document.removeEventListener('keydown', escHandler);
+      }
+    });
+  }
+
+  function attachResourceDetailListeners(resources) {
+    document.querySelectorAll('.resource-card[data-resource-index]').forEach(card => {
+      card.addEventListener('click', event => {
+        if (event.target.closest('a')) return;
+        const index = parseInt(card.dataset.resourceIndex, 10);
+        const resource = resources[index];
+        if (resource) openResourceDetail(resource);
+      });
+    });
   }
 
   function reviewCard(r) {
@@ -406,21 +467,7 @@
         </div>
       </div>`;
 
-    const resourceCards = cfg.resources.map(r => `
-      <div class="resource-card">
-        <div class="resource-card-header">
-          <div class="resource-card-icon">${r.category === 'config' ? '⚙' : r.category === 'template' ? '📦' : r.category === 'kit' ? '🎨' : r.category === 'ui' ? '✨' : r.category === 'plugin' ? '🔧' : '📄'}</div>
-          <div class="resource-card-status">${esc(r.status)}</div>
-        </div>
-        <div class="resource-card-content">
-          <h3 class="resource-card-title">${esc(r.title)}</h3>
-          <p class="resource-card-summary">${esc(r.summary)}</p>
-          <div class="resource-card-tags">${(r.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-          <div class="resource-card-actions">
-            ${(r.links||[]).map(l => `<a class="btn btn-${l.variant||'primary'}" href="${esc(l.href)}" ${/^https?:/.test(l.href)?'target="_blank" rel="noopener"':''}>${esc(l.label)}</a>`).join('')}
-          </div>
-        </div>
-      </div>`).join('');
+    const resourceCards = cfg.resources.map((r, i) => resourceCard(r, i)).join('');
 
     return `
       <section class="page-hero page-hero-resources">
@@ -504,17 +551,21 @@
 
     const pyramidRows = sortedLevels.map(level => {
       const members = groupedByLevel[level];
-      const rowCards = members.map(member => `
-        <div class="team-member-card" data-level="${level}">
-          <div class="team-member-avatar">
-            <img src="${esc(member.pfp)}" alt="${esc(member.name)}" loading="lazy" />
-          </div>
-          <div class="team-member-content">
-            <h3 class="team-member-name">${esc(member.name)}</h3>
-            <p class="team-member-role">${esc(member.role)}</p>
-            <p class="team-member-bio">${esc(member.bio)}</p>
-          </div>
-        </div>`).join('');
+      const rowCards = members.map(member => {
+        const tag = member.website ? 'a' : 'div';
+        const href = member.website ? ` href="${esc(member.website)}" target="_blank" rel="noopener"` : '';
+        return `
+          <${tag} class="team-member-card" data-level="${level}"${href}>
+            <div class="team-member-avatar">
+              <img src="${esc(member.pfp)}" alt="${esc(member.name)}" loading="lazy" />
+            </div>
+            <div class="team-member-content">
+              <h3 class="team-member-name">${esc(member.name)}</h3>
+              <p class="team-member-role">${esc(member.role)}</p>
+              <p class="team-member-bio">${esc(member.bio)}</p>
+            </div>
+          </${tag}>`;
+      }).join('');
 
       return `<div class="team-pyramid-row" data-level="${level}">${rowCards}</div>`;
     }).join('');
@@ -562,6 +613,7 @@
     document.body.insertAdjacentHTML('afterbegin', topbar(cfg));
     app.innerHTML = renderer(cfg);
     document.body.insertAdjacentHTML('beforeend', footer(cfg));
+    if (pageKey === 'resources') attachResourceDetailListeners(cfg.resources);
     requestAnimationFrame(animateCounters);
   }).catch(err => {
     console.error('Failed to load config:', err);
