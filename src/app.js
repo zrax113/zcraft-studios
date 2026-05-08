@@ -54,16 +54,18 @@
   }
 
   function topbar(cfg) {
-    const file = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-    const current = file === '' ? 'index.html' : file;
+    const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
     return `
       <header class="topbar">
         <div class="topbar-inner">
-          <a class="topbar-logo" href="/index.html">${esc(cfg.site.name)}</a>
+          <a class="topbar-logo" href="/">
+            <img class="topbar-logo-img" src="${esc(cfg.branding.logo)}" alt="${esc(cfg.site.name)} logo" />
+            <span>${esc(cfg.site.name)}</span>
+          </a>
           <nav class="topbar-nav">
             ${cfg.nav.map(n => {
-              const target = (n.href.split('/').pop() || 'index.html').toLowerCase();
-              return `<a href="${esc(n.href)}" class="${target === current ? 'active' : ''}">${esc(n.label)}</a>`;
+              const targetPath = (n.href || '/').replace(/\/+$/, '') || '/';
+              return `<a href="${esc(n.href)}" class="${targetPath === currentPath ? 'active' : ''}">${esc(n.label)}</a>`;
             }).join('')}
           </nav>
         </div>
@@ -134,10 +136,12 @@
           <div class="review-meta">
             <div class="review-name">${esc(r.name)}</div>
             <div class="review-handle">${esc(r.handle)}</div>
+            ${r.project ? `<div class="review-project">// ${esc(r.project)}</div>` : ''}
           </div>
           ${stars(Number(r.rating)||0)}
         </div>
         <p class="review-text">"${esc(r.text)}"</p>
+        ${r.date ? `<div class="review-date">${esc(r.date)}</div>` : ''}
       </div>`;
   }
 
@@ -209,7 +213,10 @@
         </div>
       </div>`;
 
-    const bootBox = windowBox(`<span>~/</span>studio.boot`, `
+    const bootBox = windowBox(`
+      <span class="boot-logo-title"><img src="${esc(cfg.branding.logo)}" alt="${esc(cfg.site.name)} logo" /></span>
+      <span>~/</span>studio.boot
+    `, `
       <pre class="boot-pre">${bootLines}</pre>
     `);
 
@@ -239,7 +246,7 @@
     const featuredHTML = windowBox(`<span>~/</span>featured.work`, `
       <div class="section-label">// featured releases</div>
       <div class="projects-grid">${featured.map(projectCard).join('')}</div>
-      <a class="link-sm" href="/portfolio.html">view full portfolio</a>
+      <a class="link-sm" href="/resources">browse resources</a>
     `);
 
     const ctaHTML = windowBox(`<span>~/</span>commission.open`, `
@@ -250,8 +257,8 @@
           <p class="cta-copy">Plugins, server setups, and web work — built fast, polished, and production-ready.</p>
         </div>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="/contact.html">start a project</a>
-          <a class="btn btn-ghost" href="/resources.html">browse resources</a>
+          <a class="btn btn-primary" href="/contact">start a project</a>
+          <a class="btn btn-ghost" href="/resources">browse resources</a>
         </div>
       </div>
     `);
@@ -273,12 +280,12 @@
       .replace(/\b(zain|name|studio|focus|stack|shipping)\b/g, '<span class="kw-var">$1</span>');
 
     const bioBox = windowBox(`<span>~/</span>about.me`, `
-      <div class="section-label">// who am i</div>
+      <div class="section-label">// who we are</div>
       <pre class="about-bio">${bioHL}</pre>
     `);
 
     const skillsHTML = `
-      <div class="section-label">// skills</div>
+      <div class="section-label">// capabilities</div>
       <div class="skills-list">
         ${a.skills.map(s => `
           <div class="skill-row">
@@ -297,13 +304,12 @@
     const skillsBox = windowBox(`<span>~/</span>stack.json`, skillsHTML);
 
     return `
-      <section class="hero" style="padding:32px 0 16px">
-        <div class="contact-kicker">// about</div>
-        <h1 class="contact-title" style="max-width:none">about ${esc(cfg.site.author)}</h1>
-        <p class="contact-copy">${esc(cfg.site.tagline)}</p>
+      <section class="page-hero page-hero-about">
+        <div class="page-label">// about</div>
+        <h1>Studio-first craft for modern Minecraft products.</h1>
+        <p class="page-copy">ZCraft Studios builds server systems, plugins, and web experiences for teams, communities, and creators. We combine design, performance, and polished delivery for commercial-grade releases.</p>
       </section>
-      ${statsRow(cfg.stats)}
-      <div class="about-grid">${bioBox}${skillsBox}</div>
+      <div class="page-grid">${bioBox}${skillsBox}</div>
     `;
   }
 
@@ -335,7 +341,7 @@
                   <div class="commission-desc">${esc(c.desc)}</div>
                 </div>`).join('')}
             </div>
-            <a class="link-sm" href="/contact.html">request a commission</a>
+            <a class="link-sm" href="/contact">request a commission</a>
           </div>
         </div>
       </div>`;
@@ -354,27 +360,40 @@
   }
 
   function renderResources(cfg) {
+    const featured = cfg.resources.find(r => r.featured) || cfg.resources[0] || {};
     const intro = `
-      <section class="hero" style="padding:32px 0 16px">
-        <div class="contact-kicker">// resources</div>
-        <h1 class="contact-title" style="max-width:none">free & premium drops.</h1>
-        <p class="contact-copy">Tools, configs, and templates I use across every ZCraft project. All free unless noted.</p>
+      <section class="page-hero page-hero-resources">
+        <div class="page-label">// resources</div>
+        <h1>Tools, configs, and kits built for real servers.</h1>
+        <p class="page-copy">A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly.</p>
       </section>`;
+
+    const highlight = windowBox(`<span>~/</span>resources.featured`, `
+      <div class="resource-highlight">
+        <div class="resource-status">${esc(featured.brand)} · ${esc(featured.status)}</div>
+        <h2>${esc(featured.title)}</h2>
+        <p>${esc(featured.summary)}</p>
+        ${featured.links?.[0] ? `<a class="link-sm" href="${esc(featured.links[0].href)}">${esc(featured.links[0].label)}</a>` : ''}
+      </div>
+    `, { class: 'window-highlight' });
+
     const grid = windowBox(`<span>~/</span>resources.index`, `
-      <div class="section-label">// downloads</div>
+      <div class="section-label">// downloadable assets</div>
       <div class="projects-grid">${cfg.resources.map(projectCard).join('')}</div>
     `);
-    return intro + grid;
+    return intro + highlight + grid;
   }
 
   function renderContact(cfg) {
     const c = cfg.contact;
     const shell = `
-      <section class="contact-shell">
+      <section class="page-hero page-hero-contact">
+        <div class="page-label">${esc(c.kicker)}</div>
+        <h1>${esc(c.title)}</h1>
+        <p class="page-copy">${esc(c.copy)}</p>
+      </section>
+      <div class="contact-shell">
         <div class="contact-lead">
-          <div class="contact-kicker">${esc(c.kicker)}</div>
-          <h1 class="contact-title">${esc(c.title)}</h1>
-          <p class="contact-copy">${esc(c.copy)}</p>
           <div class="contact-notes">
             ${c.notes.map(n => `
               <div class="contact-note-card">
@@ -389,7 +408,7 @@
           <span class="contact-primary-handle">${esc(c.primary.handle)}</span>
           <span class="contact-primary-cta">${esc(c.primary.cta)}</span>
         </a>
-      </section>`;
+      </div>`;
 
     const platforms = windowBox(`<span>~/</span>contact.channels`, `
       <div class="section-label">// all channels</div>
@@ -409,6 +428,30 @@
     return shell + '<div style="height:24px"></div>' + platforms;
   }
 
+  function renderTeam(cfg) {
+    const intro = `
+      <section class="page-hero page-hero-team">
+        <div class="page-label">// team</div>
+        <h1>Built by a small but experienced studio crew.</h1>
+        <p class="page-copy">Every release is reviewed, supported, and polished for real server environments. Meet the people who ship the experience.</p>
+      </section>`;
+    const teamHTML = windowBox(`<span>~/</span>team.members`, `
+      <div class="section-label">// core team</div>
+      <div class="team-grid">
+        ${cfg.team.map(member => `
+          <div class="team-card team-card-studio">
+            <img class="team-avatar" src="${esc(member.pfp)}" alt="${esc(member.name)}" loading="lazy" />
+            <div class="team-info">
+              <h3 class="team-name">${esc(member.name)}</h3>
+              <p class="team-role">${esc(member.role)}</p>
+              <p class="team-bio">${esc(member.bio)}</p>
+            </div>
+          </div>`).join('')}
+      </div>
+    `);
+    return intro + teamHTML;
+  }
+
   function renderNotFound(cfg) {
     const path = window.location.pathname + window.location.search;
     return `
@@ -422,19 +465,19 @@
 › reason ........ no matching route
 › suggestion .... return to a known path below</pre>
           <div class="notfound-actions">
-            <a class="btn btn-primary" href="/index.html">go home</a>
-            <a class="btn btn-ghost" href="/portfolio.html">view portfolio</a>
-            <a class="btn btn-ghost" href="/contact.html">contact</a>
+            <a class="btn btn-primary" href="/">go home</a>
+            <a class="btn btn-ghost" href="/resources">view resources</a>
+            <a class="btn btn-ghost" href="/contact">contact</a>
           </div>
         </div>
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, contact: renderContact, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 
-  fetch('/config.json').then(r => r.json()).then(cfg => {
+  fetch('/config/config.json').then(r => r.json()).then(cfg => {
     applySEO(cfg);
     const app = $('#app');
     const renderer = PAGES[pageKey] || renderHome;

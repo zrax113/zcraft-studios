@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zcraft.studio/sitemap.xml
+Sitemap: https://studio.z-craft.xyz/sitemap.xml

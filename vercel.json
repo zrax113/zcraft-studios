@@ -2,10 +2,16 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/portfolio", "destination": "/portfolio.html" },
+    { "source": "/team", "destination": "/team.html" },
+    { "source": "/team/", "destination": "/team.html" },
+    { "source": "/teams", "destination": "/team.html" },
+    { "source": "/teams/", "destination": "/team.html" },
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/about/", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/resources", "destination": "/resources.html" }
+    { "source": "/contact/", "destination": "/contact.html" },
+    { "source": "/resources", "destination": "/resources.html" },
+    { "source": "/resources/", "destination": "/resources.html" }
   ],
   "headers": [
     {
