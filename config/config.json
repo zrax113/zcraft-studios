@@ -112,16 +112,31 @@
       "website": "https://Zain.z-craft.xyz",
       "level": 999
     }
-    
   ],
- {
   "projects": [
+    {
+      "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
+      "title": "Evidence Discord Bot",
+      "brand": "Discord Bot",
+      "summary": "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
+      "tags": ["Node.js", "Moderation", "Security"],
+      "status": "available",
+      "featured": true,
+      "category": "Bot",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+          "variant": "primary"
+        }
+      ]
+    },
     {
       "image": "https://builtbybit.com/attachments/image_2026-05-12_215822347-png.1325338/?preset=cardr1",
       "title": "Visual Config Studio",
       "brand": "Website",
-      "summary": "No-code Minecraft plugin configuration editor with smart auto-detection, live validation, and production-ready export tools.",
-      "tags": ["React", "Tailwind", "Vite"],
+      "summary": "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
+      "tags": ["React", "Vite", "Tailwind", "Configs"],
       "status": "live",
       "featured": true,
       "category": "Website",
@@ -137,8 +152,8 @@
       "image": "https://builtbybit.com/attachments/image_2026-05-15_184245637-png.1327806/?preset=cardr1",
       "title": "LuckPerms Visual Tree",
       "brand": "Website",
-      "summary": "Modern no-code permission studio for LuckPerms featuring visual hierarchy management, drag-and-drop inheritance, and permission simulation.",
-      "tags": ["React Flow", "LuckPerms", "Visualization"],
+      "summary": "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
+      "tags": ["React Flow", "LuckPerms", "Permissions"],
       "status": "live",
       "featured": true,
       "category": "Website",
@@ -149,26 +164,8 @@
           "variant": "primary"
         }
       ]
-    },
-    {
-      "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
-      "title": "Evidence Discord Bot",
-      "brand": "Discord Bot",
-      "summary": "Effiecent and secure Discord bot for managing evidence in community moderation, built with Node.js",
-      "tags": ["Paper", "Configs", "Ops"],
-      "status": "available",
-      "featured": true,
-      "category": "Bot",
-      "links": [
-        {
-          "label": "View",
-          "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
-          "variant": "primary"
-        }
-      ]
     }
   ],
-
   "resources": [
     {
       "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
@@ -191,7 +188,7 @@
       "image": "https://builtbybit.com/attachments/image_2026-05-12_215822347-png.1325338/?preset=cardr1",
       "title": "Visual Config Studio",
       "brand": "Website",
-      "summary": "Advanced no-code visual editor for Minecraft plugin configurations with smart detection and export tools.",
+      "summary": "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
       "tags": ["Web", "Configs", "Visual"],
       "status": "12.99$",
       "featured": true,
@@ -208,7 +205,7 @@
       "image": "https://builtbybit.com/attachments/image_2026-05-15_184245637-png.1327806/?preset=cardr1",
       "title": "LuckPerms Visual Tree",
       "brand": "Website",
-      "summary": "Interactive LuckPerms permission editor with visual hierarchy management and live conflict debugging.",
+      "summary": "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
       "tags": ["Permissions", "LuckPerms", "Visual"],
       "status": "14.99$",
       "featured": false,
@@ -221,8 +218,6 @@
         }
       ]
     }
-  ]
-}
   ],
   "reviews": [
     {
