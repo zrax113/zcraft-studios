@@ -121,7 +121,7 @@
       "summary": "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
       "tags": ["Node.js", "Moderation", "Security"],
       "status": "available",
-      "featured": true,
+      "featured": false,
       "category": "Bot",
       "links": [
         {
@@ -190,7 +190,7 @@
       "brand": "Website",
       "summary": "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
       "tags": ["Web", "Configs", "Visual"],
-      "status": "12.99$",
+      "status": "5.47$",
       "featured": true,
       "category": "website",
       "links": [
@@ -207,7 +207,7 @@
       "brand": "Website",
       "summary": "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
       "tags": ["Permissions", "LuckPerms", "Visual"],
-      "status": "14.99$",
+      "status": "5.57$",
       "featured": false,
       "category": "website",
       "links": [
