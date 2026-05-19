@@ -114,18 +114,40 @@
     }
     
   ],
+ {
   "projects": [
     {
-      "image": "https://builtbybit.com/attachments/image_2026-05-03_191731571-png.1315793/?preset=cardr1",
-      "title": "Minecraft Community Website",
+      "image": "https://builtbybit.com/attachments/image_2026-05-12_215822347-png.1325338/?preset=cardr1",
+      "title": "Visual Config Studio",
       "brand": "Website",
-      "summary": "Modular Advanced Minecraft community hub built with React, Supabase, and Vite for lightning-fast performance.",
-      "tags": ["React", "Supabase", "Vite"],
+      "summary": "No-code Minecraft plugin configuration editor with smart auto-detection, live validation, and production-ready export tools.",
+      "tags": ["React", "Tailwind", "Vite"],
       "status": "live",
       "featured": true,
       "category": "Website",
       "links": [
-        { "label": "view", "href": "https://builtbybit.com/resources/minecraft-community-hub.101610/", "variant": "primary" }
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/image_2026-05-15_184245637-png.1327806/?preset=cardr1",
+      "title": "LuckPerms Visual Tree",
+      "brand": "Website",
+      "summary": "Modern no-code permission studio for LuckPerms featuring visual hierarchy management, drag-and-drop inheritance, and permission simulation.",
+      "tags": ["React Flow", "LuckPerms", "Visualization"],
+      "status": "live",
+      "featured": true,
+      "category": "Website",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/",
+          "variant": "primary"
+        }
       ]
     },
     {
@@ -138,10 +160,15 @@
       "featured": true,
       "category": "Bot",
       "links": [
-        { "label": "View", "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/", "variant": "primary" }
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+          "variant": "primary"
+        }
       ]
     }
   ],
+
   "resources": [
     {
       "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
@@ -152,19 +179,50 @@
       "status": "5.38$",
       "featured": true,
       "category": "bot",
-      "links": [{ "label": "View", "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/", "variant": "primary" }]
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+          "variant": "primary"
+        }
+      ]
     },
     {
-      "image": "https://builtbybit.com/attachments/image_2026-05-03_191731571-png.1315793/?preset=cardr1",
-      "title": "Minecraft Community Website",
+      "image": "https://builtbybit.com/attachments/image_2026-05-12_215822347-png.1325338/?preset=cardr1",
+      "title": "Visual Config Studio",
       "brand": "Website",
-      "summary": "Modern Paper plugin starter with Gradle, command framework, and config system.",
-      "tags": ["Web", "Multi-page", "Full setup"],
-      "status": "16.98$",
+      "summary": "Advanced no-code visual editor for Minecraft plugin configurations with smart detection and export tools.",
+      "tags": ["Web", "Configs", "Visual"],
+      "status": "12.99$",
+      "featured": true,
+      "category": "website",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/image_2026-05-15_184245637-png.1327806/?preset=cardr1",
+      "title": "LuckPerms Visual Tree",
+      "brand": "Website",
+      "summary": "Interactive LuckPerms permission editor with visual hierarchy management and live conflict debugging.",
+      "tags": ["Permissions", "LuckPerms", "Visual"],
+      "status": "14.99$",
       "featured": false,
       "category": "website",
-      "links": [{ "label": "View", "href": "https://builtbybit.com/resources/minecraft-community-hub.101610/", "variant": "primary" }]
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/",
+          "variant": "primary"
+        }
+      ]
     }
+  ]
+}
   ],
   "reviews": [
     {
