@@ -1,0 +1,178 @@
+{
+  "projects": [
+    {
+      "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
+      "title": "Evidence Discord Bot",
+      "brand": "Discord Bot",
+      "summary": "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
+      "tags": [
+        "Node.js",
+        "Moderation",
+        "Security"
+      ],
+      "status": "available",
+      "featured": false,
+      "category": "Bot",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/image_2026-05-12_202043575-png.1327794/?preset=cardr1",
+      "title": "Visual Config Studio",
+      "brand": "Website",
+      "summary": "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
+      "tags": [
+        "React",
+        "Vite",
+        "Tailwind",
+        "Configs"
+      ],
+      "status": "live",
+      "featured": true,
+      "category": "Website",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/gemini_generated_image_mew3dbmew3dbmew3-png.1326924/?preset=cardr1",
+      "title": "LuckPerms Visual Tree",
+      "brand": "Website",
+      "summary": "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
+      "tags": [
+        "React Flow",
+        "LuckPerms",
+        "Permissions"
+      ],
+      "status": "live",
+      "featured": true,
+      "category": "Website",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-may-31-2026-11_33_37-pm-png.1353280/?preset=fullr1",
+      "title": "Z-Auth",
+      "brand": "Proxy Auth",
+      "summary": "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+      "tags": [
+        "Proxy",
+        "Authentication",
+        "Minecraft",
+        "Velocity",
+        "Paper"
+      ],
+      "status": "free",
+      "featured": false,
+      "category": "plugin",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/z-auth-modern-authentication-plugin.110438/",
+          "variant": "primary"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
+      "title": "Evidence Discord Bot",
+      "brand": "Bot",
+      "summary": "Best discord bot for performance and handling user cases and moderation.",
+      "tags": [
+        "Simple",
+        "performance"
+      ],
+      "status": "5.38$",
+      "featured": true,
+      "category": "bot",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/image_2026-05-12_202043575-png.1327794/?preset=cardr1",
+      "title": "Visual Config Studio",
+      "brand": "Website",
+      "summary": "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
+      "tags": [
+        "Web",
+        "Configs",
+        "Visual"
+      ],
+      "status": "5.47$",
+      "featured": true,
+      "category": "website",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/gemini_generated_image_mew3dbmew3dbmew3-png.1326924/?preset=cardr1",
+      "title": "LuckPerms Visual Tree",
+      "brand": "Website",
+      "summary": "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
+      "tags": [
+        "Permissions",
+        "LuckPerms",
+        "Visual"
+      ],
+      "status": "5.57$",
+      "featured": false,
+      "category": "website",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-may-31-2026-11_33_37-pm-png.1353280/?preset=fullr1",
+      "title": "Z-Auth",
+      "brand": "Proxy Auth",
+      "summary": "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+      "tags": [
+        "Proxy",
+        "Authentication",
+        "Minecraft",
+        "Velocity",
+        "Paper"
+      ],
+      "status": "live",
+      "featured": false,
+      "category": "plugin",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/z-auth-modern-authentication-plugin.110438/",
+          "variant": "primary"
+        }
+      ]
+    }
+  ]
+}

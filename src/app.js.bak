@@ -25,48 +25,27 @@
   function applySEO(cfg) {
     const seo = cfg.seo[pageKey] || cfg.seo.home;
     document.title = seo.title;
-    
     const meta = (name, content, attr = 'name') => {
       let el = document.querySelector(`meta[${attr}="${name}"]`);
       if (!el) { el = document.createElement('meta'); el.setAttribute(attr, name); document.head.appendChild(el); }
       el.setAttribute('content', content);
     };
-    
-    // Essential meta tags
     meta('description', seo.description);
     meta('keywords', seo.keywords);
     meta('author', cfg.site.author);
     meta('theme-color', cfg.branding.themeColor);
-    meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=5', 'name');
-    meta('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', 'name');
-    meta('charset', 'UTF-8', 'http-equiv');
-    
-    // Open Graph tags
     meta('og:title', seo.title, 'property');
     meta('og:description', seo.description, 'property');
     meta('og:type', 'website', 'property');
     meta('og:image', cfg.branding.ogImage, 'property');
-    meta('og:image:alt', `${cfg.site.name} - ${seo.title}`, 'property');
     meta('og:url', cfg.site.domain + seo.canonical, 'property');
     meta('og:site_name', cfg.site.name, 'property');
-    meta('og:locale', 'en_US', 'property');
-    
-    // Twitter Card tags
     meta('twitter:card', 'summary_large_image');
     meta('twitter:title', seo.title);
     meta('twitter:description', seo.description);
     meta('twitter:image', cfg.branding.ogImage);
-    meta('twitter:image:alt', `${cfg.site.name} - ${seo.title}`);
     meta('twitter:site', '@zraxgaming');
-    meta('twitter:creator', '@zraxgaming');
-    
-    // Additional SEO meta tags
-    meta('mobile-web-app-capable', 'yes');
-    meta('apple-mobile-web-app-capable', 'yes');
-    meta('apple-mobile-web-app-status-bar-style', 'black-translucent');
-    meta('apple-mobile-web-app-title', cfg.site.name);
-    meta('format-detection', 'telephone=no');
-    
+
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
     canonical.href = cfg.site.domain + seo.canonical;
@@ -115,45 +94,19 @@
           name: cfg.site.name,
           url: baseUrl,
           logo: cfg.branding.logo,
-          image: cfg.branding.logo,
-          description: cfg.site.tagline,
           sameAs,
-          contactPoint: {
-            '@type': 'ContactPoint',
-            contactType: 'Customer Service',
-            email: cfg.contact?.platforms?.find(p => p.platform === 'email')?.handle || 'contact@z-craft.xyz',
-            url: cfg.contact?.primary?.href || baseUrl + '/contact'
-          },
-          address: {
-            '@type': 'PostalAddress',
-            addressCountry: 'AE'
-          }
+          description: cfg.site.tagline
         },
         {
           '@type': 'WebSite',
           url: baseUrl,
           name: cfg.site.name,
           description: cfg.site.tagline,
-          potentialAction: {
-            '@type': 'SearchAction',
-            target: baseUrl + '/?s={search_term_string}',
-            'query-input': 'required name=search_term_string'
-          },
           publisher: { '@type': 'Organization', name: cfg.site.name }
         },
         {
           '@type': 'BreadcrumbList',
           itemListElement: breadcrumbItems
-        },
-        {
-          '@type': 'LocalBusiness',
-          name: cfg.site.name,
-          image: cfg.branding.logo,
-          description: cfg.site.tagline,
-          url: baseUrl,
-          telephone: cfg.contact?.platforms?.find(p => p.platform === 'email')?.handle || '+971-contact',
-          email: cfg.contact?.platforms?.find(p => p.platform === 'email')?.handle || 'contact@z-craft.xyz',
-          sameAs
         }
       ]
     };
@@ -254,12 +207,16 @@
   }
 
   function resourceCard(r, index) {
+    const icons = { config: '⚙', template: '📦', kit: '🎨', ui: '✨', plugin: '🔧', other: '📄' };
+    const icon = icons[r.category] || icons.other;
     return `
       <article class="resource-card" data-resource-index="${index}">
         <img class="resource-card-image" src="${esc(r.image)}" alt="${esc(r.title)}" loading="lazy" />
         <div class="resource-card-body">
           <div class="resource-card-header">
-            <span class="resource-card-brand">${esc(r.brand || r.category || '')}</span>
+            <div class="resource-card-icon">
+              <div style="font-size: 48px; color: var(--main); opacity: 0.4;">${icon}</div>
+            </div>
             <div class="resource-card-status">${esc(r.status)}</div>
           </div>
           <div class="resource-card-content">
@@ -311,7 +268,7 @@
 
   function postDiscordRequest(webhookUrl, webhookBody) {
     if (!webhookUrl) {
-      return Promise.reject(new Error('Discord webhook is not configured. Add the webhook URL to config/info.json.'));
+      return Promise.reject(new Error('Discord webhook is not configured. Add the webhook URL to config.json.'));
     }
     return fetch(webhookUrl, {
       method: 'POST',
@@ -408,68 +365,19 @@
     return `
       <section class="page-hero">
         <span class="page-label">// support</span>
-        <h1>Support ZCraft Studios</h1>
-        <p class="page-copy">Help us keep building premium Minecraft resources, plugins, and modern web experiences.</p>
+        <h1>Support ZCraft Studios with a donation.</h1>
+        <p class="page-copy">Help keep premium Minecraft resources, plugin work, and modern web experiences running. Your donation goes straight to development, hosting, and studio growth.</p>
       </section>
-      <div class="donate-container">
-        <div class="donate-hero">
-          <div class="donate-hero-content">
-            <h2>Your support powers our mission</h2>
-            <p>Every donation directly funds development, infrastructure, and new features. No middlemen, pure impact.</p>
-            <div class="donate-stats">
-              <div class="donate-stat">
-                <div class="stat-value">5+</div>
-                <div class="stat-label">Projects shipped</div>
-              </div>
-              <div class="donate-stat">
-                <div class="stat-value">20+</div>
-                <div class="stat-label">Happy clients</div>
-              </div>
-              <div class="donate-stat">
-                <div class="stat-value">99%</div>
-                <div class="stat-label">Satisfaction</div>
-              </div>
-            </div>
+      <div class="window window-highlight">
+        <div class="window-body">
+          <h2>Donate with PayPal</h2>
+          <p class="page-copy">Choose an amount and complete your payment securely. After approval, you will be redirected to a confirmation page.</p>
+          <div class="donation-field">
+            <label for="donation-amount">Donation amount (USD)</label>
+            <input id="donation-amount" type="number" min="1" step="1" value="10" />
           </div>
-          <img src="${esc(cfg.branding.favicon)}" alt="Support ZCraft" class="donate-hero-img" />
-        </div>
-        <div class="donate-form-section">
-          <div class="donate-form-card">
-            <div class="donate-form-header">
-              <h3>Make a Donation</h3>
-              <p>Choose your amount and complete securely through PayPal</p>
-            </div>
-            <div class="donation-field">
-              <label for="donation-amount">Donation Amount</label>
-              <div class="amount-input-wrapper">
-                <input id="donation-amount" type="number" min="1" step="1" value="10" />
-                <span class="amount-suffix">$</span>
-              </div>
-            </div>
-            <div id="paypal-button-container" class="paypal-container"></div>
-            <p class="donate-security">🔒 Secure • Processed by PayPal • 100% Safe</p>
-          </div>
-          <div class="donate-benefits">
-            <h4>What Happens Next</h4>
-            <div class="benefits-list">
-              <div class="benefit">
-                <span class="benefit-num">1</span>
-                <div><strong>Enter your amount</strong><p>Select a donation that feels right for you.</p></div>
-              </div>
-              <div class="benefit">
-                <span class="benefit-num">2</span>
-                <div><strong>Complete checkout</strong><p>Pay securely through PayPal using the button below.</p></div>
-              </div>
-              <div class="benefit">
-                <span class="benefit-num">3</span>
-                <div><strong>Receive confirmation</strong><p>You will be redirected to a thank-you page after payment.</p></div>
-              </div>
-              <div class="benefit">
-                <span class="benefit-num">4</span>
-                <div><strong>Support the studio</strong><p>Your donation helps keep the site and projects running.</p></div>
-              </div>
-            </div>
-          </div>
+          <div id="paypal-button-container" style="margin-top:22px;"></div>
+          <p class="page-copy" style="margin-top:18px;">Prefer another option? Reach out on the contact page and we’ll help you complete your support.</p>
         </div>
       </div>`;
   }
@@ -477,122 +385,58 @@
   function renderThankYou(cfg) {
     const params = new URLSearchParams(window.location.search);
     const status = params.get('status');
-    const isSuccess = status === 'success';
-    
+    const title = status === 'success' ? 'Payment confirmed.' : 'Thank you for supporting ZCraft Studios.';
+    const copy = status === 'success'
+      ? 'Your donation has been received successfully. We appreciate your support and will follow up if needed.'
+      : 'Thank you for visiting. If this was a PayPal redirect, your payment is still being processed and will be confirmed shortly.';
+
     return `
       <section class="page-hero">
-        <span class="page-label">// gratitude</span>
-        <h1>${isSuccess ? 'Payment Confirmed' : 'Thank You'}</h1>
-        <p class="page-copy">${isSuccess ? 'Your generosity keeps us building amazing things.' : 'Thank you for your interest in supporting us.'}</p>
+        <span class="page-label">// thank you</span>
+        <h1>${esc(title)}</h1>
+        <p class="page-copy">${esc(copy)}</p>
       </section>
-      <div class="thankyou-container">
-        <div class="thankyou-card">
-          <div class="thankyou-success-container">
-            <div class="success-checkmark-wrapper">
-              <svg class="success-checkmark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle class="success-circle" cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="3"/>
-                <path class="success-check" d="M 30 50 L 45 65 L 70 35" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h2 class="thankyou-title">${isSuccess ? 'Payment Received!' : 'Payment Received!'}</h2>
-            <p class="thankyou-subtitle">${isSuccess ? 'Thank you for your support' : 'Your request has been proccessed'}</p>
-          </div>
-          
-          <div class="thankyou-content">
-            <div class="thankyou-details">
-              <div class="detail-group">
-                <h4>Your Impact</h4>
-                <p>Your donation directly supports our mission to deliver premium Minecraft resources and tools to the community.</p>
-              </div>
-              <div class="thankyou-actions">
-                <a class="btn btn-primary" href="/">Explore Our Work</a>
-                <a class="btn btn-ghost" href="/resources">View Resources</a>
-                ${isSuccess ? '<a class="btn btn-ghost" href="/donate">Donate Again</a>' : ''}
-              </div>
-            </div>
+      <div class="window window-highlight">
+        <div class="window-body">
+          <h2>Appreciation confirmed</h2>
+          <p class="page-copy">Your support keeps ZCraft Studios building Minecraft plugins, server tools, and web experiences. If you need help, reach out on the contact page.</p>
+          <ul class="page-copy">
+            <li>Transaction status: ${esc(status === 'success' ? 'Success' : 'Pending')}</li>
+            <li>Next step: you can return home or make another donation.</li>
+          </ul>
+          <div class="window-actions">
+            <a class="btn btn-primary" href="/">return home</a>
+            <a class="btn btn-ghost" href="/donate">donate again</a>
           </div>
         </div>
       </div>`;
   }
 
-
   function renderRequest(cfg) {
-    const page = cfg.request || {};
-    const services = page.services || [];
-    const nextSteps = page.nextSteps || [];
-
-    const serviceItems = services.map(s => `
-      <div class="service-item">
-        <div class="service-icon">${esc(s.icon)}</div>
-        <div class="service-info">
-          <h5>${esc(s.title)}</h5>
-          <p>${esc(s.desc)}</p>
-        </div>
-      </div>`).join('');
-
-    const nextStepsHtml = nextSteps.length ? `
-      <div class="request-next-steps">
-        <h3>What happens next</h3>
-        <ol>
-          ${nextSteps.map(step => `<li>${esc(step)}</li>`).join('')}
-        </ol>
-      </div>` : '';
-
     return `
       <section class="page-hero">
-        <span class="page-label">${esc(page.label || '// commission')}</span>
-        <h1>${esc(page.title || 'Request a Custom Service')}</h1>
-        <p class="page-copy">${esc(page.copy || "Tell us what you need. We'll respond within 24 hours with a quote and timeline.")}</p>
+        <span class="page-label">// request</span>
+        <h1>Request a custom service.</h1>
+        <p class="page-copy">Submit your Discord username or ID, email, budget, and what you need built. This request is delivered directly to the studio.</p>
       </section>
-      <div class="request-container">
-        <div class="request-layout">
-          <div class="request-form-side">
-            <div class="request-form-card">
-              <div class="request-form-header">
-                <h3>${esc(page.form?.headerTitle || 'Submit Your Request')}</h3>
-                <p>${esc(page.form?.headerCopy || "Let's build something amazing together")}</p>
-              </div>
-              <form id="request-form" class="request-form">
-                <div class="form-group">
-                  <label for="request-discord">${esc(page.form?.fields?.find(f => f.id === 'request-discord')?.label || 'Discord Username')}</label>
-                  <input id="request-discord" type="text" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-discord')?.placeholder || 'Discord#1234 or ID')}" required />
-                  <span class="form-hint">${esc(page.form?.fields?.find(f => f.id === 'request-discord')?.hint || 'So we can reach you back')}</span>
-                </div>
-                <div class="form-group">
-                  <label for="request-email">${esc(page.form?.fields?.find(f => f.id === 'request-email')?.label || 'Email Address')}</label>
-                  <input id="request-email" type="email" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-email')?.placeholder || 'you@example.com')}" required />
-                </div>
-                <div class="form-group">
-                  <label for="request-price">${esc(page.form?.fields?.find(f => f.id === 'request-price')?.label || 'Budget')}</label>
-                  <input id="request-price" type="text" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-price')?.placeholder || 'e.g., $100, 50 USD')}" required />
-                </div>
-                <div class="form-group">
-                  <label for="request-description">${esc(page.form?.fields?.find(f => f.id === 'request-description')?.label || 'Project Description')}</label>
-                  <textarea id="request-description" rows="6" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-description')?.placeholder || 'What do you need built? Be as detailed as possible...')}" required></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="request-timeline">${esc(page.form?.fields?.find(f => f.id === 'request-timeline')?.label || 'Timeline (Optional)')}</label>
-                  <input id="request-timeline" type="text" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-timeline')?.placeholder || '2 weeks, ASAP, flexible, etc.') }" />
-                </div>
-                <button class="btn btn-primary" type="submit" style="width:100%">${esc(page.form?.buttonLabel || 'Send Request')}</button>
-                <div id="request-status" class="request-status"></div>
-              </form>
+      <div class="window window-highlight">
+        <div class="window-body">
+          <form id="request-form" class="request-form">
+            <label for="request-discord">Discord username or ID</label>
+            <input id="request-discord" type="text" placeholder="Discord#1234 or 123456789012345678" required />
+            <label for="request-email">Email address</label>
+            <input id="request-email" type="email" placeholder="you@example.com" required />
+            <label for="request-price">Budget or average price you will pay</label>
+            <input id="request-price" type="text" placeholder="$50 or 10 USD" required />
+            <label for="request-description">Description of work needed</label>
+            <textarea id="request-description" rows="5" placeholder="Describe what you need built..." required></textarea>
+            <label for="request-timeline">Desired timeline (optional)</label>
+            <input id="request-timeline" type="text" placeholder="2 weeks, ASAP, flexible" />
+            <div class="request-actions">
+              <button class="btn btn-primary" type="submit">send request</button>
             </div>
-          </div>
-
-          <div class="request-info-side">
-            <div class="request-services">
-              <h3>${esc(page.servicesTitle || 'What We Build')}</h3>
-              <div class="service-list">
-                ${serviceItems}
-              </div>
-            </div>
-            ${nextStepsHtml}
-            <div class="request-cta">
-              <h4>${esc(page.ctaTitle || 'Quick Response')}</h4>
-              <p>${(page.ctaPoints || ['24-hour turnaround on quotes','Transparent pricing','Production-ready code']).map(p => `✓ ${esc(p)}`).join('<br>')}</p>
-            </div>
-          </div>
+            <div id="request-status" class="request-status"></div>
+          </form>
         </div>
       </div>`;
   }
@@ -897,40 +741,32 @@
   }
 
   function renderResources(cfg) {
-    const page = cfg.resourcesPage || {};
-    const resources = cfg.resources || [];
-    const featured = resources.find(r => r.featured) || resources[0] || null;
-    const categories = [...new Set(resources.map(r => r.category).filter(Boolean))];
-    const resourceCards = resources.filter(r => r !== featured).map((r, i) => resourceCard(r, i)).join('');
+    const featured = cfg.resources.find(r => r.featured) || cfg.resources[0] || {};
 
-    const featuredCard = featured ? `
-      <article class="resource-featured-banner">
-        <img class="resource-featured-image" src="${esc(featured.image)}" alt="${esc(featured.title)}" loading="lazy" />
-        <div class="resource-featured-copy">
-          <span class="resource-featured-badge">${esc(featured.brand)} · ${esc(featured.status)}</span>
+    const featuredCard = `
+      <div class="resource-featured-card">
+        <div class="resource-featured-header">
+          <div class="resource-featured-badge">${esc(featured.brand)} · ${esc(featured.status)}</div>
           <h2 class="resource-featured-title">${esc(featured.title)}</h2>
-          <p class="resource-featured-summary">${esc(featured.summary)}</p>
-          <div class="tag-list">${(featured.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-          ${featured.links?.[0] ? `<a class="btn btn-primary" href="${esc(featured.links[0].href)}" target="_blank" rel="noopener">${esc(featured.links[0].label)}</a>` : ''}
         </div>
-      </article>` : '';
+        <div class="resource-featured-content">
+          <p class="resource-featured-summary">${esc(featured.summary)}</p>
+          ${featured.links?.[0] ? `<a class="btn btn-primary" href="${esc(featured.links[0].href)}">${esc(featured.links[0].label)}</a>` : ''}
+        </div>
+      </div>`;
 
-    const categoryList = categories.length ? `<div class="resources-categories">${categories.map(c => `<span class="category-pill">${esc(c)}</span>`).join('')}</div>` : '';
-    const introCopy = esc(page.copy || 'A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly.');
+    const resourceCards = cfg.resources.map((r, i) => resourceCard(r, i)).join('');
 
     return `
       <section class="page-hero">
-        <span class="page-label">${esc(page.label || '// resources')}</span>
-        <h1>${esc(page.title || 'Tools, configs, and kits built for real servers.')}</h1>
-        <p class="page-copy">${introCopy}</p>
+        <span class="page-label">// resources</span>
+        <h1>Tools, configs, and kits built for real servers.</h1>
+        <p class="page-copy">A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly.</p>
       </section>
       <div class="resources-layout">
         ${featuredCard}
-        <div class="resources-intro-row">
-          ${categoryList}
-        </div>
         <div class="resources-grid">
-          ${resourceCards || '<div class="resource-empty">No resources available yet.</div>'}
+          ${resourceCards}
         </div>
       </div>`;
   }
@@ -1061,17 +897,7 @@
 
   /* ---------- BOOT ---------- */
 
-  Promise.all([
-    fetch('/config/info.json?v=' + Date.now()).then(r => r.json()),
-    fetch('/config/products.json?v=' + Date.now()).then(r => r.json()),
-    fetch('/config/reviews.json?v=' + Date.now()).then(r => r.json())
-  ]).then(([info, products, reviews]) => {
-    const cfg = {
-      ...info,
-      projects: products.projects || [],
-      resources: products.resources || [],
-      reviews: reviews.reviews || []
-    };
+  fetch('/config/config.json?v=' + Date.now()).then(r => r.json()).then(cfg => {
     applySEO(cfg);
     const app = $('#app');
     const renderer = PAGES[pageKey] || renderHome;

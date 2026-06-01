@@ -1,0 +1,13 @@
+{
+  "reviews": [
+    {
+      "name": "Almotasem",
+      "handle": "@almotasem",
+      "avatar": "https://cdn.discordapp.com/avatars/1179436345370869773/32ff2e76d9946f8d6a4d116d95dd9955.webp?size=60",
+      "rating": 5,
+      "text": "Amazing work, Was available most of the day and finished work quickly.",
+      "date": "2026-5-7",
+      "project": "Minecraft Server Service Setup"
+    }
+  ]
+}

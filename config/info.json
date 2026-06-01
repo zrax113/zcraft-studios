@@ -1,0 +1,599 @@
+{
+  "site": {
+    "name": "ZCraft Studios",
+    "domain": "https://studio.z-craft.xyz",
+    "tagline": "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
+    "author": "ZCraft Studios",
+    "year": 2026
+  },
+  "branding": {
+    "favicon": "/favicon.ico",
+    "logo": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+    "ogImage": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+    "themeColor": "#ef4444"
+  },
+  "nav": [
+    {
+      "label": "home",
+      "href": "/"
+    },
+    {
+      "label": "team",
+      "href": "/team"
+    },
+    {
+      "label": "resources",
+      "href": "/resources"
+    },
+    {
+      "label": "donate",
+      "href": "/donate"
+    },
+    {
+      "label": "request",
+      "href": "/request"
+    },
+    {
+      "label": "about",
+      "href": "/about"
+    },
+    {
+      "label": "contact",
+      "href": "/contact"
+    }
+  ],
+  "seo": {
+    "home": {
+      "title": "ZCraft Studios \u2014 Premium Minecraft Plugins, Configs, and Discord Bots",
+      "description": "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and modern web experiences with polished UX and performance.",
+      "keywords": "ZCraft Studios, minecraft plugins, minecraft configs, discord bots, minecraft resources, game server setup, premium web development",
+      "canonical": "/"
+    },
+    "resources": {
+      "title": "Resources \u2014 ZCraft Studios",
+      "description": "Premium Minecraft resources, configs, plugins and Discord bot tools designed for performance, polish, and easy deployment.",
+      "keywords": "minecraft resources, minecraft configs, minecraft plugins, discord bots, server tools, ZCraft Studios",
+      "canonical": "/resources"
+    },
+    "team": {
+      "title": "Team \u2014 ZCraft Studios",
+      "description": "Meet the ZCraft Studios team delivering Minecraft plugins, server configs, Discord bots, and modern web services.",
+      "keywords": "team, ZCraft Studios, minecraft developers, discord bot developers, plugin team",
+      "canonical": "/team"
+    },
+    "about": {
+      "title": "About \u2014 ZCraft Studios",
+      "description": "ZCraft Studios is a premium development studio specializing in Minecraft plugins, server configs, Discord bots and modern web experiences.",
+      "keywords": "about ZCraft Studios, minecraft development studio, discord bot studio, plugin studio, server config experts",
+      "canonical": "/about"
+    },
+    "contact": {
+      "title": "Contact \u2014 ZCraft Studios",
+      "description": "Contact ZCraft Studios for premium Minecraft plugins, server configs, Discord bots, and web development services.",
+      "keywords": "contact ZCraft Studios, minecraft development, discord bot support, server configuration help",
+      "canonical": "/contact"
+    },
+    "donate": {
+      "title": "Donate \u2014 ZCraft Studios",
+      "description": "Support ZCraft Studios with a secure PayPal donation to help fund premium Minecraft plugins, configs, and Discord bot development.",
+      "keywords": "donate, ZCraft Studios, paypal donation, minecraft plugins, minecraft configs, discord bots support",
+      "canonical": "/donate"
+    },
+    "thankyou": {
+      "title": "Thank You \u2014 ZCraft Studios",
+      "description": "Donation confirmed. Thank you for supporting ZCraft Studios and helping keep premium Minecraft plugins, configs, and bot services running.",
+      "keywords": "thank you, donation confirmed, minecraft development, ZCraft Studios, paypal donation",
+      "canonical": "/thankyou"
+    },
+    "request": {
+      "title": "Request Custom Service \u2014 ZCraft Studios",
+      "description": "Submit a custom service request for Minecraft plugins, server configs, Discord bot work, or web development.",
+      "keywords": "custom service request, minecraft plugins request, minecraft configs request, discord bot development request, ZCraft Studios",
+      "canonical": "/request"
+    },
+    "notfound": {
+      "title": "404 \u2014 ZCraft Studios",
+      "description": "Page not found.",
+      "keywords": "404, not found",
+      "canonical": "/404"
+    }
+  },
+  "hero": {
+    "prompt": "./zcraft --boot",
+    "name": "ZCraft",
+    "nameAccent": "Studios",
+    "role": "// premium developer studio",
+    "status": "studio open \u00b7 taking commissions",
+    "description": "We design and ship polished Minecraft resources, performance-first plugins, and modern web experiences. Production-ready from day one.",
+    "actions": [
+      {
+        "label": "view resources",
+        "href": "/resources",
+        "variant": "primary"
+      },
+      {
+        "label": "start a project",
+        "href": "/contact",
+        "variant": "ghost"
+      }
+    ],
+    "boot": [
+      "$ ./zcraft --boot",
+      "\u203a loading studio.config ......... ok",
+      "\u203a spinning up plugin pipeline ... ok",
+      "\u203a warming web services .......... ok",
+      "\u203a status: ready to ship"
+    ],
+    "services": [
+      {
+        "icon": "{ }",
+        "title": "plugin dev",
+        "desc": "Custom Paper / Spigot plugins built for performance."
+      },
+      {
+        "icon": "[ ]",
+        "title": "server setup",
+        "desc": "Optimized configs, hardening, and full server tuning."
+      },
+      {
+        "icon": "< >",
+        "title": "web design",
+        "desc": "Modern, fast, responsive websites for studios & creators."
+      },
+      {
+        "icon": "( )",
+        "title": "resources",
+        "desc": "Premium configs, templates, and UI kits to drop in."
+      }
+    ]
+  },
+  "stats": [
+    {
+      "value": 5,
+      "suffix": "+",
+      "label": "projects shipped"
+    },
+    {
+      "value": 20,
+      "suffix": "+",
+      "label": "happy clients"
+    },
+    {
+      "value": 2.5,
+      "suffix": "+ yrs",
+      "label": "experience"
+    },
+    {
+      "value": 99,
+      "suffix": "%",
+      "label": "satisfaction"
+    }
+  ],
+  "about": {
+    "bio": "// studio profile\nconst zcraft = {\n  name: 'ZCraft Studios',\n  mission: 'premium developer studio',\n  focus: ['Websites', 'servers', 'resources'],\n  quality: 'production-ready',\n  delivery: 'fast & polished',\n};\n\n// studio dedicated to excellence",
+    "skills": [
+      {
+        "name": "Plugin Development",
+        "value": 95
+      },
+      {
+        "name": "Server Architecture",
+        "value": 92
+      },
+      {
+        "name": "Web Development",
+        "value": 88
+      },
+      {
+        "name": "System Design",
+        "value": 90
+      },
+      {
+        "name": "DevOps & Deployment",
+        "value": 86
+      }
+    ],
+    "techGroups": [
+      {
+        "label": "backend",
+        "tags": [
+          "Java",
+          "Paper",
+          "Spigot",
+          "MySQL",
+          "Node.js"
+        ]
+      },
+      {
+        "label": "frontend",
+        "tags": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "TypeScript"
+        ]
+      },
+      {
+        "label": "Bots",
+        "tags": [
+          "Discord",
+          "NodeJS",
+          "Git",
+          "Python"
+        ]
+      }
+    ]
+  },
+  "homePage": {
+    "label": "// home",
+    "servicesLabel": "// what we craft",
+    "featuredLabel": "// featured releases",
+    "ctaTitle": "have something to ship?",
+    "ctaCopy": "Plugins, server setups, and web work \u2014 built fast, polished, and production-ready.",
+    "ctaPrimaryLabel": "start a project",
+    "ctaPrimaryHref": "/contact",
+    "ctaSecondaryLabel": "browse resources",
+    "ctaSecondaryHref": "/resources",
+    "reviewsLabel": "// what clients say"
+  },
+  "aboutPage": {
+    "label": "// about",
+    "title": "Studio-first craft for modern Minecraft products.",
+    "copy": "ZCraft Studios builds server systems, plugins, and web experiences for teams, communities, and creators. We combine design, performance, and polished delivery for commercial-grade releases.",
+    "values": [
+      {
+        "title": "Production-ready delivery",
+        "desc": "We ship polished, well-tested work that is built to run in real server environments."
+      },
+      {
+        "title": "Clear communication",
+        "desc": "Every request is handled with transparent scope, timeline, and follow-up."
+      },
+      {
+        "title": "Performance-first design",
+        "desc": "Our plugins, sites, and configurations are optimized for speed and reliability."
+      }
+    ]
+  },
+  "resourcesPage": {
+    "label": "// resources",
+    "title": "Tools, configs, and kits built for real servers.",
+    "copy": "A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly."
+  },
+  "portfolio": {
+    "featured": {
+      "logo": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+      "title": "Studio showcase",
+      "description": "Featured releases, commissions, and portfolio highlights built for performance and polish.",
+      "nums": [
+        {
+          "value": "5+",
+          "label": "featured releases"
+        },
+        {
+          "value": "12+",
+          "label": "projects reviewed"
+        },
+        {
+          "value": "100%",
+          "label": "studio-grade quality"
+        }
+      ]
+    },
+    "commissions": [
+      {
+        "title": "Plugin Development",
+        "desc": "Custom server plugins, bots, and mod support."
+      },
+      {
+        "title": "Web Design",
+        "desc": "Landing pages, resource hubs, and studio sites."
+      },
+      {
+        "title": "Server Systems",
+        "desc": "Config tuning, automation, and performance."
+      }
+    ]
+  },
+  "donate": {
+    "label": "// support",
+    "title": "Support ZCraft Studios",
+    "copy": "Help us keep building premium Minecraft resources, plugins, and modern web experiences.",
+    "heroTitle": "Your support powers our mission",
+    "heroCopy": "Every donation directly funds development, infrastructure, and new features. No middlemen, pure impact.",
+    "heroImage": "https://images.unsplash.com/photo-1639748813191-fca7b0da4d5a?w=600&h=400&fit=crop&q=80",
+    "heroImageAlt": "Support ZCraft",
+    "stats": [
+      {
+        "value": "5+",
+        "label": "Projects shipped"
+      },
+      {
+        "value": "20+",
+        "label": "Happy clients"
+      },
+      {
+        "value": "99%",
+        "label": "Satisfaction"
+      }
+    ],
+    "form": {
+      "title": "Make a Donation",
+      "copy": "Choose your amount and complete securely through PayPal",
+      "amountLabel": "Donation Amount",
+      "amountPrefix": "",
+      "defaultAmount": "10",
+      "securityText": "\ud83d\udd12 Secure \u2022 Processed by PayPal \u2022 100% Safe",
+      "buttonLabel": "",
+      "currency": "USD"
+    },
+    "benefitsTitle": "What Happens Next",
+    "benefits": [
+      {
+        "title": "Payment Processing",
+        "copy": "Your donation is securely processed"
+      },
+      {
+        "title": "Confirmation",
+        "copy": "You'll see a thank you page"
+      },
+      {
+        "title": "Impact",
+        "copy": "Your support fuels our next release"
+      }
+    ],
+    "paypalClientId": "ARM7vUNfOeuKYBARRVZ8-jg1_XFZ5zPd8b6MPhhK-_uovP34AimpuweE8nce97y8N7-7gR268vAC_lEW",
+    "paypalDescription": "ZCraft Studios donation"
+  },
+  "thankyou": {
+    "label": "// gratitude",
+    "title": "Thank You",
+    "titleSuccess": "Payment Confirmed",
+    "copy": "Thank you for your interest in supporting us.",
+    "copySuccess": "Your generosity keeps us building amazing things.",
+    "subtitlePending": "Your request is being processed",
+    "subtitleSuccess": "Thank you for your support",
+    "statusLabel": "Transaction Status",
+    "statusSuccess": "\u2713 Success",
+    "statusPending": "\u23f1 Pending",
+    "impact": "Your donation directly supports our mission to deliver premium Minecraft resources and tools to the community.",
+    "actions": [
+      {
+        "label": "Explore Our Work",
+        "href": "/",
+        "variant": "primary"
+      },
+      {
+        "label": "View Resources",
+        "href": "/resources",
+        "variant": "ghost"
+      },
+      {
+        "label": "Donate Again",
+        "href": "/donate",
+        "variant": "ghost",
+        "successOnly": true
+      }
+    ]
+  },
+  "request": {
+    "label": "// commission",
+    "title": "Request a Custom Service",
+    "copy": "Tell us what you need. We'll respond within 24 hours with a quote and timeline.",
+    "form": {
+      "headerTitle": "Submit Your Request",
+      "headerCopy": "Let's build something amazing together",
+      "fields": [
+        {
+          "id": "request-discord",
+          "label": "Discord Username",
+          "type": "text",
+          "placeholder": "Discord#1234 or ID",
+          "hint": "So we can reach you back",
+          "required": true
+        },
+        {
+          "id": "request-email",
+          "label": "Email Address",
+          "type": "email",
+          "placeholder": "you@example.com",
+          "required": true
+        },
+        {
+          "id": "request-price",
+          "label": "Budget",
+          "type": "text",
+          "placeholder": "e.g., $100, 50 USD",
+          "required": true
+        },
+        {
+          "id": "request-description",
+          "label": "Project Description",
+          "type": "textarea",
+          "placeholder": "What do you need built? Be as detailed as possible...",
+          "required": true
+        },
+        {
+          "id": "request-timeline",
+          "label": "Timeline (Optional)",
+          "type": "text",
+          "placeholder": "2 weeks, ASAP, flexible, etc.",
+          "required": false
+        }
+      ],
+      "buttonLabel": "Send Request",
+      "statusEmpty": "Please fill in your Discord identifier, email, budget, and description.",
+      "statusSending": "Sending request...",
+      "statusSuccess": "Request submitted. We will review it and follow up shortly.",
+      "statusError": "Could not send the request right now. Please contact us directly.",
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=500&fit=crop&q=80",
+      "imageAlt": "Custom Services"
+    },
+    "servicesTitle": "What We Build",
+    "services": [
+      {
+        "icon": "{ }",
+        "title": "Plugins",
+        "desc": "Paper, Spigot, custom server plugins"
+      },
+      {
+        "icon": "[ ]",
+        "title": "Server Setup",
+        "desc": "Optimized configs & tuning"
+      },
+      {
+        "icon": "< >",
+        "title": "Web Design",
+        "desc": "Modern, fast websites"
+      },
+      {
+        "icon": "( )",
+        "title": "Bots",
+        "desc": "Discord bots & automations"
+      }
+    ],
+    "ctaTitle": "Quick Response",
+    "ctaPoints": [
+      "24-hour turnaround on quotes",
+      "Transparent pricing",
+      "Production-ready code"
+    ],
+    "nextSteps": [
+      "We review every request and confirm scope within 24 hours.",
+      "You receive a pricing estimate, timeline, and implementation details.",
+      "We start once the project is approved and proceed with weekly updates."
+    ]
+  },
+  "teamPage": {
+    "label": "// team",
+    "title": "Built by a small but experienced studio crew.",
+    "copy": "Every release is reviewed, supported, and polished for real server environments. Meet the people who ship the experience."
+  },
+  "notFound": {
+    "title": "route not found",
+    "copy": "The page you tried to load doesn't exist on {siteName}.",
+    "actions": [
+      {
+        "label": "go home",
+        "href": "/",
+        "variant": "primary"
+      },
+      {
+        "label": "view resources",
+        "href": "/resources",
+        "variant": "ghost"
+      },
+      {
+        "label": "contact",
+        "href": "/contact",
+        "variant": "ghost"
+      }
+    ]
+  },
+  "contact": {
+    "kicker": "// reach out",
+    "title": "let's build something premium.",
+    "copy": "Open for plugin commissions, server setups, and modern web work. Discord is the fastest way to reach me \u2014 replies usually within a few hours.",
+    "notes": [
+      {
+        "label": "timezone",
+        "value": "GMT+4 \u00b7 Fri-Sun"
+      },
+      {
+        "label": "response",
+        "value": "< 6 hours, usually faster"
+      }
+    ],
+    "primary": {
+      "badge": "fastest reply",
+      "platform": "discord",
+      "handle": "@zraxgaming",
+      "cta": "open discord \u2192",
+      "href": "https://discord.com/users/zraxgaming"
+    },
+    "help": [
+      {
+        "title": "Need a custom plugin?",
+        "desc": "Share your server version, desired features, and any existing plugins so we can estimate compatibility quickly."
+      },
+      {
+        "title": "Troubleshooting existing setups",
+        "desc": "If a server issue is blocking you, provide logs, configs, and what you already tried. We can help isolate the fix."
+      },
+      {
+        "title": "Planning a new project",
+        "desc": "We can scope builds for websites, Discord bots, proxy auth, and server automation with a clear launch plan."
+      }
+    ],
+    "platforms": [
+      {
+        "platform": "email",
+        "handle": "zain@z-craft.xyz",
+        "meta": "business inquiries",
+        "icon": "\u2709",
+        "href": "mailto:zain@z-craft.xyz"
+      },
+      {
+        "platform": "github",
+        "handle": "@zraxgaming",
+        "meta": "open source",
+        "icon": "\u2325",
+        "href": "https://github.com/zraxgaming"
+      },
+      {
+        "platform": "website",
+        "handle": "zain.z-craft.xyz",
+        "meta": "portfolio",
+        "icon": "\u25c8",
+        "href": "https://Zain.z-craft.xyz"
+      },
+      {
+        "platform": "twitter",
+        "handle": "@zraxgaming",
+        "meta": "updates",
+        "icon": "\ud835\udd4f",
+        "href": "https://x.com/ZCraftNetwork"
+      }
+    ]
+  },
+  "webhook": {
+    "discord": {
+      "request": "https://discord.com/api/webhooks/1511017080282153020/D_26UxQLoKcffnu2gsAWg5TjIl2RBDPiwFnc7vgxMSJFb7gHNGkCA1RPSAAWWbPA7mQw"
+    }
+  },
+  "footer": {
+    "left": "ZCraft Studios \u2014 premium developer studio",
+    "links": [
+      {
+        "label": "github",
+        "href": "https://github.com/zain-abusal"
+      },
+      {
+        "label": "discord",
+        "href": "https://discord.com/users/zraxgaming"
+      },
+      {
+        "label": "donate",
+        "href": "/donate"
+      },
+      {
+        "label": "request service",
+        "href": "/request"
+      },
+      {
+        "label": "email",
+        "href": "mailto:zain@z-craft.xyz"
+      }
+    ]
+  },
+  "team": [
+    {
+      "name": "Zain Abusal",
+      "role": "Founder & Lead Developer",
+      "pfp": "https://i.postimg.cc/T1sXX0Jj/image-2026-05-08-164555500.png",
+      "bio": "Passionate Minecraft developer with 2+ years of experience building websites and server systems. Focused on performance and user experience.",
+      "website": "https://Zain.z-craft.xyz",
+      "level": 999
+    }
+  ]
+}

@@ -123,6 +123,145 @@
       { "label": "Bots", "tags": ["Discord", "NodeJS", "Git", "Python"] }
     ]
   },
+  "homePage": {
+    "label": "// home",
+    "servicesLabel": "// what we craft",
+    "featuredLabel": "// featured releases",
+    "ctaTitle": "have something to ship?",
+    "ctaCopy": "Plugins, server setups, and web work — built fast, polished, and production-ready.",
+    "ctaPrimaryLabel": "start a project",
+    "ctaPrimaryHref": "/contact",
+    "ctaSecondaryLabel": "browse resources",
+    "ctaSecondaryHref": "/resources",
+    "reviewsLabel": "// what clients say"
+  },
+  "aboutPage": {
+    "label": "// about",
+    "title": "Studio-first craft for modern Minecraft products.",
+    "copy": "ZCraft Studios builds server systems, plugins, and web experiences for teams, communities, and creators. We combine design, performance, and polished delivery for commercial-grade releases."
+  },
+  "portfolio": {
+    "featured": {
+      "logo": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+      "title": "Studio showcase",
+      "description": "Featured releases, commissions, and portfolio highlights built for performance and polish.",
+      "nums": [
+        { "value": "5+", "label": "featured releases" },
+        { "value": "12+", "label": "projects reviewed" },
+        { "value": "100%", "label": "studio-grade quality" }
+      ]
+    },
+    "commissions": [
+      { "title": "Plugin Development", "desc": "Custom server plugins, bots, and mod support." },
+      { "title": "Web Design", "desc": "Landing pages, resource hubs, and studio sites." },
+      { "title": "Server Systems", "desc": "Config tuning, automation, and performance." }
+    ]
+  },
+  "resourcesPage": {
+    "label": "// resources",
+    "title": "Tools, configs, and kits built for real servers.",
+    "copy": "A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly."
+  },
+  "donate": {
+    "label": "// support",
+    "title": "Support ZCraft Studios",
+    "copy": "Help us keep building premium Minecraft resources, plugins, and modern web experiences.",
+    "heroTitle": "Your support powers our mission",
+    "heroCopy": "Every donation directly funds development, infrastructure, and new features. No middlemen, pure impact.",
+    "heroImage": "https://images.unsplash.com/photo-1639748813191-fca7b0da4d5a?w=600&h=400&fit=crop&q=80",
+    "heroImageAlt": "Support ZCraft",
+    "stats": [
+      { "value": "5+", "label": "Projects shipped" },
+      { "value": "20+", "label": "Happy clients" },
+      { "value": "99%", "label": "Satisfaction" }
+    ],
+    "form": {
+      "title": "Make a Donation",
+      "copy": "Choose your amount and complete securely through PayPal",
+      "amountLabel": "Donation Amount",
+      "amountPrefix": "",
+      "defaultAmount": "10",
+      "securityText": "🔒 Secure • Processed by PayPal • 100% Safe",
+      "buttonLabel": "",
+      "currency": "USD"
+    },
+    "benefitsTitle": "What Happens Next",
+    "benefits": [
+      { "title": "Payment Processing", "copy": "Your donation is securely processed" },
+      { "title": "Confirmation", "copy": "You'll see a thank you page" },
+      { "title": "Impact", "copy": "Your support fuels our next release" }
+    ],
+    "paypalClientId": "ARM7vUNfOeuKYBARRVZ8-jg1_XFZ5zPd8b6MPhhK-_uovP34AimpuweE8nce97y8N7-7gR268vAC_lEW",
+    "paypalDescription": "ZCraft Studios donation"
+  },
+  "thankyou": {
+    "label": "// gratitude",
+    "title": "Thank You",
+    "titleSuccess": "Payment Confirmed",
+    "copy": "Thank you for your interest in supporting us.",
+    "copySuccess": "Your generosity keeps us building amazing things.",
+    "subtitlePending": "Your request is being processed",
+    "subtitleSuccess": "Thank you for your support",
+    "statusLabel": "Transaction Status",
+    "statusSuccess": "✓ Success",
+    "statusPending": "⏱ Pending",
+    "impact": "Your donation directly supports our mission to deliver premium Minecraft resources and tools to the community.",
+    "actions": [
+      { "label": "Explore Our Work", "href": "/", "variant": "primary" },
+      { "label": "View Resources", "href": "/resources", "variant": "ghost" },
+      { "label": "Donate Again", "href": "/donate", "variant": "ghost", "successOnly": true }
+    ]
+  },
+  "request": {
+    "label": "// commission",
+    "title": "Request a Custom Service",
+    "copy": "Tell us what you need. We'll respond within 24 hours with a quote and timeline.",
+    "form": {
+      "headerTitle": "Submit Your Request",
+      "headerCopy": "Let's build something amazing together",
+      "fields": [
+        { "id": "request-discord", "label": "Discord Username", "type": "text", "placeholder": "Discord#1234 or ID", "hint": "So we can reach you back", "required": true },
+        { "id": "request-email", "label": "Email Address", "type": "email", "placeholder": "you@example.com", "required": true },
+        { "id": "request-price", "label": "Budget", "type": "text", "placeholder": "e.g., $100, 50 USD", "required": true },
+        { "id": "request-description", "label": "Project Description", "type": "textarea", "placeholder": "What do you need built? Be as detailed as possible...", "required": true },
+        { "id": "request-timeline", "label": "Timeline (Optional)", "type": "text", "placeholder": "2 weeks, ASAP, flexible, etc.", "required": false }
+      ],
+      "buttonLabel": "Send Request",
+      "statusEmpty": "Please fill in your Discord identifier, email, budget, and description.",
+      "statusSending": "Sending request...",
+      "statusSuccess": "Request submitted. We will review it and follow up shortly.",
+      "statusError": "Could not send the request right now. Please contact us directly.",
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=500&fit=crop&q=80",
+      "imageAlt": "Custom Services"
+    },
+    "servicesTitle": "What We Build",
+    "services": [
+      { "icon": "{ }", "title": "Plugins", "desc": "Paper, Spigot, custom server plugins" },
+      { "icon": "[ ]", "title": "Server Setup", "desc": "Optimized configs & tuning" },
+      { "icon": "< >", "title": "Web Design", "desc": "Modern, fast websites" },
+      { "icon": "( )", "title": "Bots", "desc": "Discord bots & automations" }
+    ],
+    "ctaTitle": "Quick Response",
+    "ctaPoints": [
+      "24-hour turnaround on quotes",
+      "Transparent pricing",
+      "Production-ready code"
+    ]
+  },
+  "teamPage": {
+    "label": "// team",
+    "title": "Built by a small but experienced studio crew.",
+    "copy": "Every release is reviewed, supported, and polished for real server environments. Meet the people who ship the experience."
+  },
+  "notFound": {
+    "title": "route not found",
+    "copy": "The page you tried to load doesn't exist on {siteName}.",
+    "actions": [
+      { "label": "go home", "href": "/", "variant": "primary" },
+      { "label": "view resources", "href": "/resources", "variant": "ghost" },
+      { "label": "contact", "href": "/contact", "variant": "ghost" }
+    ]
+  },
   "team": [
     {
       "name": "Zain Abusal",
@@ -184,6 +323,23 @@
           "variant": "primary"
         }
       ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-may-31-2026-11_33_37-pm-png.1353280/?preset=fullr1",
+      "title": "Z-Auth",
+      "brand": "Proxy Auth",
+      "summary": "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+      "tags": ["Proxy", "Authentication", "Minecraft", "Velocity", "Paper"],
+      "status": "free",
+      "featured": false,
+      "category": "plugin",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/z-auth-modern-authentication-plugin.110438/",
+          "variant": "primary"
+        }
+      ]
     }
   ],
   "resources": [
@@ -236,8 +392,23 @@
           "href": "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/",
           "variant": "primary"
         }
-      ]
-    }
+      ]    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-may-31-2026-11_33_37-pm-png.1353280/?preset=fullr1",
+      "title": "Z-Auth",
+      "brand": "Proxy Auth",
+      "summary": "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+      "tags": ["Proxy", "Authentication", "Minecraft", "Velocity", "Paper"],
+      "status": "live",
+      "featured": false,
+      "category": "plugin",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/z-auth-modern-authentication-plugin.110438/",
+          "variant": "primary"
+        }
+      ]    }
   ],
   "reviews": [
     {
