@@ -63,6 +63,10 @@ body::after {
 .topbar-nav a:hover { color: var(--main); background: rgba(239,68,68,0.07); }
 .topbar-nav a::before { content: './'; color: var(--comment); font-size: 11px; }
 .topbar-nav a.active { color: var(--main); background: rgba(239,68,68,0.07); }
+.breadcrumbs { display: flex; align-items: center; gap: 8px; padding: 6px 24px 12px; font-family: var(--mono); font-size: 12px; color: var(--text3); }
+.breadcrumbs a { color: var(--text2); text-decoration: none; }
+.breadcrumbs a:hover { color: var(--main); }
+.breadcrumb-sep { color: var(--comment); }
 
 @media (max-width: 640px) { .wrapper { padding: 0 14px; } .topbar { padding: 0 14px; } }
 
@@ -968,7 +972,17 @@ section { margin-bottom: 16px; }
 .donation-field input { width: 100%; min-width: 0; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg3); color: var(--text); font-family: var(--mono); font-size: 14px; }
 .donation-field input:focus { outline: none; border-color: var(--main); box-shadow: 0 0 0 3px rgba(239,68,68,0.12); }
 
+.request-form { display: grid; gap: 16px; }
+.request-form label { font-family: var(--mono); font-size: 12px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; }
+.request-form input,
+.request-form textarea { width: 100%; min-width: 0; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg3); color: var(--text); font-family: var(--mono); font-size: 14px; }
+.request-form textarea { resize: vertical; min-height: 140px; }
+.request-actions { display: flex; justify-content: flex-start; }
+.request-status { font-family: var(--mono); font-size: 13px; color: var(--text2); margin-top: 6px; line-height: 1.6; }
+
 .window-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+
+.contact-cta-row { display: flex; justify-content: center; margin: 24px 0; }
 
 .contact-shell { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr); gap: 24px; align-items: start; }
 .contact-lead { display: flex; flex-direction: column; gap: 16px; animation: fadeUp 0.55s cubic-bezier(.2,.7,.2,1) both; }

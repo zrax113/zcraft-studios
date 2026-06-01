@@ -7,7 +7,7 @@
     "year": 2026
   },
   "branding": {
-    "favicon": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+    "favicon": "/favicon.svg",
     "logo": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
     "ogImage": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
     "themeColor": "#ef4444"
@@ -17,51 +17,64 @@
     { "label": "team", "href": "/team" },
     { "label": "resources", "href": "/resources" },
     { "label": "donate", "href": "/donate" },
+    { "label": "request", "href": "/request" },
     { "label": "about", "href": "/about" },
     { "label": "contact", "href": "/contact" }
   ],
   "seo": {
     "home": {
-      "title": "ZCraft Studios — Premium Developer Studio",
-      "description": "ZCraft Studios crafts premium Minecraft plugins, server setups, resources, and modern web experiences.",
-      "keywords": "ZCraft Studios, Minecraft, plugins, server setup, resources, web design",
+      "title": "ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots",
+      "description": "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and modern web experiences with polished UX and performance.",
+      "keywords": "ZCraft Studios, minecraft plugins, minecraft configs, discord bots, minecraft resources, game server setup, premium web development",
       "canonical": "/"
     },
     "resources": {
       "title": "Resources — ZCraft Studios",
-      "description": "Premium Minecraft resources, configs and plugins built for performance and polish.",
-      "keywords": "resources, Minecraft, configs, plugins, ZCraft",
+      "description": "Premium Minecraft resources, configs, plugins and Discord bot tools designed for performance, polish, and easy deployment.",
+      "keywords": "minecraft resources, minecraft configs, minecraft plugins, discord bots, server tools, ZCraft Studios",
       "canonical": "/resources"
     },
     "team": {
       "title": "Team — ZCraft Studios",
-      "description": "Meet the ZCraft Studios team behind premium Minecraft plugins and web experiences.",
-      "keywords": "team, ZCraft Studios, developers, Minecraft",
+      "description": "Meet the ZCraft Studios team delivering Minecraft plugins, server configs, Discord bots, and modern web services.",
+      "keywords": "team, ZCraft Studios, minecraft developers, discord bot developers, plugin team",
       "canonical": "/team"
     },
     "about": {
       "title": "About — ZCraft Studios",
-      "description": "Learn about ZCraft Studios — a premium developer studio crafting high-quality Minecraft plugins, server systems, and modern web experiences.",
-      "keywords": "about, ZCraft Studios, plugin development, Minecraft server, web design, developer studio",
+      "description": "ZCraft Studios is a premium development studio specializing in Minecraft plugins, server configs, Discord bots and modern web experiences.",
+      "keywords": "about ZCraft Studios, minecraft development studio, discord bot studio, plugin studio, server config experts",
       "canonical": "/about"
     },
     "contact": {
       "title": "Contact — ZCraft Studios",
-      "description": "Get in touch with ZCraft Studios for plugins, server setups, and web work.",
-      "keywords": "contact, Minecraft, ZCraft, Discord, email",
+      "description": "Contact ZCraft Studios for premium Minecraft plugins, server configs, Discord bots, and web development services.",
+      "keywords": "contact ZCraft Studios, minecraft development, discord bot support, server configuration help",
       "canonical": "/contact"
     },
     "donate": {
       "title": "Donate — ZCraft Studios",
-      "description": "Support ZCraft Studios with a secure PayPal donation and keep premium Minecraft resources and web work live.",
-      "keywords": "donate, PayPal, ZCraft Studios, support, Minecraft, plugins",
+      "description": "Support ZCraft Studios with a secure PayPal donation to help fund premium Minecraft plugins, configs, and Discord bot development.",
+      "keywords": "donate, ZCraft Studios, paypal donation, minecraft plugins, minecraft configs, discord bots support",
       "canonical": "/donate"
     },
     "thankyou": {
       "title": "Thank You — ZCraft Studios",
-      "description": "Donation confirmed. Thank you for supporting ZCraft Studios and helping keep premium services running.",
-      "keywords": "thank you, donation confirmed, PayPal, ZCraft Studios",
+      "description": "Donation confirmed. Thank you for supporting ZCraft Studios and helping keep premium Minecraft plugins, configs, and bot services running.",
+      "keywords": "thank you, donation confirmed, minecraft development, ZCraft Studios, paypal donation",
       "canonical": "/thankyou"
+    },
+    "request": {
+      "title": "Request Custom Service — ZCraft Studios",
+      "description": "Submit a custom service request for Minecraft plugins, server configs, Discord bot work, or web development.",
+      "keywords": "custom service request, minecraft plugins request, minecraft configs request, discord bot development request, ZCraft Studios",
+      "canonical": "/request"
+    },
+    "notfound": {
+      "title": "Request Custom Service — ZCraft Studios",
+      "description": "Submit a custom service request with Discord username, email, budget, and work details. The form sends your request directly to the studio.",
+      "keywords": "request, custom service, Discord, service request, ZCraft Studios",
+      "canonical": "/request"
     },
     "notfound": {
       "title": "404 — ZCraft Studios",
@@ -265,11 +278,18 @@
       { "platform": "twitter", "handle": "@zraxgaming", "meta": "updates", "icon": "𝕏", "href": "https://x.com/ZCraftNetwork" }
     ]
   },
+  "webhook": {
+    "discord": {
+      "request": "https://discord.com/api/webhooks/1511017080282153020/D_26UxQLoKcffnu2gsAWg5TjIl2RBDPiwFnc7vgxMSJFb7gHNGkCA1RPSAAWWbPA7mQw"
+    }
+  },
   "footer": {
     "left": "ZCraft Studios — premium developer studio",
     "links": [
       { "label": "github", "href": "https://github.com/zain-abusal" },
       { "label": "discord", "href": "https://discord.com/users/zraxgaming" },
+      { "label": "donate", "href": "/donate" },
+      { "label": "request service", "href": "/request" },
       { "label": "email", "href": "mailto:zain@z-craft.xyz" }
     ]
   }

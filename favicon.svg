@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7afd46" />
+      <stop offset="50%" stop-color="#8eeb3f" />
+      <stop offset="100%" stop-color="#ff2f55" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+  <rect width="128" height="128" rx="28" ry="28" fill="#101214" />
+  <rect x="10" y="10" width="108" height="108" rx="24" ry="24" fill="#13161b" stroke="#2f3442" stroke-width="4" />
+  <g filter="url(#shadow)">
+    <rect x="22" y="30" width="24" height="66" rx="8" ry="8" fill="#3fff5a" />
+    <rect x="22" y="30" width="24" height="20" rx="8" ry="8" fill="#7afd46" />
+    <rect x="22" y="54" width="24" height="20" rx="8" ry="8" fill="#94ff6b" />
+    <rect x="22" y="78" width="24" height="18" rx="8" ry="8" fill="#56dd3c" />
+    <rect x="54" y="30" width="18" height="66" rx="8" ry="8" fill="#a7f768" />
+    <rect x="80" y="30" width="24" height="66" rx="8" ry="8" fill="#ff3f5c" />
+    <rect x="80" y="30" width="24" height="22" rx="8" ry="8" fill="#ff6e7e" />
+    <rect x="80" y="56" width="24" height="22" rx="8" ry="8" fill="#ff395f" />
+    <rect x="80" y="82" width="24" height="14" rx="8" ry="8" fill="#d42f5d" />
+  </g>
+  <path d="M46 40h16v12H50v10h10v12H50v18H46V40z" fill="#0b0f13" opacity="0.9" />
+  <path d="M68 44h18v10H76v10h8v12H76v10h10v10H68V44z" fill="#0b0f13" opacity="0.9" />
+  <path d="M22 30h24v12H30v12h16v10H30v18h18v12H22V30z" fill="url(#grad)" opacity="0.9" />
+</svg>

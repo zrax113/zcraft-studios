@@ -39,10 +39,12 @@
     meta('og:type', 'website', 'property');
     meta('og:image', cfg.branding.ogImage, 'property');
     meta('og:url', cfg.site.domain + seo.canonical, 'property');
+    meta('og:site_name', cfg.site.name, 'property');
     meta('twitter:card', 'summary_large_image');
     meta('twitter:title', seo.title);
     meta('twitter:description', seo.description);
     meta('twitter:image', cfg.branding.ogImage);
+    meta('twitter:site', '@zraxgaming');
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
@@ -51,10 +53,85 @@
     let fav = document.querySelector('link[rel="icon"]');
     if (!fav) { fav = document.createElement('link'); fav.rel = 'icon'; document.head.appendChild(fav); }
     fav.href = cfg.branding.favicon;
+
+    let apple = document.querySelector('link[rel="apple-touch-icon"]');
+    if (!apple) { apple = document.createElement('link'); apple.rel = 'apple-touch-icon'; document.head.appendChild(apple); }
+    apple.href = cfg.branding.favicon;
+
+    applySchema(cfg);
   }
 
-  function topbar(cfg) {
+  function applySchema(cfg) {
+    const seo = cfg.seo[pageKey] || cfg.seo.home;
+    const baseUrl = cfg.site.domain.replace(/\/+$/, '');
+    const pageUrl = baseUrl + seo.canonical;
+    const breadcrumbItems = [{
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: baseUrl + '/'
+    }];
+
+    if (pageKey !== 'home') {
+      const pageLabel = cfg.nav.find(n => n.href.replace(/\/+$/, '') === seo.canonical)?.label || pageKey;
+      breadcrumbItems.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: pageLabel.charAt(0).toUpperCase() + pageLabel.slice(1),
+        item: pageUrl
+      });
+    }
+
+    const sameAs = (cfg.contact?.platforms || [])
+      .filter(p => /^https?:\/\//.test(p.href))
+      .map(p => p.href);
+
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          name: cfg.site.name,
+          url: baseUrl,
+          logo: cfg.branding.logo,
+          sameAs,
+          description: cfg.site.tagline
+        },
+        {
+          '@type': 'WebSite',
+          url: baseUrl,
+          name: cfg.site.name,
+          description: cfg.site.tagline,
+          publisher: { '@type': 'Organization', name: cfg.site.name }
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: breadcrumbItems
+        }
+      ]
+    };
+
+    let script = document.querySelector('script[data-schema="jsonld"]');
+    if (!script) {
+      script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.dataset.schema = 'jsonld';
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify(schema);
+  }
+
+  function topbar(cfg, currentPageKey) {
     const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+    const pageMatch = cfg.nav.find(n => (n.href || '/').replace(/\/+$/, '') === currentPath);
+    const pageLabel = pageMatch ? pageMatch.label : (currentPageKey === 'home' ? 'home' : currentPageKey);
+    const breadcrumb = currentPageKey !== 'home' ? `
+        <div class="breadcrumbs">
+          <a href="/">home</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>${esc(pageLabel)}</span>
+        </div>` : '';
+
     return `
       <header class="topbar">
         <div class="topbar-inner">
@@ -69,6 +146,7 @@
             }).join('')}
           </nav>
         </div>
+        ${breadcrumb}
       </header>`;
   }
 
@@ -188,6 +266,69 @@
     });
   }
 
+  function postDiscordRequest(webhookUrl, webhookBody) {
+    if (!webhookUrl) {
+      return Promise.reject(new Error('Discord webhook is not configured. Add the webhook URL to config.json.'));
+    }
+    return fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'no-cors',
+      body: JSON.stringify(webhookBody)
+    });
+  }
+
+  function initRequestForm(cfg) {
+    const form = document.getElementById('request-form');
+    const statusBox = document.getElementById('request-status');
+    if (!form || !statusBox) return;
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const discord = form.querySelector('#request-discord').value.trim();
+      const email = form.querySelector('#request-email').value.trim();
+      const price = form.querySelector('#request-price').value.trim();
+      const description = form.querySelector('#request-description').value.trim();
+      const timeline = form.querySelector('#request-timeline').value.trim();
+
+      if (!discord || !email || !price || !description) {
+        statusBox.textContent = 'Please fill in your Discord identifier, email, budget, and description.';
+        statusBox.style.color = 'var(--main)';
+        return;
+      }
+
+      statusBox.textContent = 'Sending request...';
+      statusBox.style.color = 'var(--text)';
+      const content = `**New Service Request**\n**Discord:** ${discord}\n**Email:** ${email}\n**Budget / Price:** ${price}\n**Timeline:** ${timeline || 'Not specified'}\n**Description:** ${description}`;
+
+      postDiscordRequest(cfg?.webhook?.discord?.request, {
+        username: 'ZCraft Request Bot',
+        embeds: [{
+          title: 'Custom service request',
+          description: content,
+          color: 15158332,
+          fields: [
+            { name: 'Discord', value: discord, inline: true },
+            { name: 'Email', value: email, inline: true },
+            { name: 'Budget', value: price, inline: true },
+            { name: 'Timeline', value: timeline || 'Not specified', inline: true },
+            { name: 'Description', value: description }
+          ],
+          footer: { text: `${cfg.site.name} request form` },
+          timestamp: new Date().toISOString()
+        }]
+      }).then(() => {
+        statusBox.textContent = 'Request submitted. We will review it and follow up shortly.';
+        statusBox.style.color = 'var(--main)';
+        form.reset();
+      }).catch(err => {
+        console.error('Webhook error', err);
+        statusBox.textContent = 'Could not send the request right now. Please contact us directly.';
+        statusBox.style.color = '#f87171';
+      });
+    });
+  }
+
   function initPayPalDonation() {
     const container = document.getElementById('paypal-button-container');
     const amountInput = document.getElementById('donation-amount');
@@ -267,6 +408,35 @@
             <a class="btn btn-primary" href="/">return home</a>
             <a class="btn btn-ghost" href="/donate">donate again</a>
           </div>
+        </div>
+      </div>`;
+  }
+
+  function renderRequest(cfg) {
+    return `
+      <section class="page-hero">
+        <span class="page-label">// request</span>
+        <h1>Request a custom service.</h1>
+        <p class="page-copy">Submit your Discord username or ID, email, budget, and what you need built. This request is delivered directly to the studio.</p>
+      </section>
+      <div class="window window-highlight">
+        <div class="window-body">
+          <form id="request-form" class="request-form">
+            <label for="request-discord">Discord username or ID</label>
+            <input id="request-discord" type="text" placeholder="Discord#1234 or 123456789012345678" required />
+            <label for="request-email">Email address</label>
+            <input id="request-email" type="email" placeholder="you@example.com" required />
+            <label for="request-price">Budget or average price you will pay</label>
+            <input id="request-price" type="text" placeholder="$50 or 10 USD" required />
+            <label for="request-description">Description of work needed</label>
+            <textarea id="request-description" rows="5" placeholder="Describe what you need built..." required></textarea>
+            <label for="request-timeline">Desired timeline (optional)</label>
+            <input id="request-timeline" type="text" placeholder="2 weeks, ASAP, flexible" />
+            <div class="request-actions">
+              <button class="btn btn-primary" type="submit">send request</button>
+            </div>
+            <div id="request-status" class="request-status"></div>
+          </form>
         </div>
       </div>`;
   }
@@ -647,6 +817,9 @@
         <p class="page-copy">${esc(c.copy)}</p>
       </section>
       ${contactCards}
+      <div class="contact-cta-row">
+        <a class="btn btn-primary" href="/request">request custom service</a>
+      </div>
       <div class="contact-platforms-section">
         <h3 class="contact-platforms-title">// all channels</h3>
         <div class="contact-platforms-grid">
@@ -720,7 +893,7 @@
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, donate: renderDonate, thankyou: renderThankYou, contact: renderContact, team: renderTeam, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 
@@ -728,11 +901,12 @@
     applySEO(cfg);
     const app = $('#app');
     const renderer = PAGES[pageKey] || renderHome;
-    document.body.insertAdjacentHTML('afterbegin', topbar(cfg));
+    document.body.insertAdjacentHTML('afterbegin', topbar(cfg, pageKey));
     app.innerHTML = renderer(cfg);
     document.body.insertAdjacentHTML('beforeend', footer(cfg));
     if (pageKey === 'resources') attachResourceDetailListeners(cfg.resources);
     if (pageKey === 'donate') initPayPalDonation();
+    if (pageKey === 'request') initRequestForm(cfg);
     requestAnimationFrame(animateCounters);
   }).catch(err => {
     console.error('Failed to load config:', err);

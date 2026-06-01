@@ -15,7 +15,9 @@
     { "source": "/donate", "destination": "/donate.html" },
     { "source": "/donate/", "destination": "/donate.html" },
     { "source": "/thankyou", "destination": "/thankyou.html" },
-    { "source": "/thankyou/", "destination": "/thankyou.html" }
+    { "source": "/thankyou/", "destination": "/thankyou.html" },
+    { "source": "/request", "destination": "/request.html" },
+    { "source": "/request/", "destination": "/request.html" }
   ],
   "headers": [
     {
