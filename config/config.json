@@ -16,6 +16,7 @@
     { "label": "home", "href": "/" },
     { "label": "team", "href": "/team" },
     { "label": "resources", "href": "/resources" },
+    { "label": "donate", "href": "/donate" },
     { "label": "about", "href": "/about" },
     { "label": "contact", "href": "/contact" }
   ],
@@ -49,6 +50,18 @@
       "description": "Get in touch with ZCraft Studios for plugins, server setups, and web work.",
       "keywords": "contact, Minecraft, ZCraft, Discord, email",
       "canonical": "/contact"
+    },
+    "donate": {
+      "title": "Donate — ZCraft Studios",
+      "description": "Support ZCraft Studios with a secure PayPal donation and keep premium Minecraft resources and web work live.",
+      "keywords": "donate, PayPal, ZCraft Studios, support, Minecraft, plugins",
+      "canonical": "/donate"
+    },
+    "thankyou": {
+      "title": "Thank You — ZCraft Studios",
+      "description": "Donation confirmed. Thank you for supporting ZCraft Studios and helping keep premium services running.",
+      "keywords": "thank you, donation confirmed, PayPal, ZCraft Studios",
+      "canonical": "/thankyou"
     },
     "notfound": {
       "title": "404 — ZCraft Studios",

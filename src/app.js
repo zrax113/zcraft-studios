@@ -171,6 +171,106 @@
       .replace(/\n/g, '<br>');
   }
 
+  function loadPayPalSDK() {
+    return new Promise((resolve, reject) => {
+      if (window.paypal) return resolve(window.paypal);
+      const existing = document.querySelector('script[src*="paypal.com/sdk/js"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(window.paypal));
+        existing.addEventListener('error', reject);
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'https://www.paypal.com/sdk/js?client-id=ARM7vUNfOeuKYBARRVZ8-jg1_XFZ5zPd8b6MPhhK-_uovP34AimpuweE8nce97y8N7-7gR268vAC_lEW&currency=USD';
+      script.onload = () => resolve(window.paypal);
+      script.onerror = () => reject(new Error('PayPal SDK failed to load'));
+      document.head.appendChild(script);
+    });
+  }
+
+  function initPayPalDonation() {
+    const container = document.getElementById('paypal-button-container');
+    const amountInput = document.getElementById('donation-amount');
+    if (!container || !amountInput) return;
+    loadPayPalSDK().then(paypal => {
+      paypal.Buttons({
+        style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'donate' },
+        createOrder(data, actions) {
+          const amount = parseFloat(amountInput.value) || 10.00;
+          return actions.order.create({
+            purchase_units: [{
+              amount: { value: amount.toFixed(2) },
+              description: 'ZCraft Studios donation'
+            }]
+          });
+        },
+        onApprove(data, actions) {
+          return actions.order.capture().then(() => {
+            window.location.href = '/thankyou?status=success';
+          });
+        },
+        onError(err) {
+          console.error('PayPal error', err);
+          container.innerHTML = '<p class="page-copy">Unable to load PayPal right now. Please try again later or <a href="/contact">contact us</a>.</p>';
+        }
+      }).render('#paypal-button-container');
+    }).catch(err => {
+      console.error(err);
+      container.innerHTML = '<p class="page-copy">Unable to load PayPal right now. Please try again later or <a href="/contact">contact us</a>.</p>';
+    });
+  }
+
+  function renderDonate(cfg) {
+    return `
+      <section class="page-hero">
+        <span class="page-label">// support</span>
+        <h1>Support ZCraft Studios with a donation.</h1>
+        <p class="page-copy">Help keep premium Minecraft resources, plugin work, and modern web experiences running. Your donation goes straight to development, hosting, and studio growth.</p>
+      </section>
+      <div class="window window-highlight">
+        <div class="window-body">
+          <h2>Donate with PayPal</h2>
+          <p class="page-copy">Choose an amount and complete your payment securely. After approval, you will be redirected to a confirmation page.</p>
+          <div class="donation-field">
+            <label for="donation-amount">Donation amount (USD)</label>
+            <input id="donation-amount" type="number" min="1" step="1" value="10" />
+          </div>
+          <div id="paypal-button-container" style="margin-top:22px;"></div>
+          <p class="page-copy" style="margin-top:18px;">Prefer another option? Reach out on the contact page and we’ll help you complete your support.</p>
+        </div>
+      </div>`;
+  }
+
+  function renderThankYou(cfg) {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('status');
+    const title = status === 'success' ? 'Payment confirmed.' : 'Thank you for supporting ZCraft Studios.';
+    const copy = status === 'success'
+      ? 'Your donation has been received successfully. We appreciate your support and will follow up if needed.'
+      : 'Thank you for visiting. If this was a PayPal redirect, your payment is still being processed and will be confirmed shortly.';
+
+    return `
+      <section class="page-hero">
+        <span class="page-label">// thank you</span>
+        <h1>${esc(title)}</h1>
+        <p class="page-copy">${esc(copy)}</p>
+      </section>
+      <div class="window window-highlight">
+        <div class="window-body">
+          <h2>Appreciation confirmed</h2>
+          <p class="page-copy">Your support keeps ZCraft Studios building Minecraft plugins, server tools, and web experiences. If you need help, reach out on the contact page.</p>
+          <ul class="page-copy">
+            <li>Transaction status: ${esc(status === 'success' ? 'Success' : 'Pending')}</li>
+            <li>Next step: you can return home or make another donation.</li>
+          </ul>
+          <div class="window-actions">
+            <a class="btn btn-primary" href="/">return home</a>
+            <a class="btn btn-ghost" href="/donate">donate again</a>
+          </div>
+        </div>
+      </div>`;
+  }
+
   function closeResourceDetail() {
     const overlay = document.getElementById('resource-detail-overlay');
     if (!overlay) return;
@@ -620,7 +720,7 @@
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, contact: renderContact, team: renderTeam, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, donate: renderDonate, thankyou: renderThankYou, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 
@@ -632,6 +732,7 @@
     app.innerHTML = renderer(cfg);
     document.body.insertAdjacentHTML('beforeend', footer(cfg));
     if (pageKey === 'resources') attachResourceDetailListeners(cfg.resources);
+    if (pageKey === 'donate') initPayPalDonation();
     requestAnimationFrame(animateCounters);
   }).catch(err => {
     console.error('Failed to load config:', err);

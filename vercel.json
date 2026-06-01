@@ -11,7 +11,11 @@
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/contact/", "destination": "/contact.html" },
     { "source": "/resources", "destination": "/resources.html" },
-    { "source": "/resources/", "destination": "/resources.html" }
+    { "source": "/resources/", "destination": "/resources.html" },
+    { "source": "/donate", "destination": "/donate.html" },
+    { "source": "/donate/", "destination": "/donate.html" },
+    { "source": "/thankyou", "destination": "/thankyou.html" },
+    { "source": "/thankyou/", "destination": "/thankyou.html" }
   ],
   "headers": [
     {
