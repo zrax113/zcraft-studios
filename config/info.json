@@ -95,6 +95,12 @@
       "keywords": "custom service request, minecraft plugins request, minecraft configs request, discord bot development request, ZCraft Studios",
       "canonical": "/request"
     },
+    "discussions": {
+      "title": "Community Discussions \u2014 ZCraft Studios",
+      "description": "Join the ZCraft Studios discussion board to ask questions, share ideas, and explore Minecraft plugin and Discord bot development topics.",
+      "keywords": "community discussions, minecraft discussion, discord bots discussion, developer community, ZCraft Studios",
+      "canonical": "/discussions"
+    },
     "notfound": {
       "title": "404 \u2014 ZCraft Studios",
       "description": "Page not found.",
@@ -401,6 +407,36 @@
           "label": "Email Address",
           "type": "email",
           "placeholder": "you@example.com",
+          "hint": "For quotes, timeline updates, and support follow-up.",
+          "required": true
+        },
+        {
+          "id": "request-service",
+          "label": "Service Type",
+          "type": "select",
+          "placeholder": "Select the service you need",
+          "options": [
+            "Plugin",
+            "Server Setup",
+            "Website",
+            "Discord Bot",
+            "Custom Tool",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "request-platform",
+          "label": "Target Platform",
+          "type": "select",
+          "placeholder": "Select the platform",
+          "options": [
+            "Minecraft Java",
+            "Minecraft Bedrock",
+            "Discord",
+            "Web",
+            "Other"
+          ],
           "required": true
         },
         {
@@ -408,25 +444,35 @@
           "label": "Budget",
           "type": "text",
           "placeholder": "e.g., $100, 50 USD",
+          "hint": "A realistic budget range helps us tailor the quote.",
           "required": true
+        },
+        {
+          "id": "request-timeline",
+          "label": "Timeline",
+          "type": "text",
+          "placeholder": "2 weeks, ASAP, flexible, etc.",
+          "hint": "When would you like this completed?",
+          "required": false
         },
         {
           "id": "request-description",
           "label": "Project Description",
           "type": "textarea",
           "placeholder": "What do you need built? Be as detailed as possible...",
+          "hint": "Share goals, existing systems, examples, and any special requirements.",
           "required": true
         },
         {
-          "id": "request-timeline",
-          "label": "Timeline (Optional)",
+          "id": "request-reference",
+          "label": "Reference Link (Optional)",
           "type": "text",
-          "placeholder": "2 weeks, ASAP, flexible, etc.",
+          "placeholder": "GitHub, screenshot, or example URL",
           "required": false
         }
       ],
       "buttonLabel": "Send Request",
-      "statusEmpty": "Please fill in your Discord identifier, email, budget, and description.",
+      "statusEmpty": "Please complete all required fields before sending your request.",
       "statusSending": "Sending request...",
       "statusSuccess": "Request submitted. We will review it and follow up shortly.",
       "statusError": "Could not send the request right now. Please contact us directly.",
@@ -568,6 +614,86 @@
   "supabase": {
     "url": "https://lwrieezyqkwnpqaiyfnd.supabase.co",
     "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmllZXp5cWt3bnBxYWl5Zm5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzODYxMzMsImV4cCI6MjA5NTk2MjEzM30.PfcfjZAZfRp2gUlVz1Hhj9dsNY0YoJxfTJIM6-hahS0"
+  },
+  "maintenance": {
+    "enabled": false,
+    "global": false,
+    "message": "We are applying updates to the studio site. Please check back shortly.",
+    "title": "Maintenance mode active",
+    "promoTitle": "Studio update is coming",
+    "promoText": "We’re refreshing the experience with new discussion support, request enhancements, and faster site performance.",
+    "pages": {
+      "home": {
+        "enabled": false,
+        "message": "The site homepage is currently under maintenance. Please check back soon.",
+        "title": "Homepage maintenance",
+        "promoTitle": "New studio updates are coming",
+        "promoText": "We’re improving the homepage experience and will be back shortly."
+      },
+      "resources": {
+        "enabled": false,
+        "message": "Resource browsing is temporarily paused while we refresh our catalog.",
+        "title": "Resources maintenance",
+        "promoTitle": "Better resources are on the way",
+        "promoText": "We’re updating downloads and listings for a faster, cleaner experience."
+      },
+      "team": {
+        "enabled": false,
+        "message": "The team page is under review for updated contributor details.",
+        "title": "Team page maintenance",
+        "promoTitle": "Meet our team soon",
+        "promoText": "We’re polishing team bios and project roles for a stronger studio presentation."
+      },
+      "about": {
+        "enabled": false,
+        "message": "About the studio is currently being refreshed with new storytelling and updates.",
+        "title": "About page maintenance",
+        "promoTitle": "Studio story upgrade",
+        "promoText": "We’re crafting a clearer overview of what ZCraft Studios does and why it matters."
+      },
+      "contact": {
+        "enabled": false,
+        "message": "Contact details are being updated right now. Please come back soon.",
+        "title": "Contact page maintenance",
+        "promoTitle": "Support is still available",
+        "promoText": "Join Discord or email directly if you need urgent help while contact is refreshed."
+      },
+      "donate": {
+        "enabled": false,
+        "message": "Donation processing is temporarily disabled while we improve checkout flow.",
+        "title": "Donate page maintenance",
+        "promoTitle": "Support is still welcome",
+        "promoText": "We’re updating payment experience so donations are smoother and more secure."
+      },
+      "thankyou": {
+        "enabled": false,
+        "message": "Thank-you confirmation pages are being updated.",
+        "title": "Thank-you page maintenance",
+        "promoTitle": "Gratitude page refresh",
+        "promoText": "We’re making the post-donation experience more polished."
+      },
+      "request": {
+        "enabled": false,
+        "message": "Request submissions are paused while we improve our intake experience.",
+        "title": "Request page maintenance",
+        "promoTitle": "Need help now?",
+        "promoText": "Join Discord for urgent quotes and project support while the request form is updated."
+      },
+      "discussions": {
+        "enabled": false,
+        "message": "The discussion board is temporarily offline for upgrades.",
+        "title": "Discussions maintenance",
+        "promoTitle": "New community features incoming",
+        "promoText": "We’re enhancing the discussion experience with better moderation and display options."
+      },
+      "notfound": {
+        "enabled": false,
+        "message": "The requested page is temporarily unavailable while we update the site.",
+        "title": "Maintenance mode",
+        "promoTitle": "Thanks for your patience",
+        "promoText": "We’re applying updates across the site and will be back shortly."
+      }
+    }
   },
   "footer": {
     "left": "ZCraft Studios \u2014 premium developer studio",
