@@ -34,6 +34,10 @@
       "href": "/request"
     },
     {
+      "label": "discussions",
+      "href": "/discussions"
+    },
+    {
       "label": "about",
       "href": "/about"
     },
@@ -560,6 +564,10 @@
     "discord": {
       "request": "https://discord.com/api/webhooks/1511017080282153020/D_26UxQLoKcffnu2gsAWg5TjIl2RBDPiwFnc7vgxMSJFb7gHNGkCA1RPSAAWWbPA7mQw"
     }
+  },
+  "supabase": {
+    "url": "https://lwrieezyqkwnpqaiyfnd.supabase.co",
+    "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmllZXp5cWt3bnBxYWl5Zm5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzODYxMzMsImV4cCI6MjA5NTk2MjEzM30.PfcfjZAZfRp2gUlVz1Hhj9dsNY0YoJxfTJIM6-hahS0"
   },
   "footer": {
     "left": "ZCraft Studios \u2014 premium developer studio",
