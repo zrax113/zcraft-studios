@@ -316,8 +316,14 @@
     return fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      mode: 'no-cors',
       body: JSON.stringify(webhookBody)
+    }).then(response => {
+      if (!response.ok) {
+        return response.text().then(text => {
+          throw new Error(`Discord webhook failed (${response.status}): ${text || response.statusText}`);
+        });
+      }
+      return response;
     });
   }
 
@@ -370,6 +376,130 @@
         statusBox.style.color = '#f87171';
       });
     });
+  }
+
+  function renderDiscussions(cfg) {
+    const page = cfg.discussions || {};
+    return `
+      <section class="page-hero">
+        <span class="page-label">// discussions</span>
+        <h1>${esc(page.title || 'Community Discussions')}</h1>
+        <p class="page-copy">${esc(page.copy || 'Join the discussion, ask questions, and share ideas about plugins, server configs, and Discord bots.')}</p>
+      </section>
+      <div class="request-container">
+        <div class="request-layout">
+          <div class="request-form-side">
+            <div class="request-form-card">
+              <div class="request-form-header">
+                <h3>${esc(page.form?.headerTitle || 'Share something new')}</h3>
+                <p>${esc(page.form?.headerCopy || 'Messages are saved to Supabase and displayed publicly for others to read.')}</p>
+              </div>
+              <form id="discussion-form" class="request-form">
+                <div class="form-group">
+                  <label for="discussion-name">${esc(page.form?.fields?.find(f => f.id === 'discussion-name')?.label || 'Name')}</label>
+                  <input id="discussion-name" type="text" placeholder="${esc(page.form?.fields?.find(f => f.id === 'discussion-name')?.placeholder || 'Your name or handle')}" />
+                </div>
+                <div class="form-group">
+                  <label for="discussion-message">${esc(page.form?.fields?.find(f => f.id === 'discussion-message')?.label || 'Message')}</label>
+                  <textarea id="discussion-message" rows="6" placeholder="${esc(page.form?.fields?.find(f => f.id === 'discussion-message')?.placeholder || 'Share your question, tip, or update...')}" required></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit">${esc(page.form?.buttonLabel || 'Post Discussion')}</button>
+                <div id="discussion-status" class="request-status"></div>
+              </form>
+            </div>
+          </div>
+          <div class="request-info-side">
+            <div class="request-services">
+              <h3>${esc(page.listTitle || 'Latest discussions')}</h3>
+              <div id="discussion-list" class="discussion-list">
+                <div class="discussion-empty">Loading discussions…</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderDiscussionCard(item) {
+    const name = esc(item.name || 'Anonymous');
+    const message = esc(item.message || 'No message');
+    const timestamp = item.created_at ? new Date(item.created_at).toLocaleString() : 'Just now';
+    return `
+      <article class="discussion-card">
+        <div class="discussion-card-header">
+          <strong>${name}</strong>
+          <time>${esc(timestamp)}</time>
+        </div>
+        <p>${message}</p>
+      </article>`;
+  }
+
+  function initDiscussions(cfg) {
+    const form = document.getElementById('discussion-form');
+    const statusBox = document.getElementById('discussion-status');
+    const list = document.getElementById('discussion-list');
+    if (!form || !statusBox || !list) return;
+
+    const supabaseConfig = cfg.supabase || {};
+    const createClient = window.supabase?.createClient;
+    if (!supabaseConfig.url || !supabaseConfig.anonKey || !createClient) {
+      statusBox.textContent = 'Supabase is not configured for discussions. Add your Supabase URL and anon key to config/info.json and include the Supabase client script on the discussions page.';
+      statusBox.style.color = '#f87171';
+      return;
+    }
+
+    const supabase = window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey);
+
+    function setStatus(message, color = 'var(--text2)') {
+      statusBox.textContent = message;
+      statusBox.style.color = color;
+    }
+
+    async function loadDiscussions() {
+      list.innerHTML = '<div class="discussion-empty">Loading discussions…</div>';
+      const { data, error } = await supabase
+        .from('discussions')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(20);
+
+      if (error) {
+        console.error('Supabase load error', error);
+        list.innerHTML = '<div class="discussion-empty">Unable to load discussions. Check your Supabase configuration.</div>';
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        list.innerHTML = '<div class="discussion-empty">No discussions yet. Start the conversation!</div>';
+        return;
+      }
+
+      list.innerHTML = data.map(renderDiscussionCard).join('');
+    }
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const name = form.querySelector('#discussion-name').value.trim();
+      const message = form.querySelector('#discussion-message').value.trim();
+      if (!message) {
+        setStatus('Please enter a message before posting.', '#f87171');
+        return;
+      }
+
+      setStatus('Posting your discussion...');
+      const { error } = await supabase.from('discussions').insert([{ name, message, created_at: new Date().toISOString() }]);
+      if (error) {
+        console.error('Supabase insert error', error);
+        setStatus('Unable to post your discussion right now. Please try again later.', '#f87171');
+        return;
+      }
+
+      setStatus('Posted successfully! Refreshing messages...', 'var(--main)');
+      form.reset();
+      await loadDiscussions();
+    });
+
+    loadDiscussions();
   }
 
   function initPayPalDonation() {
@@ -1057,7 +1187,7 @@
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, discussions: renderDiscussions, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 
@@ -1081,6 +1211,7 @@
     if (pageKey === 'resources') attachResourceDetailListeners(cfg.resources);
     if (pageKey === 'donate') initPayPalDonation();
     if (pageKey === 'request') initRequestForm(cfg);
+    if (pageKey === 'discussions') initDiscussions(cfg);
     requestAnimationFrame(animateCounters);
   }).catch(err => {
     console.error('Failed to load config:', err);
