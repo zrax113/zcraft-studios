@@ -40,10 +40,6 @@
     {
       "label": "about",
       "href": "/about"
-    },
-    {
-      "label": "contact",
-      "href": "/contact"
     }
   ],
   "seo": {
@@ -615,9 +611,31 @@
     "url": "https://lwrieezyqkwnpqaiyfnd.supabase.co",
     "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmllZXp5cWt3bnBxYWl5Zm5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzODYxMzMsImV4cCI6MjA5NTk2MjEzM30.PfcfjZAZfRp2gUlVz1Hhj9dsNY0YoJxfTJIM6-hahS0"
   },
+  "discussions": {
+    "title": "Community Discussions",
+    "copy": "Share your ideas, ask questions, and connect with other server builders.",
+    "form": {
+      "headerTitle": "Post a new discussion",
+      "headerCopy": "Your messages are saved to Supabase when available, otherwise stored locally in your browser.",
+      "buttonLabel": "Post Discussion",
+      "fields": [
+        {
+          "id": "discussion-name",
+          "label": "Name",
+          "placeholder": "Your name or handle"
+        },
+        {
+          "id": "discussion-message",
+          "label": "Message",
+          "placeholder": "Share your question, tip, or update..."
+        }
+      ]
+    },
+    "listTitle": "Latest discussions"
+  },
   "maintenance": {
     "enabled": false,
-    "global": false,
+    "global": true,
     "message": "We are applying updates to the studio site. Please check back shortly.",
     "title": "Maintenance mode active",
     "promoTitle": "Studio update is coming",
@@ -713,6 +731,10 @@
       {
         "label": "request service",
         "href": "/request"
+      },
+      {
+        "label": "contact",
+        "href": "/contact"
       },
       {
         "label": "email",

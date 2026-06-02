@@ -66,6 +66,10 @@
     meta('apple-mobile-web-app-status-bar-style', 'black-translucent');
     meta('apple-mobile-web-app-title', cfg.site.name);
     meta('format-detection', 'telephone=no');
+    // Reduce aggressive browser caching for faster preview after deployments
+    meta('Cache-Control', 'no-cache, no-store, must-revalidate', 'http-equiv');
+    meta('Pragma', 'no-cache', 'http-equiv');
+    meta('Expires', '0', 'http-equiv');
     
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
@@ -197,7 +201,6 @@
             <img class="topbar-logo-img" src="${esc(cfg.branding.logo)}" alt="${esc(cfg.site.name)} logo" />
             <span>${esc(cfg.site.name)}</span>
           </a>
-          <button type="button" class="topbar-menu-toggle" aria-expanded="false">menu</button>
           <nav class="topbar-nav">
             ${cfg.nav.map(n => {
               const targetPath = (n.href || '/').replace(/\/+$/, '') || '/';
@@ -216,9 +219,25 @@
           <div class="footer-left"><span>// </span>${esc(cfg.footer.left)} · ${cfg.site.year}</div>
           <div class="footer-links">
             ${cfg.footer.links.map(l => `<a href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}
+            <a class="topbar-link" href="/site-index.json" title="Site JSON index">Site JSON</a>
           </div>
         </div>
       </footer>`;
+  }
+
+  function renderMaintenanceBanner(cfg, pageKey) {
+    const maintenance = cfg.maintenance || {};
+    const pageConfig = (maintenance.pages && maintenance.pages[pageKey]) || {};
+    const title = pageConfig.title || maintenance.title || 'Site maintenance in progress';
+    const message = pageConfig.message || maintenance.message || 'The site is temporarily unavailable while we make improvements.';
+    // Single-line banner: concise title + message
+    return `
+      <div class="maintenance-banner">
+        <div class="maintenance-banner-content">
+          <div class="maintenance-banner-text">${esc(title)} — ${esc(message)}</div>
+          <div class="maintenance-banner-support"><a href="/contact">Contact</a> · <a href="https://discord.gg/zcraft" target="_blank">Discord</a></div>
+        </div>
+      </div>`;
   }
 
   function windowBox(title, bodyHTML, opts = {}) {
@@ -325,7 +344,11 @@
     if (!webhookUrl) {
       return Promise.reject(new Error('Discord webhook is not configured. Add the webhook URL to config/info.json.'));
     }
-    return fetch(webhookUrl, {
+
+    // Try a normal JSON POST first (best-case). If it fails (CORS), fall back
+    // to a form encoded `payload_json` POST with `mode: 'no-cors'` so browser
+    // requests can still reach Discord in constrained environments.
+    const tryJson = () => fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(webhookBody)
@@ -336,6 +359,22 @@
         });
       }
       return response;
+    });
+
+    const tryNoCors = () => {
+      const form = new URLSearchParams();
+      form.set('payload_json', JSON.stringify(webhookBody));
+      return fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        mode: 'no-cors',
+        body: form.toString()
+      });
+    };
+
+    return tryJson().catch(err => {
+      console.warn('JSON webhook failed, falling back to no-cors form POST', err);
+      return tryNoCors();
     });
   }
 
@@ -357,47 +396,48 @@
         return;
       }
 
-      statusBox.textContent = 'Sending request...';
+      statusBox.textContent = page.form?.statusSending || 'Sending request...';
       statusBox.style.color = 'var(--text)';
-      const description = values[page.form?.fields?.find(f => f.id === 'request-description')?.id || 'request-description'] || 'No description provided.';
-      const embedFields = fields.filter(f => f.id !== 'request-description').map(f => ({
-        name: f.label,
-        value: values[f.id] ? values[f.id] : 'Not provided',
-        inline: !['textarea', 'select'].includes(f.type)
-      }));
 
-      postDiscordRequest(cfg?.webhook?.discord?.request, {
-        username: 'ZCraft Request Bot',
-        avatar_url: cfg.branding.logo,
-        embeds: [{
-          title: 'New Studio Request',
-          description: description,
-          color: 15105570,
-          author: {
-            name: cfg.site.name,
-            icon_url: cfg.branding.logo
+      // Build the embed payload using the improved structure
+      const description = values['request-description'] || 'No description provided.';
+      const embeds = [{
+        title: 'New Project Request',
+        description: 'A new custom request was submitted from the website.',
+        color: 5793266,
+        author: { name: cfg.site?.name || 'ZCraft Studios', url: cfg.site?.domain || undefined },
+        thumbnail: { url: cfg.branding?.logo || undefined },
+        fields: [
+          {
+            name: 'Client Details',
+            value: `> **Discord**\n> ${values['request-discord'] || 'Not provided'}\n\n> **Email**\n> ${values['request-email'] || 'Not provided'}`,
+            inline: false
           },
-          thumbnail: {
-            url: cfg.branding.logo
-          },
-          fields: embedFields,
-          footer: { text: `${cfg.site.name} request form` },
-          timestamp: new Date().toISOString()
-        }]
-      }).then(() => {
-        statusBox.textContent = 'Request submitted. We will review it and follow up shortly.';
-        statusBox.style.color = 'var(--main)';
+          { name: 'Service', value: `\`${values['request-service'] || 'Not provided'}\``, inline: true },
+          { name: 'Platform', value: `\`${values['request-platform'] || 'Not provided'}\``, inline: true },
+          { name: 'Budget', value: `\`${values['request-price'] || 'Not provided'}\``, inline: true },
+          { name: 'Timeline', value: `\`${values['request-timeline'] || 'Not provided'}\``, inline: true },
+          { name: 'Project Brief', value: description, inline: false },
+          { name: 'Reference', value: values['request-reference'] || 'No reference link provided.', inline: false }
+        ],
+        footer: { text: 'Website Request Form' },
+        timestamp: new Date().toISOString()
+      }];
+
+      postDiscordRequest(cfg?.webhook?.discord?.request, { content: null, embeds }).then(() => {
+        statusBox.textContent = page.form?.statusSuccess || 'Request submitted. We will review it and follow up shortly.';
+        statusBox.style.color = 'var(--success)';
         form.reset();
       }).catch(err => {
         console.error('Webhook error', err);
-        statusBox.textContent = 'Could not send the request right now. Please contact us directly.';
+        statusBox.textContent = page.form?.statusError || 'Could not send the request right now. Please contact us directly.';
         statusBox.style.color = '#f87171';
       });
     });
   }
 
   function renderDiscussions(cfg) {
-    const page = cfg.discussions || {};
+    const page = cfg.discussions || cfg.discussionsPage || {};
     return `
       <section class="page-hero">
         <span class="page-label">// discussions</span>
@@ -459,66 +499,143 @@
     if (!form || !statusBox || !list) return;
 
     const supabaseConfig = cfg.supabase || {};
-    const createClient = window.supabase?.createClient;
     const placeholderRegex = /YOUR-PROJECT|YOUR_ANON_KEY|REPLACE_ME|<.*>/i;
-    if (!supabaseConfig.url || !supabaseConfig.anonKey || placeholderRegex.test(supabaseConfig.url) || placeholderRegex.test(supabaseConfig.anonKey) || !createClient) {
-      statusBox.textContent = 'Supabase is not configured for discussions. Add your Supabase URL and anon key to config/info.json and make sure the Supabase script is loaded on this page.';
-      statusBox.style.color = '#f87171';
+    if (!supabaseConfig.url || !supabaseConfig.anonKey || placeholderRegex.test(supabaseConfig.url) || placeholderRegex.test(supabaseConfig.anonKey)) {
+      enableLocalDiscussionMode('Supabase is not configured for discussions. Local discussion storage is enabled.');
       return;
     }
 
-    const supabase = window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey);
+    async function ensureSupabaseClient() {
+      if (window.supabase && window.supabase.createClient) return window.supabase;
+      const existing = document.querySelector('script[src*="@supabase/supabase-js"]') || document.querySelector('script[src*="supabase-js"]');
+      if (!existing) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js';
+        document.head.appendChild(script);
+        await new Promise((res, rej) => { script.onload = res; script.onerror = rej; });
+      } else {
+        if (window.supabase && window.supabase.createClient) return window.supabase;
+        if (existing.readyState === 'complete' || existing.readyState === 'loaded') {
+          return window.supabase;
+        }
+        await new Promise((res, rej) => {
+          existing.addEventListener('load', res);
+          existing.addEventListener('error', rej);
+        });
+      }
+      return window.supabase;
+    }
+
+    const localStorageKey = 'zcraft-discussions-local';
+    let useLocalFallback = false;
 
     function setStatus(message, color = 'var(--text2)') {
       statusBox.textContent = message;
       statusBox.style.color = color;
     }
 
-    async function loadDiscussions() {
-      list.innerHTML = '<div class="discussion-empty">Loading discussions…</div>';
-      const { data, error } = await supabase
-        .from('discussions')
-        .select('*')
-        .order('created_at', { ascending: false })
-        .limit(20);
-
-      if (error) {
-        console.error('Supabase load error', error);
-        list.innerHTML = '<div class="discussion-empty">Unable to load discussions. Check your Supabase configuration.</div>';
-        return;
+    function getLocalDiscussions() {
+      try {
+        const raw = localStorage.getItem(localStorageKey);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        console.warn('Unable to parse local discussions', e);
+        return [];
       }
+    }
 
-      if (!data || data.length === 0) {
+    function saveLocalDiscussions(items) {
+      localStorage.setItem(localStorageKey, JSON.stringify(items.slice(0, 50)));
+    }
+
+    function renderLocalDiscussions() {
+      const items = getLocalDiscussions();
+      if (!items.length) {
         list.innerHTML = '<div class="discussion-empty">No discussions yet. Start the conversation!</div>';
         return;
       }
-
-      list.innerHTML = data.map(renderDiscussionCard).join('');
+      list.innerHTML = items.map(renderDiscussionCard).join('');
     }
 
-    form.addEventListener('submit', async event => {
-      event.preventDefault();
-      const name = form.querySelector('#discussion-name').value.trim();
-      const message = form.querySelector('#discussion-message').value.trim();
-      if (!message) {
-        setStatus('Please enter a message before posting.', '#f87171');
+    function enableLocalDiscussionMode(reason) {
+      useLocalFallback = true;
+      setStatus(reason, '#f59e0b');
+      renderLocalDiscussions();
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const name = form.querySelector('#discussion-name').value.trim() || 'Anonymous';
+        const message = form.querySelector('#discussion-message').value.trim();
+        if (!message) {
+          setStatus('Please enter a message before posting.', '#f87171');
+          return;
+        }
+        const items = getLocalDiscussions();
+        items.unshift({ name, message, created_at: new Date().toISOString() });
+        saveLocalDiscussions(items);
+        setStatus('Saved locally. The discussion list is available in this browser.', 'var(--success)');
+        form.reset();
+        renderLocalDiscussions();
+      });
+    }
+
+    (async () => {
+      try {
+        await ensureSupabaseClient();
+      } catch (e) {
+        console.error('Failed to load Supabase client', e);
+        enableLocalDiscussionMode('Supabase client could not be loaded. Discussions are stored locally.');
         return;
       }
 
-      setStatus('Posting your discussion...');
-      const { error } = await supabase.from('discussions').insert([{ name, message, created_at: new Date().toISOString() }]);
-      if (error) {
-        console.error('Supabase insert error', error);
-        setStatus('Unable to post your discussion right now. Please try again later.', '#f87171');
-        return;
+      const supabase = window.supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey);
+
+      async function loadDiscussions() {
+        list.innerHTML = '<div class="discussion-empty">Loading discussions…</div>';
+        const { data, error } = await supabase
+          .from('discussions')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(20);
+
+        if (error) {
+          console.error('Supabase load error', error);
+          enableLocalDiscussionMode('Supabase discussions are unavailable. Local discussion storage is enabled.');
+          return;
+        }
+
+        if (!data || data.length === 0) {
+          list.innerHTML = '<div class="discussion-empty">No discussions yet. Start the conversation!</div>';
+          return;
+        }
+
+        list.innerHTML = data.map(renderDiscussionCard).join('');
       }
 
-      setStatus('Posted successfully! Refreshing messages...', 'var(--main)');
-      form.reset();
       await loadDiscussions();
-    });
+      if (useLocalFallback) return;
 
-    loadDiscussions();
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const name = form.querySelector('#discussion-name').value.trim();
+        const message = form.querySelector('#discussion-message').value.trim();
+        if (!message) {
+          setStatus('Please enter a message before posting.', '#f87171');
+          return;
+        }
+
+        setStatus('Posting your discussion...');
+        const { error } = await supabase.from('discussions').insert([{ name, message, created_at: new Date().toISOString() }]);
+        if (error) {
+          console.error('Supabase insert error', error);
+          setStatus('Unable to post your discussion right now. Please try again later.', '#f87171');
+          return;
+        }
+
+        setStatus('Posted successfully! Refreshing messages...', 'var(--success)');
+        form.reset();
+        await loadDiscussions();
+      });
+    })();
   }
 
   function initPayPalDonation() {
@@ -678,13 +795,15 @@
         </div>`;
     }
     if (field.type === 'select' && Array.isArray(field.options)) {
+      // Use an input + datalist for a modern, editable select experience
+      const listId = esc(field.id) + '-list';
       return `
         <div class="form-group">
           <label for="${esc(field.id)}">${label}</label>
-          <select id="${esc(field.id)}" name="${esc(field.id)}" ${field.required ? 'required' : ''}>
-            <option value="">${placeholder}</option>
-            ${field.options.map(opt => `<option value="${esc(opt)}">${esc(opt)}</option>`).join('')}
-          </select>
+          <input id="${esc(field.id)}" name="${esc(field.id)}" list="${listId}" placeholder="${placeholder}" ${field.required ? 'required' : ''} />
+          <datalist id="${listId}">
+            ${field.options.map(opt => `<option value="${esc(opt)}">`).join('')}
+          </datalist>
           ${hint}
         </div>`;
     }
@@ -1062,7 +1181,11 @@
     const resources = cfg.resources || [];
     const featured = resources.find(r => r.featured) || resources[0] || null;
     const categories = [...new Set(resources.map(r => r.category).filter(Boolean))];
-    const resourceCards = resources.filter(r => r !== featured).map((r, i) => resourceCard(r, i)).join('');
+    const resourceCards = resources
+      .map((resource, index) => ({ resource, index }))
+      .filter(item => item.resource !== featured)
+      .map(item => resourceCard(item.resource, item.index))
+      .join('');
 
     const featuredCard = featured ? `
       <article class="resource-featured-banner">
@@ -1248,10 +1371,57 @@
 
   /* ---------- BOOT ---------- */
 
+  function buildConfigPaths(basePath) {
+    const path = document.location.pathname;
+    const currentDir = path.endsWith('/') ? path : path.replace(/\/[^\/]*$/, '/');
+    const candidates = [
+      `${document.location.origin}/config/${basePath}`,
+      `/config/${basePath}`,
+      `config/${basePath}`,
+      `./config/${basePath}`,
+      `../config/${basePath}`,
+      `../../config/${basePath}`,
+      `../../../config/${basePath}`,
+      `${currentDir}config/${basePath}`
+    ];
+    if (path.startsWith('/pages/') || path === '/pages') {
+      candidates.push(
+        `${document.location.origin}/pages/config/${basePath}`,
+        `/pages/config/${basePath}`,
+        `pages/config/${basePath}`,
+        `../pages/config/${basePath}`
+      );
+    }
+    return [...new Set(candidates.filter(Boolean))];
+  }
+
+  function tryFetchJson(paths) {
+    const t = Date.now();
+    let lastErr = null;
+    const tryOne = async (p) => {
+      try {
+        const url = p + (p.includes('?') ? '&' : '?') + 'v=' + t;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`${url} ${res.status}`);
+        return await res.json();
+      } catch (e) {
+        lastErr = e;
+        return null;
+      }
+    };
+    return (async () => {
+      for (const p of paths) {
+        const json = await tryOne(p);
+        if (json) return json;
+      }
+      throw lastErr || new Error('Could not load JSON');
+    })();
+  }
+
   Promise.all([
-    fetch('/config/info.json?v=' + Date.now()).then(r => r.json()),
-    fetch('/config/products.json?v=' + Date.now()).then(r => r.json()),
-    fetch('/config/reviews.json?v=' + Date.now()).then(r => r.json())
+    tryFetchJson(buildConfigPaths('info.json')),
+    tryFetchJson(buildConfigPaths('products.json')),
+    tryFetchJson(buildConfigPaths('reviews.json'))
   ]).then(([info, products, reviews]) => {
     const cfg = {
       ...info,
@@ -1265,10 +1435,10 @@
     document.body.insertAdjacentHTML('afterbegin', topbar(cfg, pageKey));
     initTopbarToggle();
     if (isMaintenanceActive(cfg, pageKey)) {
-      app.innerHTML = renderMaintenance(cfg, pageKey);
-    } else {
-      app.innerHTML = renderer(cfg);
+      const topbarEl = document.querySelector('.topbar');
+      if (topbarEl) topbarEl.insertAdjacentHTML('afterend', renderMaintenanceBanner(cfg, pageKey));
     }
+    app.innerHTML = renderer(cfg);
     document.body.insertAdjacentHTML('beforeend', footer(cfg));
     if (pageKey === 'resources') attachResourceDetailListeners(cfg.resources);
     if (pageKey === 'donate') initPayPalDonation();
