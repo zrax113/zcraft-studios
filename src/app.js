@@ -168,6 +168,17 @@
     script.textContent = JSON.stringify(schema);
   }
 
+  function initTopbarToggle() {
+    const toggle = document.querySelector('.topbar-menu-toggle');
+    const nav = document.querySelector('.topbar-nav');
+    if (!toggle || !nav) return;
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      nav.classList.toggle('open', !isOpen);
+    });
+  }
+
   function topbar(cfg, currentPageKey) {
     const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
     const pageMatch = cfg.nav.find(n => (n.href || '/').replace(/\/+$/, '') === currentPath);
@@ -186,6 +197,7 @@
             <img class="topbar-logo-img" src="${esc(cfg.branding.logo)}" alt="${esc(cfg.site.name)} logo" />
             <span>${esc(cfg.site.name)}</span>
           </a>
+          <button type="button" class="topbar-menu-toggle" aria-expanded="false">menu</button>
           <nav class="topbar-nav">
             ${cfg.nav.map(n => {
               const targetPath = (n.href || '/').replace(/\/+$/, '') || '/';
@@ -330,39 +342,45 @@
   function initRequestForm(cfg) {
     const form = document.getElementById('request-form');
     const statusBox = document.getElementById('request-status');
+    const page = cfg.request || {};
+    const fields = page.form?.fields || [];
     if (!form || !statusBox) return;
 
-    form.addEventListener('submit', event => {
+    form.addEventListener('submit', async event => {
       event.preventDefault();
-      const discord = form.querySelector('#request-discord').value.trim();
-      const email = form.querySelector('#request-email').value.trim();
-      const price = form.querySelector('#request-price').value.trim();
-      const description = form.querySelector('#request-description').value.trim();
-      const timeline = form.querySelector('#request-timeline').value.trim();
-
-      if (!discord || !email || !price || !description) {
-        statusBox.textContent = 'Please fill in your Discord identifier, email, budget, and description.';
-        statusBox.style.color = 'var(--main)';
+      const formData = new FormData(form);
+      const values = Object.fromEntries(formData.entries());
+      const requiredMissing = fields.filter(f => f.required).some(f => !String(values[f.id] || '').trim());
+      if (requiredMissing) {
+        statusBox.textContent = 'Please complete all required fields before sending your request.';
+        statusBox.style.color = '#f87171';
         return;
       }
 
       statusBox.textContent = 'Sending request...';
       statusBox.style.color = 'var(--text)';
-      const content = `**New Service Request**\n**Discord:** ${discord}\n**Email:** ${email}\n**Budget / Price:** ${price}\n**Timeline:** ${timeline || 'Not specified'}\n**Description:** ${description}`;
+      const description = values[page.form?.fields?.find(f => f.id === 'request-description')?.id || 'request-description'] || 'No description provided.';
+      const embedFields = fields.filter(f => f.id !== 'request-description').map(f => ({
+        name: f.label,
+        value: values[f.id] ? values[f.id] : 'Not provided',
+        inline: !['textarea', 'select'].includes(f.type)
+      }));
 
       postDiscordRequest(cfg?.webhook?.discord?.request, {
         username: 'ZCraft Request Bot',
+        avatar_url: cfg.branding.logo,
         embeds: [{
-          title: 'Custom service request',
-          description: content,
-          color: 15158332,
-          fields: [
-            { name: 'Discord', value: discord, inline: true },
-            { name: 'Email', value: email, inline: true },
-            { name: 'Budget', value: price, inline: true },
-            { name: 'Timeline', value: timeline || 'Not specified', inline: true },
-            { name: 'Description', value: description }
-          ],
+          title: 'New Studio Request',
+          description: description,
+          color: 15105570,
+          author: {
+            name: cfg.site.name,
+            icon_url: cfg.branding.logo
+          },
+          thumbnail: {
+            url: cfg.branding.logo
+          },
+          fields: embedFields,
           footer: { text: `${cfg.site.name} request form` },
           timestamp: new Date().toISOString()
         }]
@@ -442,8 +460,9 @@
 
     const supabaseConfig = cfg.supabase || {};
     const createClient = window.supabase?.createClient;
-    if (!supabaseConfig.url || !supabaseConfig.anonKey || !createClient) {
-      statusBox.textContent = 'Supabase is not configured for discussions. Add your Supabase URL and anon key to config/info.json and include the Supabase client script on the discussions page.';
+    const placeholderRegex = /YOUR-PROJECT|YOUR_ANON_KEY|REPLACE_ME|<.*>/i;
+    if (!supabaseConfig.url || !supabaseConfig.anonKey || placeholderRegex.test(supabaseConfig.url) || placeholderRegex.test(supabaseConfig.anonKey) || !createClient) {
+      statusBox.textContent = 'Supabase is not configured for discussions. Add your Supabase URL and anon key to config/info.json and make sure the Supabase script is loaded on this page.';
       statusBox.style.color = '#f87171';
       return;
     }
@@ -646,11 +665,43 @@
   }
 
 
+  function renderFormField(field) {
+    const label = esc(field.label || 'Field');
+    const placeholder = esc(field.placeholder || 'Enter a value');
+    const hint = field.hint ? `<span class="form-hint">${esc(field.hint)}</span>` : '';
+    if (field.type === 'textarea') {
+      return `
+        <div class="form-group">
+          <label for="${esc(field.id)}">${label}</label>
+          <textarea id="${esc(field.id)}" name="${esc(field.id)}" rows="6" placeholder="${placeholder}" ${field.required ? 'required' : ''}></textarea>
+          ${hint}
+        </div>`;
+    }
+    if (field.type === 'select' && Array.isArray(field.options)) {
+      return `
+        <div class="form-group">
+          <label for="${esc(field.id)}">${label}</label>
+          <select id="${esc(field.id)}" name="${esc(field.id)}" ${field.required ? 'required' : ''}>
+            <option value="">${placeholder}</option>
+            ${field.options.map(opt => `<option value="${esc(opt)}">${esc(opt)}</option>`).join('')}
+          </select>
+          ${hint}
+        </div>`;
+    }
+    return `
+      <div class="form-group">
+        <label for="${esc(field.id)}">${label}</label>
+        <input id="${esc(field.id)}" name="${esc(field.id)}" type="${esc(field.type || 'text')}" placeholder="${placeholder}" ${field.required ? 'required' : ''} />
+        ${hint}
+      </div>`;
+  }
+
   function renderRequest(cfg) {
     const page = cfg.request || {};
     const services = page.services || [];
     const nextSteps = page.nextSteps || [];
 
+    const fieldInputs = (page.form?.fields || []).map(renderFormField).join('');
     const serviceItems = services.map(s => `
       <div class="service-item">
         <div class="service-icon">${esc(s.icon)}</div>
@@ -683,27 +734,7 @@
                 <p>${esc(page.form?.headerCopy || "Let's build something amazing together")}</p>
               </div>
               <form id="request-form" class="request-form">
-                <div class="form-group">
-                  <label for="request-discord">${esc(page.form?.fields?.find(f => f.id === 'request-discord')?.label || 'Discord Username')}</label>
-                  <input id="request-discord" type="text" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-discord')?.placeholder || 'Discord#1234 or ID')}" required />
-                  <span class="form-hint">${esc(page.form?.fields?.find(f => f.id === 'request-discord')?.hint || 'So we can reach you back')}</span>
-                </div>
-                <div class="form-group">
-                  <label for="request-email">${esc(page.form?.fields?.find(f => f.id === 'request-email')?.label || 'Email Address')}</label>
-                  <input id="request-email" type="email" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-email')?.placeholder || 'you@example.com')}" required />
-                </div>
-                <div class="form-group">
-                  <label for="request-price">${esc(page.form?.fields?.find(f => f.id === 'request-price')?.label || 'Budget')}</label>
-                  <input id="request-price" type="text" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-price')?.placeholder || 'e.g., $100, 50 USD')}" required />
-                </div>
-                <div class="form-group">
-                  <label for="request-description">${esc(page.form?.fields?.find(f => f.id === 'request-description')?.label || 'Project Description')}</label>
-                  <textarea id="request-description" rows="6" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-description')?.placeholder || 'What do you need built? Be as detailed as possible...')}" required></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="request-timeline">${esc(page.form?.fields?.find(f => f.id === 'request-timeline')?.label || 'Timeline (Optional)')}</label>
-                  <input id="request-timeline" type="text" placeholder="${esc(page.form?.fields?.find(f => f.id === 'request-timeline')?.placeholder || '2 weeks, ASAP, flexible, etc.') }" />
-                </div>
+                ${fieldInputs}
                 <button class="btn btn-primary" type="submit" style="width:100%">${esc(page.form?.buttonLabel || 'Send Request')}</button>
                 <div id="request-status" class="request-status"></div>
               </form>
@@ -1166,6 +1197,32 @@
       </div>`;
   }
 
+  function renderMaintenance(cfg, pageKey) {
+    const maintenance = cfg.maintenance || {};
+    const pageConfig = (maintenance.pages && maintenance.pages[pageKey]) || {};
+    const title = pageConfig.title || maintenance.title || 'Site maintenance in progress';
+    const message = pageConfig.message || maintenance.message || 'The site is temporarily unavailable while we make improvements.';
+    const promoTitle = pageConfig.promoTitle || maintenance.promoTitle;
+    const promoText = pageConfig.promoText || maintenance.promoText;
+    return `
+      <section class="page-hero">
+        <span class="page-label">// maintenance</span>
+        <h1>${esc(title)}</h1>
+        <p class="page-copy">${esc(message)}</p>
+      </section>
+      <div class="maintenance-card">
+        ${promoTitle ? `<div class="maintenance-promo"><h3>${esc(promoTitle)}</h3><p>${esc(promoText)}</p></div>` : ''}
+        <div class="maintenance-note">If you need urgent support, use the contact page or Discord.</div>
+      </div>`;
+  }
+
+  function isMaintenanceActive(cfg, pageKey) {
+    const maintenance = cfg.maintenance || {};
+    if (!maintenance.enabled) return false;
+    if (maintenance.global) return true;
+    return maintenance.pages && maintenance.pages[pageKey] && maintenance.pages[pageKey].enabled;
+  }
+
   function renderNotFound(cfg) {
     const path = window.location.pathname + window.location.search;
     return `
@@ -1206,12 +1263,17 @@
     const app = $('#app');
     const renderer = PAGES[pageKey] || renderHome;
     document.body.insertAdjacentHTML('afterbegin', topbar(cfg, pageKey));
-    app.innerHTML = renderer(cfg);
+    initTopbarToggle();
+    if (isMaintenanceActive(cfg, pageKey)) {
+      app.innerHTML = renderMaintenance(cfg, pageKey);
+    } else {
+      app.innerHTML = renderer(cfg);
+    }
     document.body.insertAdjacentHTML('beforeend', footer(cfg));
     if (pageKey === 'resources') attachResourceDetailListeners(cfg.resources);
     if (pageKey === 'donate') initPayPalDonation();
-    if (pageKey === 'request') initRequestForm(cfg);
-    if (pageKey === 'discussions') initDiscussions(cfg);
+    if (pageKey === 'request' && !isMaintenanceActive(cfg, pageKey)) initRequestForm(cfg);
+    if (pageKey === 'discussions' && !isMaintenanceActive(cfg, pageKey)) initDiscussions(cfg);
     requestAnimationFrame(animateCounters);
   }).catch(err => {
     console.error('Failed to load config:', err);
