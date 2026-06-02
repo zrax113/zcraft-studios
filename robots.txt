@@ -2,3 +2,17 @@ User-agent: *
 Allow: /
 
 Sitemap: https://studio.z-craft.xyz/sitemap.xml
+
+# Non-standard hint for crawlers and AI agents to locate the full site JSON index.
+# Some crawlers/agents may read this custom directive to find the aggregated JSON.
+User-agent: *
+Full-Info: /site-index.json
+
+# If an AI-specific agent string is known, add a block for it. This is a fallback
+# suggestion for AI crawlers to prefer the structured JSON index.
+User-agent: AI-Agent
+Allow: /site-index.json
+Full-Info: /site-index.json
+
+# LLMS discovery file (some agents check /llms.txt)
+LLMS: /llms.txt

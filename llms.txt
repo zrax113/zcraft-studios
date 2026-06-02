@@ -1,0 +1,6 @@
+# LLMS discovery file for crawlers and AI agents
+# Location of structured site index and sitemap
+Sitemap: https://studio.z-craft.xyz/sitemap.xml
+Site-Index: https://studio.z-craft.xyz/site-index.json
+# Optional: specify preferred format
+Format: application/json
