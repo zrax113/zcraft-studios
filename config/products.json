@@ -1,7 +1,8 @@
+```json
 {
   "projects": [
     {
-      "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
       "title": "Evidence Discord Bot",
       "brand": "Discord Bot",
       "summary": "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
@@ -78,11 +79,77 @@
       ],
       "status": "free",
       "featured": false,
-      "category": "plugin",
+      "category": "Plugin",
       "links": [
         {
           "label": "View",
-          "href": "https://builtbybit.com/resources/z-auth-modern-authentication-plugin.110438/",
+          "href": "https://github.com/zraxgaming.zcraft-auth",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
+      "title": "EssentialsX Messages Config",
+      "brand": "Minecraft Config",
+      "summary": "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+      "tags": [
+        "EssentialsX",
+        "Messages",
+        "Minecraft",
+        "Config"
+      ],
+      "status": "available",
+      "featured": false,
+      "category": "Config",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/essentialsx-messages-config.110869/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
+      "title": "Modern Maintenance Messages Config",
+      "brand": "Minecraft Config",
+      "summary": "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+      "tags": [
+        "Maintenance",
+        "Messages",
+        "Minecraft",
+        "Config"
+      ],
+      "status": "available",
+      "featured": false,
+      "category": "Config",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
+      "title": "LiteBans Message Templates",
+      "brand": "Minecraft Config",
+      "summary": "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+      "tags": [
+        "LiteBans",
+        "Messages",
+        "Moderation",
+        "Config"
+      ],
+      "status": "available",
+      "featured": false,
+      "category": "Config",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/litebans-message-templates.111231/",
           "variant": "primary"
         }
       ]
@@ -90,17 +157,17 @@
   ],
   "resources": [
     {
-      "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
       "title": "Evidence Discord Bot",
       "brand": "Bot",
-      "summary": "Best discord bot for performance and handling user cases and moderation.",
+      "summary": "Best Discord bot for performance and handling user cases and moderation.",
       "tags": [
         "Simple",
-        "performance"
+        "Performance"
       ],
-      "status": "5.38$",
+      "status": "$5.38",
       "featured": true,
-      "category": "bot",
+      "category": "Bot",
       "links": [
         {
           "label": "View",
@@ -119,9 +186,9 @@
         "Configs",
         "Visual"
       ],
-      "status": "5.47$",
+      "status": "$5.47",
       "featured": true,
-      "category": "website",
+      "category": "Website",
       "links": [
         {
           "label": "View",
@@ -140,9 +207,9 @@
         "LuckPerms",
         "Visual"
       ],
-      "status": "5.57$",
+      "status": "$5.57",
       "featured": false,
-      "category": "website",
+      "category": "Website",
       "links": [
         {
           "label": "View",
@@ -163,16 +230,80 @@
         "Velocity",
         "Paper"
       ],
-      "status": "live",
+      "status": "Free",
       "featured": false,
-      "category": "plugin",
+      "category": "Plugin",
       "links": [
         {
           "label": "View",
-          "href": "https://builtbybit.com/resources/z-auth-modern-authentication-plugin.110438/",
+          "href": "https://github.com/zraxgaming.zcraft-auth",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
+      "title": "EssentialsX Messages Config",
+      "brand": "Config",
+      "summary": "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+      "tags": [
+        "EssentialsX",
+        "Messages",
+        "Minecraft"
+      ],
+      "status": "$4.73",
+      "featured": false,
+      "category": "Config",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/essentialsx-messages-config.110869/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
+      "title": "Modern Maintenance Messages Config",
+      "brand": "Config",
+      "summary": "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+      "tags": [
+        "Maintenance",
+        "Messages",
+        "Minecraft"
+      ],
+      "status": "$3.72",
+      "featured": false,
+      "category": "Config",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/",
+          "variant": "primary"
+        }
+      ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
+      "title": "LiteBans Message Templates",
+      "brand": "Config",
+      "summary": "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+      "tags": [
+        "LiteBans",
+        "Messages",
+        "Moderation"
+      ],
+      "status": "$4.21",
+      "featured": false,
+      "category": "Config",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/litebans-message-templates.111231/",
           "variant": "primary"
         }
       ]
     }
   ]
 }
+```
