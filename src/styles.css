@@ -1281,13 +1281,6 @@ footer { border-top: 1px solid var(--border); padding: 24px; margin-top: 32px; p
 
 .request-status { font-family: var(--mono); font-size: 13px; color: var(--text2); margin-top: 12px; line-height: 1.6; }
 
-.discussion-list { display: grid; gap: 16px; }
-.discussion-card { background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.12); border-radius: 14px; padding: 20px; }
-.discussion-card-header { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 14px; }
-.discussion-card-header strong { font-size: 15px; color: var(--text); }
-.discussion-card-header time { font-family: var(--mono); font-size: 12px; color: var(--text3); }
-.discussion-empty { font-family: var(--mono); color: var(--text3); padding: 18px; border: 1px dashed var(--border); border-radius: 12px; background: rgba(255,255,255,0.03); }
-
 .request-info-img { width: 100%; border-radius: 14px; object-fit: cover; box-shadow: 0 24px 48px rgba(0,0,0,0.4); margin-bottom: 28px; aspect-ratio: 4/3; }
 .request-services { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 20px; }
 .request-services h3 { font-family: var(--sans); font-size: 20px; font-weight: 700; color: var(--text); margin: 0 0 20px; }

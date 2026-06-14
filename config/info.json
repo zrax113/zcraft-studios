@@ -34,10 +34,6 @@
       "href": "/request"
     },
     {
-      "label": "discussions",
-      "href": "/discussions"
-    },
-    {
       "label": "about",
       "href": "/about"
     }
@@ -90,12 +86,6 @@
       "description": "Submit a custom service request for Minecraft plugins, server configs, Discord bot work, or web development.",
       "keywords": "custom service request, minecraft plugins request, minecraft configs request, discord bot development request, ZCraft Studios",
       "canonical": "/request"
-    },
-    "discussions": {
-      "title": "Community Discussions \u2014 ZCraft Studios",
-      "description": "Join the ZCraft Studios discussion board to ask questions, share ideas, and explore Minecraft plugin and Discord bot development topics.",
-      "keywords": "community discussions, minecraft discussion, discord bots discussion, developer community, ZCraft Studios",
-      "canonical": "/discussions"
     },
     "notfound": {
       "title": "404 \u2014 ZCraft Studios",
@@ -607,39 +597,13 @@
       "request": "https://discord.com/api/webhooks/1511017080282153020/D_26UxQLoKcffnu2gsAWg5TjIl2RBDPiwFnc7vgxMSJFb7gHNGkCA1RPSAAWWbPA7mQw"
     }
   },
-  "supabase": {
-    "url": "https://lwrieezyqkwnpqaiyfnd.supabase.co",
-    "anonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx3cmllZXp5cWt3bnBxYWl5Zm5kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzODYxMzMsImV4cCI6MjA5NTk2MjEzM30.PfcfjZAZfRp2gUlVz1Hhj9dsNY0YoJxfTJIM6-hahS0"
-  },
-  "discussions": {
-    "title": "Community Discussions",
-    "copy": "Share your ideas, ask questions, and connect with other server builders.",
-    "form": {
-      "headerTitle": "Post a new discussion",
-      "headerCopy": "Your messages are saved to Supabase when available, otherwise stored locally in your browser.",
-      "buttonLabel": "Post Discussion",
-      "fields": [
-        {
-          "id": "discussion-name",
-          "label": "Name",
-          "placeholder": "Your name or handle"
-        },
-        {
-          "id": "discussion-message",
-          "label": "Message",
-          "placeholder": "Share your question, tip, or update..."
-        }
-      ]
-    },
-    "listTitle": "Latest discussions"
-  },
   "maintenance": {
     "enabled": false,
     "global": true,
     "message": "We are applying updates to the studio site. Please check back shortly.",
     "title": "Maintenance mode active",
     "promoTitle": "Studio update is coming",
-    "promoText": "We’re refreshing the experience with new discussion support, request enhancements, and faster site performance.",
+    "promoText": "We’re refreshing the experience with request enhancements and faster site performance.",
     "pages": {
       "home": {
         "enabled": false,
@@ -696,13 +660,6 @@
         "title": "Request page maintenance",
         "promoTitle": "Need help now?",
         "promoText": "Join Discord for urgent quotes and project support while the request form is updated."
-      },
-      "discussions": {
-        "enabled": false,
-        "message": "The discussion board is temporarily offline for upgrades.",
-        "title": "Discussions maintenance",
-        "promoTitle": "New community features incoming",
-        "promoText": "We’re enhancing the discussion experience with better moderation and display options."
       },
       "notfound": {
         "enabled": false,
