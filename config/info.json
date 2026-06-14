@@ -18,6 +18,10 @@
       "href": "/"
     },
     {
+      "label": "about",
+      "href": "/about"
+    },
+    {
       "label": "team",
       "href": "/team"
     },
@@ -26,16 +30,12 @@
       "href": "/resources"
     },
     {
-      "label": "donate",
-      "href": "/donate"
-    },
-    {
       "label": "request",
       "href": "/request"
     },
     {
-      "label": "about",
-      "href": "/about"
+      "label": "donate",
+      "href": "/donate"
     }
   ],
   "seo": {
