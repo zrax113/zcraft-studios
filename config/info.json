@@ -320,7 +320,7 @@
       "amountPrefix": "",
       "defaultAmount": "10",
       "securityText": "\ud83d\udd12 Secure \u2022 Processed by PayPal \u2022 100% Safe",
-      "buttonLabel": "",
+      "buttonLabel": " ",
       "currency": "USD"
     },
     "benefitsTitle": "What Happens Next",
@@ -703,7 +703,7 @@
     {
       "name": "Zain Abusal",
       "role": "Founder & Lead Developer",
-      "pfp": "https://i.postimg.cc/T1sXX0Jj/image-2026-05-08-164555500.png",
+      "pfp": "https://i.postimg.cc/c4sWpq1J/zraxgaming-pose.png",
       "bio": "Passionate Minecraft developer with 2+ years of experience building websites and server systems. Focused on performance and user experience.",
       "website": "https://Zain.z-craft.xyz",
       "level": 999
