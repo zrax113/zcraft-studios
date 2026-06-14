@@ -152,6 +152,28 @@
           "variant": "primary"
         }
       ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+      "title": "Products Tab Config",
+      "brand": "Minecraft Config",
+      "summary": "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+      "tags": [
+        "Tab",
+        "Scoreboard",
+        "Minecraft",
+        "Config"
+      ],
+      "status": "available",
+      "featured": false,
+      "category": "Config",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/",
+          "variant": "primary"
+        }
+      ]
     }
   ],
   "resources": [
@@ -302,6 +324,28 @@
           "variant": "primary"
         }
       ]
+    },
+    {
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+      "title": "Products Tab Config",
+      "brand": "Config",
+      "summary": "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+      "tags": [
+        "Tab",
+        "Scoreboard",
+        "Minecraft"
+      ],
+      "status": "$4.22",
+      "featured": false,
+      "category": "Config",
+      "links": [
+        {
+          "label": "View",
+          "href": "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/",
+          "variant": "primary"
+        }
+      ]
     }
   ]
 }
+
