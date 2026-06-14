@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/src/styles.css">
 </head>
 <body data-page="contact">
-<main class="wrapper" id="app" style="padding-top:32px;padding-bottom:32px"></main>
-<script src="/src/app.js" defer></script>
+<main class="wrapper" id="app" style="padding-top:32px;padding-bottom:32px"><div class="preview-loading">Loading ZCraft Studios...</div></main>
+<script>window.__zcraftLog=function(e,m){try{fetch("/api/log",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({event:e,message:m,path:location.pathname+location.search,page:document.body.getAttribute("data-page")||"unknown"}),keepalive:true})}catch(_){}};window.__zcraftDebug=function(m){window.__zcraftLog("preview_loader",m);var e=document.getElementById("app");if(e&&!document.body.dataset.zcraftRendered){e.innerHTML="<div class=\"preview-loading\">"+m+"</div>";}};window.addEventListener("error",function(e){window.__zcraftDebug("Preview script error: "+(e.message||"unknown"));});window.addEventListener("unhandledrejection",function(e){window.__zcraftDebug("Preview load error: "+((e.reason&&e.reason.message)||e.reason||"unknown"));});setTimeout(function(){if(!document.body.dataset.zcraftRendered) window.__zcraftDebug("Preview did not finish loading. Check Vercel logs for zcraft-client-log.");},3500);</script><script src="/src/app.js?v=preview4" defer onload="window.__zcraftAppLoaded=true" onerror="window.__zcraftDebug('Preview could not load /src/app.js')"></script>
 </body>
 </html>

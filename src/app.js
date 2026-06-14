@@ -21,6 +21,33 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
   const pageKey = document.body.getAttribute('data-page') || 'home';
+  const logToVercel = (event, message = '') => {
+    try {
+      const payload = JSON.stringify({
+        event,
+        message: message instanceof Error ? message.message : String(message || ''),
+        page: pageKey,
+        path: window.location.pathname + window.location.search
+      });
+      fetch('/api/log', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true
+      }).catch(() => {});
+    } catch (_) {}
+  };
+
+  window.addEventListener('error', event => {
+    logToVercel('client_error', event.message || 'Unknown client error');
+  });
+
+  window.addEventListener('unhandledrejection', event => {
+    const reason = event.reason;
+    logToVercel('client_rejection', reason?.message || reason || 'Unhandled promise rejection');
+  });
+
+  logToVercel('app_boot', 'App script loaded');
 
   function applySEO(cfg) {
     const seo = cfg.seo[pageKey] || cfg.seo.home;
@@ -183,6 +210,26 @@
     });
   }
 
+  function initScrollEnhancements() {
+    const progress = document.createElement("div");
+    progress.className = "scroll-progress";
+    progress.setAttribute("aria-hidden", "true");
+    document.body.appendChild(progress);
+
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      progress.style.transform = "scaleX(" + pct + ")";
+      document.body.classList.toggle("has-scrolled", window.scrollY > 12);
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+
+
+  }
+
   function topbar(cfg, currentPageKey) {
     const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
     const pageMatch = cfg.nav.find(n => (n.href || '/').replace(/\/+$/, '') === currentPath);
@@ -268,7 +315,7 @@
   function projectCard(p) {
     return `
       <article class="project-card">
-        <img class="project-img" src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" />
+        <img class="project-img" src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" decoding="async" />
         <div class="project-content">
           <div class="project-head">
             <h3 class="project-name">${esc(p.title)} ${p.featured ? '<span class="featured-pill">featured</span>' : ''}</h3>
@@ -287,7 +334,7 @@
   function resourceCard(r, index) {
     return `
       <article class="resource-card" data-resource-index="${index}">
-        <img class="resource-card-image" src="${esc(r.image)}" alt="${esc(r.title)}" loading="lazy" />
+        <img class="resource-card-image" src="${esc(r.image)}" alt="${esc(r.title)}" loading="lazy" decoding="async" />
         <div class="resource-card-body">
           <div class="resource-card-header">
             <span class="resource-card-brand">${esc(r.brand || r.category || '')}</span>
@@ -691,7 +738,7 @@
       <div class="resource-detail-panel">
         <button type="button" class="resource-detail-close" aria-label="Close product detail">×</button>
         <div class="resource-detail-media">
-          <img class="resource-detail-image" src="${esc(resource.image)}" alt="${esc(resource.title)}" loading="lazy" />
+          <img class="resource-detail-image" src="${esc(resource.image)}" alt="${esc(resource.title)}" loading="lazy" decoding="async" />
         </div>
         <div class="resource-detail-body">
           <div class="resource-detail-meta">
@@ -737,7 +784,7 @@
     return `
       <div class="review-card">
         <div class="review-head">
-          <img class="review-avatar" src="${esc(r.avatar)}" alt="${esc(r.name)}" loading="lazy" />
+          <img class="review-avatar" src="${esc(r.avatar)}" alt="${esc(r.name)}" loading="lazy" decoding="async" />
           <div class="review-meta">
             <div class="review-name">${esc(r.name)}</div>
             <div class="review-handle">${esc(r.handle)}</div>
@@ -753,7 +800,7 @@
   function profileCardHTML(profile) {
     return `
       <a class="profile-card" href="${esc(profile.redirect)}" target="_blank" rel="noopener">
-        <img class="skin-img" src="${esc(profile.image)}" alt="${esc(profile.name)}" loading="lazy" />
+        <img class="skin-img" src="${esc(profile.image)}" alt="${esc(profile.name)}" loading="lazy" decoding="async" />
         <div class="profile-name">${esc(profile.name)}</div>
         <div class="profile-handle">${esc(profile.handle)}</div>
         <div class="profile-note">${esc(profile.note)}</div>
@@ -987,7 +1034,7 @@
 
     const featuredCard = featured ? `
       <article class="resource-featured-banner">
-        <img class="resource-featured-image" src="${esc(featured.image)}" alt="${esc(featured.title)}" loading="lazy" />
+        <img class="resource-featured-image" src="${esc(featured.image)}" alt="${esc(featured.title)}" loading="lazy" decoding="async" />
         <div class="resource-featured-copy">
           <span class="resource-featured-badge">${esc(featured.brand)} · ${esc(featured.status)}</span>
           <h2 class="resource-featured-title">${esc(featured.title)}</h2>
@@ -1094,7 +1141,7 @@
         return `
           <${tag} class="team-member-card" data-level="${level}"${href}>
             <div class="team-member-avatar">
-              <img src="${esc(member.pfp)}" alt="${esc(member.name)}" loading="lazy" />
+              <img src="${esc(member.pfp)}" alt="${esc(member.name)}" loading="lazy" decoding="async" />
             </div>
             <div class="team-member-content">
               <h3 class="team-member-name">${esc(member.name)}</h3>
@@ -1198,8 +1245,9 @@
     let lastErr = null;
     const tryOne = async (p) => {
       try {
-        const url = p + (p.includes('?') ? '&' : '?') + 'v=' + t;
-        const res = await fetch(url);
+        const shouldBustCache = new URLSearchParams(window.location.search).has('fresh');
+        const url = shouldBustCache ? p + (p.includes('?') ? '&' : '?') + 'v=' + t : p;
+        const res = await fetch(url, { cache: shouldBustCache ? 'reload' : 'default' });
         if (!res.ok) throw new Error(`${url} ${res.status}`);
         return await res.json();
       } catch (e) {
@@ -1237,13 +1285,17 @@
       if (topbarEl) topbarEl.insertAdjacentHTML('afterend', renderMaintenanceBanner(cfg, pageKey));
     }
     app.innerHTML = renderer(cfg);
+    document.body.dataset.zcraftRendered = "true";
+    logToVercel('app_rendered', 'Page rendered successfully');
     document.body.insertAdjacentHTML('beforeend', footer(cfg));
     if (pageKey === 'resources') attachResourceDetailListeners(cfg.resources);
     if (pageKey === 'donate') initPayPalDonation();
     if (pageKey === 'request' && !isMaintenanceActive(cfg, pageKey)) initRequestForm(cfg);
+    initScrollEnhancements();
     requestAnimationFrame(animateCounters);
   }).catch(err => {
     console.error('Failed to load config:', err);
+    logToVercel('app_config_failed', err);
     $('#app').innerHTML = '<div style="padding:48px;text-align:center;color:#ef4444">Failed to load site config.</div>';
   });
 })();
