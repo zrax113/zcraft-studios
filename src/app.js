@@ -306,8 +306,6 @@
           <div class="footer-left"><span>// </span>${esc(cfg.footer.left)} · ${cfg.site.year}</div>
           <div class="footer-links">
             ${cfg.footer.links.map(l => `<a href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}
-            <a class="topbar-link" href="/ai-agents" title="AI agent site guide">AI Guide</a>
-            <a class="topbar-link" href="/site-index.json" title="Site JSON index">Site JSON</a>
           </div>
         </div>
       </footer>`;

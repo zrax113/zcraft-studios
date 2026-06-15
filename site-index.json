@@ -96,7 +96,7 @@
       "source_products" : "https://studio.z-craft.xyz/config/products.json",
       "source_reviews" : "https://studio.z-craft.xyz/config/reviews.json"
    },
-   "generatedAt" : "Mon Jun 15 08:30:13 2026 UTC",
+   "generatedAt" : "Mon Jun 15 08:36:59 2026 UTC",
    "generatedFrom" : [
       "config/info.json",
       "config/products.json",
@@ -265,10 +265,6 @@
       {
          "href" : "/resources",
          "label" : "resources"
-      },
-      {
-         "href" : "/ai-agents",
-         "label" : "ai"
       },
       {
          "href" : "/request",
