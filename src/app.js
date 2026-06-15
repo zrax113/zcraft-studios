@@ -20,7 +20,13 @@
   };
   const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
-  const pageKey = document.body.getAttribute('data-page') || 'home';
+  const bodyPageKey = document.body.getAttribute('data-page') || 'home';
+  const routePath = window.location.pathname.replace(/\/+$/, '');
+  const pageKey = (() => {
+    if (bodyPageKey === 'resources' && /^\/resources\/[^/]+/i.test(routePath)) return 'resource-detail';
+    if (bodyPageKey === 'blogs' && /^\/blogs\/[^/]+/i.test(routePath)) return 'blog-detail';
+    return bodyPageKey;
+  })();
   const currentSlug = () => decodeURIComponent((window.location.pathname.replace(/\/+$/, '').split('/').pop() || '').trim().replace(/\.html$/i, ''));
   const slugify = (value) => String(value || '')
     .toLowerCase()
@@ -58,7 +64,7 @@
           keywords: [resource.title, resource.brand, resource.category, ...(resource.tags || []), ...(resource.supportedPlatforms || [])].filter(Boolean).join(', '),
           canonical: `/resources/${resourceSlug(resource)}`,
           image: resource.image,
-          imageAlt: `${resource.title} product image`
+          imageAlt: `${resource.title} resource image`
         };
       }
     }
@@ -91,7 +97,7 @@
     if (pageKey === 'legal-overview') {
       return {
         title: `Legal Policies \u2014 ${cfg.site.name}`,
-        description: `Legal policies for ${cfg.site.name}, including terms and conditions, privacy, support, and digital product information.`,
+        description: `Legal policies for ${cfg.site.name}, including terms and conditions, privacy, support, and digital resource information.`,
         keywords: (cfg.legalPages || []).flatMap(page => [page.title, ...(page.keywords || [])]).filter(Boolean).join(', '),
         canonical: '/legal',
         image: cfg.branding.ogImage,
@@ -148,7 +154,7 @@
       keywords: (item.tags || []).join(', '),
       additionalProperty: [
         { '@type': 'PropertyValue', name: 'Supported platforms', value: (item.supportedPlatforms || []).join(', ') },
-        { '@type': 'PropertyValue', name: 'Setup difficulty', value: item.setupDifficulty || 'Varies by product' },
+        { '@type': 'PropertyValue', name: 'Setup difficulty', value: item.setupDifficulty || 'Varies by resource' },
         { '@type': 'PropertyValue', name: 'Support method', value: item.supportMethod || 'ZCraft Studios contact channels' },
         { '@type': 'PropertyValue', name: 'Price or status', value: item.status || 'Available' }
       ].filter(prop => prop.value)
@@ -167,8 +173,8 @@
   const pageSummaries = {
     resources: [
       'ZCraft Studios publishes Minecraft plugins, server configs, Discord bots, and web tools for server owners who need polished, production-ready resources.',
-      'Each product summary lists what the resource is, who it is for, supported platforms, setup difficulty, status or price, and support method.',
-      'The resources page is backed by config/products.json so search crawlers, AI agents, and the live UI can read the same product data.'
+      'Each resource summary lists what the resource is, who it is for, supported platforms, setup difficulty, status or price, and support method.',
+      'The resources page uses the same resource data as the generated discovery files, keeping resource details consistent.'
     ],
     about: [
       'ZCraft Studios is a Minecraft-focused development studio building plugins, server configurations, Discord bots, and modern web tools.',
@@ -176,9 +182,9 @@
       'Core services include Paper and Spigot plugin work, Velocity network tools, Discord automation, configuration packs, and web interfaces.'
     ],
     team: [
-      'The ZCraft Studios team handles development, configuration, support, and product delivery for Minecraft communities and creator tools.',
+      'The ZCraft Studios team handles development, configuration, support, and resource delivery for Minecraft communities and creator tools.',
       'Team members are organized around practical roles such as plugin development, web tooling, server configuration, and community support.',
-      'The team page helps clients and crawlers understand who builds, reviews, and supports ZCraft Studios work.'
+      'The team page helps clients understand who builds, reviews, and supports ZCraft Studios work.'
     ],
     request: [
       'The request page is the best starting point for custom Minecraft plugin development, Discord bot builds, server setup, and web tool commissions.',
@@ -207,8 +213,8 @@
         answer: 'The resources are built for Minecraft server owners, network operators, staff teams, Discord communities, and creators who need clean setup, clear support, and production-ready behavior.'
       },
       {
-        question: 'Where is product pricing and support listed?',
-        answer: 'Pricing or free status is listed on each product card and in config/products.json. Support methods are included in the product details and usually point to BuiltByBit, GitHub, or ZCraft Studios contact channels.'
+        question: 'Where is resource pricing and support listed?',
+        answer: 'Pricing or free status is listed on each resource card and in config/resources.json. Support methods are included in the resource details and usually point to BuiltByBit, GitHub, or ZCraft Studios contact channels.'
       }
     ],
     about: [
@@ -227,8 +233,8 @@
     ],
     team: [
       {
-        question: 'Who builds ZCraft Studios products?',
-        answer: 'ZCraft Studios products are built and supported by a small development team focused on Minecraft plugins, server configuration, Discord bots, web tools, and creator resources.'
+        question: 'Who builds ZCraft Studios resources?',
+        answer: 'ZCraft Studios resources are built and supported by a small development team focused on Minecraft plugins, server configuration, Discord bots, web tools, and creator resources.'
       },
       {
         question: 'What does the team support?',
@@ -270,11 +276,11 @@
     donate: [
       {
         question: 'What do donations support?',
-        answer: 'Donations support ZCraft Studios development time, hosting, product maintenance, free resources, documentation, and ongoing community support.'
+        answer: 'Donations support ZCraft Studios development time, hosting, resource maintenance, free resources, documentation, and ongoing community support.'
       },
       {
         question: 'Is donating required to use ZCraft Studios resources?',
-        answer: 'No. Donations are optional. Product access, free status, and pricing are listed separately on the resources page and in product data.'
+        answer: 'No. Donations are optional. Resource access, free status, and pricing are listed separately on the resources page and in resource data.'
       },
       {
         question: 'How are donations processed?',
@@ -282,17 +288,6 @@
       }
     ]
   };
-  const faqSchema = (faqs) => ({
-    '@type': 'FAQPage',
-    mainEntity: faqs.map(faq => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer
-      }
-    }))
-  });
   const resourceFaqs = (resource, cfg = {}) => resource.faq || [
     {
       question: `What is ${resource.title}?`,
@@ -304,7 +299,7 @@
     },
     {
       question: `How do I get support for ${resource.title}?`,
-      answer: resource.supportMethod || cfg.resourcesPage?.defaultSupportMethod || 'Use the listed product link or ZCraft Studios contact channels for support.'
+      answer: resource.supportMethod || cfg.resourcesPage?.defaultSupportMethod || 'Use the listed resource link or ZCraft Studios contact channels for support.'
     }
   ];
   const sentence = (value) => String(value || '').trim().replace(/[.]+$/, '');
@@ -319,7 +314,11 @@
     body: paragraph
   })) || [];
   const renderInlineMarkdown = (value) => esc(value)
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, label, href) => {
+      if (/^javascript:/i.test(href)) return label;
+      const external = /^https?:\/\//i.test(href);
+      return `<a href="${href}"${external ? ' target="_blank" rel="noopener"' : ''}>${label}</a>`;
+    })
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/__([^_]+)__/g, '<strong>$1</strong>')
@@ -476,8 +475,8 @@
     meta('twitter:description', seo.description);
     meta('twitter:image', socialImage);
     meta('twitter:image:alt', imageAlt);
-    meta('twitter:site', '@zraxgaming');
-    meta('twitter:creator', '@zraxgaming');
+    meta('twitter:site', cfg.social?.twitterSite || cfg.contact?.primary?.handle || '');
+    meta('twitter:creator', cfg.social?.twitterCreator || cfg.social?.twitterSite || cfg.contact?.primary?.handle || '');
     
     // Additional SEO meta tags
     meta('mobile-web-app-capable', 'yes');
@@ -516,7 +515,7 @@
     const pageUrl = absoluteUrl(baseUrl, seo.canonical);
     const breadcrumbItems = breadcrumbItemsForPage(cfg, seo);
 
-    const sameAs = (cfg.contact?.platforms || [])
+    const sameAs = cfg.social?.sameAs || (cfg.contact?.platforms || [])
       .filter(p => /^https?:\/\//.test(p.href))
       .map(p => p.href);
 
@@ -623,20 +622,6 @@
       });
     }
 
-    const faqs = pageKey === 'blogs'
-      ? (cfg.blogFaq || [])
-      : pageKey === 'comparisons'
-        ? (cfg.comparisons?.faq || [])
-        : (pageFaqs[pageKey] || []);
-    const detailResource = pageKey === 'resource-detail' ? findResourceBySlug(cfg) : null;
-    const detailFaqs = pageKey === 'resource-detail' ? (detailResource ? resourceFaqs(detailResource, cfg) : []) : faqs;
-    if (detailFaqs.length) {
-      schema['@graph'].push({
-        ...faqSchema(detailFaqs),
-        '@id': pageUrl + '#faq'
-      });
-    }
-
     if (pageKey === 'resources' && cfg.resources?.length) {
       schema['@graph'].push({
         '@type': 'ItemList',
@@ -696,6 +681,25 @@
       });
     }
 
+    if (pageKey === 'donate') {
+      schema['@graph'].push({
+        '@type': 'DonateAction',
+        '@id': `${pageUrl}#donate-action`,
+        name: `Donate to ${cfg.site.name}`,
+        description: seo.description,
+        target: pageUrl,
+        recipient: {
+          '@type': 'Organization',
+          name: cfg.site.name,
+          url: baseUrl
+        },
+        instrument: {
+          '@type': 'PaymentMethod',
+          name: 'PayPal'
+        }
+      });
+    }
+
     if (pageKey === 'resource-detail') {
       const resource = findResourceBySlug(cfg);
       if (resource) schema['@graph'].push(productSchema(resource, baseUrl, pageUrl));
@@ -739,12 +743,6 @@
             name: `${cfg.site.name} ${legalPage.title}`
           }
         });
-        if (legalPage.faq?.length) {
-          schema['@graph'].push({
-            ...faqSchema(legalPage.faq),
-            '@id': pageUrl + '#faq'
-          });
-        }
       }
     }
 
@@ -847,59 +845,27 @@
   }
 
   function renderSummaryBlock(pageKey, extraItems = []) {
-    const items = [...(pageSummaries[pageKey] || []), ...extraItems].filter(Boolean);
-    if (!items.length) return '';
-    return `
-      <section class="seo-summary" aria-label="Page summary">
-        <div class="section-label">// tldr</div>
-        <h2>What should you know first?</h2>
-        <ul>
-          ${items.map(item => `<li>${esc(item)}</li>`).join('')}
-        </ul>
-      </section>`;
+    return '';
   }
 
   function renderFaqBlock(pageKey, faqs = pageFaqs[pageKey] || []) {
-    if (!faqs.length) return '';
-    return `
-      <section class="faq-section" id="faq" aria-label="Frequently asked questions">
-        <div class="section-label">// faq</div>
-        <h2>What do people ask about this page?</h2>
-        <div class="faq-list">
-          ${faqs.map(faq => `
-            <article class="faq-item">
-              <h3>${esc(faq.question)}</h3>
-              <p>${esc(faq.answer)}</p>
-            </article>
-          `).join('')}
-        </div>
-      </section>`;
+    return '';
   }
 
   function renderTrustBlock(cfg) {
-    const support = cfg.seoSupport || {};
-    const items = support.eeat || [];
-    if (!items.length && !support.copy && !support.geoCopy) return '';
+    return '';
+  }
+
+  const sectionId = (heading, index) => `${slugify(heading || 'section') || 'section'}-${index + 1}`;
+
+  function renderToc(sections = []) {
+    const items = sections.filter(section => section.heading);
+    if (!items.length) return '';
     return `
-      <section class="trust-section" aria-label="Trust and service area">
-        <div class="section-label">${esc(support.label || '// trust')}</div>
-        <h2>${esc(support.title || 'Why trust this studio?')}</h2>
-        ${support.copy ? `<p>${esc(support.copy)}</p>` : ''}
-        ${support.geoTitle || support.geoCopy ? `
-          <div class="geo-panel">
-            <h3>${esc(support.geoTitle || 'Service area')}</h3>
-            <p>${esc(support.geoCopy || `${cfg.site.name} serves ${cfg.site.serviceArea || 'clients worldwide'}.`)}</p>
-            <div class="tags">${(cfg.site.primaryMarkets || []).map(area => `<span class="tag">${esc(area)}</span>`).join('')}</div>
-          </div>` : ''}
-        <div class="trust-grid">
-          ${items.map(item => `
-            <article class="trust-item">
-              <h3>${esc(item.title)}</h3>
-              <p>${esc(item.copy)}</p>
-            </article>
-          `).join('')}
-        </div>
-      </section>`;
+      <nav class="detail-toc" aria-label="Page sections">
+        <div class="detail-toc-title">On this page</div>
+        ${items.map((section, index) => `<a href="#${esc(sectionId(section.heading, index))}">${renderInlineMarkdown(section.heading)}</a>`).join('')}
+      </nav>`;
   }
 
   function stars(rating) {
@@ -981,7 +947,7 @@
       .replace(/\n/g, '<br>');
   }
 
-  function loadPayPalSDK() {
+  function loadPayPalSDK(cfg) {
     return new Promise((resolve, reject) => {
       if (window.paypal) return resolve(window.paypal);
       const existing = document.querySelector('script[src*="paypal.com/sdk/js"]');
@@ -991,7 +957,9 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = 'https://www.paypal.com/sdk/js?client-id=ARM7vUNfOeuKYBARRVZ8-jg1_XFZ5zPd8b6MPhhK-_uovP34AimpuweE8nce97y8N7-7gR268vAC_lEW&currency=USD';
+      const clientId = cfg.donate?.paypalClientId || 'sb';
+      const currency = cfg.donate?.form?.currency || 'USD';
+      script.src = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(clientId)}&currency=${encodeURIComponent(currency)}&components=buttons&disable-funding=card,paylater,venmo`;
       script.onload = () => resolve(window.paypal);
       script.onerror = () => reject(new Error('PayPal SDK failed to load'));
       document.head.appendChild(script);
@@ -1094,19 +1062,28 @@
     });
   }
 
-  function initPayPalDonation() {
+  function initPayPalDonation(cfg) {
     const container = document.getElementById('paypal-button-container');
     const amountInput = document.getElementById('donation-amount');
     if (!container || !amountInput) return;
-    loadPayPalSDK().then(paypal => {
+    loadPayPalSDK(cfg).then(paypal => {
+      container.innerHTML = '';
       paypal.Buttons({
-        style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'donate' },
+        fundingSource: paypal.FUNDING.PAYPAL,
+        style: {
+          layout: 'horizontal',
+          color: 'gold',
+          shape: 'rect',
+          label: 'donate',
+          tagline: false,
+          height: 48
+        },
         createOrder(data, actions) {
-          const amount = parseFloat(amountInput.value) || 10.00;
+          const amount = Math.max(1, parseFloat(amountInput.value) || parseFloat(cfg.donate?.form?.defaultAmount) || 10);
           return actions.order.create({
             purchase_units: [{
               amount: { value: amount.toFixed(2) },
-              description: 'ZCraft Studios donation'
+              description: cfg.donate?.paypalDescription || `${cfg.site.name} donation`
             }]
           });
         },
@@ -1127,70 +1104,48 @@
   }
 
   function renderDonate(cfg) {
+    const page = cfg.donate || {};
+    const form = page.form || {};
+    const stats = page.stats || [];
+    const benefits = page.benefits || [];
     return `
       <section class="page-hero">
-        <span class="page-label">// support</span>
-        <h1>Support ZCraft Studios</h1>
-        <p class="page-copy">Help us keep building premium Minecraft resources, plugins, and modern web experiences.</p>
+        <span class="page-label">${esc(page.label || '// support')}</span>
+        <h1>${esc(page.title || 'Support ZCraft Studios')}</h1>
+        <p class="page-copy">${esc(page.copy || 'Help us keep building premium Minecraft resources, plugins, and modern web experiences.')}</p>
       </section>
       ${renderSummaryBlock('donate')}
       <div class="donate-container">
         <div class="donate-hero">
           <div class="donate-hero-content">
-            <h2>Your support powers our mission</h2>
-            <p>Every donation directly funds development, infrastructure, and new features. No middlemen, pure impact.</p>
+            <h2>${esc(page.heroTitle || 'Your support powers our mission')}</h2>
+            <p>${esc(page.heroCopy || 'Every donation directly funds development, infrastructure, and new features.')}</p>
             <div class="donate-stats">
-              <div class="donate-stat">
-                <div class="stat-value">5+</div>
-                <div class="stat-label">Projects shipped</div>
-              </div>
-              <div class="donate-stat">
-                <div class="stat-value">20+</div>
-                <div class="stat-label">Happy clients</div>
-              </div>
-              <div class="donate-stat">
-                <div class="stat-value">99%</div>
-                <div class="stat-label">Satisfaction</div>
-              </div>
+              ${stats.map(stat => `<div class="donate-stat"><div class="stat-value">${esc(stat.value)}</div><div class="stat-label">${esc(stat.label)}</div></div>`).join('')}
             </div>
           </div>
-          <img src="${esc(cfg.branding.favicon)}" alt="Support ZCraft" class="donate-hero-img" />
+          <img src="${esc(page.heroImage || cfg.branding.favicon)}" alt="${esc(page.heroImageAlt || 'Support ZCraft')}" class="donate-hero-img" />
         </div>
         <div class="donate-form-section">
           <div class="donate-form-card">
             <div class="donate-form-header">
-              <h3>Make a Donation</h3>
-              <p>Choose your amount and complete securely through PayPal</p>
+              <h3>${esc(form.title || 'Make a Donation')}</h3>
+              <p>${esc(form.copy || 'Choose your amount and complete securely through PayPal')}</p>
             </div>
             <div class="donation-field">
-              <label for="donation-amount">Donation Amount</label>
+              <label for="donation-amount">${esc(form.amountLabel || 'Donation Amount')}</label>
               <div class="amount-input-wrapper">
-                <input id="donation-amount" type="number" min="1" step="1" value="10" />
-                <span class="amount-suffix">$</span>
+                <input id="donation-amount" type="number" min="1" step="1" value="${esc(form.defaultAmount || '10')}" />
+                <span class="amount-suffix">${esc(form.amountPrefix || '$')}</span>
               </div>
             </div>
             <div id="paypal-button-container" class="paypal-container"></div>
-            <p class="donate-security">🔒 Secure • Processed by PayPal • 100% Safe</p>
+            <p class="donate-security">${esc(form.securityText || 'Secure checkout by PayPal')}</p>
           </div>
           <div class="donate-benefits">
-            <h4>What Happens Next</h4>
+            <h4>${esc(page.benefitsTitle || 'What Happens Next')}</h4>
             <div class="benefits-list">
-              <div class="benefit">
-                <span class="benefit-num">1</span>
-                <div><strong>Enter your amount</strong><p>Select a donation that feels right for you.</p></div>
-              </div>
-              <div class="benefit">
-                <span class="benefit-num">2</span>
-                <div><strong>Complete checkout</strong><p>Pay securely through PayPal using the button below.</p></div>
-              </div>
-              <div class="benefit">
-                <span class="benefit-num">3</span>
-                <div><strong>Receive confirmation</strong><p>You will be redirected to a thank-you page after payment.</p></div>
-              </div>
-              <div class="benefit">
-                <span class="benefit-num">4</span>
-                <div><strong>Support the studio</strong><p>Your donation helps keep the site and resources running.</p></div>
-              </div>
+              ${benefits.map((benefit, index) => `<div class="benefit"><span class="benefit-num">${index + 1}</span><div><strong>${esc(benefit.title)}</strong><p>${esc(benefit.copy)}</p></div></div>`).join('')}
             </div>
           </div>
         </div>
@@ -1599,7 +1554,7 @@
     return `
       <section class="page-hero">
         <span class="page-label">// about</span>
-        <h1>Studio-first craft for modern Minecraft products.</h1>
+        <h1>Studio-first craft for modern Minecraft resources.</h1>
         <p class="page-copy">ZCraft Studios builds server systems, plugins, and web experiences for teams, communities, and creators. We combine design, performance, and polished delivery for commercial-grade releases.</p>
       </section>
       ${renderSummaryBlock('about')}
@@ -1676,7 +1631,7 @@
           <h2 class="resource-featured-title">${esc(featured.title)}</h2>
           <p class="resource-featured-summary">${esc(featured.summary)}</p>
           <div class="tag-list">${(featured.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-          <a class="btn btn-ghost" href="/resources/${esc(resourceSlug(featured))}">${esc(page.featuredDetailsLabel || 'read product details')}</a>
+          <a class="btn btn-ghost" href="/resources/${esc(resourceSlug(featured))}">${esc(page.featuredDetailsLabel || 'read resource details')}</a>
         </div>
       </article>` : '';
 
@@ -1717,15 +1672,29 @@
       ['Support method', resource.supportMethod]
     ].filter(([, value]) => value);
     const paragraphs = resourceParagraphs(resource, cfg);
+    const detailSections = paragraphs.map((paragraph, index) => ({
+      heading: headings[index] || headings[headings.length - 1] || 'Product details',
+      body: paragraph
+    }));
     return `
       <section class="page-hero">
         <span class="page-label">${esc(page.detailLabel || '// resource')}</span>
         <h1>${esc(resource.title)}</h1>
         <p class="page-copy">${esc(resource.what || resource.summary)}</p>
       </section>
-      <article class="detail-layout">
+      <article class="detail-shell product-detail-shell">
+        <aside class="detail-sidebar">
+          ${renderToc(detailSections)}
+          <div class="detail-cta-card">
+            <strong>${esc(resource.status || 'Available')}</strong>
+            <span>${esc(resource.setupDifficulty || 'Setup varies')}</span>
+            ${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}" ${/^https?:/.test(link.href)?'target="_blank" rel="noopener"':''}>${esc(link.labelOverride || page.externalLinkLabel || link.label)}</a>`).join('')}
+            <a class="btn btn-ghost" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || 'all resources')}</a>
+          </div>
+        </aside>
+        <div class="detail-main">
         <div class="detail-media">
-          <img src="${esc(resource.image)}" alt="${esc(resource.title)} product image" loading="eager" />
+          <img src="${esc(resource.image)}" alt="${esc(resource.title)} resource image" loading="eager" />
         </div>
         <div class="detail-content">
           <div class="blog-card-meta">
@@ -1737,62 +1706,37 @@
             ${facts.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}
           </dl>
           <div class="blog-body">
-            ${paragraphs.map((paragraph, index) => `
-              <section>
-                <h2>${esc(headings[index] || headings[headings.length - 1] || 'Product details')}</h2>
-                <p>${esc(paragraph)}</p>
+            ${detailSections.map((section, index) => `
+              <section id="${esc(sectionId(section.heading, index))}">
+                <h2>${esc(section.heading)}</h2>
+                <p>${esc(section.body)}</p>
               </section>
             `).join('')}
           </div>
           <div class="tags">${(resource.tags || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
-          <div class="resource-detail-actions">
-            ${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}" ${/^https?:/.test(link.href)?'target="_blank" rel="noopener"':''}>${esc(link.labelOverride || page.externalLinkLabel || link.label)}</a>`).join('')}
-            <a class="btn btn-ghost" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || 'all resources')}</a>
-          </div>
+        </div>
         </div>
       </article>
       ${renderFaqBlock('resource-detail', resourceFaqs(resource, cfg))}`;
   }
 
   function renderBlogCard(post, cfg, open = false) {
-    const sections = postSections(post);
     const page = cfg.blogPage || {};
-    const publisherHandle = post.publisherHandle || page.publisherHandle || cfg.contact?.primary?.handle || '@zraxgaming';
+    const publisherHandle = post.publisherHandle || page.publisherHandle || cfg.social?.twitterCreator || cfg.social?.twitterSite || cfg.contact?.primary?.handle || cfg.site.name;
     return `
-      <details class="blog-list-item" id="${esc(post.slug)}" ${open ? 'open' : ''}>
-        <summary>
-          <span class="blog-list-copy">
-            <a class="blog-list-title" href="/blogs/${esc(blogSlug(post))}">${esc(post.title)}</a>
-            <span class="blog-list-summary">${esc(post.summary)}</span>
-          </span>
-          <span class="blog-list-meta">
-            <span>${esc(post.date || '2026-06-15')}</span>
-            <span>${esc(publisherHandle)}</span>
-            <span>${esc(post.readingTime || page.defaultReadingTime || 'Quick read')}</span>
-          </span>
-        </summary>
-        <article class="blog-expanded">
-          ${post.image ? `<img class="blog-inline-image" src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="lazy" />` : ''}
+      <article class="blog-index-card" id="${esc(post.slug)}">
+        ${post.image ? `<a href="/blogs/${esc(blogSlug(post))}" class="blog-index-media"><img src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="lazy" /></a>` : ''}
+        <div class="blog-index-content">
           <div class="blog-card-meta">
             <span>${esc(post.category || page.publisherName || 'Studio')}</span>
-            <span>${esc(page.updatedLabel || 'Updated')} ${esc(post.updated || post.date || '2026-06-15')}</span>
-            <span>${esc(page.publisherLabel || 'Publisher')} ${esc(publisherHandle)}</span>
+            <span>${esc(post.readingTime || page.defaultReadingTime || 'Quick read')}</span>
+            <span>${esc(post.date || '2026-06-15')}</span>
           </div>
-          <dl class="blog-facts">
-            <div><dt>${esc(page.audienceLabel || 'Who it is for')}</dt><dd>${esc(post.audience || page.defaultAudience || 'Minecraft communities and creators')}</dd></div>
-            <div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.detailSourceLabel || 'config/blogs.json')}</dd></div>
-          </dl>
-          <div class="blog-body">
-            ${sections.map(section => `
-              <section>
-                <h3>${renderInlineMarkdown(section.heading)}</h3>
-                ${renderMarkdownBlock(section.body)}
-              </section>
-            `).join('')}
-          </div>
+          <a class="blog-list-title" href="/blogs/${esc(blogSlug(post))}">${esc(post.title)}</a>
+          <p class="blog-list-summary">${esc(post.summary)}</p>
           <div class="tags">${postKeywords(post).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
-        </article>
-      </details>`;
+        </div>
+      </article>`;
   }
 
   function renderBlogs(cfg) {
@@ -1830,49 +1774,58 @@
         <p class="page-copy">${esc(page.copy || 'Compare ZCraft Studios with other Minecraft development options before choosing who should build your plugin, config, Discord bot, or web tool.')}</p>
       </section>
       ${renderSummaryBlock('comparisons', data.summaryItems || [])}
-      <article class="legal-detail">
+      <article class="detail-shell comparison-detail-shell">
+        <aside class="detail-sidebar">
+          ${renderToc(data.sections || [])}
+          <div class="detail-cta-card">
+            <strong>${esc(competitors.length)} comparison types</strong>
+            <span>${esc(cfg.site.serviceArea || 'Worldwide')}</span>
+            <a class="btn btn-primary" href="${esc(page.backHref || '/request')}">${esc(page.backLabel || 'request custom service')}</a>
+            <a class="btn btn-ghost" href="/contact">contact</a>
+          </div>
+        </aside>
+        <div class="detail-main">
         <div class="blog-card-meta">
           <span>${esc(page.publisherName || cfg.site.name)}</span>
           <span>Updated ${esc(updated)}</span>
           <span>${esc(competitors.length)} competitor types</span>
-          <span>${esc(page.sourceValue || 'config/comparisons.json')}</span>
         </div>
         <dl class="blog-facts">
           <div><dt>Best fit</dt><dd>Custom Minecraft plugins, server configs, Discord bots, web tools, anti-cheat planning, and backend consulting.</dd></div>
-          <div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.sourceValue || 'config/comparisons.json')}</dd></div>
           <div><dt>Service area</dt><dd>${esc(cfg.site.serviceArea || 'Worldwide')}</dd></div>
         </dl>
         <div class="blog-body">
-          ${(data.sections || []).map(section => `
-            <section>
+          ${(data.sections || []).map((section, index) => `
+            <section id="${esc(sectionId(section.heading, index))}">
               <h2>${renderInlineMarkdown(section.heading)}</h2>
               ${renderMarkdownBlock(section.body)}
             </section>
           `).join('')}
         </div>
-        <div class="resource-detail-actions">
-          <a class="btn btn-primary" href="${esc(page.backHref || '/request')}">${esc(page.backLabel || 'request custom service')}</a>
-          <a class="btn btn-ghost" href="/contact">contact</a>
         </div>
       </article>
-      <div class="blogs-list" aria-label="Competitor comparisons">
-        <div class="section-label">// competitor comparison matrix</div>
-        <div class="blog-list">
+      <section class="comparison-board" aria-label="Competitor comparisons">
+        <div class="comparison-board-head">
+          <span class="section-label">// decision matrix</span>
+          <h2>Choose by fit, not by category.</h2>
+          <p>Each option has a place. This view shows when it works, where ZCraft is stronger, and what tradeoff to expect.</p>
+        </div>
+        <div class="comparison-grid">
           ${competitors.map(item => `
-            <article class="blog-list-item">
-              <div class="blog-list-content">
-                <h2 class="blog-list-title">${esc(item.name)}</h2>
-                <dl class="blog-facts">
-                  <div><dt>Best for</dt><dd>${esc(item.bestFor)}</dd></div>
-                  <div><dt>ZCraft advantage</dt><dd>${esc(item.zcraftAdvantage)}</dd></div>
-                  <div><dt>Tradeoffs</dt><dd>${esc(item.tradeoffs)}</dd></div>
-                </dl>
+            <article class="comparison-card">
+              <div class="comparison-card-top">
+                <span>${esc(item.name)}</span>
+              </div>
+              <div class="comparison-card-body">
+                <div><strong>Best for</strong><p>${esc(item.bestFor)}</p></div>
+                <div><strong>ZCraft fit</strong><p>${esc(item.zcraftAdvantage)}</p></div>
+                <div><strong>Tradeoff</strong><p>${esc(item.tradeoffs)}</p></div>
                 <div class="tags">${(item.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
               </div>
             </article>
           `).join('')}
         </div>
-      </div>
+      </section>
       ${renderFaqBlock('comparisons', data.faq || [])}`;
   }
 
@@ -1880,7 +1833,7 @@
     const post = findBlogPostBySlug(cfg);
     if (!post) return renderNotFound(cfg);
     const page = cfg.blogPage || {};
-    const publisherHandle = post.publisherHandle || page.publisherHandle || cfg.contact?.primary?.handle || '@zraxgaming';
+    const publisherHandle = post.publisherHandle || page.publisherHandle || cfg.social?.twitterCreator || cfg.social?.twitterSite || cfg.contact?.primary?.handle || cfg.site.name;
     const sections = postSections(post);
     return `
       <section class="page-hero">
@@ -1888,7 +1841,16 @@
         <h1>${esc(post.title)}</h1>
         <p class="page-copy">${esc(post.summary)}</p>
       </section>
-      <article class="blog-detail">
+      <article class="detail-shell blog-detail-shell">
+        <aside class="detail-sidebar">
+          ${renderToc(sections)}
+          <div class="detail-cta-card">
+            <strong>${esc(post.category || 'Studio')}</strong>
+            <span>${esc(post.readingTime || page.defaultReadingTime || 'Quick read')}</span>
+            <a class="btn btn-ghost" href="${esc(page.backHref || '/blogs')}">${esc(page.backLabel || 'all blog posts')}</a>
+          </div>
+        </aside>
+        <div class="detail-main">
         ${post.image ? `<img class="blog-hero-image" src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="eager" />` : ''}
         <div class="blog-card-meta">
           <span>${esc(post.date || '2026-06-15')}</span>
@@ -1899,19 +1861,16 @@
         </div>
         <dl class="blog-facts">
           <div><dt>${esc(page.audienceLabel || 'Who it is for')}</dt><dd>${esc(post.audience || page.defaultAudience || 'Minecraft communities and creators')}</dd></div>
-          <div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.detailSourceLabel || 'config/blogs.json')}</dd></div>
         </dl>
         <div class="blog-body">
-          ${sections.map(section => `
-            <section>
+          ${sections.map((section, index) => `
+            <section id="${esc(sectionId(section.heading, index))}">
               <h2>${renderInlineMarkdown(section.heading)}</h2>
               ${renderMarkdownBlock(section.body)}
             </section>
           `).join('')}
         </div>
         <div class="tags">${postKeywords(post).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
-        <div class="resource-detail-actions">
-          <a class="btn btn-ghost" href="${esc(page.backHref || '/blogs')}">${esc(page.backLabel || 'all blog posts')}</a>
         </div>
       </article>`;
   }
@@ -1926,7 +1885,16 @@
         <h1>${esc(legalPage.title)}</h1>
         <p class="page-copy">${esc(legalPage.summary || legalPage.description)}</p>
       </section>
-      <article class="legal-detail">
+      <article class="detail-shell legal-detail-shell">
+        <aside class="detail-sidebar">
+          ${renderToc(legalPage.sections || [])}
+          <div class="detail-cta-card">
+            <strong>${esc(page.publisherName || cfg.site.name)}</strong>
+            <span>${esc(page.jurisdiction || cfg.site.location || 'Worldwide')}</span>
+            <a class="btn btn-primary" href="${esc(page.contactUrl || '/contact')}">contact</a>
+          </div>
+        </aside>
+        <div class="detail-main">
         <div class="blog-card-meta">
           <span>${esc(page.effectiveLabel || 'Effective date')} ${esc(legalPage.effectiveDate || legalPage.updated || '')}</span>
           <span>${esc(page.updatedLabel || 'Last updated')} ${esc(legalPage.updated || legalPage.effectiveDate || '')}</span>
@@ -1935,21 +1903,17 @@
         </div>
         <dl class="blog-facts">
           <div><dt>Contact</dt><dd>${esc(page.contactEmail || cfg.contact?.platforms?.find(p => p.platform === 'email')?.handle || 'zain@z-craft.xyz')}</dd></div>
-          <div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.sourceValue || 'config/legal.json')}</dd></div>
           <div><dt>Service area</dt><dd>${esc(page.serviceArea || cfg.site.serviceArea || 'Worldwide')}</dd></div>
         </dl>
         <div class="blog-body">
-          ${(legalPage.sections || []).map(section => `
-            <section>
+          ${(legalPage.sections || []).map((section, index) => `
+            <section id="${esc(sectionId(section.heading, index))}">
               <h2>${renderInlineMarkdown(section.heading)}</h2>
               ${renderMarkdownBlock(section.body)}
             </section>
           `).join('')}
         </div>
         <div class="tags">${(legalPage.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
-        <div class="resource-detail-actions">
-          <a class="btn btn-primary" href="${esc(page.contactUrl || '/contact')}">contact</a>
-          <a class="btn btn-ghost" href="${esc(page.backHref || '/contact')}">${esc(page.backLabel || 'contact ZCraft Studios')}</a>
         </div>
       </article>
       ${renderFaqBlock('legal-detail', legalPage.faq || [])}`;
@@ -1962,7 +1926,7 @@
       <section class="page-hero">
         <span class="page-label">${esc(page.label || '// legal')}</span>
         <h1>Legal Policies</h1>
-        <p class="page-copy">Terms and conditions, privacy, support, and digital product policies for ${esc(cfg.site.name)}.</p>
+        <p class="page-copy">Terms and conditions, privacy, support, and digital resource policies for ${esc(cfg.site.name)}.</p>
       </section>
       <div class="blogs-list" aria-label="Legal policies">
         <div class="section-label">${esc(page.label || '// legal')}</div>
@@ -1987,20 +1951,8 @@
     const c = cfg.contact;
 
     const contactCards = `
-      <div class="contact-cards-grid">
-        <div class="contact-info-card">
-          <div class="contact-info-header">
-            <h3 class="contact-info-title">// contact info</h3>
-          </div>
-          <div class="contact-info-content">
-            ${c.notes.map(n => `
-              <div class="contact-note-item">
-                <span class="contact-note-label">${esc(n.label)}</span>
-                <strong class="contact-note-value">${esc(n.value)}</strong>
-              </div>`).join('')}
-          </div>
-        </div>
-        <a class="contact-primary-card" href="${esc(c.primary.href)}" target="_blank" rel="noopener">
+      <div class="contact-page-shell">
+        <a class="contact-primary-card contact-hero-card" href="${esc(c.primary.href)}" target="_blank" rel="noopener">
           <div class="contact-primary-header">
             <span class="contact-primary-badge">${esc(c.primary.badge)}</span>
           </div>
@@ -2010,6 +1962,18 @@
             <span class="contact-primary-cta">${esc(c.primary.cta)}</span>
           </div>
         </a>
+        <div class="contact-info-card">
+          <div class="contact-info-header">
+            <h3 class="contact-info-title">Response window</h3>
+          </div>
+          <div class="contact-info-content">
+            ${c.notes.map(n => `
+              <div class="contact-note-item">
+                <span class="contact-note-label">${esc(n.label)}</span>
+                <strong class="contact-note-value">${esc(n.value)}</strong>
+              </div>`).join('')}
+          </div>
+        </div>
       </div>`;
 
     const platformCards = c.platforms.map(p => `
@@ -2028,18 +1992,22 @@
         <h1>${esc(c.title)}</h1>
         <p class="page-copy">${esc(c.copy)}</p>
       </section>
-      ${renderSummaryBlock('contact')}
       ${contactCards}
       <div class="contact-cta-row">
+        <div>
+          <h2>Start with the right channel.</h2>
+          <p>Use Discord for fast questions, the request form for scoped commissions, and email for longer business records.</p>
+        </div>
         <a class="btn btn-primary" href="/request">request custom service</a>
       </div>
       <div class="contact-platforms-section">
-        <h3 class="contact-platforms-title">// all channels</h3>
+        <h3 class="contact-platforms-title">All contact channels</h3>
         <div class="contact-platforms-grid">
           ${platformCards}
         </div>
       </div>
       ${renderTrustBlock(cfg)}
+      ${renderSummaryBlock('contact')}
       ${renderFaqBlock('contact')}`;
   }
 
@@ -2154,14 +2122,6 @@
       `../../../config/${basePath}`,
       `${currentDir}config/${basePath}`
     ];
-    if (path.startsWith('/pages/') || path === '/pages') {
-      candidates.push(
-        `${document.location.origin}/pages/config/${basePath}`,
-        `/pages/config/${basePath}`,
-        `pages/config/${basePath}`,
-        `../pages/config/${basePath}`
-      );
-    }
     return [...new Set(candidates.filter(Boolean))];
   }
 
@@ -2198,14 +2158,14 @@
 
   Promise.all([
     tryFetchJson(buildConfigPaths('info.json')),
-    tryFetchJson(buildConfigPaths('products.json')),
+    tryFetchJson(buildConfigPaths('resources.json')),
     tryFetchJson(buildConfigPaths('reviews.json')),
     tryFetchJson(buildConfigPaths('blogs.json')),
     tryFetchJson(buildConfigPaths('legal.json')),
     tryFetchJson(buildConfigPaths('comparisons.json'))
-  ]).then(async ([info, products, reviews, blogs, legal, comparisons]) => {
+  ]).then(async ([info, resourceIndex, reviews, blogs, legal, comparisons]) => {
     const [resources, blogPosts] = await Promise.all([
-      resolveConfigItems(products.resources || []),
+      resolveConfigItems(resourceIndex.resources || []),
       resolveConfigItems(blogs.posts || [])
     ]);
     const cfg = {
@@ -2231,7 +2191,7 @@
     app.innerHTML = renderer(cfg);
     document.body.insertAdjacentHTML('beforeend', footer(cfg));
     if (pageKey === 'resources') attachResourceDetailListeners(cfg.resources);
-    if (pageKey === 'donate') initPayPalDonation();
+    if (pageKey === 'donate') initPayPalDonation(cfg);
     if (pageKey === 'request' && !isMaintenanceActive(cfg, pageKey)) initRequestForm(cfg);
     requestAnimationFrame(animateCounters);
   }).catch(err => {

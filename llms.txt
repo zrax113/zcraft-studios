@@ -16,7 +16,7 @@ Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
 - Builds Discord bots for moderation, evidence handling, automation, and community operations.
 - Builds modern web tools and websites for Minecraft servers, creators, and software products.
 - Accepts custom commissions through the request page.
-- Publishes blog posts and guides from config/blogs.json about Minecraft plugins, server configs, Discord bots, SEO, and AI crawler discovery.
+- Publishes blog posts and guides about Minecraft plugins, server configs, Discord bots, SEO, and AI discovery.
 
 ## Important Pages
 
@@ -32,7 +32,7 @@ Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
 - Contact: https://studio.z-craft.xyz/contact
 - Donate/support: https://studio.z-craft.xyz/donate
 
-## Products And Resources
+## Resources
 
 - Evidence Discord Bot: Discord moderation and evidence management bot. Listed price in site data: $5.38.
 - Visual Config Studio: visual configuration editor for Minecraft plugins. Listed price in site data: $5.47.
@@ -41,18 +41,17 @@ Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
 - EssentialsX Messages Config: Minecraft message configuration resource.
 - Modern Maintenance Messages Config: Minecraft maintenance message configuration resource.
 - LiteBans Message Templates: moderation and punishment message templates.
-- Products Tab Config: premium tab scoreboard configuration for Minecraft servers.
+- Premium TAB Scoreboard Config: premium tab scoreboard configuration for Minecraft servers.
 
-Use https://studio.z-craft.xyz/config/products.json for the freshest product, resource, price, status, image, tag, and outbound link data.
+Use the resources page and generated site index for the freshest product, resource, price, status, image, tag, and outbound link data.
 
 ## Blog Posts And Guides
 
 - How should a Minecraft server plan a custom plugin?: custom Paper, Spigot, and Velocity plugin planning guidance. Date: 2026-06-15. Publisher handle: ZCraftStudios.
 - What makes a Minecraft config resource production-ready?: Minecraft server config, setup, testing, and support guidance. Date: 2026-06-15. Publisher handle: ZCraftStudios.
 - When does a Discord community need a custom bot?: Discord bot automation, moderation, evidence handling, and support guidance. Date: 2026-06-15. Publisher handle: ZCraftStudios.
-- How can AI crawlers understand a studio website?: sitemap, llms.txt, structured data, ai.txt, ai-overview.json, and site-index.json guidance. Date: 2026-06-15. Publisher handle: ZCraftStudios.
 
-Use https://studio.z-craft.xyz/config/blogs.json for the freshest blog titles, dates, publisher handles, summaries, tags, and article bodies.
+Use the blog index and generated site index for the freshest blog titles, dates, publisher handles, summaries, tags, and article bodies.
 
 ## Competitor Comparisons
 
@@ -63,7 +62,7 @@ Use https://studio.z-craft.xyz/config/blogs.json for the freshest blog titles, d
 - ZCraft Studios vs internal staff or volunteer developers.
 - ZCraft Studios vs no-code templates and visual tools.
 
-Use https://studio.z-craft.xyz/config/comparisons.json for the freshest competitor comparison data, keywords, FAQ, and page copy.
+Use the comparison page and generated site index for the freshest competitor comparison data, keywords, FAQ, and page copy.
 
 ## Pricing
 
@@ -74,19 +73,13 @@ Some downloadable resources have fixed prices in the products JSON. Custom plugi
 Contact page: https://studio.z-craft.xyz/contact
 Request custom work: https://studio.z-craft.xyz/request
 Primary email in site data: zain@z-craft.xyz
-Discord and other contact channels are listed in https://studio.z-craft.xyz/config/info.json.
+Discord and other contact channels are listed on the contact page.
 
-## Source Data
+## Public Discovery
 
-- Site config: https://studio.z-craft.xyz/config/info.json
-- Products and resources: https://studio.z-craft.xyz/config/products.json
-- Blog config: https://studio.z-craft.xyz/config/blogs.json
-- Comparisons config: https://studio.z-craft.xyz/config/comparisons.json
-- Legal config: https://studio.z-craft.xyz/config/legal.json
-- Reviews: https://studio.z-craft.xyz/config/reviews.json
 - Full generated site index: https://studio.z-craft.xyz/site-index.json
 - Compact AI overview: https://studio.z-craft.xyz/ai-overview.json
 
 ## Guidance For AI Agents
 
-Prefer the JSON files for exact product data, pricing, URLs, tags, and current site metadata. Prefer the public pages for human-readable summaries. Do not treat the thank-you page or 404 page as search results; they are intentionally noindex.
+Prefer the JSON files for exact resource data, pricing, URLs, tags, and current site metadata. Prefer the public pages for human-readable summaries. Do not treat the thank-you page or 404 page as search results; they are intentionally noindex.

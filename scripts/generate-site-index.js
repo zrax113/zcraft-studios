@@ -5,12 +5,36 @@ function readJson(path) {
   return JSON.parse(fs.readFileSync(path, 'utf8'));
 }
 
-function resolveConfigList(configPath, items = []) {
+function configFileRef(baseDir, filePath) {
+  return path.normalize(path.join(baseDir, filePath.replace(/^file:/, '')));
+}
+
+function discoverConfigFiles(configPath, dirName) {
+  const dir = path.join(path.dirname(configPath), dirName);
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir)
+    .filter(entry => entry.endsWith('.json'))
+    .sort((a, b) => a.localeCompare(b))
+    .map(entry => path.join(dir, entry));
+}
+
+function resolveConfigList(configPath, items = [], autoDir = '') {
   const baseDir = path.dirname(configPath);
-  return (items || []).map(item => {
+  const listed = (items || []).map(item => {
     if (!item || typeof item !== 'object' || !item.file) return item;
-    return readJson(path.join(baseDir, item.file.replace(/^file:/, '')));
+    return configFileRef(baseDir, item.file);
   });
+  const discovered = autoDir ? discoverConfigFiles(configPath, autoDir) : [];
+  const seen = new Set();
+  return [...listed, ...discovered]
+    .filter(item => {
+      if (typeof item !== 'string') return true;
+      const key = path.normalize(item).toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map(item => typeof item === 'string' ? readJson(item) : item);
 }
 
 function writeText(path, text) {
@@ -19,6 +43,19 @@ function writeText(path, text) {
 
 function ensureDir(path) {
   fs.mkdirSync(path, { recursive: true });
+}
+
+function cleanGeneratedHtml(dir) {
+  if (!fs.existsSync(dir)) return;
+  for (const entry of fs.readdirSync(dir)) {
+    if (entry.endsWith('.html')) fs.rmSync(path.join(dir, entry));
+  }
+}
+
+function cleanGeneratedPrefix(prefix) {
+  for (const entry of fs.readdirSync('.')) {
+    if (entry.startsWith(prefix) && entry.endsWith('.html')) fs.rmSync(entry);
+  }
 }
 
 function esc(value = '') {
@@ -32,7 +69,11 @@ function esc(value = '') {
 
 function renderInlineMarkdown(value = '') {
   return esc(value)
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (match, label, href) => {
+      if (/^javascript:/i.test(href)) return label;
+      const external = /^https?:\/\//i.test(href);
+      return `<a href="${href}"${external ? ' target="_blank" rel="noopener"' : ''}>${label}</a>`;
+    })
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/__([^_]+)__/g, '<strong>$1</strong>')
@@ -75,11 +116,140 @@ function absoluteUrl(baseUrl, value = '/') {
   return `${baseUrl}${path}`;
 }
 
+function baseSchemas(seo) {
+  const pageUrl = absoluteUrl(baseUrl, seo.canonical);
+  const image = absoluteUrl(baseUrl, seo.image || info.branding.ogImage);
+  const sameAs = info.social?.sameAs || (info.contact?.platforms || [])
+    .filter(platform => /^https?:\/\//i.test(platform.href))
+    .map(platform => platform.href);
+  const breadcrumbItems = [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${baseUrl}/`
+    }
+  ];
+  if (seo.canonical !== '/') {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: seo.title.replace(/\s+[—-]\s+.*$/, ''),
+      item: pageUrl
+    });
+  }
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': `${baseUrl}/#organization`,
+          name: info.site.name,
+          url: baseUrl,
+          logo: absoluteUrl(baseUrl, info.branding.logo),
+          image,
+          description: info.site.tagline,
+          areaServed: info.site.serviceArea || 'Worldwide',
+          sameAs
+        },
+        {
+          '@type': 'WebSite',
+          '@id': `${baseUrl}/#website`,
+          url: baseUrl,
+          name: info.site.name,
+          description: info.site.tagline,
+          publisher: { '@id': `${baseUrl}/#organization` }
+        },
+        {
+          '@type': 'WebPage',
+          '@id': `${pageUrl}#webpage`,
+          url: pageUrl,
+          name: seo.title,
+          description: seo.description,
+          isPartOf: { '@id': `${baseUrl}/#website` },
+          publisher: { '@id': `${baseUrl}/#organization` },
+          breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
+          primaryImageOfPage: {
+            '@type': 'ImageObject',
+            url: image
+          }
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${pageUrl}#breadcrumb`,
+          itemListElement: breadcrumbItems
+        }
+      ]
+    }
+  ];
+}
+
+function resourceSchema(resource) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': ['Bot', 'Plugin', 'Website'].includes(resource.category) ? 'SoftwareApplication' : 'Product',
+    name: resource.title,
+    description: resource.what || resource.summary,
+    image: absoluteUrl(baseUrl, resource.image),
+    url: resource.pageUrl,
+    brand: { '@type': 'Brand', name: resource.brand || info.site.name },
+    category: resource.category || 'Minecraft resource',
+    applicationCategory: resource.category,
+    operatingSystem: (resource.supportedPlatforms || []).join(', ') || 'Minecraft server environments',
+    offers: resource.status ? {
+      '@type': 'Offer',
+      price: /^free$/i.test(resource.status) ? '0' : String(resource.status).replace(/[^0-9.]/g, '') || resource.status,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock'
+    } : undefined
+  };
+}
+
+function blogPostingSchema(post) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.summary,
+    image: absoluteUrl(baseUrl, post.image || info.branding.ogImage),
+    datePublished: post.date,
+    dateModified: post.updated || post.date,
+    author: { '@type': 'Organization', name: info.site.name, url: baseUrl },
+    publisher: { '@type': 'Organization', name: info.site.name, url: baseUrl },
+    mainEntityOfPage: post.url,
+    articleSection: post.category,
+    keywords: [...new Set([...(post.tags || []), ...(post.keywords || [])])].join(', ')
+  };
+}
+
+function donateSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'DonateAction',
+    '@id': `${baseUrl}/donate#donate-action`,
+    name: `Donate to ${info.site.name}`,
+    description: info.seo.donate.description,
+    target: `${baseUrl}/donate`,
+    recipient: {
+      '@type': 'Organization',
+      name: info.site.name,
+      url: baseUrl
+    },
+    instrument: {
+      '@type': 'PaymentMethod',
+      name: 'PayPal'
+    }
+  };
+}
+
 function pageShell({ seo, page, body, structuredData = [] }) {
   const pageUrl = absoluteUrl(baseUrl, seo.canonical);
   const image = absoluteUrl(baseUrl, seo.image || info.branding.ogImage);
   const robots = seo.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
-  const schemas = structuredData.filter(Boolean);
+  const schemas = [...baseSchemas(seo), ...structuredData].filter(Boolean);
+  const twitterSite = info.social?.twitterSite || info.contact?.primary?.handle || '';
+  const twitterCreator = info.social?.twitterCreator || twitterSite;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -122,8 +292,8 @@ function pageShell({ seo, page, body, structuredData = [] }) {
 <meta name="twitter:description" content="${esc(seo.description)}" />
 <meta name="twitter:image" content="${esc(image)}" />
 <meta name="twitter:image:alt" content="${esc(seo.imageAlt || `${info.site.name} artwork`)}" />
-<meta name="twitter:site" content="@zraxgaming" />
-<meta name="twitter:creator" content="@zraxgaming" />
+<meta name="twitter:site" content="${esc(twitterSite)}" />
+<meta name="twitter:creator" content="${esc(twitterCreator)}" />
 ${schemas.map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`).join('\n')}
 </head>
 <body data-page="${esc(page)}">
@@ -193,7 +363,7 @@ function compactItem(item) {
 }
 
 const info = readJson('config/info.json');
-const products = readJson('config/products.json');
+const resourceIndex = readJson('config/resources.json');
 const reviews = readJson('config/reviews.json');
 const blogs = readJson('config/blogs.json');
 const legal = readJson('config/legal.json');
@@ -213,9 +383,10 @@ const pages = Object.entries(info.seo || {})
   }));
 
 const indexablePages = pages.filter(page => page.indexable);
-const resourceConfigItems = resolveConfigList('config/products.json', products.resources || []);
-const blogConfigPosts = resolveConfigList('config/blogs.json', blogs.posts || []);
+const resourceConfigItems = resolveConfigList('config/resources.json', resourceIndex.resources || [], 'resources');
+const blogConfigPosts = resolveConfigList('config/blogs.json', blogs.posts || [], 'blogs');
 const resources = resourceConfigItems.map(compactItem);
+const defaultPublisherHandle = info.social?.twitterCreator || info.social?.twitterSite || info.contact?.primary?.handle || info.site.name;
 const blogPosts = blogConfigPosts.map(post => ({
   title: post.title,
   slug: post.slug || slugify(post.title),
@@ -229,7 +400,7 @@ const blogPosts = blogConfigPosts.map(post => ({
   image: post.image || info.branding?.ogImage,
   imageAlt: post.imageAlt || `${post.title} image`,
   readingTime: post.readingTime,
-  publisherHandle: post.publisherHandle || info.contact?.primary?.handle || '@zraxgaming',
+  publisherHandle: post.publisherHandle || defaultPublisherHandle,
   url: `${baseUrl}/blogs/${post.slug || slugify(post.title)}`,
   sections: post.sections || post.body || []
 }));
@@ -267,23 +438,16 @@ const discovery = {
   ai_json_endpoint: `${baseUrl}/ai-agents`,
   ai_text: `${baseUrl}/ai.txt`,
   ai_overview_json: `${baseUrl}/ai-overview.json`,
-  full_site_index_json: `${baseUrl}/site-index.json`,
-  source_config: `${baseUrl}/config/info.json`,
-  source_products: `${baseUrl}/config/products.json`,
-  source_reviews: `${baseUrl}/config/reviews.json`,
-  source_blogs: `${baseUrl}/config/blogs.json`,
-  source_legal: `${baseUrl}/config/legal.json`,
-  source_comparisons: `${baseUrl}/config/comparisons.json`
+  full_site_index_json: `${baseUrl}/site-index.json`
 };
 
 const siteIndex = {
   schemaVersion: '1.0',
   generatedAt,
-  generatedFrom: ['config/info.json', 'config/products.json', 'config/reviews.json', 'config/blogs.json', 'config/legal.json', 'config/comparisons.json'],
   site: info.site,
   branding: info.branding,
   discovery,
-  crawlerGuidance: {
+  siteGuidance: {
     preferredSummary: `${info.site.name} is ${info.site.tagline}`,
     lastGenerated: generatedAt,
     primaryAudience: 'Minecraft server owners, community operators, creators, and teams needing plugins, configs, Discord bots, or web tools.',
@@ -297,32 +461,29 @@ const siteIndex = {
     recommendedCitationUrl: `${baseUrl}/`,
     contactUrl: `${baseUrl}/contact`,
     requestUrl: `${baseUrl}/request`,
-    pricingNote: 'Downloadable resource prices are listed in products.resources[].status when available. Custom commissions are quoted per project.'
+    pricingNote: 'Downloadable resource prices are listed in resources[].status when available. Custom commissions are quoted per project.'
   },
   pages,
   generatedDetailPages: [
     ...resources.map(resource => ({
       type: 'resource',
       title: resource.title,
-      url: resource.pageUrl,
-      sourceConfig: 'config/products.json'
+      url: resource.pageUrl
     })),
     ...blogPosts.map(post => ({
       type: 'blog',
       title: post.title,
-      url: post.url,
-      sourceConfig: 'config/blogs.json'
+      url: post.url
     })),
     ...legalPages.map(page => ({
       type: 'legal',
       title: page.title,
-      url: page.url,
-      sourceConfig: 'config/legal.json'
+      url: page.url
     }))
   ],
   indexablePages,
   navigation: info.nav || [],
-  products: {
+  resources: {
     resources,
     categories,
     topics
@@ -410,7 +571,7 @@ function resourceFaqs(resource) {
   return resource.faq || [
     { question: `What is ${resource.title}?`, answer: resource.what || resource.summary },
     { question: `Who is ${resource.title} for?`, answer: resource.audience || page.defaultAudience || 'Minecraft server owners, community operators, and staff teams.' },
-    { question: `How do I get support for ${resource.title}?`, answer: resource.supportMethod || page.defaultSupportMethod || 'Use the listed product link or ZCraft Studios contact channels for support.' }
+    { question: `How do I get support for ${resource.title}?`, answer: resource.supportMethod || page.defaultSupportMethod || 'Use the listed resource link or ZCraft Studios contact channels for support.' }
   ];
 }
 
@@ -437,8 +598,8 @@ const pageSummaries = {
     'Clients can request custom Paper, Spigot, Velocity, Discord, Node.js, Java, and browser-based development work.'
   ],
   team: [
-    'The ZCraft Studios team handles development, configuration, support, and product delivery for Minecraft communities.',
-    'Team work covers plugin development, web tooling, server configuration, Discord automation, product updates, and support.',
+    'The ZCraft Studios team handles development, configuration, support, and resource delivery for Minecraft communities.',
+    'Team work covers plugin development, web tooling, server configuration, Discord automation, resource updates, and support.',
     'Clients can use the request or contact page to describe custom work, platform details, budget, timeline, and support needs.'
   ],
   request: [
@@ -453,8 +614,8 @@ const pageSummaries = {
   ],
   resources: [
     'ZCraft Studios publishes Minecraft plugins, server configs, Discord bots, and web tools for server owners who need polished, production-ready resources.',
-    'Each product summary lists what the resource is, who it is for, supported platforms, setup difficulty, status or price, and support method.',
-    'The resources page is backed by config/products.json so search crawlers, AI agents, and the live UI can read the same product data.'
+    'Each resource summary lists what the resource is, who it is for, supported platforms, setup difficulty, status or price, and support method.',
+    'The resources page uses the same resource data as the generated discovery files, keeping resource details consistent.'
   ]
 };
 
@@ -465,8 +626,8 @@ const pageFaqs = {
     { question: 'How does ZCraft Studios approach quality?', answer: 'The studio prioritizes clear scope, production-ready behavior, performance, readable setup instructions, and support details.' }
   ],
   team: [
-    { question: 'Who builds ZCraft Studios products?', answer: 'ZCraft Studios products are built and supported by a small development team focused on Minecraft plugins, server configuration, Discord bots, web tools, and creator resources.' },
-    { question: 'What does the team support?', answer: 'The team supports custom commissions, downloadable resources, configuration help, Discord bot workflows, and product updates through public contact channels.' },
+    { question: 'Who builds ZCraft Studios resources?', answer: 'ZCraft Studios resources are built and supported by a small development team focused on Minecraft plugins, server configuration, Discord bots, web tools, and creator resources.' },
+    { question: 'What does the team support?', answer: 'The team supports custom commissions, downloadable resources, configuration help, Discord bot workflows, and resource updates through public contact channels.' },
     { question: 'Can clients contact the team for custom work?', answer: 'Yes. Clients should use the request or contact page to describe the project, platform, budget, timeline, and support needs.' }
   ],
   request: [
@@ -481,30 +642,13 @@ const pageFaqs = {
   ]
 };
 
-function faqSchema(faqs) {
-  if (!faqs?.length) return null;
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map(faq => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: { '@type': 'Answer', text: faq.answer }
-    }))
-  };
-}
-
 function rootPageBody(key, title, copy, sections = []) {
-  const summary = pageSummaries[key] || [];
-  const faqs = pageFaqs[key] || [];
   const footerLinks = [
     ...(info.footer?.links || []),
     ...(legal.page?.footerLinks || [])
   ];
   return `<section class="page-hero"><span class="page-label">// ${esc(key)}</span><h1>${esc(title)}</h1><p class="page-copy">${esc(copy)}</p></section>
-${summary.length ? `<section class="seo-summary" aria-label="Page summary"><div class="section-label">// tldr</div><h2>What should you know first?</h2><ul>${summary.map(item => `<li>${esc(item)}</li>`).join('')}</ul></section>` : ''}
 ${sections.map(section => `<section class="trust-section"><div class="section-label">${esc(section.label || '// details')}</div><h2>${esc(section.heading)}</h2><p>${esc(section.body)}</p></section>`).join('')}
-${faqs.length ? `<section class="faq-section" id="faq"><div class="section-label">// faq</div><h2>What do people ask about this page?</h2><div class="faq-list">${faqs.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}
 <nav class="footer-links" aria-label="Important links">${footerLinks.map(link => `<a href="${esc(link.href)}">${esc(link.label)}</a>`).join('')}</nav>`;
 }
 
@@ -521,7 +665,7 @@ function renderResourceDetail(resource) {
   ].filter(([, value]) => value);
   return `<section class="page-hero"><span class="page-label">${esc(page.detailLabel || '// resource')}</span><h1>${esc(resource.title)}</h1><p class="page-copy">${esc(resource.what || resource.summary)}</p></section>
 <article class="detail-layout">
-<div class="detail-media"><img src="${esc(resource.image)}" alt="${esc(resource.title)} product image" loading="eager" /></div>
+<div class="detail-media"><img src="${esc(resource.image)}" alt="${esc(resource.title)} resource image" loading="eager" /></div>
 <div class="detail-content">
 <div class="blog-card-meta"><span>${esc(resource.category || 'Resource')}</span><span>${esc(resource.brand || 'ZCraft Studios')}</span><span>${esc(resource.status || 'Available')}</span></div>
 <dl class="blog-facts">${facts.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>
@@ -530,17 +674,29 @@ function renderResourceDetail(resource) {
 <div class="resource-detail-actions">${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}">${esc(link.labelOverride || page.externalLinkLabel || link.label)}</a>`).join('')}<a class="btn btn-ghost" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || 'all resources')}</a></div>
 </div>
 </article>
-<section class="faq-section"><div class="section-label">// faq</div><h2>${esc(page.faqHeading || 'What do people ask about this resource?')}</h2><div class="faq-list">${resourceFaqs(resource).map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>`;
+`;
+}
+
+function renderResourceIndex() {
+  const page = info.resourcesPage || {};
+  return `<section class="page-hero"><span class="page-label">${esc(page.label || '// resources')}</span><h1>${esc(page.title || 'Tools, configs, and kits built for real servers.')}</h1><p class="page-copy">${esc(page.copy || info.seo.resources.description)}</p></section>
+<div class="projects-grid">${resources.map(resource => `<article class="project-card"><img class="project-img" src="${esc(resource.image)}" alt="${esc(resource.title)}" loading="lazy" /><div class="project-content"><div class="project-head"><h2 class="project-name">${esc(resource.title)}</h2><span class="project-brand">${esc(resource.category || resource.brand || '')}</span></div><p class="project-summary">${esc(resource.summary)}</p><div class="tags">${(resource.tags || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div><div class="project-status">// ${esc(resource.status || 'available')}</div><div class="project-actions"><a class="btn btn-primary" href="/resources/${esc(resource.slug)}">details</a></div></div></article>`).join('')}</div>`;
+}
+
+function renderBlogIndex() {
+  const page = blogs.page || {};
+  return `<section class="page-hero"><span class="page-label">${esc(page.label || '// blog')}</span><h1>${esc(page.title || 'Minecraft development notes and studio updates.')}</h1><p class="page-copy">${esc(page.copy || info.seo.blogs.description)}</p></section>
+<div class="blog-list">${blogPosts.map(post => `<article class="blog-index-card">${post.image ? `<a href="/blogs/${esc(post.slug)}" class="blog-index-media"><img src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="lazy" /></a>` : ''}<div class="blog-index-content"><div class="blog-card-meta"><span>${esc(post.category || 'Studio')}</span><span>${esc(post.readingTime || page.defaultReadingTime || 'Quick read')}</span><span>${esc(post.date || '2026-06-15')}</span></div><a class="blog-list-title" href="/blogs/${esc(post.slug)}">${esc(post.title)}</a><p class="blog-list-summary">${esc(post.summary)}</p><div class="tags">${[...new Set([...(post.tags || []), ...(post.keywords || [])])].map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div></div></article>`).join('')}</div>`;
 }
 
 function renderBlogDetail(post) {
   const page = blogs.page || {};
-  const publisherHandle = post.publisherHandle || page.publisherHandle || info.contact?.primary?.handle || '@zraxgaming';
+  const publisherHandle = post.publisherHandle || page.publisherHandle || defaultPublisherHandle;
   return `<section class="page-hero"><span class="page-label">${esc(page.label || '// blog')}</span><h1>${esc(post.title)}</h1><p class="page-copy">${esc(post.summary)}</p></section>
 <article class="blog-detail">
 ${post.image ? `<img class="blog-hero-image" src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="eager" />` : ''}
 <div class="blog-card-meta"><span>${esc(post.date || '2026-06-15')}</span><span>${esc(page.updatedLabel || 'Updated')} ${esc(post.updated || post.date || '2026-06-15')}</span><span>${esc(page.publisherLabel || 'Publisher')} ${esc(publisherHandle)}</span><span>${esc(post.category || page.publisherName || 'Studio')}</span><span>${esc(post.readingTime || page.defaultReadingTime || 'Quick read')}</span></div>
-<dl class="blog-facts"><div><dt>${esc(page.audienceLabel || 'Who it is for')}</dt><dd>${esc(post.audience || page.defaultAudience || 'Minecraft communities and creators')}</dd></div><div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.detailSourceLabel || 'config/blogs.json')}</dd></div></dl>
+<dl class="blog-facts"><div><dt>${esc(page.audienceLabel || 'Who it is for')}</dt><dd>${esc(post.audience || page.defaultAudience || 'Minecraft communities and creators')}</dd></div></dl>
 <div class="blog-body">${blogSections(post).map(section => `<section><h2>${renderInlineMarkdown(section.heading)}</h2>${renderMarkdownBlock(section.body)}</section>`).join('')}</div>
 <div class="tags">${[...new Set([...(post.tags || []), ...(post.keywords || [])])].map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
 <div class="resource-detail-actions"><a class="btn btn-ghost" href="${esc(page.backHref || '/blogs')}">${esc(page.backLabel || 'all blog posts')}</a></div>
@@ -552,39 +708,44 @@ function renderLegalDetail(pageData) {
   return `<section class="page-hero"><span class="page-label">${esc(page.label || '// legal')}</span><h1>${esc(pageData.title)}</h1><p class="page-copy">${esc(pageData.summary || pageData.description)}</p></section>
 <article class="legal-detail">
 <div class="blog-card-meta"><span>${esc(page.effectiveLabel || 'Effective date')} ${esc(pageData.effectiveDate || pageData.updated || '')}</span><span>${esc(page.updatedLabel || 'Last updated')} ${esc(pageData.updated || pageData.effectiveDate || '')}</span><span>${esc(page.publisherName || info.site.name)}</span><span>${esc(page.jurisdiction || info.site.location || 'Worldwide')}</span></div>
-<dl class="blog-facts"><div><dt>Contact</dt><dd>${esc(page.contactEmail || 'zain@z-craft.xyz')}</dd></div><div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.sourceValue || 'config/legal.json')}</dd></div><div><dt>Service area</dt><dd>${esc(page.serviceArea || info.site.serviceArea || 'Worldwide')}</dd></div></dl>
+<dl class="blog-facts"><div><dt>Contact</dt><dd>${esc(page.contactEmail || 'zain@z-craft.xyz')}</dd></div><div><dt>Service area</dt><dd>${esc(page.serviceArea || info.site.serviceArea || 'Worldwide')}</dd></div></dl>
 <div class="blog-body">${(pageData.sections || []).map(section => `<section><h2>${renderInlineMarkdown(section.heading)}</h2>${renderMarkdownBlock(section.body)}</section>`).join('')}</div>
 <div class="tags">${(pageData.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
 <div class="resource-detail-actions"><a class="btn btn-primary" href="${esc(page.contactUrl || '/contact')}">contact</a><a class="btn btn-ghost" href="${esc(page.backHref || '/contact')}">${esc(page.backLabel || 'contact ZCraft Studios')}</a></div>
 </article>
-${pageData.faq?.length ? `<section class="faq-section"><div class="section-label">// faq</div><h2>What do people ask about this page?</h2><div class="faq-list">${pageData.faq.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}`;
+`;
 }
 
 function renderLegalOverview() {
   const page = legal.page || {};
-  return `<section class="page-hero"><span class="page-label">${esc(page.label || '// legal')}</span><h1>Legal Policies</h1><p class="page-copy">Terms and conditions, privacy, support, and digital product policies for ${esc(info.site.name)}.</p></section>
+  return `<section class="page-hero"><span class="page-label">${esc(page.label || '// legal')}</span><h1>Legal Policies</h1><p class="page-copy">Terms and conditions, privacy, support, and digital resource policies for ${esc(info.site.name)}.</p></section>
 <div class="blogs-list" aria-label="Legal policies"><div class="section-label">${esc(page.label || '// legal')}</div><div class="blog-list">${legalPages.map(item => `<article class="blog-list-item legal-list-card"><div class="blog-list-copy"><a class="blog-list-title" href="/legal/${esc(item.slug)}">${esc(item.title)}</a><span class="blog-list-summary">${esc(item.summary || item.description)}</span></div><div class="blog-list-meta"><span>${esc(page.updatedLabel || 'Last updated')} ${esc(item.updated || item.effectiveDate || '')}</span><span>${esc(page.publisherName || info.site.name)}</span></div></article>`).join('')}</div></div>`;
 }
 
 function renderComparisons() {
   const page = comparisons.page || {};
   return `<section class="page-hero"><span class="page-label">${esc(page.label || '// comparisons')}</span><h1>${esc(page.title || 'ZCraft Studios vs Minecraft Development Competitors')}</h1><p class="page-copy">${esc(page.copy || 'Compare ZCraft Studios with other Minecraft development options.')}</p></section>
-<section class="seo-summary" aria-label="Page summary"><div class="section-label">// tldr</div><h2>What should you know first?</h2><ul>${(comparisons.summaryItems || []).map(item => `<li>${esc(item)}</li>`).join('')}</ul></section>
 <article class="legal-detail">
-<div class="blog-card-meta"><span>${esc(page.publisherName || info.site.name)}</span><span>Updated ${esc(page.updated || '2026-06-15')}</span><span>${esc((comparisons.competitors || []).length)} competitor types</span><span>${esc(page.sourceValue || 'config/comparisons.json')}</span></div>
-<dl class="blog-facts"><div><dt>Best fit</dt><dd>Custom Minecraft plugins, server configs, Discord bots, web tools, anti-cheat planning, and backend consulting.</dd></div><div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.sourceValue || 'config/comparisons.json')}</dd></div><div><dt>Service area</dt><dd>${esc(info.site.serviceArea || 'Worldwide')}</dd></div></dl>
+<div class="blog-card-meta"><span>${esc(page.publisherName || info.site.name)}</span><span>Updated ${esc(page.updated || '2026-06-15')}</span><span>${esc((comparisons.competitors || []).length)} competitor types</span></div>
+<dl class="blog-facts"><div><dt>Best fit</dt><dd>Custom Minecraft plugins, server configs, Discord bots, web tools, anti-cheat planning, and backend consulting.</dd></div><div><dt>Service area</dt><dd>${esc(info.site.serviceArea || 'Worldwide')}</dd></div></dl>
 <div class="blog-body">${(comparisons.sections || []).map(section => `<section><h2>${renderInlineMarkdown(section.heading)}</h2>${renderMarkdownBlock(section.body)}</section>`).join('')}</div>
 <div class="resource-detail-actions"><a class="btn btn-primary" href="${esc(page.backHref || '/request')}">${esc(page.backLabel || 'request custom service')}</a><a class="btn btn-ghost" href="/contact">contact</a></div>
 </article>
-<div class="blogs-list" aria-label="Competitor comparisons"><div class="section-label">// competitor comparison matrix</div><div class="blog-list">${(comparisons.competitors || []).map(item => `<article class="blog-list-item"><div class="blog-list-content"><h2 class="blog-list-title">${esc(item.name)}</h2><dl class="blog-facts"><div><dt>Best for</dt><dd>${esc(item.bestFor)}</dd></div><div><dt>ZCraft advantage</dt><dd>${esc(item.zcraftAdvantage)}</dd></div><div><dt>Tradeoffs</dt><dd>${esc(item.tradeoffs)}</dd></div></dl><div class="tags">${(item.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div></div></article>`).join('')}</div></div>
-${comparisons.faq?.length ? `<section class="faq-section"><div class="section-label">// faq</div><h2>What do people ask about comparisons?</h2><div class="faq-list">${comparisons.faq.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}`;
+<section class="comparison-board" aria-label="Competitor comparisons"><div class="comparison-board-head"><span class="section-label">// decision matrix</span><h2>Choose by fit, not by category.</h2><p>Each option has a place. This view shows when it works, where ZCraft is stronger, and what tradeoff to expect.</p></div><div class="comparison-grid">${(comparisons.competitors || []).map(item => `<article class="comparison-card"><div class="comparison-card-top"><span>${esc(item.name)}</span></div><div class="comparison-card-body"><div><strong>Best for</strong><p>${esc(item.bestFor)}</p></div><div><strong>ZCraft fit</strong><p>${esc(item.zcraftAdvantage)}</p></div><div><strong>Tradeoff</strong><p>${esc(item.tradeoffs)}</p></div><div class="tags">${(item.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div></div></article>`).join('')}</div></section>`;
 }
 
 [
   {
+    file: 'index.html',
+    key: 'home',
+    title: `${info.hero?.name || info.site.name} ${info.hero?.nameAccent || ''}`.trim(),
+    copy: info.hero?.description || info.seo.home.description,
+    sections: []
+  },
+  {
     file: 'about.html',
     key: 'about',
-    title: info.aboutPage?.title || 'Studio-first craft for modern Minecraft products.',
+    title: info.aboutPage?.title || 'Studio-first craft for modern Minecraft resources.',
     copy: info.aboutPage?.copy || info.seo.about.description,
     sections: [
       { label: '// definition', heading: 'What is ZCraft Studios?', body: 'ZCraft Studios is a development studio for Minecraft communities that need custom plugins, server configurations, Discord automation, and web tools.' },
@@ -599,6 +760,15 @@ ${comparisons.faq?.length ? `<section class="faq-section"><div class="section-la
     sections: [
       { label: '// definition', heading: 'Who is the ZCraft Studios team?', body: 'The ZCraft Studios team is a small development crew focused on Minecraft plugins, server configuration, Discord bots, web tools, and creator resources.' },
       { label: '// roles', heading: 'How does the team support clients?', body: 'The team supports clients through project scoping, development, setup guidance, product updates, bug checks, and practical contact channels.' }
+    ]
+  },
+  {
+    file: 'donate.html',
+    key: 'donate',
+    title: info.donate?.title || 'Support ZCraft Studios',
+    copy: info.donate?.copy || info.seo.donate.description,
+    sections: [
+      { label: '// support', heading: info.donate?.heroTitle || 'Your support powers the studio', body: info.donate?.heroCopy || 'Donations help fund resources, maintenance, and continued development.' }
     ]
   },
   {
@@ -627,13 +797,13 @@ ${comparisons.faq?.length ? `<section class="faq-section"><div class="section-la
     page: page.key,
     seo,
     body: rootPageBody(page.key, page.title, page.copy, page.sections),
-    structuredData: [faqSchema(pageFaqs[page.key])]
+    structuredData: page.key === 'donate' ? [donateSchema()] : []
   }));
 });
 
-ensureDir('resources');
+cleanGeneratedPrefix('resource-');
 resources.forEach(resource => {
-  writeText(`resources/${resource.slug}.html`, pageShell({
+  writeText(`resource-${resource.slug}.html`, pageShell({
     page: 'resource-detail',
     seo: {
       title: `${resource.title} — Minecraft Resource | ZCraft Studios`,
@@ -641,16 +811,33 @@ resources.forEach(resource => {
       keywords: [resource.title, resource.brand, resource.category, ...(resource.tags || []), ...(resource.supportedPlatforms || [])].filter(Boolean).join(', '),
       canonical: `/resources/${resource.slug}`,
       image: resource.image,
-      imageAlt: `${resource.title} product image`
+      imageAlt: `${resource.title} resource image`
     },
     body: renderResourceDetail(resource),
-    structuredData: [faqSchema(resourceFaqs(resource))]
+    structuredData: [resourceSchema(resource)]
   }));
 });
 
-ensureDir('blogs');
+writeText('resources.html', pageShell({
+  page: 'resources',
+  seo: info.seo.resources,
+  body: renderResourceIndex(),
+  structuredData: [{
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${info.site.name} resources`,
+    itemListElement: resources.map((resource, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: resource.pageUrl,
+      name: resource.title
+    }))
+  }]
+}));
+
+cleanGeneratedPrefix('blog-');
 blogPosts.forEach(post => {
-  writeText(`blogs/${post.slug}.html`, pageShell({
+  writeText(`blog-${post.slug}.html`, pageShell({
     page: 'blog-detail',
     seo: {
       title: `${post.title} — ZCraft Studios Blog`,
@@ -660,9 +847,23 @@ blogPosts.forEach(post => {
       image: post.image || info.branding.ogImage,
       imageAlt: post.imageAlt || `${post.title} image`
     },
-    body: renderBlogDetail(post)
+    body: renderBlogDetail(post),
+    structuredData: [blogPostingSchema(post)]
   }));
 });
+
+writeText('blogs.html', pageShell({
+  page: 'blogs',
+  seo: info.seo.blogs,
+  body: renderBlogIndex(),
+  structuredData: [{
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: blogs.page?.title || `${info.site.name} Blog`,
+    url: `${baseUrl}/blogs`,
+    blogPost: blogPosts.map(post => ({ '@type': 'BlogPosting', url: post.url, headline: post.title }))
+  }]
+}));
 
 ensureDir('legal');
 legalPages.forEach(pageData => {
@@ -684,7 +885,7 @@ writeText('legal.html', pageShell({
   page: 'legal-overview',
   seo: {
     title: `Legal Policies - ${info.site.name}`,
-    description: `Legal policies for ${info.site.name}, including terms and conditions, privacy, support, and digital products.`,
+    description: `Legal policies for ${info.site.name}, including terms and conditions, privacy, support, and digital resources.`,
     keywords: legalPages.flatMap(page => [page.title, ...(page.keywords || [])]).filter(Boolean).join(', '),
     canonical: '/legal',
     image: info.branding.ogImage,
@@ -706,21 +907,23 @@ writeText('comparisons.html', pageShell({
   body: renderComparisons()
 }));
 
+const today = generatedAt.slice(0, 10);
 const sitemapUrls = [
-  ...indexablePages.map(page => ({ loc: page.url, changefreq: page.key === 'home' ? 'weekly' : 'monthly', priority: page.key === 'home' ? '1.0' : page.key === 'resources' ? '0.9' : page.key === 'blogs' ? '0.8' : '0.7' })),
-  { loc: `${baseUrl}/ai-agents`, changefreq: 'weekly', priority: '0.9' },
-  ...resources.map(resource => ({ loc: resource.pageUrl, changefreq: 'weekly', priority: '0.8' })),
-  ...blogPosts.map(post => ({ loc: post.url, changefreq: 'weekly', priority: '0.7' })),
-  ...legalPages.map(page => ({ loc: page.url, changefreq: 'monthly', priority: '0.5' })),
-  { loc: `${baseUrl}/site-index.json`, changefreq: 'daily', priority: '0.6' },
-  { loc: `${baseUrl}/ai-overview.json`, changefreq: 'daily', priority: '0.6' },
-  { loc: `${baseUrl}/ai.txt`, changefreq: 'daily', priority: '0.6' },
-  { loc: `${baseUrl}/llms.txt`, changefreq: 'weekly', priority: '0.6' }
+  ...indexablePages.map(page => ({ loc: page.url, changefreq: page.key === 'home' ? 'weekly' : 'monthly', priority: page.key === 'home' ? '1.0' : page.key === 'resources' ? '0.9' : page.key === 'blogs' ? '0.8' : '0.7', lastmod: today })),
+  { loc: `${baseUrl}/ai-agents`, changefreq: 'weekly', priority: '0.9', lastmod: today },
+  ...resources.map(resource => ({ loc: resource.pageUrl, changefreq: 'weekly', priority: '0.8', lastmod: today })),
+  ...blogPosts.map(post => ({ loc: post.url, changefreq: 'weekly', priority: '0.7', lastmod: post.updated || post.date || today })),
+  ...legalPages.map(page => ({ loc: page.url, changefreq: 'monthly', priority: '0.5', lastmod: page.updated || page.effectiveDate || today })),
+  { loc: `${baseUrl}/site-index.json`, changefreq: 'daily', priority: '0.6', lastmod: today },
+  { loc: `${baseUrl}/ai-overview.json`, changefreq: 'daily', priority: '0.6', lastmod: today },
+  { loc: `${baseUrl}/ai.txt`, changefreq: 'daily', priority: '0.6', lastmod: today },
+  { loc: `${baseUrl}/llms.txt`, changefreq: 'weekly', priority: '0.6', lastmod: today }
 ];
 writeText('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapUrls.map(url => `  <url>
     <loc>${esc(url.loc)}</loc>
+    <lastmod>${esc(url.lastmod)}</lastmod>
     <changefreq>${url.changefreq}</changefreq>
     <priority>${url.priority}</priority>
   </url>`).join('\n')}
@@ -729,6 +932,7 @@ ${sitemapUrls.map(url => `  <url>
 
 writeText('site-index.json', `${JSON.stringify(siteIndex, null, 2)}\n`);
 writeText('ai-overview.json', `${JSON.stringify(overview, null, 2)}\n`);
+writeText('config/content.generated.json', `${JSON.stringify({ resources: resourceConfigItems, blogPosts: blogConfigPosts }, null, 2)}\n`);
 writeText('ai.txt', `${plainLines.join('\n')}\n`);
 
-console.log('Generated site-index.json, ai-overview.json, ai.txt, sitemap.xml, and detail pages');
+console.log('Generated site-index.json, ai-overview.json, ai.txt, sitemap.xml, config/content.generated.json, and flat detail pages');

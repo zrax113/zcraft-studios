@@ -32,7 +32,7 @@ Allow: /
 
 Sitemap: https://studio.z-craft.xyz/sitemap.xml
 
-# Structured discovery files for crawlers and AI agents that support them.
+# Structured discovery files for search and AI systems that support them.
 LLMS: /llms.txt
 Full-Info: /site-index.json
 AI-JSON: /ai-agents

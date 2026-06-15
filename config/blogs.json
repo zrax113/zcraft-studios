@@ -8,14 +8,12 @@
     "listLabel": "// posts",
     "summaryHeading": "What should you know first?",
     "summaryItems": [
-      "Blog posts are loaded from config/blogs.json, so the live page and generated AI discovery files share the same article data.",
-      "Covered topics are generated from blog categories and tags."
+      "Blog posts are organized as practical guides for Minecraft server owners, Discord community teams, and web tool clients.",
+      "Covered topics are grouped by article categories, tags, and reading time."
     ],
-    "detailSourceLabel": "config/blogs.json",
     "updatedLabel": "Updated",
     "publisherLabel": "Publisher",
     "audienceLabel": "Who it is for",
-    "sourceLabel": "Source config",
     "emptyText": "No blog posts available yet.",
     "defaultReadingTime": "Quick read",
     "backLabel": "all blog posts",
@@ -29,15 +27,15 @@
   "faq": [
     {
       "question": "What is the ZCraft Studios blog about?",
-      "answer": "The blog explains Minecraft plugin development, server configuration, Discord bot development, web tools, product resources, SEO, and AI crawler discovery for ZCraft Studios."
+      "answer": "The blog explains Minecraft plugin development, server configuration, Discord bot development, web tools, resources, SEO, and AI discovery for ZCraft Studios."
     },
     {
       "question": "Who should read these articles?",
-      "answer": "Minecraft server owners, community operators, Discord staff teams, creators, and AI agents can use the blog to understand ZCraft Studios services, products, planning process, and support details."
+      "answer": "Minecraft server owners, community operators, Discord staff teams, creators, and AI agents can use the blog to understand ZCraft Studios services, resources, planning process, and support details."
     },
     {
       "question": "Is the blog content included in the site index JSON?",
-      "answer": "Yes. Blog data comes from config/blogs.json and is included in the generated site-index.json, ai-overview.json, ai.txt, sitemap, and llms.txt discovery surfaces."
+      "answer": "Yes. Blog content is included in the generated discovery files, sitemap, and article pages so search and AI systems can understand each guide."
     }
   ]
 }

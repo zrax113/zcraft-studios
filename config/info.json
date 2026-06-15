@@ -23,10 +23,24 @@
     "ogImage": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
     "themeColor": "#ef4444"
   },
+  "social": {
+    "twitterSite": "@ZCraftStudios",
+    "twitterCreator": "@ZCraftStudios",
+    "sameAs": [
+      "https://dsc.gg/zcraftstudios",
+      "https://github.com/zraxgaming",
+      "https://x.com/ZCraftNetwork",
+      "https://Zain.z-craft.xyz"
+    ]
+  },
   "nav": [
     {
       "label": "home",
       "href": "/"
+    },
+    {
+      "label": "about",
+      "href": "/about"
     },
     {
       "label": "resources",
@@ -35,6 +49,10 @@
     {
       "label": "request",
       "href": "/request"
+    },
+    {
+      "label": "donate",
+      "href": "/donate"
     },
     {
       "label": "contact",
@@ -56,8 +74,8 @@
     },
     "blogs": {
       "title": "Minecraft Development Blog \u2014 ZCraft Studios",
-      "description": "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.",
-      "keywords": "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI crawler SEO, llms.txt, structured data",
+      "description": "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI discovery.",
+      "keywords": "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI SEO, llms.txt, structured data",
       "canonical": "/blogs"
     },
     "comparisons": {
@@ -251,7 +269,7 @@
   },
   "aboutPage": {
     "label": "// about",
-    "title": "Studio-first craft for modern Minecraft products.",
+    "title": "Studio-first craft for modern Minecraft resources.",
     "copy": "ZCraft Studios builds server systems, plugins, and web experiences for teams, communities, and creators. We combine design, performance, and polished delivery for commercial-grade releases.",
     "values": [
       {
@@ -274,7 +292,7 @@
     "copy": "A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly.",
     "detailLabel": "// resource",
     "detailsLinkLabel": "details",
-    "featuredDetailsLabel": "read product details",
+    "featuredDetailsLabel": "read resource details",
     "externalLinkLabel": "visit",
     "backLabel": "all resources",
     "backHref": "/resources",
@@ -283,7 +301,7 @@
     "defaultPlatform": "Minecraft server environments",
     "defaultSetupDifficulty": "practical",
     "paragraphHeadings": [
-      "What does this product do?",
+      "What does this resource do?",
       "Who should use this resource?",
       "How do setup and support work?"
     ],
@@ -291,14 +309,14 @@
   },
   "seoSupport": {
     "label": "// trust",
-    "title": "Why can clients and crawlers trust ZCraft Studios?",
-    "copy": "ZCraft Studios is operated as a practical development studio for Minecraft server owners, Discord communities, and creator teams. The site publishes clear service pages, product summaries, support methods, pricing or availability status, public contact paths, and generated machine-readable indexes so humans, search engines, and AI agents can verify what the studio offers.",
+    "title": "Why can clients trust ZCraft Studios?",
+    "copy": "ZCraft Studios is operated as a practical development studio for Minecraft server owners, Discord communities, and creator teams. The site publishes clear service pages, resource summaries, support methods, pricing or availability status, public contact paths, and generated machine-readable indexes so humans, search engines, and AI agents can verify what the studio offers.",
     "geoTitle": "Where does ZCraft Studios operate?",
     "geoCopy": "ZCraft Studios is based in the United Arab Emirates and works with clients remotely worldwide, including server owners and communities in the United States, United Kingdom, Canada, Australia, Europe, and other English-speaking Minecraft markets.",
     "eeat": [
       {
         "title": "Experience",
-        "copy": "The studio publishes real Minecraft resources, server configuration packs, Discord bot tools, and web utilities with product images, supported platforms, setup difficulty, and support methods."
+        "copy": "The studio publishes real Minecraft resources, server configuration packs, Discord bot tools, and web utilities with resource images, supported platforms, setup difficulty, and support methods."
       },
       {
         "title": "Expertise",
@@ -306,11 +324,11 @@
       },
       {
         "title": "Authoritativeness",
-        "copy": "Product pages link to public resource listings, GitHub repositories, contact channels, sitemap.xml, llms.txt, ai.txt, ai-overview.json, and site-index.json."
+        "copy": "Resource pages link to public resource listings, GitHub repositories, contact channels, sitemap.xml, llms.txt, ai.txt, ai-overview.json, and site-index.json."
       },
       {
         "title": "Trust",
-        "copy": "Every important page is crawlable, has a canonical URL, includes structured data, uses clear headings, and explains contact, request, pricing, support, and product status where relevant."
+        "copy": "Every important page is crawlable, has a canonical URL, includes structured data, uses clear headings, and explains contact, request, pricing, support, and resource status where relevant."
       }
     ],
     "keywords": [
@@ -324,7 +342,7 @@
       "Minecraft server setup service",
       "Minecraft configuration packs",
       "ZCraft Studios E-E-A-T",
-      "AI crawler friendly Minecraft studio",
+      "AI friendly Minecraft studio",
       "Minecraft developer worldwide"
     ]
   },
@@ -369,7 +387,7 @@
     "copy": "Help us keep building premium Minecraft resources, plugins, and modern web experiences.",
     "heroTitle": "Your support powers our mission",
     "heroCopy": "Every donation directly funds development, infrastructure, and new features. No middlemen, pure impact.",
-    "heroImage": "https://images.unsplash.com/photo-1639748813191-fca7b0da4d5a?w=600&h=400&fit=crop&q=80",
+    "heroImage": "favicon.ico",
     "heroImageAlt": "Support ZCraft",
     "stats": [
       {
@@ -746,24 +764,12 @@
     "left": "ZCraft Studios \u2014 premium developer studio",
     "links": [
       {
-        "label": "github",
-        "href": "https://github.com/zain-abusal"
-      },
-      {
         "label": "discord",
         "href": "https://discord.com/users/zraxgaming"
       },
       {
-        "label": "about",
-        "href": "/about"
-      },
-      {
         "label": "team",
         "href": "/team"
-      },
-      {
-        "label": "resources",
-        "href": "/resources"
       },
       {
         "label": "blogs",
@@ -772,22 +778,6 @@
       {
         "label": "comparisons",
         "href": "/comparisons"
-      },
-      {
-        "label": "donate",
-        "href": "/donate"
-      },
-      {
-        "label": "request service",
-        "href": "/request"
-      },
-      {
-        "label": "contact",
-        "href": "/contact"
-      },
-      {
-        "label": "email",
-        "href": "mailto:zain@z-craft.xyz"
       }
     ]
   },

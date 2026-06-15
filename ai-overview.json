@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "generatedAt": "2026-06-15T12:18:01.119Z",
+  "generatedAt": "2026-06-15T16:22:00.543Z",
   "name": "ZCraft Studios",
   "url": "https://studio.z-craft.xyz",
   "summary": "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
@@ -45,8 +45,8 @@
     {
       "key": "blogs",
       "title": "Minecraft Development Blog — ZCraft Studios",
-      "description": "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.",
-      "keywords": "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI crawler SEO, llms.txt, structured data",
+      "description": "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI discovery.",
+      "keywords": "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI SEO, llms.txt, structured data",
       "canonical": "/blogs",
       "url": "https://studio.z-craft.xyz/blogs",
       "indexable": true
@@ -253,47 +253,8 @@
       }
     }
   ],
-  "blogPostCount": 4,
+  "blogPostCount": 1,
   "latestBlogPosts": [
-    {
-      "title": "How should a Minecraft server plan a custom plugin?",
-      "slug": "minecraft-custom-plugin-planning",
-      "date": "2026-06-15",
-      "updated": "2026-06-15",
-      "category": "Minecraft Plugins",
-      "summary": "A practical checklist for server owners who want a custom Paper, Spigot, or Velocity plugin without vague scope, surprise costs, or fragile launch behavior.",
-      "audience": "Minecraft server owners, network managers, and creators requesting custom plugin development.",
-      "tags": [
-        "Minecraft plugins",
-        "Paper",
-        "Spigot",
-        "Velocity",
-        "Custom development"
-      ],
-      "keywords": [
-        "Minecraft custom plugin",
-        "Paper plugin development",
-        "Spigot plugin development",
-        "Velocity plugin development",
-        "Minecraft server plugin planning",
-        "custom Minecraft development"
-      ],
-      "image": "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
-      "imageAlt": "Minecraft plugin planning and proxy authentication resource artwork",
-      "readingTime": "4 min read",
-      "publisherHandle": "ZCraftStudios",
-      "url": "https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning",
-      "sections": [
-        {
-          "heading": "What should the plugin do?",
-          "body": "Write the exact **player action**, staff action, command, permission, storage requirement, and failure case before development starts. A clear plugin request should explain who uses the feature, when it runs, what data it saves, and what should happen if the server restarts or a dependency is missing.\n- Include the target platform.\n- Include the expected commands.\n- Include the support and update expectations."
-        },
-        {
-          "heading": "Which platforms need support?",
-          "body": "Name the target server software and version range. Paper, Spigot, Velocity, and proxy networks can need different event handling, commands, permissions, and deployment steps, so platform clarity helps the quote and timeline stay accurate."
-        }
-      ]
-    },
     {
       "title": "What makes a Minecraft config resource production-ready?",
       "slug": "production-ready-minecraft-configs",
@@ -320,7 +281,7 @@
       "image": "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
       "imageAlt": "Minecraft server configuration and scoreboard resource artwork",
       "readingTime": "3 min read",
-      "publisherHandle": "ZCraftStudios",
+      "publisherHandle": "@ZCraftStudios",
       "url": "https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs",
       "sections": [
         {
@@ -332,89 +293,9 @@
           "body": "Commands, placeholders, color formatting, permission groups, reload behavior, and player-facing messages should be checked in a real server environment before the resource is published or installed on a production network."
         }
       ]
-    },
-    {
-      "title": "When does a Discord community need a custom bot?",
-      "slug": "discord-bot-community-automation",
-      "date": "2026-06-15",
-      "updated": "2026-06-15",
-      "category": "Discord Bots",
-      "summary": "How to decide when a Discord bot should be custom-built for evidence handling, moderation workflows, automation, and community operations.",
-      "audience": "Discord staff teams, Minecraft communities, and moderation departments.",
-      "tags": [
-        "Discord bot",
-        "Moderation",
-        "Automation",
-        "Evidence bot",
-        "Node.js"
-      ],
-      "keywords": [
-        "Discord bot development",
-        "custom Discord bot",
-        "Discord moderation bot",
-        "evidence bot",
-        "community automation",
-        "Node.js Discord bot"
-      ],
-      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
-      "imageAlt": "Discord moderation evidence bot artwork",
-      "readingTime": "3 min read",
-      "publisherHandle": "ZCraftStudios",
-      "url": "https://studio.z-craft.xyz/blogs/discord-bot-community-automation",
-      "sections": [
-        {
-          "heading": "What should the bot automate?",
-          "body": "Custom bots are strongest when they replace repeated staff work: evidence logs, case tracking, role workflows, alerts, ticket routing, or moderation reports. The best requests describe every command and permission level."
-        },
-        {
-          "heading": "How should support work?",
-          "body": "Bot support should include hosting expectations, setup steps, environment variables, permission requirements, and a clear contact method for bug reports or small changes after launch."
-        }
-      ]
-    },
-    {
-      "title": "How can AI crawlers understand a studio website?",
-      "slug": "ai-crawler-friendly-studio-site",
-      "date": "2026-06-15",
-      "updated": "2026-06-15",
-      "category": "SEO",
-      "summary": "Why ZCraft Studios publishes sitemap, llms.txt, ai.txt, site-index.json, structured data, and clear page summaries for search engines and AI agents.",
-      "audience": "AI agents, search crawlers, site auditors, and developers checking ZCraft Studios metadata.",
-      "tags": [
-        "SEO",
-        "llms.txt",
-        "structured data",
-        "AI agents",
-        "sitemap"
-      ],
-      "keywords": [
-        "AI crawler SEO",
-        "llms.txt",
-        "site-index.json",
-        "structured data",
-        "AI agents",
-        "ChatGPT crawler",
-        "PerplexityBot",
-        "ClaudeBot"
-      ],
-      "image": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
-      "imageAlt": "ZCraft Studios AI crawler and SEO discovery artwork",
-      "readingTime": "4 min read",
-      "publisherHandle": "ZCraftStudios",
-      "url": "https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site",
-      "sections": [
-        {
-          "heading": "Which files should crawlers read first?",
-          "body": "Crawlers should use sitemap.xml for page discovery, llms.txt for a concise site explanation, ai-overview.json for compact machine-readable context, and site-index.json for the full generated index."
-        },
-        {
-          "heading": "Why keep data in config files?",
-          "body": "Config-driven content keeps page metadata, product descriptions, blog posts, summaries, and AI discovery files aligned. When configs change, the generated index can update from the same source data."
-        }
-      ]
     }
   ],
-  "competitorComparisonCount": 6,
+  "competitorComparisonCount": 7,
   "generatedDetailPages": [
     "https://studio.z-craft.xyz/resources/evidence-discord-bot",
     "https://studio.z-craft.xyz/resources/visual-config-studio",
@@ -423,11 +304,8 @@
     "https://studio.z-craft.xyz/resources/essentialsx-messages-config",
     "https://studio.z-craft.xyz/resources/modern-maintenance-messages-config",
     "https://studio.z-craft.xyz/resources/litebans-message-templates",
-    "https://studio.z-craft.xyz/resources/products-tab-config",
-    "https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning",
+    "https://studio.z-craft.xyz/resources/premium-tab-scoreboard-config",
     "https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs",
-    "https://studio.z-craft.xyz/blogs/discord-bot-community-automation",
-    "https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site",
     "https://studio.z-craft.xyz/legal/terms",
     "https://studio.z-craft.xyz/legal/privacy"
   ],
@@ -437,12 +315,6 @@
     "ai_json_endpoint": "https://studio.z-craft.xyz/ai-agents",
     "ai_text": "https://studio.z-craft.xyz/ai.txt",
     "ai_overview_json": "https://studio.z-craft.xyz/ai-overview.json",
-    "full_site_index_json": "https://studio.z-craft.xyz/site-index.json",
-    "source_config": "https://studio.z-craft.xyz/config/info.json",
-    "source_products": "https://studio.z-craft.xyz/config/products.json",
-    "source_reviews": "https://studio.z-craft.xyz/config/reviews.json",
-    "source_blogs": "https://studio.z-craft.xyz/config/blogs.json",
-    "source_legal": "https://studio.z-craft.xyz/config/legal.json",
-    "source_comparisons": "https://studio.z-craft.xyz/config/comparisons.json"
+    "full_site_index_json": "https://studio.z-craft.xyz/site-index.json"
   }
 }

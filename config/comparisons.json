@@ -5,8 +5,6 @@
     "copy": "Compare ZCraft Studios with common options such as config sellers, Discord bot developers, web dashboard builders, freelance Minecraft developers, marketplace resources, internal staff teams, and no-code tools before choosing who should build your Minecraft configs, server dashboard, Discord bot, website system, or custom server workflow.",
     "updated": "2026-06-15",
     "publisherName": "ZCraft Studios",
-    "sourceLabel": "Source config",
-    "sourceValue": "config/comparisons.json",
     "backLabel": "Request a custom service",
     "backHref": "/request",
     "keywords": [
@@ -94,7 +92,7 @@
     {
       "name": "Internal Staff Teams",
       "bestFor": "Servers with trusted staff who already understand the community, setup, ranks, moderation process, and daily server operations.",
-      "zcraftAdvantage": "ZCraft Studios can help when internal staff are busy or when the server needs cleaner configs, dashboards, Discord tools, web systems, product pages, or outside technical planning.",
+      "zcraftAdvantage": "ZCraft Studios can help when internal staff are busy or when the server needs cleaner configs, dashboards, Discord tools, web systems, resource pages, or outside technical planning.",
       "tradeoffs": "Internal teams know the community best, but volunteer availability, technical consistency, documentation, and long-term maintenance can become difficult as the server grows.",
       "keywords": [
         "Minecraft staff tools",
@@ -145,7 +143,7 @@
     },
     {
       "question": "Can ZCraft Studios make website dashboards?",
-      "answer": "Yes. ZCraft Studios can create website dashboards, Minecraft server dashboards, admin panels, staff tools, landing pages, product pages, and web interfaces designed around Minecraft server needs."
+      "answer": "Yes. ZCraft Studios can create website dashboards, Minecraft server dashboards, admin panels, staff tools, landing pages, resource pages, and web interfaces designed around Minecraft server needs."
     },
     {
       "question": "Should I buy a ready-made config or request a custom service?",
@@ -153,7 +151,7 @@
     },
     {
       "question": "Does this comparison include pricing?",
-      "answer": "Downloadable resource prices are listed on their product pages. Custom services are quoted per project because configs, dashboards, Discord bots, setup needs, support, and timeline can change the final cost."
+      "answer": "Downloadable resource prices are listed on their resource pages. Custom services are quoted per project because configs, dashboards, Discord bots, setup needs, support, and timeline can change the final cost."
     }
   ]
 }

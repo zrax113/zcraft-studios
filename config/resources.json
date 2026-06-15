@@ -1,0 +1,28 @@
+{
+  "resources": [
+    {
+      "file": "resources/evidence-discord-bot.json"
+    },
+    {
+      "file": "resources/visual-config-studio.json"
+    },
+    {
+      "file": "resources/luckperms-visual-tree.json"
+    },
+    {
+      "file": "resources/z-auth.json"
+    },
+    {
+      "file": "resources/essentialsx-messages-config.json"
+    },
+    {
+      "file": "resources/modern-maintenance-messages-config.json"
+    },
+    {
+      "file": "resources/litebans-message-templates.json"
+    },
+    {
+      "file": "resources/premium-tab-scoreboard-config.json"
+    }
+  ]
+}

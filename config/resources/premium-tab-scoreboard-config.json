@@ -25,6 +25,7 @@
     "Scoreboard",
     "Minecraft"
   ],
-  "title": "Products Tab Config",
+  "slug": "premium-tab-scoreboard-config",
+  "title": "Premium TAB Scoreboard Config",
   "what": "Premium tab and scoreboard configuration for Minecraft servers."
 }
