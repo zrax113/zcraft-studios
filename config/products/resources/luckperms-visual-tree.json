@@ -1,0 +1,30 @@
+{
+  "audience": "Minecraft server owners and staff managing permission groups and inheritance.",
+  "brand": "Website",
+  "category": "Website",
+  "featured": false,
+  "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
+  "links": [
+    {
+      "href": "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/",
+      "label": "View",
+      "variant": "primary"
+    }
+  ],
+  "setupDifficulty": "Easy",
+  "status": "$5.57",
+  "summary": "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
+  "supportMethod": "BuiltByBit resource page and ZCraft Studios contact channels.",
+  "supportedPlatforms": [
+    "Web browser",
+    "LuckPerms",
+    "Minecraft servers"
+  ],
+  "tags": [
+    "Permissions",
+    "LuckPerms",
+    "Visual"
+  ],
+  "title": "LuckPerms Visual Tree",
+  "what": "Visual LuckPerms permission tree editor and debugging workspace."
+}

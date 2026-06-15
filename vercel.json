@@ -27,7 +27,6 @@
     { "source": "/legal/:slug", "destination": "/legal/:slug.html" },
     { "source": "/terms", "destination": "/legal/terms.html" },
     { "source": "/privacy", "destination": "/legal/privacy.html" },
-    { "source": "/refunds", "destination": "/legal/refunds.html" },
     { "source": "/donate", "destination": "/donate.html" },
     { "source": "/donate/", "destination": "/donate.html" },
     { "source": "/thankyou", "destination": "/thankyou.html" },

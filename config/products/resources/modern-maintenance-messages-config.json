@@ -1,0 +1,29 @@
+{
+  "audience": "Minecraft server owners who need professional maintenance-mode messaging.",
+  "brand": "Config",
+  "category": "Config",
+  "featured": false,
+  "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
+  "links": [
+    {
+      "href": "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/",
+      "label": "View",
+      "variant": "primary"
+    }
+  ],
+  "setupDifficulty": "Easy",
+  "status": "$3.72",
+  "summary": "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+  "supportMethod": "BuiltByBit resource page and ZCraft Studios contact channels.",
+  "supportedPlatforms": [
+    "Minecraft",
+    "Maintenance message configs"
+  ],
+  "tags": [
+    "Maintenance",
+    "Messages",
+    "Minecraft"
+  ],
+  "title": "Modern Maintenance Messages Config",
+  "what": "Polished maintenance message configuration for Minecraft servers."
+}

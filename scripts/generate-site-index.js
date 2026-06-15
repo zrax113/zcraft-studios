@@ -1,7 +1,16 @@
 const fs = require('fs');
+const path = require('path');
 
 function readJson(path) {
   return JSON.parse(fs.readFileSync(path, 'utf8'));
+}
+
+function resolveConfigList(configPath, items = []) {
+  const baseDir = path.dirname(configPath);
+  return (items || []).map(item => {
+    if (!item || typeof item !== 'object' || !item.file) return item;
+    return readJson(path.join(baseDir, item.file.replace(/^file:/, '')));
+  });
 }
 
 function writeText(path, text) {
@@ -66,10 +75,11 @@ function absoluteUrl(baseUrl, value = '/') {
   return `${baseUrl}${path}`;
 }
 
-function pageShell({ seo, page, body }) {
+function pageShell({ seo, page, body, structuredData = [] }) {
   const pageUrl = absoluteUrl(baseUrl, seo.canonical);
   const image = absoluteUrl(baseUrl, seo.image || info.branding.ogImage);
   const robots = seo.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+  const schemas = structuredData.filter(Boolean);
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -114,6 +124,7 @@ function pageShell({ seo, page, body }) {
 <meta name="twitter:image:alt" content="${esc(seo.imageAlt || `${info.site.name} artwork`)}" />
 <meta name="twitter:site" content="@zraxgaming" />
 <meta name="twitter:creator" content="@zraxgaming" />
+${schemas.map(schema => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`).join('\n')}
 </head>
 <body data-page="${esc(page)}">
 <main class="wrapper" id="app" style="padding-top:32px;padding-bottom:32px">
@@ -202,9 +213,10 @@ const pages = Object.entries(info.seo || {})
   }));
 
 const indexablePages = pages.filter(page => page.indexable);
-const projects = (products.projects || []).map(compactItem);
-const resources = (products.resources || []).map(compactItem);
-const blogPosts = (blogs.posts || []).map(post => ({
+const resourceConfigItems = resolveConfigList('config/products.json', products.resources || []);
+const blogConfigPosts = resolveConfigList('config/blogs.json', blogs.posts || []);
+const resources = resourceConfigItems.map(compactItem);
+const blogPosts = blogConfigPosts.map(post => ({
   title: post.title,
   slug: post.slug || slugify(post.title),
   date: post.date,
@@ -238,12 +250,12 @@ const comparisonPage = {
   url: `${baseUrl}/comparisons`
 };
 
-const categories = [...new Set([...projects, ...resources]
+const categories = [...new Set(resources
   .map(item => item.category)
   .filter(Boolean))]
   .sort();
 
-const topics = [...new Set([...projects, ...resources]
+const topics = [...new Set(resources
   .flatMap(item => item.tags || [])
   .filter(Boolean))]
   .sort();
@@ -311,7 +323,6 @@ const siteIndex = {
   indexablePages,
   navigation: info.nav || [],
   products: {
-    projects,
     resources,
     categories,
     topics
@@ -343,7 +354,6 @@ const overview = {
   categories,
   canonicalPages: indexablePages,
   resourceCount: resources.length,
-  projectCount: projects.length,
   featuredResources: resources.filter(resource => resource.featured),
   blogPostCount: blogPosts.length,
   latestBlogPosts: blogPosts.slice(0, 5),
@@ -420,6 +430,84 @@ function blogSections(post) {
   })) || [];
 }
 
+const pageSummaries = {
+  about: [
+    'ZCraft Studios is a Minecraft-focused development studio building plugins, server configurations, Discord bots, and web tools.',
+    'The studio focuses on clear scope, production-ready delivery, performance, readable setup details, and practical support.',
+    'Clients can request custom Paper, Spigot, Velocity, Discord, Node.js, Java, and browser-based development work.'
+  ],
+  team: [
+    'The ZCraft Studios team handles development, configuration, support, and product delivery for Minecraft communities.',
+    'Team work covers plugin development, web tooling, server configuration, Discord automation, product updates, and support.',
+    'Clients can use the request or contact page to describe custom work, platform details, budget, timeline, and support needs.'
+  ],
+  request: [
+    'The request page is the best starting point for custom Minecraft plugin development, Discord bot builds, server setup, and web tool commissions.',
+    'A strong request includes platform, budget, timeline, target features, reference links, and contact details for follow-up.',
+    'ZCraft Studios uses request details to quote scope, explain limits, confirm support expectations, and plan a production-ready delivery.'
+  ],
+  contact: [
+    'The contact page lists the fastest ways to reach ZCraft Studios for Minecraft plugin commissions, server configuration help, Discord bot support, and web projects.',
+    'Discord is the fastest contact option, while email is available for business inquiries, quotes, project records, and longer support details.',
+    'Clear contact details help clients confirm scope, share logs or references, and choose the right channel before opening a custom request.'
+  ],
+  resources: [
+    'ZCraft Studios publishes Minecraft plugins, server configs, Discord bots, and web tools for server owners who need polished, production-ready resources.',
+    'Each product summary lists what the resource is, who it is for, supported platforms, setup difficulty, status or price, and support method.',
+    'The resources page is backed by config/products.json so search crawlers, AI agents, and the live UI can read the same product data.'
+  ]
+};
+
+const pageFaqs = {
+  about: [
+    { question: 'What does ZCraft Studios do?', answer: 'ZCraft Studios builds Minecraft plugins, server configs, Discord bots, web tools, and downloadable resources for server owners, creators, and community teams.' },
+    { question: 'What platforms does ZCraft Studios work with?', answer: 'The studio works with Paper, Spigot, Velocity, Minecraft server plugins, Discord, Node.js, Java, and web browsers.' },
+    { question: 'How does ZCraft Studios approach quality?', answer: 'The studio prioritizes clear scope, production-ready behavior, performance, readable setup instructions, and support details.' }
+  ],
+  team: [
+    { question: 'Who builds ZCraft Studios products?', answer: 'ZCraft Studios products are built and supported by a small development team focused on Minecraft plugins, server configuration, Discord bots, web tools, and creator resources.' },
+    { question: 'What does the team support?', answer: 'The team supports custom commissions, downloadable resources, configuration help, Discord bot workflows, and product updates through public contact channels.' },
+    { question: 'Can clients contact the team for custom work?', answer: 'Yes. Clients should use the request or contact page to describe the project, platform, budget, timeline, and support needs.' }
+  ],
+  request: [
+    { question: 'What custom services can I request?', answer: 'You can request Minecraft plugin development, server setup, configuration packs, Discord bot development, custom web tools, and related technical support.' },
+    { question: 'What details should a request include?', answer: 'Include your Discord username, email, service type, platform, budget, timeline, project brief, and any reference links or existing resources.' },
+    { question: 'How quickly does ZCraft Studios respond?', answer: 'The request page is designed for quick quote follow-up. Response timing can vary by workload, but the form asks for enough detail to review the project efficiently.' }
+  ],
+  contact: [
+    { question: 'What is the fastest way to contact ZCraft Studios?', answer: 'Discord is the fastest way to contact ZCraft Studios for project questions, support checks, and quick commission discussions.' },
+    { question: 'When should I use email instead of Discord?', answer: 'Use email for business inquiries, longer project briefs, payment or quote records, and messages that need a clear written trail.' },
+    { question: 'What details should I include when contacting the studio?', answer: 'Include your service type, platform, budget, timeline, references, logs if relevant, and the best way to follow up.' }
+  ]
+};
+
+function faqSchema(faqs) {
+  if (!faqs?.length) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer }
+    }))
+  };
+}
+
+function rootPageBody(key, title, copy, sections = []) {
+  const summary = pageSummaries[key] || [];
+  const faqs = pageFaqs[key] || [];
+  const footerLinks = [
+    ...(info.footer?.links || []),
+    ...(legal.page?.footerLinks || [])
+  ];
+  return `<section class="page-hero"><span class="page-label">// ${esc(key)}</span><h1>${esc(title)}</h1><p class="page-copy">${esc(copy)}</p></section>
+${summary.length ? `<section class="seo-summary" aria-label="Page summary"><div class="section-label">// tldr</div><h2>What should you know first?</h2><ul>${summary.map(item => `<li>${esc(item)}</li>`).join('')}</ul></section>` : ''}
+${sections.map(section => `<section class="trust-section"><div class="section-label">${esc(section.label || '// details')}</div><h2>${esc(section.heading)}</h2><p>${esc(section.body)}</p></section>`).join('')}
+${faqs.length ? `<section class="faq-section" id="faq"><div class="section-label">// faq</div><h2>What do people ask about this page?</h2><div class="faq-list">${faqs.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}
+<nav class="footer-links" aria-label="Important links">${footerLinks.map(link => `<a href="${esc(link.href)}">${esc(link.label)}</a>`).join('')}</nav>`;
+}
+
 function renderResourceDetail(resource) {
   const page = info.resourcesPage || {};
   const headings = page.paragraphHeadings || [];
@@ -472,6 +560,12 @@ function renderLegalDetail(pageData) {
 ${pageData.faq?.length ? `<section class="faq-section"><div class="section-label">// faq</div><h2>What do people ask about this page?</h2><div class="faq-list">${pageData.faq.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}`;
 }
 
+function renderLegalOverview() {
+  const page = legal.page || {};
+  return `<section class="page-hero"><span class="page-label">${esc(page.label || '// legal')}</span><h1>Legal Policies</h1><p class="page-copy">Terms and conditions, privacy, support, and digital product policies for ${esc(info.site.name)}.</p></section>
+<div class="blogs-list" aria-label="Legal policies"><div class="section-label">${esc(page.label || '// legal')}</div><div class="blog-list">${legalPages.map(item => `<article class="blog-list-item legal-list-card"><div class="blog-list-copy"><a class="blog-list-title" href="/legal/${esc(item.slug)}">${esc(item.title)}</a><span class="blog-list-summary">${esc(item.summary || item.description)}</span></div><div class="blog-list-meta"><span>${esc(page.updatedLabel || 'Last updated')} ${esc(item.updated || item.effectiveDate || '')}</span><span>${esc(page.publisherName || info.site.name)}</span></div></article>`).join('')}</div></div>`;
+}
+
 function renderComparisons() {
   const page = comparisons.page || {};
   return `<section class="page-hero"><span class="page-label">${esc(page.label || '// comparisons')}</span><h1>${esc(page.title || 'ZCraft Studios vs Minecraft Development Competitors')}</h1><p class="page-copy">${esc(page.copy || 'Compare ZCraft Studios with other Minecraft development options.')}</p></section>
@@ -486,6 +580,57 @@ function renderComparisons() {
 ${comparisons.faq?.length ? `<section class="faq-section"><div class="section-label">// faq</div><h2>What do people ask about comparisons?</h2><div class="faq-list">${comparisons.faq.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}`;
 }
 
+[
+  {
+    file: 'about.html',
+    key: 'about',
+    title: info.aboutPage?.title || 'Studio-first craft for modern Minecraft products.',
+    copy: info.aboutPage?.copy || info.seo.about.description,
+    sections: [
+      { label: '// definition', heading: 'What is ZCraft Studios?', body: 'ZCraft Studios is a development studio for Minecraft communities that need custom plugins, server configurations, Discord automation, and web tools.' },
+      { label: '// services', heading: 'How does the studio help server owners?', body: 'The studio helps server owners plan, build, configure, test, and support production-ready systems for real Minecraft communities.' }
+    ]
+  },
+  {
+    file: 'team.html',
+    key: 'team',
+    title: info.teamPage?.title || 'Built by a small but experienced studio crew.',
+    copy: info.teamPage?.copy || info.seo.team.description,
+    sections: [
+      { label: '// definition', heading: 'Who is the ZCraft Studios team?', body: 'The ZCraft Studios team is a small development crew focused on Minecraft plugins, server configuration, Discord bots, web tools, and creator resources.' },
+      { label: '// roles', heading: 'How does the team support clients?', body: 'The team supports clients through project scoping, development, setup guidance, product updates, bug checks, and practical contact channels.' }
+    ]
+  },
+  {
+    file: 'request.html',
+    key: 'request',
+    title: info.request?.title || 'Request a Custom Service',
+    copy: info.request?.copy || info.seo.request.description,
+    sections: [
+      { label: '// definition', heading: 'What is a custom service request?', body: 'A custom service request is a project brief for Minecraft plugin development, server setup, Discord bot work, web tools, or related technical support.' },
+      { label: '// process', heading: 'How does ZCraft Studios quote requests?', body: 'ZCraft Studios reviews the platform, budget, timeline, feature list, references, and support needs before confirming scope and delivery expectations.' }
+    ]
+  },
+  {
+    file: 'contact.html',
+    key: 'contact',
+    title: info.contact?.title || "let's build something premium.",
+    copy: info.contact?.copy || info.seo.contact.description,
+    sections: [
+      { label: '// definition', heading: 'What is the contact page for?', body: 'The contact page is the central place to reach ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and web development.' },
+      { label: '// channels', heading: 'How should clients choose a channel?', body: 'Clients should use Discord for fast discussion, email for business records, and the request page for structured project briefs.' }
+    ]
+  }
+].forEach(page => {
+  const seo = info.seo[page.key];
+  writeText(page.file, pageShell({
+    page: page.key,
+    seo,
+    body: rootPageBody(page.key, page.title, page.copy, page.sections),
+    structuredData: [faqSchema(pageFaqs[page.key])]
+  }));
+});
+
 ensureDir('resources');
 resources.forEach(resource => {
   writeText(`resources/${resource.slug}.html`, pageShell({
@@ -498,7 +643,8 @@ resources.forEach(resource => {
       image: resource.image,
       imageAlt: `${resource.title} product image`
     },
-    body: renderResourceDetail(resource)
+    body: renderResourceDetail(resource),
+    structuredData: [faqSchema(resourceFaqs(resource))]
   }));
 });
 
@@ -533,6 +679,19 @@ legalPages.forEach(pageData => {
     body: renderLegalDetail(pageData)
   }));
 });
+
+writeText('legal.html', pageShell({
+  page: 'legal-overview',
+  seo: {
+    title: `Legal Policies - ${info.site.name}`,
+    description: `Legal policies for ${info.site.name}, including terms and conditions, privacy, support, and digital products.`,
+    keywords: legalPages.flatMap(page => [page.title, ...(page.keywords || [])]).filter(Boolean).join(', '),
+    canonical: '/legal',
+    image: info.branding.ogImage,
+    imageAlt: `${info.site.name} legal policy artwork`
+  },
+  body: renderLegalOverview()
+}));
 
 writeText('comparisons.html', pageShell({
   page: 'comparisons',

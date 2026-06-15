@@ -1,0 +1,30 @@
+{
+  "audience": "Minecraft server owners who want a polished player list and scoreboard layout.",
+  "brand": "Config",
+  "category": "Config",
+  "featured": false,
+  "image": "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+  "links": [
+    {
+      "href": "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/",
+      "label": "View",
+      "variant": "primary"
+    }
+  ],
+  "setupDifficulty": "Easy",
+  "status": "$4.22",
+  "summary": "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+  "supportMethod": "BuiltByBit resource page and ZCraft Studios contact channels.",
+  "supportedPlatforms": [
+    "Minecraft",
+    "TAB plugin",
+    "Scoreboard systems"
+  ],
+  "tags": [
+    "Tab",
+    "Scoreboard",
+    "Minecraft"
+  ],
+  "title": "Products Tab Config",
+  "what": "Premium tab and scoreboard configuration for Minecraft servers."
+}

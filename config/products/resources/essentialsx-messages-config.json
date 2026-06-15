@@ -1,0 +1,29 @@
+{
+  "audience": "Minecraft server owners who want cleaner command, chat, and player messages.",
+  "brand": "Config",
+  "category": "Config",
+  "featured": false,
+  "image": "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
+  "links": [
+    {
+      "href": "https://builtbybit.com/resources/essentialsx-messages-config.110869/",
+      "label": "View",
+      "variant": "primary"
+    }
+  ],
+  "setupDifficulty": "Easy",
+  "status": "$4.73",
+  "summary": "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+  "supportMethod": "BuiltByBit resource page and ZCraft Studios contact channels.",
+  "supportedPlatforms": [
+    "Minecraft",
+    "EssentialsX"
+  ],
+  "tags": [
+    "EssentialsX",
+    "Messages",
+    "Minecraft"
+  ],
+  "title": "EssentialsX Messages Config",
+  "what": "Modern player-facing message configuration for EssentialsX."
+}

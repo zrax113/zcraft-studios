@@ -26,9 +26,8 @@ Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
 - Resources and products: https://studio.z-craft.xyz/resources
 - Blog and guides: https://studio.z-craft.xyz/blogs
 - Competitor comparisons: https://studio.z-craft.xyz/comparisons
-- Terms of Service: https://studio.z-craft.xyz/legal/terms
+- Terms and Conditions: https://studio.z-craft.xyz/legal/terms
 - Privacy Policy: https://studio.z-craft.xyz/legal/privacy
-- Refund and Cancellation Policy: https://studio.z-craft.xyz/legal/refunds
 - Request custom work: https://studio.z-craft.xyz/request
 - Contact: https://studio.z-craft.xyz/contact
 - Donate/support: https://studio.z-craft.xyz/donate
@@ -48,10 +47,10 @@ Use https://studio.z-craft.xyz/config/products.json for the freshest product, re
 
 ## Blog Posts And Guides
 
-- How should a Minecraft server plan a custom plugin?: custom Paper, Spigot, and Velocity plugin planning guidance. Date: 2026-06-15. Publisher handle: @zraxgaming.
-- What makes a Minecraft config resource production-ready?: Minecraft server config, setup, testing, and support guidance. Date: 2026-06-15. Publisher handle: @zraxgaming.
-- When does a Discord community need a custom bot?: Discord bot automation, moderation, evidence handling, and support guidance. Date: 2026-06-15. Publisher handle: @zraxgaming.
-- How can AI crawlers understand a studio website?: sitemap, llms.txt, structured data, ai.txt, ai-overview.json, and site-index.json guidance. Date: 2026-06-15. Publisher handle: @zraxgaming.
+- How should a Minecraft server plan a custom plugin?: custom Paper, Spigot, and Velocity plugin planning guidance. Date: 2026-06-15. Publisher handle: ZCraftStudios.
+- What makes a Minecraft config resource production-ready?: Minecraft server config, setup, testing, and support guidance. Date: 2026-06-15. Publisher handle: ZCraftStudios.
+- When does a Discord community need a custom bot?: Discord bot automation, moderation, evidence handling, and support guidance. Date: 2026-06-15. Publisher handle: ZCraftStudios.
+- How can AI crawlers understand a studio website?: sitemap, llms.txt, structured data, ai.txt, ai-overview.json, and site-index.json guidance. Date: 2026-06-15. Publisher handle: ZCraftStudios.
 
 Use https://studio.z-craft.xyz/config/blogs.json for the freshest blog titles, dates, publisher handles, summaries, tags, and article bodies.
 

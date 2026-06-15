@@ -1,0 +1,28 @@
+{
+  "audience": "Discord communities, staff teams, and moderation departments.",
+  "brand": "Bot",
+  "category": "Bot",
+  "featured": true,
+  "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+  "links": [
+    {
+      "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+      "label": "View",
+      "variant": "primary"
+    }
+  ],
+  "setupDifficulty": "Easy",
+  "status": "$5.38",
+  "summary": "Best Discord bot for performance and handling user cases and moderation.",
+  "supportMethod": "BuiltByBit resource page and ZCraft Studios contact channels.",
+  "supportedPlatforms": [
+    "Discord",
+    "Node.js"
+  ],
+  "tags": [
+    "Simple",
+    "Performance"
+  ],
+  "title": "Evidence Discord Bot",
+  "what": "Discord evidence and case management bot for moderation teams."
+}

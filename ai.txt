@@ -13,10 +13,12 @@ LLMS file: https://studio.z-craft.xyz/llms.txt
 Contact: https://studio.z-craft.xyz/contact
 Request custom work: https://studio.z-craft.xyz/request
 Blog: https://studio.z-craft.xyz/blogs
+Comparisons: https://studio.z-craft.xyz/comparisons
 
 Indexable pages:
 - About Our Minecraft Studio — ZCraft Studios: https://studio.z-craft.xyz/about - ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.
 - Minecraft Development Blog — ZCraft Studios: https://studio.z-craft.xyz/blogs - Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.
+- ZCraft Studios vs Minecraft Development Competitors: https://studio.z-craft.xyz/comparisons - Compare ZCraft Studios with freelancers, large Minecraft development teams, marketplace sellers, config-only shops, internal staff, and no-code tools.
 - Contact for Minecraft Development — ZCraft Studios: https://studio.z-craft.xyz/contact - Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.
 - Support Minecraft Tools — ZCraft Studios: https://studio.z-craft.xyz/donate - Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.
 - ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots: https://studio.z-craft.xyz/ - ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.
@@ -35,25 +37,23 @@ Resource detail pages:
 - Products Tab Config: https://studio.z-craft.xyz/resources/products-tab-config - Premium tab and scoreboard configuration for Minecraft servers.
 
 Blog posts:
-- How should a Minecraft server plan a custom plugin? (2026-06-15, @zraxgaming): A practical checklist for server owners who want a custom Paper, Spigot, or Velocity plugin without vague scope, surprise costs, or fragile launch behavior. https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning
-- What makes a Minecraft config resource production-ready? (2026-06-15, @zraxgaming): A short guide to clean Minecraft server configs, message packs, permission layouts, maintenance templates, and scoreboard resources that are easy to install and support. https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs
-- When does a Discord community need a custom bot? (2026-06-15, @zraxgaming): How to decide when a Discord bot should be custom-built for evidence handling, moderation workflows, automation, and community operations. https://studio.z-craft.xyz/blogs/discord-bot-community-automation
-- How can AI crawlers understand a studio website? (2026-06-15, @zraxgaming): Why ZCraft Studios publishes sitemap, llms.txt, ai.txt, site-index.json, structured data, and clear page summaries for search engines and AI agents. https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site
+- How should a Minecraft server plan a custom plugin? (2026-06-15, ZCraftStudios): A practical checklist for server owners who want a custom Paper, Spigot, or Velocity plugin without vague scope, surprise costs, or fragile launch behavior. https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning
+- What makes a Minecraft config resource production-ready? (2026-06-15, ZCraftStudios): A short guide to clean Minecraft server configs, message packs, permission layouts, maintenance templates, and scoreboard resources that are easy to install and support. https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs
+- When does a Discord community need a custom bot? (2026-06-15, ZCraftStudios): How to decide when a Discord bot should be custom-built for evidence handling, moderation workflows, automation, and community operations. https://studio.z-craft.xyz/blogs/discord-bot-community-automation
+- How can AI crawlers understand a studio website? (2026-06-15, ZCraftStudios): Why ZCraft Studios publishes sitemap, llms.txt, ai.txt, site-index.json, structured data, and clear page summaries for search engines and AI agents. https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site
 
 Legal pages:
-- Terms of Service: https://studio.z-craft.xyz/legal/terms - These terms explain how ZCraft Studios handles custom development requests, downloadable resources, support, acceptable use, payments, ownership, and limitations.
+- Terms and Conditions: https://studio.z-craft.xyz/legal/terms - These terms explain how ZCraft Studios handles custom development requests, downloadable resources, support, acceptable use, payments, ownership, and limitations.
 - Privacy Policy: https://studio.z-craft.xyz/legal/privacy - This policy explains what data ZCraft Studios may collect, why it is used, how third-party services may process it, and how to contact the studio about privacy questions.
-- Refund and Cancellation Policy: https://studio.z-craft.xyz/legal/refunds - This policy explains how refunds, cancellations, revisions, donations, support, and digital product issues are handled for ZCraft Studios resources and custom work.
 
-
-Featured resources:
-- Evidence Discord Bot (Bot, $5.38): Best Discord bot for performance and handling user cases and moderation.
-- Visual Config Studio (Website, $5.47): Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.
-
-Competitor comparisons: https://studio.z-craft.xyz/comparisons
+Competitor comparisons:
 - Freelance Minecraft Plugin Developers: best for Small one-off plugin features, quick patches, and low-risk tasks with a narrow scope. ZCraft advantage: ZCraft Studios is stronger when you need custom plugin development, server configuration, Discord bot work, documentation, testing, and support expectations handled together.
 - Large Minecraft Development Teams: best for Large multi-month projects that need many specialists, enterprise-style management, or several parallel workstreams. ZCraft advantage: ZCraft Studios keeps communication direct and focused on practical Minecraft server outcomes instead of oversized process.
 - Marketplace Sellers And Prebuilt Plugins: best for Common features where an existing product already matches the server's needs and budget. ZCraft advantage: ZCraft Studios is better when the server needs custom logic, unique workflows, private integrations, Discord automation, or setup guidance around a real production environment.
 - Config-Only Setup Shops: best for Message packs, permissions, scoreboards, menus, and lightweight server polish when no custom code is needed. ZCraft advantage: ZCraft Studios can combine configuration work with plugin development, Discord bots, web tools, and resource pages when the project needs more than config editing.
 - Internal Staff Or Volunteer Developers: best for Servers with trusted technical staff who already know the environment and can maintain the work long term. ZCraft advantage: ZCraft Studios gives outside implementation help, scope review, documentation, and production-focused delivery when internal staff are busy or missing specialist experience.
 - No-Code Templates And Visual Tools: best for Fast prototypes, basic websites, simple configuration edits, and non-technical experimentation. ZCraft advantage: ZCraft Studios is a better fit for production plugins, backend systems, Discord bots, integrations, and custom workflows that need code-level control.
+
+Featured resources:
+- Evidence Discord Bot (Bot, $5.38): Best Discord bot for performance and handling user cases and moderation.
+- Visual Config Studio (Website, $5.47): Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.

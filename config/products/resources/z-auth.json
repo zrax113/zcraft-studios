@@ -1,0 +1,32 @@
+{
+  "audience": "Minecraft networks that need proxy-level login protection and synced auth state.",
+  "brand": "Proxy Auth",
+  "category": "Plugin",
+  "featured": false,
+  "image": "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
+  "links": [
+    {
+      "href": "https://github.com/zraxgaming/zcraft-auth",
+      "label": "View",
+      "variant": "primary"
+    }
+  ],
+  "setupDifficulty": "Moderate",
+  "status": "Free",
+  "summary": "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+  "supportMethod": "GitHub repository issues and ZCraft Studios contact channels.",
+  "supportedPlatforms": [
+    "Velocity",
+    "Paper",
+    "Minecraft proxy networks"
+  ],
+  "tags": [
+    "Proxy",
+    "Authentication",
+    "Minecraft",
+    "Velocity",
+    "Paper"
+  ],
+  "title": "Z-Auth",
+  "what": "Proxy-first authentication plugin for Minecraft networks."
+}

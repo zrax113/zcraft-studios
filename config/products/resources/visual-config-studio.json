@@ -1,0 +1,29 @@
+{
+  "audience": "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
+  "brand": "Website",
+  "category": "Website",
+  "featured": true,
+  "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
+  "links": [
+    {
+      "href": "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+      "label": "View",
+      "variant": "primary"
+    }
+  ],
+  "setupDifficulty": "Easy",
+  "status": "$5.47",
+  "summary": "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
+  "supportMethod": "BuiltByBit resource page and ZCraft Studios contact channels.",
+  "supportedPlatforms": [
+    "Web browser",
+    "Minecraft plugin configs"
+  ],
+  "tags": [
+    "Web",
+    "Configs",
+    "Visual"
+  ],
+  "title": "Visual Config Studio",
+  "what": "Web-based visual configuration editor for Minecraft plugin configs."
+}

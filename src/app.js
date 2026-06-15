@@ -91,7 +91,7 @@
     if (pageKey === 'legal-overview') {
       return {
         title: `Legal Policies \u2014 ${cfg.site.name}`,
-        description: `Legal policies for ${cfg.site.name}, including terms of service, privacy policy, refunds, cancellations, support, and digital product information.`,
+        description: `Legal policies for ${cfg.site.name}, including terms and conditions, privacy, support, and digital product information.`,
         keywords: (cfg.legalPages || []).flatMap(page => [page.title, ...(page.keywords || [])]).filter(Boolean).join(', '),
         canonical: '/legal',
         image: cfg.branding.ogImage,
@@ -185,6 +185,11 @@
       'A strong request includes platform, budget, timeline, target features, reference links, and contact details for follow-up.',
       'ZCraft Studios uses request details to quote scope, explain limits, confirm support expectations, and plan a production-ready delivery.'
     ],
+    contact: [
+      'The contact page lists the fastest ways to reach ZCraft Studios for Minecraft plugin commissions, server configuration help, Discord bot support, and web projects.',
+      'Discord is the fastest contact option, while email is available for business inquiries, quotes, project records, and longer support details.',
+      'Clear contact details help clients confirm scope, share logs or references, and choose the right channel before opening a custom request.'
+    ],
     donate: [
       'The donate page lets supporters fund ZCraft Studios resources, plugins, configs, Discord bots, web tools, hosting, and ongoing support.',
       'Donations are optional, processed through PayPal, and help keep free or low-cost Minecraft tooling available to the community.',
@@ -246,6 +251,20 @@
       {
         question: 'How quickly does ZCraft Studios respond?',
         answer: 'The request page is designed for quick quote follow-up. Response timing can vary by workload, but the form asks for enough detail to review the project efficiently.'
+      }
+    ],
+    contact: [
+      {
+        question: 'What is the fastest way to contact ZCraft Studios?',
+        answer: 'Discord is the fastest way to contact ZCraft Studios for project questions, support checks, and quick commission discussions.'
+      },
+      {
+        question: 'When should I use email instead of Discord?',
+        answer: 'Use email for business inquiries, longer project briefs, payment or quote records, and messages that need a clear written trail.'
+      },
+      {
+        question: 'What details should I include when contacting the studio?',
+        answer: 'Include your service type, platform, budget, timeline, references, logs if relevant, and the best way to follow up.'
       }
     ],
     donate: [
@@ -1170,7 +1189,7 @@
               </div>
               <div class="benefit">
                 <span class="benefit-num">4</span>
-                <div><strong>Support the studio</strong><p>Your donation helps keep the site and projects running.</p></div>
+                <div><strong>Support the studio</strong><p>Your donation helps keep the site and resources running.</p></div>
               </div>
             </div>
           </div>
@@ -1508,7 +1527,7 @@
 
     const statsHTML = statsRow(cfg.stats);
 
-    const featured = cfg.projects.filter(p => p.featured).slice(0, 3);
+    const featured = (cfg.resources || []).filter(p => p.featured).slice(0, 3);
     const featuredHTML = windowBox(`<span>~/</span>featured.work`, `
       <div class="section-label">// featured releases</div>
       <div class="projects-grid">${featured.map(projectCard).join('')}</div>
@@ -1625,9 +1644,9 @@
         </div>
       </div>`;
 
-    const projectsBox = windowBox(`<span>~/</span>projects.all`, `
-      <div class="section-label">// all projects</div>
-      <div class="projects-grid">${cfg.projects.map(projectCard).join('')}</div>
+    const projectsBox = windowBox(`<span>~/</span>resources.all`, `
+      <div class="section-label">// all resources</div>
+      <div class="projects-grid">${(cfg.resources || []).map(projectCard).join('')}</div>
     `);
 
     const reviewsHTML = windowBox(`<span>~/</span>testimonials.log`, `
@@ -1943,7 +1962,7 @@
       <section class="page-hero">
         <span class="page-label">${esc(page.label || '// legal')}</span>
         <h1>Legal Policies</h1>
-        <p class="page-copy">Terms, privacy, refund, cancellation, support, and digital product policies for ${esc(cfg.site.name)}.</p>
+        <p class="page-copy">Terms and conditions, privacy, support, and digital product policies for ${esc(cfg.site.name)}.</p>
       </section>
       <div class="blogs-list" aria-label="Legal policies">
         <div class="section-label">${esc(page.label || '// legal')}</div>
@@ -2009,6 +2028,7 @@
         <h1>${esc(c.title)}</h1>
         <p class="page-copy">${esc(c.copy)}</p>
       </section>
+      ${renderSummaryBlock('contact')}
       ${contactCards}
       <div class="contact-cta-row">
         <a class="btn btn-primary" href="/request">request custom service</a>
@@ -2019,7 +2039,8 @@
           ${platformCards}
         </div>
       </div>
-      ${renderTrustBlock(cfg)}`;
+      ${renderTrustBlock(cfg)}
+      ${renderFaqBlock('contact')}`;
   }
 
   function renderTeam(cfg) {
@@ -2167,6 +2188,14 @@
     })();
   }
 
+  async function resolveConfigItems(items = []) {
+    return Promise.all((items || []).map(async item => {
+      if (!item || typeof item !== 'object' || !item.file) return item;
+      const filePath = String(item.file).replace(/^file:/, '').replace(/^\/+/, '');
+      return tryFetchJson(buildConfigPaths(filePath));
+    }));
+  }
+
   Promise.all([
     tryFetchJson(buildConfigPaths('info.json')),
     tryFetchJson(buildConfigPaths('products.json')),
@@ -2174,14 +2203,17 @@
     tryFetchJson(buildConfigPaths('blogs.json')),
     tryFetchJson(buildConfigPaths('legal.json')),
     tryFetchJson(buildConfigPaths('comparisons.json'))
-  ]).then(([info, products, reviews, blogs, legal, comparisons]) => {
+  ]).then(async ([info, products, reviews, blogs, legal, comparisons]) => {
+    const [resources, blogPosts] = await Promise.all([
+      resolveConfigItems(products.resources || []),
+      resolveConfigItems(blogs.posts || [])
+    ]);
     const cfg = {
       ...info,
-      projects: products.projects || [],
-      resources: products.resources || [],
+      resources,
       reviews: reviews.reviews || [],
       blogPage: blogs.page || {},
-      blogPosts: blogs.posts || [],
+      blogPosts,
       blogFaq: blogs.faq || [],
       legalPage: legal.page || {},
       legalPages: legal.pages || [],

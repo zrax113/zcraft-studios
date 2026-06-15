@@ -1,642 +1,448 @@
 {
-   "blogPostCount" : 4,
-   "canonicalPages" : [
-      {
-         "canonical" : "/about",
-         "description" : "ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.",
-         "indexable" : true,
-         "key" : "about",
-         "keywords" : "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
-         "title" : "About Our Minecraft Studio — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/about"
-      },
-      {
-         "canonical" : "/blogs",
-         "description" : "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.",
-         "indexable" : true,
-         "key" : "blogs",
-         "keywords" : "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI crawler SEO, llms.txt, structured data",
-         "title" : "Minecraft Development Blog — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/blogs"
-      },
-      {
-         "canonical" : "/contact",
-         "description" : "Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.",
-         "indexable" : true,
-         "key" : "contact",
-         "keywords" : "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
-         "title" : "Contact for Minecraft Development — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/contact"
-      },
-      {
-         "canonical" : "/donate",
-         "description" : "Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.",
-         "indexable" : true,
-         "key" : "donate",
-         "keywords" : "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
-         "title" : "Support Minecraft Tools — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/donate"
-      },
-      {
-         "canonical" : "/",
-         "description" : "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
-         "indexable" : true,
-         "key" : "home",
-         "keywords" : "ZCraft Studios, Minecraft plugins, Minecraft server configs, Discord bots, Paper plugins, Spigot plugins, Velocity plugins, Minecraft resources, server setup, web development",
-         "title" : "ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots",
-         "url" : "https://studio.z-craft.xyz/"
-      },
-      {
-         "canonical" : "/request",
-         "description" : "Request custom Minecraft plugins, server configs, Discord bot development, or web tools from ZCraft Studios.",
-         "indexable" : true,
-         "key" : "request",
-         "keywords" : "request Minecraft plugin, custom Minecraft plugin, server config request, Discord bot development request, custom web tool, ZCraft Studios commission",
-         "title" : "Request Custom Service — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/request"
-      },
-      {
-         "canonical" : "/resources",
-         "description" : "Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.",
-         "indexable" : true,
-         "key" : "resources",
-         "keywords" : "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
-         "title" : "Minecraft Resources & Tools — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/resources"
-      },
-      {
-         "canonical" : "/team",
-         "description" : "Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.",
-         "indexable" : true,
-         "key" : "team",
-         "keywords" : "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
-         "title" : "Minecraft Development Team — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/team"
-      },
-      {
-         "canonical" : "/comparisons",
-         "description" : "Compare ZCraft Studios with freelancers, large Minecraft development teams, marketplace sellers, config-only shops, internal staff, and no-code tools.",
-         "indexable" : 1,
-         "key" : "comparisons",
-         "keywords" : "ZCraft Studios comparison, Minecraft plugin developer comparison, Minecraft development competitors, Minecraft plugin agency alternative, freelance Minecraft plugin developer, Minecraft server development studio, Discord bot development comparison, Minecraft server configuration service comparison",
-         "title" : "ZCraft Studios vs Minecraft Development Competitors",
-         "url" : "https://studio.z-craft.xyz/comparisons"
-      }
-   ],
-   "categories" : [
-      "Bot",
-      "Config",
-      "Plugin",
-      "Website"
-   ],
-   "competitorComparisonCount" : 6,
-   "description" : "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
-   "discovery" : {
-      "ai_json_endpoint" : "https://studio.z-craft.xyz/ai-agents",
-      "ai_overview_json" : "https://studio.z-craft.xyz/ai-overview.json",
-      "ai_text" : "https://studio.z-craft.xyz/ai.txt",
-      "full_site_index_json" : "https://studio.z-craft.xyz/site-index.json",
-      "llms" : "https://studio.z-craft.xyz/llms.txt",
-      "sitemap" : "https://studio.z-craft.xyz/sitemap.xml",
-      "source_blogs" : "https://studio.z-craft.xyz/config/blogs.json",
-      "source_comparisons" : "https://studio.z-craft.xyz/config/comparisons.json",
-      "source_config" : "https://studio.z-craft.xyz/config/info.json",
-      "source_legal" : "https://studio.z-craft.xyz/config/legal.json",
-      "source_products" : "https://studio.z-craft.xyz/config/products.json",
-      "source_reviews" : "https://studio.z-craft.xyz/config/reviews.json"
-   },
-   "featuredResources" : [
-      {
-         "audience" : "Discord communities, staff teams, and moderation departments.",
-         "brand" : "Bot",
-         "category" : "Bot",
-         "featured" : true,
-         "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
-         "links" : [
-            {
-               "href" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
-               "label" : "View",
-               "variant" : "primary"
-            }
-         ],
-         "pageUrl" : "https://studio.z-craft.xyz/resources/evidence-discord-bot",
-         "schema" : {
-            "@type" : "SoftwareApplication",
-            "applicationCategory" : "Bot",
-            "audience" : "Discord communities, staff teams, and moderation departments.",
-            "description" : "Discord evidence and case management bot for moderation teams.",
-            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
-            "name" : "Evidence Discord Bot",
-            "operatingSystem" : "Discord, Node.js",
-            "url" : "https://studio.z-craft.xyz/resources/evidence-discord-bot"
-         },
-         "setupDifficulty" : "Easy",
-         "slug" : "evidence-discord-bot",
-         "status" : "$5.38",
-         "summary" : "Best Discord bot for performance and handling user cases and moderation.",
-         "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
-         "supportedPlatforms" : [
-            "Discord",
-            "Node.js"
-         ],
-         "tags" : [
-            "Simple",
-            "Performance"
-         ],
-         "title" : "Evidence Discord Bot",
-         "what" : "Discord evidence and case management bot for moderation teams."
-      },
-      {
-         "audience" : "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
-         "brand" : "Website",
-         "category" : "Website",
-         "featured" : true,
-         "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
-         "links" : [
-            {
-               "href" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
-               "label" : "View",
-               "variant" : "primary"
-            }
-         ],
-         "pageUrl" : "https://studio.z-craft.xyz/resources/visual-config-studio",
-         "schema" : {
-            "@type" : "SoftwareApplication",
-            "applicationCategory" : "Website",
-            "audience" : "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
-            "description" : "Web-based visual configuration editor for Minecraft plugin configs.",
-            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
-            "name" : "Visual Config Studio",
-            "operatingSystem" : "Web browser, Minecraft plugin configs",
-            "url" : "https://studio.z-craft.xyz/resources/visual-config-studio"
-         },
-         "setupDifficulty" : "Easy",
-         "slug" : "visual-config-studio",
-         "status" : "$5.47",
-         "summary" : "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
-         "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
-         "supportedPlatforms" : [
-            "Web browser",
-            "Minecraft plugin configs"
-         ],
-         "tags" : [
-            "Web",
-            "Configs",
-            "Visual"
-         ],
-         "title" : "Visual Config Studio",
-         "what" : "Web-based visual configuration editor for Minecraft plugin configs."
-      }
-   ],
-   "generatedAt" : "Mon Jun 15 10:05:08 2026Z",
-   "generatedDetailPages" : [
-      "https://studio.z-craft.xyz/resources/evidence-discord-bot",
-      "https://studio.z-craft.xyz/resources/visual-config-studio",
-      "https://studio.z-craft.xyz/resources/luckperms-visual-tree",
-      "https://studio.z-craft.xyz/resources/z-auth",
-      "https://studio.z-craft.xyz/resources/essentialsx-messages-config",
-      "https://studio.z-craft.xyz/resources/modern-maintenance-messages-config",
-      "https://studio.z-craft.xyz/resources/litebans-message-templates",
-      "https://studio.z-craft.xyz/resources/products-tab-config",
-      "https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning",
-      "https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs",
-      "https://studio.z-craft.xyz/blogs/discord-bot-community-automation",
-      "https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site"
-   ],
-   "latestBlogPosts" : [
-      {
-         "audience" : "Minecraft server owners, network managers, and creators requesting custom plugin development.",
-         "category" : "Minecraft Plugins",
-         "date" : "2026-06-15",
-         "featured" : true,
-         "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
-         "imageAlt" : "Minecraft plugin planning and proxy authentication resource artwork",
-         "keywords" : [
-            "Minecraft custom plugin",
-            "Paper plugin development",
-            "Spigot plugin development",
-            "Velocity plugin development",
-            "Minecraft server plugin planning",
-            "custom Minecraft development"
-         ],
-         "publisherHandle" : "@zraxgaming",
-         "readingTime" : "4 min read",
-         "sections" : [
-            {
-               "body" : "Write the exact **player action**, staff action, command, permission, storage requirement, and failure case before development starts. A clear plugin request should explain who uses the feature, when it runs, what data it saves, and what should happen if the server restarts or a dependency is missing.\n- Include the target platform.\n- Include the expected commands.\n- Include the support and update expectations.",
-               "heading" : "What should the plugin do?"
-            },
-            {
-               "body" : "Name the target server software and version range. Paper, Spigot, Velocity, and proxy networks can need different event handling, commands, permissions, and deployment steps, so platform clarity helps the quote and timeline stay accurate.",
-               "heading" : "Which platforms need support?"
-            }
-         ],
-         "slug" : "minecraft-custom-plugin-planning",
-         "summary" : "A practical checklist for server owners who want a custom Paper, Spigot, or Velocity plugin without vague scope, surprise costs, or fragile launch behavior.",
-         "tags" : [
-            "Minecraft plugins",
-            "Paper",
-            "Spigot",
-            "Velocity",
-            "Custom development"
-         ],
-         "title" : "How should a Minecraft server plan a custom plugin?",
-         "updated" : "2026-06-15",
-         "url" : "https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning"
-      },
-      {
-         "audience" : "Server operators using EssentialsX, LiteBans, TAB, LuckPerms, and similar Minecraft tools.",
-         "category" : "Server Configuration",
-         "date" : "2026-06-15",
-         "featured" : false,
-         "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
-         "imageAlt" : "Minecraft server configuration and scoreboard resource artwork",
-         "keywords" : [
-            "Minecraft server configs",
-            "Minecraft configuration resource",
-            "EssentialsX messages",
-            "LiteBans templates",
-            "TAB configuration",
-            "LuckPerms server setup"
-         ],
-         "publisherHandle" : "@zraxgaming",
-         "readingTime" : "3 min read",
-         "sections" : [
-            {
-               "body" : "A strong config resource explains supported plugins, setup difficulty, required files, placeholders, support method, and what the server owner should edit after download. The goal is fast deployment without guessing.",
-               "heading" : "How should a config be documented?"
-            },
-            {
-               "body" : "Commands, placeholders, color formatting, permission groups, reload behavior, and player-facing messages should be checked in a real server environment before the resource is published or installed on a production network.",
-               "heading" : "What should be tested before release?"
-            }
-         ],
-         "slug" : "production-ready-minecraft-configs",
-         "summary" : "A short guide to clean Minecraft server configs, message packs, permission layouts, maintenance templates, and scoreboard resources that are easy to install and support.",
-         "tags" : [
-            "Minecraft configs",
-            "EssentialsX",
-            "LiteBans",
-            "TAB",
-            "LuckPerms"
-         ],
-         "title" : "What makes a Minecraft config resource production-ready?",
-         "updated" : "2026-06-15",
-         "url" : "https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs"
-      },
-      {
-         "audience" : "Discord staff teams, Minecraft communities, and moderation departments.",
-         "category" : "Discord Bots",
-         "date" : "2026-06-15",
-         "featured" : false,
-         "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
-         "imageAlt" : "Discord moderation evidence bot artwork",
-         "keywords" : [
-            "Discord bot development",
-            "custom Discord bot",
-            "Discord moderation bot",
-            "evidence bot",
-            "community automation",
-            "Node.js Discord bot"
-         ],
-         "publisherHandle" : "@zraxgaming",
-         "readingTime" : "3 min read",
-         "sections" : [
-            {
-               "body" : "Custom bots are strongest when they replace repeated staff work: evidence logs, case tracking, role workflows, alerts, ticket routing, or moderation reports. The best requests describe every command and permission level.",
-               "heading" : "What should the bot automate?"
-            },
-            {
-               "body" : "Bot support should include hosting expectations, setup steps, environment variables, permission requirements, and a clear contact method for bug reports or small changes after launch.",
-               "heading" : "How should support work?"
-            }
-         ],
-         "slug" : "discord-bot-community-automation",
-         "summary" : "How to decide when a Discord bot should be custom-built for evidence handling, moderation workflows, automation, and community operations.",
-         "tags" : [
-            "Discord bot",
-            "Moderation",
-            "Automation",
-            "Evidence bot",
-            "Node.js"
-         ],
-         "title" : "When does a Discord community need a custom bot?",
-         "updated" : "2026-06-15",
-         "url" : "https://studio.z-craft.xyz/blogs/discord-bot-community-automation"
-      },
-      {
-         "audience" : "AI agents, search crawlers, site auditors, and developers checking ZCraft Studios metadata.",
-         "category" : "SEO",
-         "date" : "2026-06-15",
-         "featured" : false,
-         "image" : "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
-         "imageAlt" : "ZCraft Studios AI crawler and SEO discovery artwork",
-         "keywords" : [
-            "AI crawler SEO",
-            "llms.txt",
-            "site-index.json",
-            "structured data",
-            "AI agents",
-            "ChatGPT crawler",
-            "PerplexityBot",
-            "ClaudeBot"
-         ],
-         "publisherHandle" : "@zraxgaming",
-         "readingTime" : "4 min read",
-         "sections" : [
-            {
-               "body" : "Crawlers should use sitemap.xml for page discovery, llms.txt for a concise site explanation, ai-overview.json for compact machine-readable context, and site-index.json for the full generated index.",
-               "heading" : "Which files should crawlers read first?"
-            },
-            {
-               "body" : "Config-driven content keeps page metadata, product descriptions, blog posts, summaries, and AI discovery files aligned. When configs change, the generated index can update from the same source data.",
-               "heading" : "Why keep data in config files?"
-            }
-         ],
-         "slug" : "ai-crawler-friendly-studio-site",
-         "summary" : "Why ZCraft Studios publishes sitemap, llms.txt, ai.txt, site-index.json, structured data, and clear page summaries for search engines and AI agents.",
-         "tags" : [
-            "SEO",
-            "llms.txt",
-            "structured data",
-            "AI agents",
-            "sitemap"
-         ],
-         "title" : "How can AI crawlers understand a studio website?",
-         "updated" : "2026-06-15",
-         "url" : "https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site"
-      }
-   ],
-   "legalPages" : [
-      {
-         "description" : "Read the ZCraft Studios terms for Minecraft plugin development, Discord bot services, server configuration resources, web tools, commissions, support, and acceptable use.",
-         "effectiveDate" : "2026-06-15",
-         "faq" : [
-            {
-               "answer" : "No. A request becomes accepted only after ZCraft Studios confirms the scope, timeline, price, and delivery expectations.",
-               "question" : "Are custom commissions automatically accepted?"
-            },
-            {
-               "answer" : "Yes. Projects can be refused if they are unsafe, abusive, illegal, unclear, outside scope, or incompatible with available time and support capacity.",
-               "question" : "Can ZCraft Studios refuse a project?"
-            }
-         ],
-         "keywords" : [
-            "ZCraft Studios terms",
-            "Minecraft plugin terms of service",
-            "Discord bot development terms",
-            "Minecraft server configuration terms",
-            "custom development agreement",
-            "commission terms"
-         ],
-         "sections" : [
-            {
-               "body" : "These terms apply when you visit the ZCraft Studios website, request custom work, purchase or download resources, contact the studio, donate, or use information published on the site. By using the site or starting a project request, you agree to follow these terms.",
-               "heading" : "Who do these terms apply to?"
-            },
-            {
-               "body" : "ZCraft Studios provides **Minecraft plugin development**, server configuration services, Discord bot development, web tools, setup support, and downloadable resources. Custom work is scoped per project based on platform, features, timeline, budget, and support needs.",
-               "heading" : "What services does ZCraft Studios provide?"
-            },
-            {
-               "body" : "A request is not accepted until ZCraft Studios confirms scope, price, timeline, deliverables, and support expectations. Quotes may change if the requested scope changes, if missing details are discovered, or if third-party platform limits affect delivery.",
-               "heading" : "How do custom requests and quotes work?"
-            },
-            {
-               "body" : "Clients must provide accurate project details, platform versions, plugin lists, access requirements, and testing feedback. Clients are responsible for maintaining backups, checking compatibility with their own server stack, and using delivered files lawfully.",
-               "heading" : "What are client responsibilities?"
-            },
-            {
-               "body" : "You may not use ZCraft Studios work for malware, credential theft, griefing tools, unauthorized access, harassment, spam, evasion of platform rules, or illegal activity. ZCraft Studios may refuse or stop work that creates safety, legal, or abuse risks.",
-               "heading" : "What is not allowed?"
-            },
-            {
-               "body" : "Services and resources are provided with reasonable care, but Minecraft servers, Discord, hosting providers, third-party plugins, APIs, and marketplaces can change. ZCraft Studios is not responsible for outages, platform changes, user misuse, or third-party service failures.",
-               "heading" : "What limits apply?"
-            }
-         ],
-         "seoTitle" : "Terms of Service — ZCraft Studios",
-         "slug" : "terms",
-         "summary" : "These terms explain how ZCraft Studios handles custom development requests, downloadable resources, support, acceptable use, payments, ownership, and limitations.",
-         "title" : "Terms of Service",
-         "updated" : "2026-06-15",
-         "url" : "https://studio.z-craft.xyz/legal/terms"
-      },
-      {
-         "description" : "Read how ZCraft Studios handles contact details, project request data, Discord usernames, email addresses, analytics, payments, and third-party service links.",
-         "effectiveDate" : "2026-06-15",
-         "faq" : [
-            {
-               "answer" : "No. ZCraft Studios does not sell personal information. Data is used for contact, quotes, support, delivery, security, and operations.",
-               "question" : "Does ZCraft Studios sell personal information?"
-            },
-            {
-               "answer" : "Yes. If you use Discord, PayPal, GitHub, BuiltByBit, or other third-party services, those providers may process data under their own privacy policies.",
-               "question" : "Does Discord or PayPal process data separately?"
-            }
-         ],
-         "keywords" : [
-            "ZCraft Studios privacy policy",
-            "Minecraft development privacy",
-            "Discord bot privacy",
-            "project request data",
-            "contact form privacy",
-            "PayPal donation privacy"
-         ],
-         "sections" : [
-            {
-               "body" : "ZCraft Studios may collect information you submit through forms or direct contact, including Discord username, email address, project type, target platform, budget, timeline, references, request details, support messages, and donation-related confirmation details.",
-               "heading" : "What information may be collected?"
-            },
-            {
-               "body" : "Information is used to respond to messages, prepare quotes, deliver custom work, provide support, improve resources, prevent abuse, maintain records, and keep the website and services reliable.",
-               "heading" : "How is the information used?"
-            },
-            {
-               "body" : "The site may link to or use services such as Discord, PayPal, GitHub, BuiltByBit, image hosting, Vercel, browser fonts, and other infrastructure providers. Those services may process data according to their own policies.",
-               "heading" : "Which third-party services may be involved?"
-            },
-            {
-               "body" : "Payment processing is handled by third-party payment providers such as PayPal. ZCraft Studios does not need to store full payment card details on this website.",
-               "heading" : "Are payments stored by ZCraft Studios?"
-            },
-            {
-               "body" : "Project and contact records may be kept as long as needed for support, accounting, dispute handling, security, and operational history. You can contact ZCraft Studios to ask about correction or deletion where practical and legally allowed.",
-               "heading" : "How long is data kept?"
-            },
-            {
-               "body" : "Privacy questions can be sent through the contact page or by email at `zain@z-craft.xyz`. Include enough context to identify the request without sending unnecessary sensitive information.",
-               "heading" : "How can privacy questions be sent?"
-            }
-         ],
-         "seoTitle" : "Privacy Policy — ZCraft Studios",
-         "slug" : "privacy",
-         "summary" : "This policy explains what data ZCraft Studios may collect, why it is used, how third-party services may process it, and how to contact the studio about privacy questions.",
-         "title" : "Privacy Policy",
-         "updated" : "2026-06-15",
-         "url" : "https://studio.z-craft.xyz/legal/privacy"
-      },
-      {
-         "description" : "Read the ZCraft Studios refund, cancellation, revision, support, and digital product policy for Minecraft resources, Discord bots, server configs, and custom development.",
-         "effectiveDate" : "2026-06-15",
-         "faq" : [
-            {
-               "answer" : "Not always. Refund eligibility depends on delivery status, marketplace rules, technical issue evidence, and whether the issue can be resolved through support.",
-               "question" : "Are all digital product purchases refundable?"
-            },
-            {
-               "answer" : "No. New features, changed scope, and extra integrations are usually treated as new work or quoted revisions.",
-               "question" : "Do new feature requests count as refunds or fixes?"
-            }
-         ],
-         "keywords" : [
-            "ZCraft Studios refund policy",
-            "Minecraft plugin refund policy",
-            "custom development cancellation",
-            "digital product refunds",
-            "Minecraft resource support",
-            "commission refund terms"
-         ],
-         "sections" : [
-            {
-               "body" : "Downloadable digital resources may have limited refund eligibility once files, links, licenses, or access have been delivered. If a resource has a technical issue, contact ZCraft Studios with the product name, platform, version, screenshots, logs, and setup details.",
-               "heading" : "How are downloadable resources handled?"
-            },
-            {
-               "body" : "Custom project cancellation depends on project stage. Work that has already been planned, designed, coded, configured, tested, delivered, or reserved in the schedule may not be fully refundable. Any refund is reviewed against completed work and agreed scope.",
-               "heading" : "How are custom project cancellations handled?"
-            },
-            {
-               "body" : "Reasonable fixes for confirmed bugs or agreed deliverables are handled through the support method listed for the product or project. New features, changed requirements, platform changes, or extra integrations may require a new quote.",
-               "heading" : "What about revisions?"
-            },
-            {
-               "body" : "Donations are voluntary support for the studio and are generally not treated as purchases of a specific product or deliverable. If a donation was accidental, contact ZCraft Studios quickly with the payment details and context.",
-               "heading" : "Are donations refundable?"
-            },
-            {
-               "body" : "Include your order or payment reference, product or project name, contact method, issue description, screenshots, logs, platform versions, and steps to reproduce the problem.",
-               "heading" : "What information is needed for a refund review?"
-            }
-         ],
-         "seoTitle" : "Refund and Cancellation Policy — ZCraft Studios",
-         "slug" : "refunds",
-         "summary" : "This policy explains how refunds, cancellations, revisions, donations, support, and digital product issues are handled for ZCraft Studios resources and custom work.",
-         "title" : "Refund and Cancellation Policy",
-         "updated" : "2026-06-15",
-         "url" : "https://studio.z-craft.xyz/legal/refunds"
-      }
-   ],
-   "name" : "ZCraft Studios",
-   "projectCount" : 8,
-   "resourceCount" : 8,
-   "resourcesPage" : {
-      "backHref" : "/resources",
-      "backLabel" : "all resources",
-      "copy" : "A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly.",
-      "defaultAudience" : "Minecraft communities that need reliable tooling",
-      "defaultPlatform" : "Minecraft server environments",
-      "defaultSetupDifficulty" : "practical",
-      "defaultSupportMethod" : "ZCraft Studios contact channels",
-      "detailLabel" : "// resource",
-      "detailsLinkLabel" : "details",
-      "externalLinkLabel" : "visit",
-      "faqHeading" : "What do people ask about this resource?",
-      "featuredDetailsLabel" : "read product details",
-      "label" : "// resources",
-      "paragraphHeadings" : [
-         "What does this product do?",
-         "Who should use this resource?",
-         "How do setup and support work?"
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-06-15T12:18:01.119Z",
+  "name": "ZCraft Studios",
+  "url": "https://studio.z-craft.xyz",
+  "summary": "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
+  "description": "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
+  "topics": [
+    "Authentication",
+    "Configs",
+    "EssentialsX",
+    "LiteBans",
+    "LuckPerms",
+    "Maintenance",
+    "Messages",
+    "Minecraft",
+    "Moderation",
+    "Paper",
+    "Performance",
+    "Permissions",
+    "Proxy",
+    "Scoreboard",
+    "Simple",
+    "Tab",
+    "Velocity",
+    "Visual",
+    "Web"
+  ],
+  "categories": [
+    "Bot",
+    "Config",
+    "Plugin",
+    "Website"
+  ],
+  "canonicalPages": [
+    {
+      "key": "about",
+      "title": "About Our Minecraft Studio — ZCraft Studios",
+      "description": "ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.",
+      "keywords": "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
+      "canonical": "/about",
+      "url": "https://studio.z-craft.xyz/about",
+      "indexable": true
+    },
+    {
+      "key": "blogs",
+      "title": "Minecraft Development Blog — ZCraft Studios",
+      "description": "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.",
+      "keywords": "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI crawler SEO, llms.txt, structured data",
+      "canonical": "/blogs",
+      "url": "https://studio.z-craft.xyz/blogs",
+      "indexable": true
+    },
+    {
+      "key": "comparisons",
+      "title": "ZCraft Studios vs Minecraft Development Competitors",
+      "description": "Compare ZCraft Studios with freelancers, large Minecraft development teams, marketplace sellers, config-only shops, internal staff, and no-code tools.",
+      "keywords": "ZCraft Studios comparison, Minecraft plugin developer comparison, Minecraft development competitors, Minecraft plugin agency alternative, freelance Minecraft plugin developer, Minecraft server development studio, Discord bot development comparison, Minecraft server configuration service comparison",
+      "canonical": "/comparisons",
+      "url": "https://studio.z-craft.xyz/comparisons",
+      "indexable": true
+    },
+    {
+      "key": "contact",
+      "title": "Contact for Minecraft Development — ZCraft Studios",
+      "description": "Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.",
+      "keywords": "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
+      "canonical": "/contact",
+      "url": "https://studio.z-craft.xyz/contact",
+      "indexable": true
+    },
+    {
+      "key": "donate",
+      "title": "Support Minecraft Tools — ZCraft Studios",
+      "description": "Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.",
+      "keywords": "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
+      "canonical": "/donate",
+      "url": "https://studio.z-craft.xyz/donate",
+      "indexable": true
+    },
+    {
+      "key": "home",
+      "title": "ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots",
+      "description": "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
+      "keywords": "ZCraft Studios, Minecraft plugins, Minecraft server configs, Discord bots, Paper plugins, Spigot plugins, Velocity plugins, Minecraft resources, server setup, web development",
+      "canonical": "/",
+      "url": "https://studio.z-craft.xyz/",
+      "indexable": true
+    },
+    {
+      "key": "request",
+      "title": "Request Custom Service — ZCraft Studios",
+      "description": "Request custom Minecraft plugins, server configs, Discord bot development, or web tools from ZCraft Studios.",
+      "keywords": "request Minecraft plugin, custom Minecraft plugin, server config request, Discord bot development request, custom web tool, ZCraft Studios commission",
+      "canonical": "/request",
+      "url": "https://studio.z-craft.xyz/request",
+      "indexable": true
+    },
+    {
+      "key": "resources",
+      "title": "Minecraft Resources & Tools — ZCraft Studios",
+      "description": "Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.",
+      "keywords": "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
+      "canonical": "/resources",
+      "url": "https://studio.z-craft.xyz/resources",
+      "indexable": true
+    },
+    {
+      "key": "team",
+      "title": "Minecraft Development Team — ZCraft Studios",
+      "description": "Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.",
+      "keywords": "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
+      "canonical": "/team",
+      "url": "https://studio.z-craft.xyz/team",
+      "indexable": true
+    }
+  ],
+  "resourceCount": 8,
+  "featuredResources": [
+    {
+      "slug": "evidence-discord-bot",
+      "title": "Evidence Discord Bot",
+      "brand": "Bot",
+      "category": "Bot",
+      "summary": "Best Discord bot for performance and handling user cases and moderation.",
+      "what": "Discord evidence and case management bot for moderation teams.",
+      "audience": "Discord communities, staff teams, and moderation departments.",
+      "supportedPlatforms": [
+        "Discord",
+        "Node.js"
       ],
-      "title" : "Tools, configs, and kits built for real servers."
-   },
-   "schemaVersion" : "1.0",
-   "seoSupport" : {
-      "copy" : "ZCraft Studios is operated as a practical development studio for Minecraft server owners, Discord communities, and creator teams. The site publishes clear service pages, product summaries, support methods, pricing or availability status, public contact paths, and generated machine-readable indexes so humans, search engines, and AI agents can verify what the studio offers.",
-      "eeat" : [
-         {
-            "copy" : "The studio publishes real Minecraft resources, server configuration packs, Discord bot tools, and web utilities with product images, supported platforms, setup difficulty, and support methods.",
-            "title" : "Experience"
-         },
-         {
-            "copy" : "Core work covers Paper, Spigot, Velocity, LuckPerms, EssentialsX, LiteBans, TAB, Discord, Node.js, Java, and modern browser-based configuration tools.",
-            "title" : "Expertise"
-         },
-         {
-            "copy" : "Product pages link to public resource listings, GitHub repositories, contact channels, sitemap.xml, llms.txt, ai.txt, ai-overview.json, and site-index.json.",
-            "title" : "Authoritativeness"
-         },
-         {
-            "copy" : "Every important page is crawlable, has a canonical URL, includes structured data, uses clear headings, and explains contact, request, pricing, support, and product status where relevant.",
-            "title" : "Trust"
-         }
+      "setupDifficulty": "Easy",
+      "supportMethod": "BuiltByBit resource page and ZCraft Studios contact channels.",
+      "tags": [
+        "Simple",
+        "Performance"
       ],
-      "geoCopy" : "ZCraft Studios is based in the United Arab Emirates and works with clients remotely worldwide, including server owners and communities in the United States, United Kingdom, Canada, Australia, Europe, and other English-speaking Minecraft markets.",
-      "geoTitle" : "Where does ZCraft Studios operate?",
-      "keywords" : [
-         "Minecraft plugin development UAE",
-         "Minecraft plugin development United States",
-         "Minecraft server configuration service",
-         "Discord bot development for Minecraft servers",
-         "Paper plugin developer",
-         "Spigot plugin developer",
-         "Velocity plugin developer",
-         "Minecraft server setup service",
-         "Minecraft configuration packs",
-         "ZCraft Studios E-E-A-T",
-         "AI crawler friendly Minecraft studio",
-         "Minecraft developer worldwide"
+      "status": "$5.38",
+      "featured": true,
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+      "pageUrl": "https://studio.z-craft.xyz/resources/evidence-discord-bot",
+      "links": [
+        {
+          "href": "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+          "label": "View",
+          "variant": "primary"
+        }
       ],
-      "label" : "// trust",
-      "title" : "Why can clients and crawlers trust ZCraft Studios?"
-   },
-   "site" : {
-      "author" : "ZCraft Studios",
-      "domain" : "https://studio.z-craft.xyz",
-      "location" : "United Arab Emirates",
-      "name" : "ZCraft Studios",
-      "primaryMarkets" : [
-         "United Arab Emirates",
-         "United States",
-         "United Kingdom",
-         "Canada",
-         "Australia",
-         "Europe",
-         "Worldwide remote"
+      "schema": {
+        "@type": "SoftwareApplication",
+        "name": "Evidence Discord Bot",
+        "description": "Discord evidence and case management bot for moderation teams.",
+        "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+        "url": "https://studio.z-craft.xyz/resources/evidence-discord-bot",
+        "applicationCategory": "Bot",
+        "operatingSystem": "Discord, Node.js",
+        "audience": "Discord communities, staff teams, and moderation departments.",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Supported platforms",
+            "value": "Discord, Node.js"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Setup difficulty",
+            "value": "Easy"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Support method",
+            "value": "BuiltByBit resource page and ZCraft Studios contact channels."
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Price or status",
+            "value": "$5.38"
+          }
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "$5.38",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    },
+    {
+      "slug": "visual-config-studio",
+      "title": "Visual Config Studio",
+      "brand": "Website",
+      "category": "Website",
+      "summary": "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
+      "what": "Web-based visual configuration editor for Minecraft plugin configs.",
+      "audience": "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
+      "supportedPlatforms": [
+        "Web browser",
+        "Minecraft plugin configs"
       ],
-      "serviceArea" : "Worldwide",
-      "tagline" : "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
-      "year" : 2026
-   },
-   "summary" : "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
-   "topics" : [
-      "Authentication",
-      "Config",
-      "Configs",
-      "EssentialsX",
-      "LiteBans",
-      "LuckPerms",
-      "Maintenance",
-      "Messages",
-      "Minecraft",
-      "Moderation",
-      "Node.js",
-      "Paper",
-      "Performance",
-      "Permissions",
-      "Proxy",
-      "React",
-      "React Flow",
-      "Scoreboard",
-      "Security",
-      "Simple",
-      "Tab",
-      "Tailwind",
-      "Velocity",
-      "Visual",
-      "Vite",
-      "Web"
-   ],
-   "url" : "https://studio.z-craft.xyz"
+      "setupDifficulty": "Easy",
+      "supportMethod": "BuiltByBit resource page and ZCraft Studios contact channels.",
+      "tags": [
+        "Web",
+        "Configs",
+        "Visual"
+      ],
+      "status": "$5.47",
+      "featured": true,
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
+      "pageUrl": "https://studio.z-craft.xyz/resources/visual-config-studio",
+      "links": [
+        {
+          "href": "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+          "label": "View",
+          "variant": "primary"
+        }
+      ],
+      "schema": {
+        "@type": "SoftwareApplication",
+        "name": "Visual Config Studio",
+        "description": "Web-based visual configuration editor for Minecraft plugin configs.",
+        "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
+        "url": "https://studio.z-craft.xyz/resources/visual-config-studio",
+        "applicationCategory": "Website",
+        "operatingSystem": "Web browser, Minecraft plugin configs",
+        "audience": "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Supported platforms",
+            "value": "Web browser, Minecraft plugin configs"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Setup difficulty",
+            "value": "Easy"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Support method",
+            "value": "BuiltByBit resource page and ZCraft Studios contact channels."
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Price or status",
+            "value": "$5.47"
+          }
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "$5.47",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    }
+  ],
+  "blogPostCount": 4,
+  "latestBlogPosts": [
+    {
+      "title": "How should a Minecraft server plan a custom plugin?",
+      "slug": "minecraft-custom-plugin-planning",
+      "date": "2026-06-15",
+      "updated": "2026-06-15",
+      "category": "Minecraft Plugins",
+      "summary": "A practical checklist for server owners who want a custom Paper, Spigot, or Velocity plugin without vague scope, surprise costs, or fragile launch behavior.",
+      "audience": "Minecraft server owners, network managers, and creators requesting custom plugin development.",
+      "tags": [
+        "Minecraft plugins",
+        "Paper",
+        "Spigot",
+        "Velocity",
+        "Custom development"
+      ],
+      "keywords": [
+        "Minecraft custom plugin",
+        "Paper plugin development",
+        "Spigot plugin development",
+        "Velocity plugin development",
+        "Minecraft server plugin planning",
+        "custom Minecraft development"
+      ],
+      "image": "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
+      "imageAlt": "Minecraft plugin planning and proxy authentication resource artwork",
+      "readingTime": "4 min read",
+      "publisherHandle": "ZCraftStudios",
+      "url": "https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning",
+      "sections": [
+        {
+          "heading": "What should the plugin do?",
+          "body": "Write the exact **player action**, staff action, command, permission, storage requirement, and failure case before development starts. A clear plugin request should explain who uses the feature, when it runs, what data it saves, and what should happen if the server restarts or a dependency is missing.\n- Include the target platform.\n- Include the expected commands.\n- Include the support and update expectations."
+        },
+        {
+          "heading": "Which platforms need support?",
+          "body": "Name the target server software and version range. Paper, Spigot, Velocity, and proxy networks can need different event handling, commands, permissions, and deployment steps, so platform clarity helps the quote and timeline stay accurate."
+        }
+      ]
+    },
+    {
+      "title": "What makes a Minecraft config resource production-ready?",
+      "slug": "production-ready-minecraft-configs",
+      "date": "2026-06-15",
+      "updated": "2026-06-15",
+      "category": "Server Configuration",
+      "summary": "A short guide to clean Minecraft server configs, message packs, permission layouts, maintenance templates, and scoreboard resources that are easy to install and support.",
+      "audience": "Server operators using EssentialsX, LiteBans, TAB, LuckPerms, and similar Minecraft tools.",
+      "tags": [
+        "Minecraft configs",
+        "EssentialsX",
+        "LiteBans",
+        "TAB",
+        "LuckPerms"
+      ],
+      "keywords": [
+        "Minecraft server configs",
+        "Minecraft configuration resource",
+        "EssentialsX messages",
+        "LiteBans templates",
+        "TAB configuration",
+        "LuckPerms server setup"
+      ],
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+      "imageAlt": "Minecraft server configuration and scoreboard resource artwork",
+      "readingTime": "3 min read",
+      "publisherHandle": "ZCraftStudios",
+      "url": "https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs",
+      "sections": [
+        {
+          "heading": "How should a config be documented?",
+          "body": "A strong config resource explains supported plugins, setup difficulty, required files, placeholders, support method, and what the server owner should edit after download. The goal is fast deployment without guessing."
+        },
+        {
+          "heading": "What should be tested before release?",
+          "body": "Commands, placeholders, color formatting, permission groups, reload behavior, and player-facing messages should be checked in a real server environment before the resource is published or installed on a production network."
+        }
+      ]
+    },
+    {
+      "title": "When does a Discord community need a custom bot?",
+      "slug": "discord-bot-community-automation",
+      "date": "2026-06-15",
+      "updated": "2026-06-15",
+      "category": "Discord Bots",
+      "summary": "How to decide when a Discord bot should be custom-built for evidence handling, moderation workflows, automation, and community operations.",
+      "audience": "Discord staff teams, Minecraft communities, and moderation departments.",
+      "tags": [
+        "Discord bot",
+        "Moderation",
+        "Automation",
+        "Evidence bot",
+        "Node.js"
+      ],
+      "keywords": [
+        "Discord bot development",
+        "custom Discord bot",
+        "Discord moderation bot",
+        "evidence bot",
+        "community automation",
+        "Node.js Discord bot"
+      ],
+      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+      "imageAlt": "Discord moderation evidence bot artwork",
+      "readingTime": "3 min read",
+      "publisherHandle": "ZCraftStudios",
+      "url": "https://studio.z-craft.xyz/blogs/discord-bot-community-automation",
+      "sections": [
+        {
+          "heading": "What should the bot automate?",
+          "body": "Custom bots are strongest when they replace repeated staff work: evidence logs, case tracking, role workflows, alerts, ticket routing, or moderation reports. The best requests describe every command and permission level."
+        },
+        {
+          "heading": "How should support work?",
+          "body": "Bot support should include hosting expectations, setup steps, environment variables, permission requirements, and a clear contact method for bug reports or small changes after launch."
+        }
+      ]
+    },
+    {
+      "title": "How can AI crawlers understand a studio website?",
+      "slug": "ai-crawler-friendly-studio-site",
+      "date": "2026-06-15",
+      "updated": "2026-06-15",
+      "category": "SEO",
+      "summary": "Why ZCraft Studios publishes sitemap, llms.txt, ai.txt, site-index.json, structured data, and clear page summaries for search engines and AI agents.",
+      "audience": "AI agents, search crawlers, site auditors, and developers checking ZCraft Studios metadata.",
+      "tags": [
+        "SEO",
+        "llms.txt",
+        "structured data",
+        "AI agents",
+        "sitemap"
+      ],
+      "keywords": [
+        "AI crawler SEO",
+        "llms.txt",
+        "site-index.json",
+        "structured data",
+        "AI agents",
+        "ChatGPT crawler",
+        "PerplexityBot",
+        "ClaudeBot"
+      ],
+      "image": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+      "imageAlt": "ZCraft Studios AI crawler and SEO discovery artwork",
+      "readingTime": "4 min read",
+      "publisherHandle": "ZCraftStudios",
+      "url": "https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site",
+      "sections": [
+        {
+          "heading": "Which files should crawlers read first?",
+          "body": "Crawlers should use sitemap.xml for page discovery, llms.txt for a concise site explanation, ai-overview.json for compact machine-readable context, and site-index.json for the full generated index."
+        },
+        {
+          "heading": "Why keep data in config files?",
+          "body": "Config-driven content keeps page metadata, product descriptions, blog posts, summaries, and AI discovery files aligned. When configs change, the generated index can update from the same source data."
+        }
+      ]
+    }
+  ],
+  "competitorComparisonCount": 6,
+  "generatedDetailPages": [
+    "https://studio.z-craft.xyz/resources/evidence-discord-bot",
+    "https://studio.z-craft.xyz/resources/visual-config-studio",
+    "https://studio.z-craft.xyz/resources/luckperms-visual-tree",
+    "https://studio.z-craft.xyz/resources/z-auth",
+    "https://studio.z-craft.xyz/resources/essentialsx-messages-config",
+    "https://studio.z-craft.xyz/resources/modern-maintenance-messages-config",
+    "https://studio.z-craft.xyz/resources/litebans-message-templates",
+    "https://studio.z-craft.xyz/resources/products-tab-config",
+    "https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning",
+    "https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs",
+    "https://studio.z-craft.xyz/blogs/discord-bot-community-automation",
+    "https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site",
+    "https://studio.z-craft.xyz/legal/terms",
+    "https://studio.z-craft.xyz/legal/privacy"
+  ],
+  "discovery": {
+    "sitemap": "https://studio.z-craft.xyz/sitemap.xml",
+    "llms": "https://studio.z-craft.xyz/llms.txt",
+    "ai_json_endpoint": "https://studio.z-craft.xyz/ai-agents",
+    "ai_text": "https://studio.z-craft.xyz/ai.txt",
+    "ai_overview_json": "https://studio.z-craft.xyz/ai-overview.json",
+    "full_site_index_json": "https://studio.z-craft.xyz/site-index.json",
+    "source_config": "https://studio.z-craft.xyz/config/info.json",
+    "source_products": "https://studio.z-craft.xyz/config/products.json",
+    "source_reviews": "https://studio.z-craft.xyz/config/reviews.json",
+    "source_blogs": "https://studio.z-craft.xyz/config/blogs.json",
+    "source_legal": "https://studio.z-craft.xyz/config/legal.json",
+    "source_comparisons": "https://studio.z-craft.xyz/config/comparisons.json"
+  }
 }

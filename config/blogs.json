@@ -4,7 +4,7 @@
     "title": "Minecraft development notes, guides, and studio updates.",
     "copy": "Clear, practical articles about Minecraft plugins, Discord bots, server configuration, ZCraft Studios resources, and how server owners can plan cleaner technical launches.",
     "publisherName": "ZCraft Studios",
-    "publisherHandle": "@zraxgaming",
+    "publisherHandle": "ZCraftStudios",
     "listLabel": "// posts",
     "summaryHeading": "What should you know first?",
     "summaryItems": [
@@ -23,104 +23,7 @@
   },
   "posts": [
     {
-      "title": "How should a Minecraft server plan a custom plugin?",
-      "slug": "minecraft-custom-plugin-planning",
-      "date": "2026-06-15",
-      "updated": "2026-06-15",
-      "category": "Minecraft Plugins",
-      "image": "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
-      "imageAlt": "Minecraft plugin planning and proxy authentication resource artwork",
-      "summary": "A practical checklist for server owners who want a custom Paper, Spigot, or Velocity plugin without vague scope, surprise costs, or fragile launch behavior.",
-      "audience": "Minecraft server owners, network managers, and creators requesting custom plugin development.",
-      "tags": ["Minecraft plugins", "Paper", "Spigot", "Velocity", "Custom development"],
-      "keywords": ["Minecraft custom plugin", "Paper plugin development", "Spigot plugin development", "Velocity plugin development", "Minecraft server plugin planning", "custom Minecraft development"],
-      "readingTime": "4 min read",
-      "featured": true,
-      "sections": [
-        {
-          "heading": "What should the plugin do?",
-          "body": "Write the exact **player action**, staff action, command, permission, storage requirement, and failure case before development starts. A clear plugin request should explain who uses the feature, when it runs, what data it saves, and what should happen if the server restarts or a dependency is missing.\n- Include the target platform.\n- Include the expected commands.\n- Include the support and update expectations."
-        },
-        {
-          "heading": "Which platforms need support?",
-          "body": "Name the target server software and version range. Paper, Spigot, Velocity, and proxy networks can need different event handling, commands, permissions, and deployment steps, so platform clarity helps the quote and timeline stay accurate."
-        }
-      ]
-    },
-    {
-      "title": "What makes a Minecraft config resource production-ready?",
-      "slug": "production-ready-minecraft-configs",
-      "date": "2026-06-15",
-      "updated": "2026-06-15",
-      "category": "Server Configuration",
-      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
-      "imageAlt": "Minecraft server configuration and scoreboard resource artwork",
-      "summary": "A short guide to clean Minecraft server configs, message packs, permission layouts, maintenance templates, and scoreboard resources that are easy to install and support.",
-      "audience": "Server operators using EssentialsX, LiteBans, TAB, LuckPerms, and similar Minecraft tools.",
-      "tags": ["Minecraft configs", "EssentialsX", "LiteBans", "TAB", "LuckPerms"],
-      "keywords": ["Minecraft server configs", "Minecraft configuration resource", "EssentialsX messages", "LiteBans templates", "TAB configuration", "LuckPerms server setup"],
-      "readingTime": "3 min read",
-      "featured": false,
-      "sections": [
-        {
-          "heading": "How should a config be documented?",
-          "body": "A strong config resource explains supported plugins, setup difficulty, required files, placeholders, support method, and what the server owner should edit after download. The goal is fast deployment without guessing."
-        },
-        {
-          "heading": "What should be tested before release?",
-          "body": "Commands, placeholders, color formatting, permission groups, reload behavior, and player-facing messages should be checked in a real server environment before the resource is published or installed on a production network."
-        }
-      ]
-    },
-    {
-      "title": "When does a Discord community need a custom bot?",
-      "slug": "discord-bot-community-automation",
-      "date": "2026-06-15",
-      "updated": "2026-06-15",
-      "category": "Discord Bots",
-      "image": "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
-      "imageAlt": "Discord moderation evidence bot artwork",
-      "summary": "How to decide when a Discord bot should be custom-built for evidence handling, moderation workflows, automation, and community operations.",
-      "audience": "Discord staff teams, Minecraft communities, and moderation departments.",
-      "tags": ["Discord bot", "Moderation", "Automation", "Evidence bot", "Node.js"],
-      "keywords": ["Discord bot development", "custom Discord bot", "Discord moderation bot", "evidence bot", "community automation", "Node.js Discord bot"],
-      "readingTime": "3 min read",
-      "featured": false,
-      "sections": [
-        {
-          "heading": "What should the bot automate?",
-          "body": "Custom bots are strongest when they replace repeated staff work: evidence logs, case tracking, role workflows, alerts, ticket routing, or moderation reports. The best requests describe every command and permission level."
-        },
-        {
-          "heading": "How should support work?",
-          "body": "Bot support should include hosting expectations, setup steps, environment variables, permission requirements, and a clear contact method for bug reports or small changes after launch."
-        }
-      ]
-    },
-    {
-      "title": "How can AI crawlers understand a studio website?",
-      "slug": "ai-crawler-friendly-studio-site",
-      "date": "2026-06-15",
-      "updated": "2026-06-15",
-      "category": "SEO",
-      "image": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
-      "imageAlt": "ZCraft Studios AI crawler and SEO discovery artwork",
-      "summary": "Why ZCraft Studios publishes sitemap, llms.txt, ai.txt, site-index.json, structured data, and clear page summaries for search engines and AI agents.",
-      "audience": "AI agents, search crawlers, site auditors, and developers checking ZCraft Studios metadata.",
-      "tags": ["SEO", "llms.txt", "structured data", "AI agents", "sitemap"],
-      "keywords": ["AI crawler SEO", "llms.txt", "site-index.json", "structured data", "AI agents", "ChatGPT crawler", "PerplexityBot", "ClaudeBot"],
-      "readingTime": "4 min read",
-      "featured": false,
-      "sections": [
-        {
-          "heading": "Which files should crawlers read first?",
-          "body": "Crawlers should use sitemap.xml for page discovery, llms.txt for a concise site explanation, ai-overview.json for compact machine-readable context, and site-index.json for the full generated index."
-        },
-        {
-          "heading": "Why keep data in config files?",
-          "body": "Config-driven content keeps page metadata, product descriptions, blog posts, summaries, and AI discovery files aligned. When configs change, the generated index can update from the same source data."
-        }
-      ]
+      "file": "blogs/blog1.json"
     }
   ],
   "faq": [

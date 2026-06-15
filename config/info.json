@@ -29,32 +29,16 @@
       "href": "/"
     },
     {
-      "label": "about",
-      "href": "/about"
-    },
-    {
-      "label": "team",
-      "href": "/team"
-    },
-    {
       "label": "resources",
       "href": "/resources"
-    },
-    {
-      "label": "blogs",
-      "href": "/blogs"
-    },
-    {
-      "label": "comparisons",
-      "href": "/comparisons"
     },
     {
       "label": "request",
       "href": "/request"
     },
     {
-      "label": "donate",
-      "href": "/donate"
+      "label": "contact",
+      "href": "/contact"
     }
   ],
   "seo": {
@@ -180,7 +164,7 @@
     {
       "value": 5,
       "suffix": "+",
-      "label": "projects shipped"
+      "label": "resources shipped"
     },
     {
       "value": 20,
@@ -356,7 +340,7 @@
         },
         {
           "value": "12+",
-          "label": "projects reviewed"
+          "label": "resources reviewed"
         },
         {
           "value": "100%",
@@ -631,9 +615,9 @@
     "primary": {
       "badge": "fastest reply",
       "platform": "discord",
-      "handle": "@zraxgaming",
+      "handle": "@ZCraft Studios",
       "cta": "open discord \u2192",
-      "href": "https://discord.com/users/zraxgaming"
+      "href": "https://dsc.gg/zcraftstudios"
     },
     "help": [
       {
@@ -659,7 +643,7 @@
       },
       {
         "platform": "github",
-        "handle": "@zraxgaming",
+        "handle": "ZCraftStudios",
         "meta": "open source",
         "icon": "\u2325",
         "href": "https://github.com/zraxgaming"
@@ -673,7 +657,7 @@
       },
       {
         "platform": "twitter",
-        "handle": "@zraxgaming",
+        "handle": "ZCraftStudios",
         "meta": "updates",
         "icon": "\ud835\udd4f",
         "href": "https://x.com/ZCraftNetwork"
@@ -768,6 +752,18 @@
       {
         "label": "discord",
         "href": "https://discord.com/users/zraxgaming"
+      },
+      {
+        "label": "about",
+        "href": "/about"
+      },
+      {
+        "label": "team",
+        "href": "/team"
+      },
+      {
+        "label": "resources",
+        "href": "/resources"
       },
       {
         "label": "blogs",
