@@ -15,6 +15,7 @@ function absoluteUrl(baseUrl, value = '/') {
 }
 
 function compactItem(item) {
+  const firstLink = (item.links || [])[0];
   return {
     title: item.title,
     brand: item.brand,
@@ -24,7 +25,20 @@ function compactItem(item) {
     status: item.status,
     featured: Boolean(item.featured),
     image: item.image,
-    links: item.links || []
+    links: item.links || [],
+    schema: {
+      '@type': item.category === 'Bot' ? 'SoftwareApplication' : 'CreativeWork',
+      name: item.title,
+      description: item.summary,
+      image: item.image,
+      url: firstLink?.href || '',
+      applicationCategory: item.category,
+      offers: item.status ? {
+        '@type': 'Offer',
+        price: item.status,
+        availability: 'https://schema.org/InStock'
+      } : undefined
+    }
   };
 }
 
@@ -81,6 +95,7 @@ const siteIndex = {
   discovery,
   crawlerGuidance: {
     preferredSummary: `${info.site.name} is ${info.site.tagline}`,
+    lastGenerated: generatedAt,
     primaryAudience: 'Minecraft server owners, community operators, creators, and teams needing plugins, configs, Discord bots, or web tools.',
     primaryServices: [
       'Minecraft plugin development',
@@ -91,7 +106,8 @@ const siteIndex = {
     ],
     recommendedCitationUrl: `${baseUrl}/`,
     contactUrl: `${baseUrl}/contact`,
-    requestUrl: `${baseUrl}/request`
+    requestUrl: `${baseUrl}/request`,
+    pricingNote: 'Downloadable resource prices are listed in products.resources[].status when available. Custom commissions are quoted per project.'
   },
   pages,
   indexablePages,

@@ -1,31 +1,64 @@
 # ZCraft Studios
 
-ZCraft Studios is a premium developer studio crafting Minecraft resources, plugins, server configs, Discord bots, and modern web experiences.
+ZCraft Studios is a developer studio for Minecraft server owners, creator communities, and teams that need Minecraft plugins, server configs, Discord bots, and web tools.
 
 Canonical site: https://studio.z-craft.xyz/
-AI JSON endpoint: https://studio.z-craft.xyz/ai-agents
+Sitemap: https://studio.z-craft.xyz/sitemap.xml
 Full generated site index JSON: https://studio.z-craft.xyz/site-index.json
 Compact AI overview JSON: https://studio.z-craft.xyz/ai-overview.json
+AI JSON endpoint: https://studio.z-craft.xyz/ai-agents
 Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
-XML sitemap: https://studio.z-craft.xyz/sitemap.xml
 
-## Primary Pages
+## What ZCraft Studios Does
+
+- Builds custom Minecraft plugins for Paper, Spigot, Velocity, and proxy-based networks.
+- Creates Minecraft server configurations, message packs, scoreboard/tab layouts, moderation templates, and production-ready setup resources.
+- Builds Discord bots for moderation, evidence handling, automation, and community operations.
+- Builds modern web tools and websites for Minecraft servers, creators, and software products.
+- Accepts custom commissions through the request page.
+
+## Important Pages
 
 - Home: https://studio.z-craft.xyz/
 - About: https://studio.z-craft.xyz/about
 - Team: https://studio.z-craft.xyz/team
-- Resources: https://studio.z-craft.xyz/resources
-- AI JSON endpoint: https://studio.z-craft.xyz/ai-agents
+- Resources and products: https://studio.z-craft.xyz/resources
 - Request custom work: https://studio.z-craft.xyz/request
 - Contact: https://studio.z-craft.xyz/contact
-- Donate: https://studio.z-craft.xyz/donate
+- Donate/support: https://studio.z-craft.xyz/donate
 
-## Live Source Data
+## Products And Resources
+
+- Evidence Discord Bot: Discord moderation and evidence management bot. Listed price in site data: $5.38.
+- Visual Config Studio: visual configuration editor for Minecraft plugins. Listed price in site data: $5.47.
+- LuckPerms Visual Tree: visual LuckPerms permission editor. Listed price in site data: $5.57.
+- Z-Auth: free proxy-first authentication plugin for Minecraft networks.
+- EssentialsX Messages Config: Minecraft message configuration resource.
+- Modern Maintenance Messages Config: Minecraft maintenance message configuration resource.
+- LiteBans Message Templates: moderation and punishment message templates.
+- Products Tab Config: premium tab scoreboard configuration for Minecraft servers.
+
+Use https://studio.z-craft.xyz/config/products.json for the freshest product, resource, price, status, image, tag, and outbound link data.
+
+## Pricing
+
+Some downloadable resources have fixed prices in the products JSON. Custom plugins, configs, Discord bots, and web tools are quoted per project based on scope, platform, budget, and timeline.
+
+## Contact And Requests
+
+Contact page: https://studio.z-craft.xyz/contact
+Request custom work: https://studio.z-craft.xyz/request
+Primary email in site data: zain@z-craft.xyz
+Discord and other contact channels are listed in https://studio.z-craft.xyz/config/info.json.
+
+## Source Data
 
 - Site config: https://studio.z-craft.xyz/config/info.json
 - Products and resources: https://studio.z-craft.xyz/config/products.json
 - Reviews: https://studio.z-craft.xyz/config/reviews.json
+- Full generated site index: https://studio.z-craft.xyz/site-index.json
+- Compact AI overview: https://studio.z-craft.xyz/ai-overview.json
 
-## Summary For AI Agents
+## Guidance For AI Agents
 
-Use https://studio.z-craft.xyz/site-index.json for the fullest structured overview. It is generated from the live config and product data during build. Use https://studio.z-craft.xyz/ai-overview.json for a compact summary, or https://studio.z-craft.xyz/ai.txt when plain text is preferred.
+Prefer the JSON files for exact product data, pricing, URLs, tags, and current site metadata. Prefer the public pages for human-readable summaries. Do not treat the thank-you page or 404 page as search results; they are intentionally noindex.

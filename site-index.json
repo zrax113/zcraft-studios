@@ -73,7 +73,9 @@
    },
    "crawlerGuidance" : {
       "contactUrl" : "https://studio.z-craft.xyz/contact",
+      "lastGenerated" : "Mon Jun 15 08:45:12 2026 UTC",
       "preferredSummary" : "ZCraft Studios is A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
+      "pricingNote" : "Downloadable resource prices are listed in products.resources[].status when available. Custom commissions are quoted per project.",
       "primaryAudience" : "Minecraft server owners, community operators, creators, and teams needing plugins, configs, Discord bots, or web tools.",
       "primaryServices" : [
          "Minecraft plugin development",
@@ -96,7 +98,7 @@
       "source_products" : "https://studio.z-craft.xyz/config/products.json",
       "source_reviews" : "https://studio.z-craft.xyz/config/reviews.json"
    },
-   "generatedAt" : "Mon Jun 15 08:41:25 2026 UTC",
+   "generatedAt" : "Mon Jun 15 08:45:12 2026 UTC",
    "generatedFrom" : [
       "config/info.json",
       "config/products.json",
@@ -369,6 +371,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "SoftwareApplication",
+               "applicationCategory" : "Bot",
+               "description" : "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+               "name" : "Evidence Discord Bot",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "available"
+               },
+               "url" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/"
+            },
             "status" : "available",
             "summary" : "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
             "tags" : [
@@ -390,6 +405,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Website",
+               "description" : "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
+               "name" : "Visual Config Studio",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "live"
+               },
+               "url" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/"
+            },
             "status" : "live",
             "summary" : "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
             "tags" : [
@@ -412,6 +440,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Website",
+               "description" : "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
+               "name" : "LuckPerms Visual Tree",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "live"
+               },
+               "url" : "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/"
+            },
             "status" : "live",
             "summary" : "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
             "tags" : [
@@ -433,6 +474,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Plugin",
+               "description" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+               "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
+               "name" : "Z-Auth",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "free"
+               },
+               "url" : "https://github.com/zraxgaming/zcraft-auth"
+            },
             "status" : "free",
             "summary" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
             "tags" : [
@@ -456,6 +510,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Config",
+               "description" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
+               "name" : "EssentialsX Messages Config",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "available"
+               },
+               "url" : "https://builtbybit.com/resources/essentialsx-messages-config.110869/"
+            },
             "status" : "available",
             "summary" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
             "tags" : [
@@ -478,6 +545,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Config",
+               "description" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
+               "name" : "Modern Maintenance Messages Config",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "available"
+               },
+               "url" : "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/"
+            },
             "status" : "available",
             "summary" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
             "tags" : [
@@ -500,6 +580,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Config",
+               "description" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
+               "name" : "LiteBans Message Templates",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "available"
+               },
+               "url" : "https://builtbybit.com/resources/litebans-message-templates.111231/"
+            },
             "status" : "available",
             "summary" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
             "tags" : [
@@ -522,6 +615,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Config",
+               "description" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+               "name" : "Products Tab Config",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "available"
+               },
+               "url" : "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/"
+            },
             "status" : "available",
             "summary" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
             "tags" : [
@@ -546,6 +652,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "SoftwareApplication",
+               "applicationCategory" : "Bot",
+               "description" : "Best Discord bot for performance and handling user cases and moderation.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+               "name" : "Evidence Discord Bot",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "$5.38"
+               },
+               "url" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/"
+            },
             "status" : "$5.38",
             "summary" : "Best Discord bot for performance and handling user cases and moderation.",
             "tags" : [
@@ -566,6 +685,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Website",
+               "description" : "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
+               "name" : "Visual Config Studio",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "$5.47"
+               },
+               "url" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/"
+            },
             "status" : "$5.47",
             "summary" : "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
             "tags" : [
@@ -587,6 +719,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Website",
+               "description" : "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
+               "name" : "LuckPerms Visual Tree",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "$5.57"
+               },
+               "url" : "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/"
+            },
             "status" : "$5.57",
             "summary" : "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
             "tags" : [
@@ -608,6 +753,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Plugin",
+               "description" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+               "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
+               "name" : "Z-Auth",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "Free"
+               },
+               "url" : "https://github.com/zraxgaming.zcraft-auth"
+            },
             "status" : "Free",
             "summary" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
             "tags" : [
@@ -631,6 +789,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Config",
+               "description" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
+               "name" : "EssentialsX Messages Config",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "$4.73"
+               },
+               "url" : "https://builtbybit.com/resources/essentialsx-messages-config.110869/"
+            },
             "status" : "$4.73",
             "summary" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
             "tags" : [
@@ -652,6 +823,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Config",
+               "description" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
+               "name" : "Modern Maintenance Messages Config",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "$3.72"
+               },
+               "url" : "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/"
+            },
             "status" : "$3.72",
             "summary" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
             "tags" : [
@@ -673,6 +857,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Config",
+               "description" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
+               "name" : "LiteBans Message Templates",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "$4.21"
+               },
+               "url" : "https://builtbybit.com/resources/litebans-message-templates.111231/"
+            },
             "status" : "$4.21",
             "summary" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
             "tags" : [
@@ -694,6 +891,19 @@
                   "variant" : "primary"
                }
             ],
+            "schema" : {
+               "@type" : "CreativeWork",
+               "applicationCategory" : "Config",
+               "description" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+               "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+               "name" : "Products Tab Config",
+               "offers" : {
+                  "@type" : "Offer",
+                  "availability" : "https://schema.org/InStock",
+                  "price" : "$4.22"
+               },
+               "url" : "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/"
+            },
             "status" : "$4.22",
             "summary" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
             "tags" : [
