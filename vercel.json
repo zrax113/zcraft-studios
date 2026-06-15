@@ -20,6 +20,8 @@
     { "source": "/blogs", "destination": "/blogs.html" },
     { "source": "/blogs/", "destination": "/blogs.html" },
     { "source": "/blogs/:slug", "destination": "/blogs/:slug.html" },
+    { "source": "/comparisons", "destination": "/comparisons.html" },
+    { "source": "/comparisons/", "destination": "/comparisons.html" },
     { "source": "/legal", "destination": "/legal.html" },
     { "source": "/legal/", "destination": "/legal.html" },
     { "source": "/legal/:slug", "destination": "/legal/:slug.html" },

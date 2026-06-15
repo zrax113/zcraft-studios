@@ -45,6 +45,10 @@
       "href": "/blogs"
     },
     {
+      "label": "comparisons",
+      "href": "/comparisons"
+    },
+    {
       "label": "request",
       "href": "/request"
     },
@@ -71,6 +75,12 @@
       "description": "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.",
       "keywords": "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI crawler SEO, llms.txt, structured data",
       "canonical": "/blogs"
+    },
+    "comparisons": {
+      "title": "ZCraft Studios vs Minecraft Development Competitors",
+      "description": "Compare ZCraft Studios with freelancers, large Minecraft development teams, marketplace sellers, config-only shops, internal staff, and no-code tools.",
+      "keywords": "ZCraft Studios comparison, Minecraft plugin developer comparison, Minecraft development competitors, Minecraft plugin agency alternative, freelance Minecraft plugin developer, Minecraft server development studio, Discord bot development comparison, Minecraft server configuration service comparison",
+      "canonical": "/comparisons"
     },
     "team": {
       "title": "Minecraft Development Team \u2014 ZCraft Studios",
@@ -762,6 +772,10 @@
       {
         "label": "blogs",
         "href": "/blogs"
+      },
+      {
+        "label": "comparisons",
+        "href": "/comparisons"
       },
       {
         "label": "donate",

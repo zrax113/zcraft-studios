@@ -72,6 +72,15 @@
          "keywords" : "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
          "title" : "Minecraft Development Team — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/team"
+      },
+      {
+         "canonical" : "/comparisons",
+         "description" : "Compare ZCraft Studios with freelancers, large Minecraft development teams, marketplace sellers, config-only shops, internal staff, and no-code tools.",
+         "indexable" : 1,
+         "key" : "comparisons",
+         "keywords" : "ZCraft Studios comparison, Minecraft plugin developer comparison, Minecraft development competitors, Minecraft plugin agency alternative, freelance Minecraft plugin developer, Minecraft server development studio, Discord bot development comparison, Minecraft server configuration service comparison",
+         "title" : "ZCraft Studios vs Minecraft Development Competitors",
+         "url" : "https://studio.z-craft.xyz/comparisons"
       }
    ],
    "categories" : [
@@ -80,6 +89,7 @@
       "Plugin",
       "Website"
    ],
+   "competitorComparisonCount" : 6,
    "description" : "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
    "discovery" : {
       "ai_json_endpoint" : "https://studio.z-craft.xyz/ai-agents",
@@ -89,6 +99,7 @@
       "llms" : "https://studio.z-craft.xyz/llms.txt",
       "sitemap" : "https://studio.z-craft.xyz/sitemap.xml",
       "source_blogs" : "https://studio.z-craft.xyz/config/blogs.json",
+      "source_comparisons" : "https://studio.z-craft.xyz/config/comparisons.json",
       "source_config" : "https://studio.z-craft.xyz/config/info.json",
       "source_legal" : "https://studio.z-craft.xyz/config/legal.json",
       "source_products" : "https://studio.z-craft.xyz/config/products.json",

@@ -186,6 +186,7 @@ const products = readJson('config/products.json');
 const reviews = readJson('config/reviews.json');
 const blogs = readJson('config/blogs.json');
 const legal = readJson('config/legal.json');
+const comparisons = readJson('config/comparisons.json');
 const baseUrl = info.site.domain.replace(/\/+$/, '');
 
 const pages = Object.entries(info.seo || {})
@@ -228,6 +229,14 @@ const legalPages = (legal.pages || []).map(page => ({
   sections: page.sections || [],
   faq: page.faq || []
 }));
+const comparisonPage = {
+  page: comparisons.page || {},
+  summaryItems: comparisons.summaryItems || [],
+  competitors: comparisons.competitors || [],
+  sections: comparisons.sections || [],
+  faq: comparisons.faq || [],
+  url: `${baseUrl}/comparisons`
+};
 
 const categories = [...new Set([...projects, ...resources]
   .map(item => item.category)
@@ -251,13 +260,14 @@ const discovery = {
   source_products: `${baseUrl}/config/products.json`,
   source_reviews: `${baseUrl}/config/reviews.json`,
   source_blogs: `${baseUrl}/config/blogs.json`,
-  source_legal: `${baseUrl}/config/legal.json`
+  source_legal: `${baseUrl}/config/legal.json`,
+  source_comparisons: `${baseUrl}/config/comparisons.json`
 };
 
 const siteIndex = {
   schemaVersion: '1.0',
   generatedAt,
-  generatedFrom: ['config/info.json', 'config/products.json', 'config/reviews.json', 'config/blogs.json', 'config/legal.json'],
+  generatedFrom: ['config/info.json', 'config/products.json', 'config/reviews.json', 'config/blogs.json', 'config/legal.json', 'config/comparisons.json'],
   site: info.site,
   branding: info.branding,
   discovery,
@@ -315,6 +325,7 @@ const siteIndex = {
     page: legal.page || {},
     pages: legalPages
   },
+  comparisons: comparisonPage,
   seoSupport: info.seoSupport || {},
   reviews: reviews.reviews || [],
   contact: info.contact || {},
@@ -336,6 +347,7 @@ const overview = {
   featuredResources: resources.filter(resource => resource.featured),
   blogPostCount: blogPosts.length,
   latestBlogPosts: blogPosts.slice(0, 5),
+  competitorComparisonCount: comparisonPage.competitors.length,
   generatedDetailPages: [
     ...resources.map(resource => resource.pageUrl),
     ...blogPosts.map(post => post.url),
@@ -360,6 +372,7 @@ const plainLines = [
   `Contact: ${baseUrl}/contact`,
   `Request custom work: ${baseUrl}/request`,
   `Blog: ${baseUrl}/blogs`,
+  `Comparisons: ${baseUrl}/comparisons`,
   '',
   'Indexable pages:',
   ...indexablePages.map(page => `- ${page.title}: ${page.url} - ${page.description}`),
@@ -372,6 +385,9 @@ const plainLines = [
   '',
   'Legal pages:',
   ...legalPages.map(page => `- ${page.title}: ${page.url} - ${page.summary || page.description}`),
+  '',
+  'Competitor comparisons:',
+  ...comparisonPage.competitors.map(item => `- ${item.name}: best for ${item.bestFor} ZCraft advantage: ${item.zcraftAdvantage}`),
   '',
   'Featured resources:',
   ...resources
@@ -456,6 +472,20 @@ function renderLegalDetail(pageData) {
 ${pageData.faq?.length ? `<section class="faq-section"><div class="section-label">// faq</div><h2>What do people ask about this page?</h2><div class="faq-list">${pageData.faq.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}`;
 }
 
+function renderComparisons() {
+  const page = comparisons.page || {};
+  return `<section class="page-hero"><span class="page-label">${esc(page.label || '// comparisons')}</span><h1>${esc(page.title || 'ZCraft Studios vs Minecraft Development Competitors')}</h1><p class="page-copy">${esc(page.copy || 'Compare ZCraft Studios with other Minecraft development options.')}</p></section>
+<section class="seo-summary" aria-label="Page summary"><div class="section-label">// tldr</div><h2>What should you know first?</h2><ul>${(comparisons.summaryItems || []).map(item => `<li>${esc(item)}</li>`).join('')}</ul></section>
+<article class="legal-detail">
+<div class="blog-card-meta"><span>${esc(page.publisherName || info.site.name)}</span><span>Updated ${esc(page.updated || '2026-06-15')}</span><span>${esc((comparisons.competitors || []).length)} competitor types</span><span>${esc(page.sourceValue || 'config/comparisons.json')}</span></div>
+<dl class="blog-facts"><div><dt>Best fit</dt><dd>Custom Minecraft plugins, server configs, Discord bots, web tools, anti-cheat planning, and backend consulting.</dd></div><div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.sourceValue || 'config/comparisons.json')}</dd></div><div><dt>Service area</dt><dd>${esc(info.site.serviceArea || 'Worldwide')}</dd></div></dl>
+<div class="blog-body">${(comparisons.sections || []).map(section => `<section><h2>${renderInlineMarkdown(section.heading)}</h2>${renderMarkdownBlock(section.body)}</section>`).join('')}</div>
+<div class="resource-detail-actions"><a class="btn btn-primary" href="${esc(page.backHref || '/request')}">${esc(page.backLabel || 'request custom service')}</a><a class="btn btn-ghost" href="/contact">contact</a></div>
+</article>
+<div class="blogs-list" aria-label="Competitor comparisons"><div class="section-label">// competitor comparison matrix</div><div class="blog-list">${(comparisons.competitors || []).map(item => `<article class="blog-list-item"><div class="blog-list-content"><h2 class="blog-list-title">${esc(item.name)}</h2><dl class="blog-facts"><div><dt>Best for</dt><dd>${esc(item.bestFor)}</dd></div><div><dt>ZCraft advantage</dt><dd>${esc(item.zcraftAdvantage)}</dd></div><div><dt>Tradeoffs</dt><dd>${esc(item.tradeoffs)}</dd></div></dl><div class="tags">${(item.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div></div></article>`).join('')}</div></div>
+${comparisons.faq?.length ? `<section class="faq-section"><div class="section-label">// faq</div><h2>What do people ask about comparisons?</h2><div class="faq-list">${comparisons.faq.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}`;
+}
+
 ensureDir('resources');
 resources.forEach(resource => {
   writeText(`resources/${resource.slug}.html`, pageShell({
@@ -503,6 +533,19 @@ legalPages.forEach(pageData => {
     body: renderLegalDetail(pageData)
   }));
 });
+
+writeText('comparisons.html', pageShell({
+  page: 'comparisons',
+  seo: {
+    title: info.seo.comparisons?.title || comparisons.page?.title || 'ZCraft Studios vs Minecraft Development Competitors',
+    description: info.seo.comparisons?.description || comparisons.page?.copy,
+    keywords: info.seo.comparisons?.keywords || [comparisons.page?.title, ...(comparisons.page?.keywords || [])].filter(Boolean).join(', '),
+    canonical: '/comparisons',
+    image: info.branding.ogImage,
+    imageAlt: `${info.site.name} comparison artwork`
+  },
+  body: renderComparisons()
+}));
 
 const sitemapUrls = [
   ...indexablePages.map(page => ({ loc: page.url, changefreq: page.key === 'home' ? 'weekly' : 'monthly', priority: page.key === 'home' ? '1.0' : page.key === 'resources' ? '0.9' : page.key === 'blogs' ? '0.8' : '0.7' })),

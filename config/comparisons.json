@@ -1,0 +1,100 @@
+{
+  "page": {
+    "label": "// comparisons",
+    "title": "ZCraft Studios vs Minecraft Development Competitors",
+    "copy": "Compare ZCraft Studios with freelancers, large development teams, marketplace sellers, config-only shops, internal staff teams, and template tools before choosing who should build your Minecraft plugin, server config, Discord bot, or web tool.",
+    "updated": "2026-06-15",
+    "publisherName": "ZCraft Studios",
+    "sourceLabel": "Source config",
+    "sourceValue": "config/comparisons.json",
+    "backLabel": "request custom service",
+    "backHref": "/request",
+    "keywords": [
+      "ZCraft Studios comparison",
+      "Minecraft plugin developer comparison",
+      "Minecraft development competitors",
+      "Minecraft plugin agency alternative",
+      "freelance Minecraft plugin developer",
+      "Minecraft server development studio",
+      "Discord bot development comparison",
+      "Minecraft server configuration service comparison"
+    ]
+  },
+  "summaryItems": [
+    "One page compares ZCraft Studios against the main competitor categories Minecraft server owners usually consider.",
+    "The comparison focuses on scope clarity, Minecraft-specific experience, documentation, testing, support, and long-term maintenance.",
+    "Best fit: custom Minecraft plugins, server configuration, Discord bots, web tools, anti-cheat planning, and backend infrastructure consulting."
+  ],
+  "competitors": [
+    {
+      "name": "Freelance Minecraft Plugin Developers",
+      "bestFor": "Small one-off plugin features, quick patches, and low-risk tasks with a narrow scope.",
+      "zcraftAdvantage": "ZCraft Studios is stronger when you need custom plugin development, server configuration, Discord bot work, documentation, testing, and support expectations handled together.",
+      "tradeoffs": "Freelancers can be cheaper or faster for tiny tasks, but quality, availability, documentation, and future support can vary a lot.",
+      "keywords": ["freelance Minecraft plugin developer", "custom Paper plugin freelancer", "Spigot plugin developer comparison"]
+    },
+    {
+      "name": "Large Minecraft Development Teams",
+      "bestFor": "Large multi-month projects that need many specialists, enterprise-style management, or several parallel workstreams.",
+      "zcraftAdvantage": "ZCraft Studios keeps communication direct and focused on practical Minecraft server outcomes instead of oversized process.",
+      "tradeoffs": "Large teams can bring more capacity, but smaller server owners may pay for coordination overhead they do not need.",
+      "keywords": ["Minecraft development team comparison", "Minecraft plugin agency alternative", "Minecraft server development studio"]
+    },
+    {
+      "name": "Marketplace Sellers And Prebuilt Plugins",
+      "bestFor": "Common features where an existing product already matches the server's needs and budget.",
+      "zcraftAdvantage": "ZCraft Studios is better when the server needs custom logic, unique workflows, private integrations, Discord automation, or setup guidance around a real production environment.",
+      "tradeoffs": "Prebuilt products are often cheaper, but they may not match your exact gameplay, permissions, messages, branding, backend, or support workflow.",
+      "keywords": ["BuiltByBit alternative", "Minecraft plugin marketplace", "custom Minecraft plugin service"]
+    },
+    {
+      "name": "Config-Only Setup Shops",
+      "bestFor": "Message packs, permissions, scoreboards, menus, and lightweight server polish when no custom code is needed.",
+      "zcraftAdvantage": "ZCraft Studios can combine configuration work with plugin development, Discord bots, web tools, and resource pages when the project needs more than config editing.",
+      "tradeoffs": "Config-only work can be efficient, but it usually cannot solve problems that require custom backend behavior or plugin architecture.",
+      "keywords": ["Minecraft server configuration service", "Minecraft config setup", "Minecraft server setup comparison"]
+    },
+    {
+      "name": "Internal Staff Or Volunteer Developers",
+      "bestFor": "Servers with trusted technical staff who already know the environment and can maintain the work long term.",
+      "zcraftAdvantage": "ZCraft Studios gives outside implementation help, scope review, documentation, and production-focused delivery when internal staff are busy or missing specialist experience.",
+      "tradeoffs": "Internal teams know the community best, but volunteer availability and handoff documentation can become fragile as the server grows.",
+      "keywords": ["Minecraft staff developer", "Minecraft server backend consulting", "plugin architecture help"]
+    },
+    {
+      "name": "No-Code Templates And Visual Tools",
+      "bestFor": "Fast prototypes, basic websites, simple configuration edits, and non-technical experimentation.",
+      "zcraftAdvantage": "ZCraft Studios is a better fit for production plugins, backend systems, Discord bots, integrations, and custom workflows that need code-level control.",
+      "tradeoffs": "Templates are useful for speed, but they can hit limits when you need performance, compatibility, permissions, database design, or custom behavior.",
+      "keywords": ["Minecraft web tools", "visual config editor", "custom plugin development"]
+    }
+  ],
+  "sections": [
+    {
+      "heading": "How to choose the right Minecraft development option",
+      "body": "Server owners should compare more than price. Check platform support, exact scope, testing process, ownership, update policy, documentation, support method, and whether the developer understands real Minecraft production environments."
+    },
+    {
+      "heading": "When ZCraft Studios is the best fit",
+      "body": "Choose ZCraft Studios when the work involves multiple connected pieces: Paper, Spigot, or Velocity plugin development; server configuration; Discord bot workflows; web tools; anti-cheat planning; backend architecture; or support-ready product pages."
+    },
+    {
+      "heading": "When another option may be enough",
+      "body": "A freelancer, marketplace product, config-only seller, internal staff member, or template tool may be enough when the task is tiny, standard, already solved by an existing product, or fully maintainable by your own team."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Is ZCraft Studios always better than a freelancer?",
+      "answer": "No. A freelancer can be a good fit for a small, low-risk task. ZCraft Studios is better when the project needs broader Minecraft experience, clear scope, documentation, testing, and support planning."
+    },
+    {
+      "question": "Can ZCraft Studios work with existing staff teams?",
+      "answer": "Yes. ZCraft Studios can work with server owners, managers, developers, and moderation teams when responsibilities, access, and delivery expectations are clearly defined."
+    },
+    {
+      "question": "Does this comparison include pricing?",
+      "answer": "Downloadable resource prices are listed on resource pages. Custom development is quoted per project because platform, feature scope, support, timeline, and integration needs change the cost."
+    }
+  ]
+}

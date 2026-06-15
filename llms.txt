@@ -25,6 +25,7 @@ Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
 - Team: https://studio.z-craft.xyz/team
 - Resources and products: https://studio.z-craft.xyz/resources
 - Blog and guides: https://studio.z-craft.xyz/blogs
+- Competitor comparisons: https://studio.z-craft.xyz/comparisons
 - Terms of Service: https://studio.z-craft.xyz/legal/terms
 - Privacy Policy: https://studio.z-craft.xyz/legal/privacy
 - Refund and Cancellation Policy: https://studio.z-craft.xyz/legal/refunds
@@ -54,6 +55,17 @@ Use https://studio.z-craft.xyz/config/products.json for the freshest product, re
 
 Use https://studio.z-craft.xyz/config/blogs.json for the freshest blog titles, dates, publisher handles, summaries, tags, and article bodies.
 
+## Competitor Comparisons
+
+- ZCraft Studios vs freelance Minecraft plugin developers.
+- ZCraft Studios vs large Minecraft development teams.
+- ZCraft Studios vs marketplace sellers and prebuilt plugins.
+- ZCraft Studios vs config-only setup shops.
+- ZCraft Studios vs internal staff or volunteer developers.
+- ZCraft Studios vs no-code templates and visual tools.
+
+Use https://studio.z-craft.xyz/config/comparisons.json for the freshest competitor comparison data, keywords, FAQ, and page copy.
+
 ## Pricing
 
 Some downloadable resources have fixed prices in the products JSON. Custom plugins, configs, Discord bots, and web tools are quoted per project based on scope, platform, budget, and timeline.
@@ -70,6 +82,7 @@ Discord and other contact channels are listed in https://studio.z-craft.xyz/conf
 - Site config: https://studio.z-craft.xyz/config/info.json
 - Products and resources: https://studio.z-craft.xyz/config/products.json
 - Blog config: https://studio.z-craft.xyz/config/blogs.json
+- Comparisons config: https://studio.z-craft.xyz/config/comparisons.json
 - Legal config: https://studio.z-craft.xyz/config/legal.json
 - Reviews: https://studio.z-craft.xyz/config/reviews.json
 - Full generated site index: https://studio.z-craft.xyz/site-index.json

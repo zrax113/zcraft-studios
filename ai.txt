@@ -49,3 +49,11 @@ Legal pages:
 Featured resources:
 - Evidence Discord Bot (Bot, $5.38): Best Discord bot for performance and handling user cases and moderation.
 - Visual Config Studio (Website, $5.47): Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.
+
+Competitor comparisons: https://studio.z-craft.xyz/comparisons
+- Freelance Minecraft Plugin Developers: best for Small one-off plugin features, quick patches, and low-risk tasks with a narrow scope. ZCraft advantage: ZCraft Studios is stronger when you need custom plugin development, server configuration, Discord bot work, documentation, testing, and support expectations handled together.
+- Large Minecraft Development Teams: best for Large multi-month projects that need many specialists, enterprise-style management, or several parallel workstreams. ZCraft advantage: ZCraft Studios keeps communication direct and focused on practical Minecraft server outcomes instead of oversized process.
+- Marketplace Sellers And Prebuilt Plugins: best for Common features where an existing product already matches the server's needs and budget. ZCraft advantage: ZCraft Studios is better when the server needs custom logic, unique workflows, private integrations, Discord automation, or setup guidance around a real production environment.
+- Config-Only Setup Shops: best for Message packs, permissions, scoreboards, menus, and lightweight server polish when no custom code is needed. ZCraft advantage: ZCraft Studios can combine configuration work with plugin development, Discord bots, web tools, and resource pages when the project needs more than config editing.
+- Internal Staff Or Volunteer Developers: best for Servers with trusted technical staff who already know the environment and can maintain the work long term. ZCraft advantage: ZCraft Studios gives outside implementation help, scope review, documentation, and production-focused delivery when internal staff are busy or missing specialist experience.
+- No-Code Templates And Visual Tools: best for Fast prototypes, basic websites, simple configuration edits, and non-technical experimentation. ZCraft advantage: ZCraft Studios is a better fit for production plugins, backend systems, Discord bots, integrations, and custom workflows that need code-level control.

@@ -604,7 +604,11 @@
       });
     }
 
-    const faqs = pageKey === 'blogs' ? (cfg.blogFaq || []) : (pageFaqs[pageKey] || []);
+    const faqs = pageKey === 'blogs'
+      ? (cfg.blogFaq || [])
+      : pageKey === 'comparisons'
+        ? (cfg.comparisons?.faq || [])
+        : (pageFaqs[pageKey] || []);
     const detailResource = pageKey === 'resource-detail' ? findResourceBySlug(cfg) : null;
     const detailFaqs = pageKey === 'resource-detail' ? (detailResource ? resourceFaqs(detailResource, cfg) : []) : faqs;
     if (detailFaqs.length) {
@@ -652,6 +656,25 @@
         keywords: postKeywords(post).join(', '),
         audience: post.audience
       })));
+    }
+
+    if (pageKey === 'comparisons' && cfg.comparisons?.competitors?.length) {
+      schema['@graph'].push({
+        '@type': 'ItemList',
+        '@id': pageUrl + '#competitor-comparisons',
+        name: cfg.comparisons.page?.title || 'Minecraft development competitor comparisons',
+        description: cfg.comparisons.page?.copy || seo.description,
+        itemListElement: cfg.comparisons.competitors.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: {
+            '@type': 'Thing',
+            name: item.name,
+            description: item.zcraftAdvantage || item.bestFor,
+            keywords: (item.keywords || []).join(', ')
+          }
+        }))
+      });
     }
 
     if (pageKey === 'resource-detail') {
@@ -1776,6 +1799,64 @@
       ${renderFaqBlock('blogs', cfg.blogFaq || [])}`;
   }
 
+  function renderComparisons(cfg) {
+    const data = cfg.comparisons || {};
+    const page = data.page || {};
+    const competitors = data.competitors || [];
+    const updated = page.updated || '2026-06-15';
+    return `
+      <section class="page-hero">
+        <span class="page-label">${esc(page.label || '// comparisons')}</span>
+        <h1>${esc(page.title || 'ZCraft Studios vs Minecraft Development Competitors')}</h1>
+        <p class="page-copy">${esc(page.copy || 'Compare ZCraft Studios with other Minecraft development options before choosing who should build your plugin, config, Discord bot, or web tool.')}</p>
+      </section>
+      ${renderSummaryBlock('comparisons', data.summaryItems || [])}
+      <article class="legal-detail">
+        <div class="blog-card-meta">
+          <span>${esc(page.publisherName || cfg.site.name)}</span>
+          <span>Updated ${esc(updated)}</span>
+          <span>${esc(competitors.length)} competitor types</span>
+          <span>${esc(page.sourceValue || 'config/comparisons.json')}</span>
+        </div>
+        <dl class="blog-facts">
+          <div><dt>Best fit</dt><dd>Custom Minecraft plugins, server configs, Discord bots, web tools, anti-cheat planning, and backend consulting.</dd></div>
+          <div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.sourceValue || 'config/comparisons.json')}</dd></div>
+          <div><dt>Service area</dt><dd>${esc(cfg.site.serviceArea || 'Worldwide')}</dd></div>
+        </dl>
+        <div class="blog-body">
+          ${(data.sections || []).map(section => `
+            <section>
+              <h2>${renderInlineMarkdown(section.heading)}</h2>
+              ${renderMarkdownBlock(section.body)}
+            </section>
+          `).join('')}
+        </div>
+        <div class="resource-detail-actions">
+          <a class="btn btn-primary" href="${esc(page.backHref || '/request')}">${esc(page.backLabel || 'request custom service')}</a>
+          <a class="btn btn-ghost" href="/contact">contact</a>
+        </div>
+      </article>
+      <div class="blogs-list" aria-label="Competitor comparisons">
+        <div class="section-label">// competitor comparison matrix</div>
+        <div class="blog-list">
+          ${competitors.map(item => `
+            <article class="blog-list-item">
+              <div class="blog-list-content">
+                <h2 class="blog-list-title">${esc(item.name)}</h2>
+                <dl class="blog-facts">
+                  <div><dt>Best for</dt><dd>${esc(item.bestFor)}</dd></div>
+                  <div><dt>ZCraft advantage</dt><dd>${esc(item.zcraftAdvantage)}</dd></div>
+                  <div><dt>Tradeoffs</dt><dd>${esc(item.tradeoffs)}</dd></div>
+                </dl>
+                <div class="tags">${(item.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+      ${renderFaqBlock('comparisons', data.faq || [])}`;
+  }
+
   function renderBlogDetail(cfg) {
     const post = findBlogPostBySlug(cfg);
     if (!post) return renderNotFound(cfg);
@@ -2035,7 +2116,7 @@
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, 'resource-detail': renderResourceDetail, blogs: renderBlogs, 'blog-detail': renderBlogDetail, 'legal-overview': renderLegalOverview, 'legal-detail': renderLegalDetail, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, 'resource-detail': renderResourceDetail, blogs: renderBlogs, comparisons: renderComparisons, 'blog-detail': renderBlogDetail, 'legal-overview': renderLegalOverview, 'legal-detail': renderLegalDetail, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 
@@ -2091,8 +2172,9 @@
     tryFetchJson(buildConfigPaths('products.json')),
     tryFetchJson(buildConfigPaths('reviews.json')),
     tryFetchJson(buildConfigPaths('blogs.json')),
-    tryFetchJson(buildConfigPaths('legal.json'))
-  ]).then(([info, products, reviews, blogs, legal]) => {
+    tryFetchJson(buildConfigPaths('legal.json')),
+    tryFetchJson(buildConfigPaths('comparisons.json'))
+  ]).then(([info, products, reviews, blogs, legal, comparisons]) => {
     const cfg = {
       ...info,
       projects: products.projects || [],
@@ -2102,7 +2184,8 @@
       blogPosts: blogs.posts || [],
       blogFaq: blogs.faq || [],
       legalPage: legal.page || {},
-      legalPages: legal.pages || []
+      legalPages: legal.pages || [],
+      comparisons
     };
     applySEO(cfg);
     const app = $('#app');
