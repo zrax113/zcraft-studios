@@ -5,7 +5,7 @@ Summary: A premium developer studio crafting Minecraft resources, plugins, and m
 Description: ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.
 
 Primary services: Minecraft plugins; Minecraft server configs; Discord bots; web tools; commissioned development; premium downloadable resources.
-Canonical AI guide: https://studio.z-craft.xyz/ai-agents
+AI JSON endpoint: https://studio.z-craft.xyz/ai-agents
 Full JSON site index: https://studio.z-craft.xyz/site-index.json
 Compact AI overview JSON: https://studio.z-craft.xyz/ai-overview.json
 Sitemap: https://studio.z-craft.xyz/sitemap.xml
@@ -15,7 +15,6 @@ Request custom work: https://studio.z-craft.xyz/request
 
 Indexable pages:
 - About — ZCraft Studios: https://studio.z-craft.xyz/about - ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.
-- AI Agent Site Guide — ZCraft Studios: https://studio.z-craft.xyz/ai-agents - AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.
 - Contact — ZCraft Studios: https://studio.z-craft.xyz/contact - Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.
 - Donate — ZCraft Studios: https://studio.z-craft.xyz/donate - Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.
 - ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots: https://studio.z-craft.xyz/ - ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.

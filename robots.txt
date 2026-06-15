@@ -29,6 +29,6 @@ Sitemap: https://studio.z-craft.xyz/sitemap.xml
 # Structured discovery files for crawlers and AI agents that support them.
 LLMS: /llms.txt
 Full-Info: /site-index.json
-AI-Guide: /ai-agents
+AI-JSON: /ai-agents
 AI-Overview: /ai-overview.json
 AI-Text: /ai.txt

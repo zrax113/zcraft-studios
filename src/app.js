@@ -1204,78 +1204,6 @@
       </div>`;
   }
 
-  function renderAgents(cfg) {
-    const baseUrl = cleanBaseUrl(cfg.site.domain);
-    const seoEntries = Object.entries(cfg.seo || {})
-      .filter(([, seo]) => !seo.noindex)
-      .map(([key, seo]) => ({
-        key,
-        title: seo.title,
-        description: seo.description,
-        url: absoluteUrl(baseUrl, seo.canonical)
-      }));
-    const productCount = cfg.projects?.length || 0;
-    const resourceCount = cfg.resources?.length || 0;
-    const categories = [...new Set([...(cfg.projects || []), ...(cfg.resources || [])].map(item => item.category).filter(Boolean))];
-    const featured = (cfg.resources || []).filter(item => item.featured).slice(0, 4);
-
-    return `
-      <section class="page-hero">
-        <span class="page-label">// ai agent guide</span>
-        <h1>Structured context for crawlers, search engines, and AI agents.</h1>
-        <p class="page-copy">This page summarizes ZCraft Studios and links to the canonical machine-readable files that are generated from the site's config and product data.</p>
-      </section>
-      <div class="agents-layout">
-        <section class="agents-panel">
-          <h2>Site identity</h2>
-          <dl class="agents-facts">
-            <div><dt>Name</dt><dd>${esc(cfg.site.name)}</dd></div>
-            <div><dt>Canonical domain</dt><dd><a href="${esc(baseUrl)}">${esc(baseUrl)}</a></dd></div>
-            <div><dt>Summary</dt><dd>${esc(cfg.site.tagline)}</dd></div>
-            <div><dt>Primary topics</dt><dd>Minecraft plugins, server configs, Discord bots, web tools, commissioned development.</dd></div>
-            <div><dt>Inventory</dt><dd>${productCount} projects and ${resourceCount} resources across ${categories.length || 0} categories.</dd></div>
-          </dl>
-        </section>
-
-        <section class="agents-panel">
-          <h2>Machine-readable sources</h2>
-          <div class="agents-links">
-            <a href="/site-index.json">Live generated site index JSON</a>
-            <a href="/sitemap.xml">XML sitemap</a>
-            <a href="/llms.txt">LLMS discovery file</a>
-            <a href="/config/info.json">Site config JSON</a>
-            <a href="/config/products.json">Products and resources JSON</a>
-            <a href="/config/reviews.json">Reviews JSON</a>
-          </div>
-        </section>
-
-        <section class="agents-panel">
-          <h2>Canonical pages</h2>
-          <div class="agents-page-list">
-            ${seoEntries.map(page => `
-              <article class="agents-page-item">
-                <a href="${esc(page.url)}">${esc(page.title)}</a>
-                <p>${esc(page.description)}</p>
-              </article>
-            `).join('')}
-          </div>
-        </section>
-
-        <section class="agents-panel">
-          <h2>Featured resources</h2>
-          <div class="agents-resource-list">
-            ${featured.map(resource => `
-              <article class="agents-resource-item">
-                <strong>${esc(resource.title)}</strong>
-                <span>${esc(resource.category || resource.brand || 'resource')} · ${esc(resource.status || 'available')}</span>
-                <p>${esc(resource.summary)}</p>
-              </article>
-            `).join('') || '<p class="page-copy">No featured resources are currently configured.</p>'}
-          </div>
-        </section>
-      </div>`;
-  }
-
   function renderMaintenance(cfg, pageKey) {
     const maintenance = cfg.maintenance || {};
     const pageConfig = (maintenance.pages && maintenance.pages[pageKey]) || {};
@@ -1323,7 +1251,7 @@
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, agents: renderAgents, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 

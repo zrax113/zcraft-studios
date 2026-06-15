@@ -10,15 +10,6 @@
          "url" : "https://studio.z-craft.xyz/about"
       },
       {
-         "canonical" : "/ai-agents",
-         "description" : "AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.",
-         "indexable" : true,
-         "key" : "agents",
-         "keywords" : "ZCraft Studios AI guide, AI crawler guide, llms.txt, site index JSON, ai-overview JSON, ai.txt, Minecraft plugins data, Discord bot resources, structured site data",
-         "title" : "AI Agent Site Guide — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/ai-agents"
-      },
-      {
          "canonical" : "/contact",
          "description" : "Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.",
          "indexable" : true,
@@ -81,8 +72,8 @@
    ],
    "description" : "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
    "discovery" : {
+      "ai_json_endpoint" : "https://studio.z-craft.xyz/ai-agents",
       "ai_overview_json" : "https://studio.z-craft.xyz/ai-overview.json",
-      "ai_page" : "https://studio.z-craft.xyz/ai-agents",
       "ai_text" : "https://studio.z-craft.xyz/ai.txt",
       "full_site_index_json" : "https://studio.z-craft.xyz/site-index.json",
       "llms" : "https://studio.z-craft.xyz/llms.txt",
@@ -134,7 +125,7 @@
          "title" : "Visual Config Studio"
       }
    ],
-   "generatedAt" : "Mon Jun 15 08:36:59 2026 UTC",
+   "generatedAt" : "Mon Jun 15 08:41:25 2026 UTC",
    "name" : "ZCraft Studios",
    "projectCount" : 8,
    "resourceCount" : 8,

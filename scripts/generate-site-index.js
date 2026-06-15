@@ -63,7 +63,7 @@ const generatedAt = new Date().toISOString();
 const discovery = {
   sitemap: `${baseUrl}/sitemap.xml`,
   llms: `${baseUrl}/llms.txt`,
-  ai_page: `${baseUrl}/ai-agents`,
+  ai_json_endpoint: `${baseUrl}/ai-agents`,
   ai_text: `${baseUrl}/ai.txt`,
   ai_overview_json: `${baseUrl}/ai-overview.json`,
   full_site_index_json: `${baseUrl}/site-index.json`,
@@ -131,7 +131,7 @@ const plainLines = [
   `Description: ${info.seo.home.description}`,
   '',
   'Primary services: Minecraft plugins; Minecraft server configs; Discord bots; web tools; commissioned development; premium downloadable resources.',
-  `Canonical AI guide: ${baseUrl}/ai-agents`,
+  `AI JSON endpoint: ${baseUrl}/ai-agents`,
   `Full JSON site index: ${baseUrl}/site-index.json`,
   `Compact AI overview JSON: ${baseUrl}/ai-overview.json`,
   `Sitemap: ${baseUrl}/sitemap.xml`,

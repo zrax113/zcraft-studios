@@ -4,8 +4,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/ai-agents", "destination": "/ai-agents.html" },
-    { "source": "/ai-agents/", "destination": "/ai-agents.html" },
+    { "source": "/ai-agents", "destination": "/ai-overview.json" },
+    { "source": "/ai-agents/", "destination": "/ai-overview.json" },
     { "source": "/team", "destination": "/team.html" },
     { "source": "/team/", "destination": "/team.html" },
     { "source": "/teams", "destination": "/team.html" },
@@ -29,6 +29,13 @@
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/ai-agents",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {

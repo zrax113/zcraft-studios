@@ -1480,92 +1480,6 @@ footer { border-top: 1px solid var(--border); padding: 24px; margin-top: 32px; p
 }
 .notfound-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
-.agents-layout {
-  display: grid;
-  gap: 16px;
-}
-.ai-agents-static {
-  padding-top: 32px;
-  padding-bottom: 32px;
-}
-.agents-panel {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: var(--window-radius);
-  padding: 24px;
-}
-.agents-panel h2 {
-  font-family: var(--sans);
-  font-size: 20px;
-  margin: 0 0 16px;
-  color: var(--text);
-}
-.agents-facts {
-  display: grid;
-  gap: 12px;
-  margin: 0;
-}
-.agents-facts div {
-  display: grid;
-  grid-template-columns: minmax(120px, 180px) 1fr;
-  gap: 16px;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.agents-facts div:last-child { border-bottom: 0; }
-.agents-facts dt {
-  color: var(--cyan);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.agents-facts dd {
-  margin: 0;
-  color: var(--text2);
-}
-.agents-panel a {
-  color: var(--main);
-  text-decoration: none;
-}
-.agents-panel a:hover { color: #f87171; }
-.agents-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-}
-.agents-links a,
-.agents-page-item,
-.agents-resource-item {
-  background: rgba(15,23,42,0.55);
-  border: 1px solid rgba(148,163,184,0.12);
-  border-radius: 8px;
-  padding: 14px;
-  min-width: 0;
-}
-.agents-page-list,
-.agents-resource-list {
-  display: grid;
-  gap: 12px;
-}
-.agents-page-item p,
-.agents-resource-item p {
-  color: var(--text2);
-  margin: 8px 0 0;
-  font-size: 13px;
-  line-height: 1.7;
-}
-.agents-resource-item {
-  display: grid;
-  gap: 4px;
-}
-.agents-resource-item strong { color: var(--text); }
-.agents-resource-item span {
-  color: var(--cyan);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
 .maintenance-banner { position: sticky; top: 52px; z-index: 99; background: linear-gradient(90deg, rgba(239,68,68,0.1), rgba(239,68,68,0.05)); border-bottom: 1px solid rgba(239,68,68,0.2); padding: 12px 24px; backdrop-filter: blur(8px); animation: slideDown 0.3s ease-out; }
 .maintenance-banner-content { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .maintenance-banner-text { font-family: var(--mono); font-size: 13px; color: var(--text2); flex: 1; min-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1623,10 +1537,5 @@ footer { border-top: 1px solid var(--border); padding: 24px; margin-top: 32px; p
 
   .topbar-nav a {
     flex: 0 0 auto;
-  }
-
-  .agents-facts div {
-    grid-template-columns: 1fr;
-    gap: 4px;
   }
 }

@@ -51,12 +51,6 @@
       "keywords": "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
       "canonical": "/resources"
     },
-    "agents": {
-      "title": "AI Agent Site Guide \u2014 ZCraft Studios",
-      "description": "AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.",
-      "keywords": "ZCraft Studios AI guide, AI crawler guide, llms.txt, site index JSON, ai-overview JSON, ai.txt, Minecraft plugins data, Discord bot resources, structured site data",
-      "canonical": "/ai-agents"
-    },
     "team": {
       "title": "Team \u2014 ZCraft Studios",
       "description": "Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.",

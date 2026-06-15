@@ -3,7 +3,7 @@
 ZCraft Studios is a premium developer studio crafting Minecraft resources, plugins, server configs, Discord bots, and modern web experiences.
 
 Canonical site: https://studio.z-craft.xyz/
-AI agent guide: https://studio.z-craft.xyz/ai-agents
+AI JSON endpoint: https://studio.z-craft.xyz/ai-agents
 Full generated site index JSON: https://studio.z-craft.xyz/site-index.json
 Compact AI overview JSON: https://studio.z-craft.xyz/ai-overview.json
 Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
@@ -15,7 +15,7 @@ XML sitemap: https://studio.z-craft.xyz/sitemap.xml
 - About: https://studio.z-craft.xyz/about
 - Team: https://studio.z-craft.xyz/team
 - Resources: https://studio.z-craft.xyz/resources
-- AI agent guide: https://studio.z-craft.xyz/ai-agents
+- AI JSON endpoint: https://studio.z-craft.xyz/ai-agents
 - Request custom work: https://studio.z-craft.xyz/request
 - Contact: https://studio.z-craft.xyz/contact
 - Donate: https://studio.z-craft.xyz/donate

@@ -86,8 +86,8 @@
       "requestUrl" : "https://studio.z-craft.xyz/request"
    },
    "discovery" : {
+      "ai_json_endpoint" : "https://studio.z-craft.xyz/ai-agents",
       "ai_overview_json" : "https://studio.z-craft.xyz/ai-overview.json",
-      "ai_page" : "https://studio.z-craft.xyz/ai-agents",
       "ai_text" : "https://studio.z-craft.xyz/ai.txt",
       "full_site_index_json" : "https://studio.z-craft.xyz/site-index.json",
       "llms" : "https://studio.z-craft.xyz/llms.txt",
@@ -96,7 +96,7 @@
       "source_products" : "https://studio.z-craft.xyz/config/products.json",
       "source_reviews" : "https://studio.z-craft.xyz/config/reviews.json"
    },
-   "generatedAt" : "Mon Jun 15 08:36:59 2026 UTC",
+   "generatedAt" : "Mon Jun 15 08:41:25 2026 UTC",
    "generatedFrom" : [
       "config/info.json",
       "config/products.json",
@@ -111,15 +111,6 @@
          "keywords" : "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
          "title" : "About — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/about"
-      },
-      {
-         "canonical" : "/ai-agents",
-         "description" : "AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.",
-         "indexable" : true,
-         "key" : "agents",
-         "keywords" : "ZCraft Studios AI guide, AI crawler guide, llms.txt, site index JSON, ai-overview JSON, ai.txt, Minecraft plugins data, Discord bot resources, structured site data",
-         "title" : "AI Agent Site Guide — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/ai-agents"
       },
       {
          "canonical" : "/contact",
@@ -284,15 +275,6 @@
          "keywords" : "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
          "title" : "About — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/about"
-      },
-      {
-         "canonical" : "/ai-agents",
-         "description" : "AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.",
-         "indexable" : true,
-         "key" : "agents",
-         "keywords" : "ZCraft Studios AI guide, AI crawler guide, llms.txt, site index JSON, ai-overview JSON, ai.txt, Minecraft plugins data, Discord bot resources, structured site data",
-         "title" : "AI Agent Site Guide — ZCraft Studios",
-         "url" : "https://studio.z-craft.xyz/ai-agents"
       },
       {
          "canonical" : "/contact",
