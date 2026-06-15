@@ -318,6 +318,15 @@ function sentence(value = '') {
   return String(value).trim().replace(/[.]+$/, '');
 }
 
+function formatDate(dateStr) {
+  try {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  } catch (e) {
+    return dateStr;
+  }
+}
+
 function compactItem(item) {
   const firstLink = (item.links || [])[0];
   const slug = item.slug || slugify(item.title);
@@ -654,6 +663,10 @@ ${sections.map(section => `<section class="trust-section"><div class="section-la
 
 function renderResourceDetail(resource) {
   const page = info.resourcesPage || {};
+  const detailConfig = page.detailLayout || {};
+  const layout = detailConfig.layout || 'side-by-side'; // 'side-by-side', 'stacked', 'hero-top'
+  const showImage = detailConfig.showImage !== false;
+  const imagePlacement = detailConfig.imagePlacement || 'left'; // 'left', 'right', 'top'
   const headings = page.paragraphHeadings || [];
   const facts = [
     ['What it is', resource.what],
@@ -663,18 +676,32 @@ function renderResourceDetail(resource) {
     ['Setup difficulty', resource.setupDifficulty],
     ['Support method', resource.supportMethod]
   ].filter(([, value]) => value);
-  return `<section class="page-hero"><span class="page-label">${esc(page.detailLabel || '// resource')}</span><h1>${esc(resource.title)}</h1><p class="page-copy">${esc(resource.what || resource.summary)}</p></section>
-<article class="detail-layout">
-<div class="detail-media"><img src="${esc(resource.image)}" alt="${esc(resource.title)} resource image" loading="eager" /></div>
-<div class="detail-content">
-<div class="blog-card-meta"><span>${esc(resource.category || 'Resource')}</span><span>${esc(resource.brand || 'ZCraft Studios')}</span><span>${esc(resource.status || 'Available')}</span></div>
-<dl class="blog-facts">${facts.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>
-<div class="blog-body">${resourceParagraphs(resource).map((paragraph, index) => `<section><h2>${esc(headings[index] || headings[headings.length - 1] || 'Product details')}</h2><p>${esc(paragraph)}</p></section>`).join('')}</div>
+  
+  const imageHtml = showImage ? `<img src="${esc(resource.image)}" alt="${esc(resource.title)} resource image" loading="eager" class="detail-hero-image" />` : '';
+  const mediaSection = `<div class="detail-media">${imageHtml}</div>`;
+  const contentSection = `<div class="detail-content">
+<div class="detail-meta"><span class="meta-badge category-badge">${esc(resource.category || 'Resource')}</span><span class="meta-badge brand-badge">${esc(resource.brand || 'ZCraft Studios')}</span><span class="meta-badge status-badge">${esc(resource.status || 'Available')}</span></div>
+<dl class="detail-facts">${facts.map(([label, value]) => `<div class="fact-item"><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>
+<div class="detail-body">${resourceParagraphs(resource).map((paragraph, index) => `<section class="detail-section"><h2>${esc(headings[index] || headings[headings.length - 1] || 'Product details')}</h2><p>${esc(paragraph)}</p></section>`).join('')}</div>
 <div class="tags">${(resource.tags || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
-<div class="resource-detail-actions">${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}">${esc(link.labelOverride || page.externalLinkLabel || link.label)}</a>`).join('')}<a class="btn btn-ghost" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || 'all resources')}</a></div>
-</div>
-</article>
-`;
+<div class="detail-actions">${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}" target="_blank" rel="noopener">${esc(link.labelOverride || page.externalLinkLabel || link.label)}</a>`).join('')}<a class="btn btn-secondary" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || '← all resources')}</a></div>
+</div>`;
+  
+  let layoutHtml = '';
+  if (layout === 'hero-top') {
+    layoutHtml = `<section class="page-hero"><span class="page-label">${esc(page.detailLabel || '// resource')}</span><h1>${esc(resource.title)}</h1><p class="page-copy">${esc(resource.what || resource.summary)}</p></section>
+${imageHtml ? `<div class="detail-hero-section">${imageHtml}</div>` : ''}
+<article class="detail-layout detail-stacked">${contentSection}</article>`;
+  } else if (layout === 'stacked') {
+    layoutHtml = `<section class="page-hero"><span class="page-label">${esc(page.detailLabel || '// resource')}</span><h1>${esc(resource.title)}</h1><p class="page-copy">${esc(resource.what || resource.summary)}</p></section>
+<article class="detail-layout detail-stacked">${imageHtml ? mediaSection : ''}${contentSection}</article>`;
+  } else {
+    const leftFirst = imagePlacement === 'left';
+    layoutHtml = `<section class="page-hero"><span class="page-label">${esc(page.detailLabel || '// resource')}</span><h1>${esc(resource.title)}</h1><p class="page-copy">${esc(resource.what || resource.summary)}</p></section>
+<article class="detail-layout detail-side-by-side ${leftFirst ? 'media-left' : 'media-right'}">${leftFirst ? (imageHtml ? mediaSection : '') + contentSection : contentSection + (imageHtml ? mediaSection : '')}</article>`;
+  }
+  
+  return layoutHtml;
 }
 
 function renderResourceIndex() {
@@ -691,15 +718,44 @@ function renderBlogIndex() {
 
 function renderBlogDetail(post) {
   const page = blogs.page || {};
+  const detailConfig = page.detailLayout || {};
+  const showImage = detailConfig.showImage !== false;
   const publisherHandle = post.publisherHandle || page.publisherHandle || defaultPublisherHandle;
-  return `<section class="page-hero"><span class="page-label">${esc(page.label || '// blog')}</span><h1>${esc(post.title)}</h1><p class="page-copy">${esc(post.summary)}</p></section>
-<article class="blog-detail">
-${post.image ? `<img class="blog-hero-image" src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="eager" />` : ''}
-<div class="blog-card-meta"><span>${esc(post.date || '2026-06-15')}</span><span>${esc(page.updatedLabel || 'Updated')} ${esc(post.updated || post.date || '2026-06-15')}</span><span>${esc(page.publisherLabel || 'Publisher')} ${esc(publisherHandle)}</span><span>${esc(post.category || page.publisherName || 'Studio')}</span><span>${esc(post.readingTime || page.defaultReadingTime || 'Quick read')}</span></div>
-<dl class="blog-facts"><div><dt>${esc(page.audienceLabel || 'Who it is for')}</dt><dd>${esc(post.audience || page.defaultAudience || 'Minecraft communities and creators')}</dd></div></dl>
-<div class="blog-body">${blogSections(post).map(section => `<section><h2>${renderInlineMarkdown(section.heading)}</h2>${renderMarkdownBlock(section.body)}</section>`).join('')}</div>
-<div class="tags">${[...new Set([...(post.tags || []), ...(post.keywords || [])])].map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
-<div class="resource-detail-actions"><a class="btn btn-ghost" href="${esc(page.backHref || '/blogs')}">${esc(page.backLabel || 'all blog posts')}</a></div>
+  
+  return `<article class="blog-detail">
+<section class="blog-hero">
+<div class="blog-hero-content">
+<span class="page-label">${esc(page.label || '// blog')}</span>
+<h1 class="blog-title">${esc(post.title)}</h1>
+<p class="blog-summary">${esc(post.summary)}</p>
+</div>
+${showImage && post.image ? `<img class="blog-hero-image" src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="eager" />` : ''}
+</section>
+
+<div class="blog-meta-section">
+<div class="blog-meta">
+<span class="meta-item" title="Published"><time datetime="${esc(post.date)}">${esc(formatDate(post.date))}</time></span>
+<span class="meta-item" title="Last updated"><time datetime="${esc(post.updated || post.date)}">${esc(formatDate(post.updated || post.date))}</time></span>
+<span class="meta-item category">${esc(post.category || page.publisherName || 'Studio')}</span>
+<span class="meta-item reading-time">${esc(post.readingTime || page.defaultReadingTime || '5 min read')}</span>
+<span class="meta-item publisher">by <strong>${esc(publisherHandle)}</strong></span>
+</div>
+<div class="blog-audience-section">
+<strong>${esc(page.audienceLabel || 'For:')}</strong>
+<p>${esc(post.audience || page.defaultAudience || 'Minecraft communities and creators')}</p>
+</div>
+</div>
+
+<div class="blog-content">
+${blogSections(post).map(section => `<section class="blog-section"><h2>${renderInlineMarkdown(section.heading)}</h2>${renderMarkdownBlock(section.body)}</section>`).join('')}
+</div>
+
+<div class="blog-footer">
+<div class="blog-tags">${[...new Set([...(post.tags || []), ...(post.keywords || [])])].map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
+<div class="blog-actions">
+<a class="btn btn-secondary" href="${esc(page.backHref || '/blogs')}">${esc(page.backLabel || '← Back to blog')}</a>
+</div>
+</div>
 </article>`;
 }
 

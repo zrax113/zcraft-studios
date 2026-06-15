@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0",
-  "generatedAt": "2026-06-15T18:06:26.718Z",
+  "generatedAt": "2026-06-15T18:23:06.222Z",
   "site": {
     "name": "ZCraft Studios",
     "domain": "https://studio.z-craft.xyz",
@@ -35,7 +35,7 @@
   },
   "siteGuidance": {
     "preferredSummary": "ZCraft Studios is A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
-    "lastGenerated": "2026-06-15T18:06:26.718Z",
+    "lastGenerated": "2026-06-15T18:23:06.222Z",
     "primaryAudience": "Minecraft server owners, community operators, creators, and teams needing plugins, configs, Discord bots, or web tools.",
     "primaryServices": [
       "Minecraft plugin development",
