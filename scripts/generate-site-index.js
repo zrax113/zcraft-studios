@@ -933,6 +933,14 @@ ${sitemapUrls.map(url => `  <url>
 writeText('site-index.json', `${JSON.stringify(siteIndex, null, 2)}\n`);
 writeText('ai-overview.json', `${JSON.stringify(overview, null, 2)}\n`);
 writeText('config/content.generated.json', `${JSON.stringify({ resources: resourceConfigItems, blogPosts: blogConfigPosts }, null, 2)}\n`);
+// Also provide a products.json derived from config/resources.json so client-side code
+// that expects products can fall back to the same resource list.
+try {
+  const resourcesList = (resourceIndex.resources || []).map(item => typeof item === 'string' ? item : item.file || item);
+  writeText('config/products.json', `${JSON.stringify({ products: resourcesList }, null, 2)}\n`);
+} catch (e) {
+  // ignore write errors
+}
 writeText('ai.txt', `${plainLines.join('\n')}\n`);
 
 console.log('Generated site-index.json, ai-overview.json, ai.txt, sitemap.xml, config/content.generated.json, and flat detail pages');
