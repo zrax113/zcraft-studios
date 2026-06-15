@@ -1,124 +1,777 @@
 {
-  "info": {
-    "site": {
-      "name": "ZCraft Studios",
-      "domain": "https://studio.z-craft.xyz",
-      "tagline": "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
-      "author": "ZCraft Studios",
-      "year": 2026
-    },
-    "branding": {
-      "favicon": "/favicon.ico",
-      "logo": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
-      "ogImage": "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
-      "themeColor": "#ef4444"
-    }
-  },
-  "products": {
-    "projects": [
+   "branding" : {
+      "favicon" : "/favicon.ico",
+      "logo" : "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+      "ogImage" : "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+      "themeColor" : "#ef4444"
+   },
+   "contact" : {
+      "copy" : "Open for plugin commissions, server setups, and modern web work. Discord is the fastest way to reach me — replies usually within a few hours.",
+      "help" : [
+         {
+            "desc" : "Share your server version, desired features, and any existing plugins so we can estimate compatibility quickly.",
+            "title" : "Need a custom plugin?"
+         },
+         {
+            "desc" : "If a server issue is blocking you, provide logs, configs, and what you already tried. We can help isolate the fix.",
+            "title" : "Troubleshooting existing setups"
+         },
+         {
+            "desc" : "We can scope builds for websites, Discord bots, proxy auth, and server automation with a clear launch plan.",
+            "title" : "Planning a new project"
+         }
+      ],
+      "kicker" : "// reach out",
+      "notes" : [
+         {
+            "label" : "timezone",
+            "value" : "GMT+4 · Fri-Sun"
+         },
+         {
+            "label" : "response",
+            "value" : "< 6 hours, usually faster"
+         }
+      ],
+      "platforms" : [
+         {
+            "handle" : "zain@z-craft.xyz",
+            "href" : "mailto:zain@z-craft.xyz",
+            "icon" : "✉",
+            "meta" : "business inquiries",
+            "platform" : "email"
+         },
+         {
+            "handle" : "@zraxgaming",
+            "href" : "https://github.com/zraxgaming",
+            "icon" : "⌥",
+            "meta" : "open source",
+            "platform" : "github"
+         },
+         {
+            "handle" : "zain.z-craft.xyz",
+            "href" : "https://Zain.z-craft.xyz",
+            "icon" : "◈",
+            "meta" : "portfolio",
+            "platform" : "website"
+         },
+         {
+            "handle" : "@zraxgaming",
+            "href" : "https://x.com/ZCraftNetwork",
+            "icon" : "𝕏",
+            "meta" : "updates",
+            "platform" : "twitter"
+         }
+      ],
+      "primary" : {
+         "badge" : "fastest reply",
+         "cta" : "open discord →",
+         "handle" : "@zraxgaming",
+         "href" : "https://discord.com/users/zraxgaming",
+         "platform" : "discord"
+      },
+      "title" : "let's build something premium."
+   },
+   "crawlerGuidance" : {
+      "contactUrl" : "https://studio.z-craft.xyz/contact",
+      "preferredSummary" : "ZCraft Studios is A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
+      "primaryAudience" : "Minecraft server owners, community operators, creators, and teams needing plugins, configs, Discord bots, or web tools.",
+      "primaryServices" : [
+         "Minecraft plugin development",
+         "Minecraft server setup and configuration",
+         "Discord bot development",
+         "Modern web tools and websites",
+         "Premium downloadable resources"
+      ],
+      "recommendedCitationUrl" : "https://studio.z-craft.xyz/",
+      "requestUrl" : "https://studio.z-craft.xyz/request"
+   },
+   "discovery" : {
+      "ai_overview_json" : "https://studio.z-craft.xyz/ai-overview.json",
+      "ai_page" : "https://studio.z-craft.xyz/ai-agents",
+      "ai_text" : "https://studio.z-craft.xyz/ai.txt",
+      "full_site_index_json" : "https://studio.z-craft.xyz/site-index.json",
+      "llms" : "https://studio.z-craft.xyz/llms.txt",
+      "sitemap" : "https://studio.z-craft.xyz/sitemap.xml",
+      "source_config" : "https://studio.z-craft.xyz/config/info.json",
+      "source_products" : "https://studio.z-craft.xyz/config/products.json",
+      "source_reviews" : "https://studio.z-craft.xyz/config/reviews.json"
+   },
+   "generatedAt" : "Mon Jun 15 08:30:13 2026 UTC",
+   "generatedFrom" : [
+      "config/info.json",
+      "config/products.json",
+      "config/reviews.json"
+   ],
+   "indexablePages" : [
       {
-        "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
-        "title": "Evidence Discord Bot",
-        "brand": "Discord Bot",
-        "summary": "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
-        "tags": ["Node.js","Moderation","Security"],
-        "status": "available",
-        "featured": false,
-        "category": "Bot",
-        "links": [{"label":"View","href":"https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/","variant":"primary"}]
+         "canonical" : "/about",
+         "description" : "ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.",
+         "indexable" : true,
+         "key" : "about",
+         "keywords" : "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
+         "title" : "About — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/about"
       },
       {
-        "image": "https://builtbybit.com/attachments/image_2026-05-12_202043575-png.1327794/?preset=cardr1",
-        "title": "Visual Config Studio",
-        "brand": "Website",
-        "summary": "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
-        "tags": ["React","Vite","Tailwind","Configs"],
-        "status": "live",
-        "featured": true,
-        "category": "Website",
-        "links": [{"label":"View","href":"https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/","variant":"primary"}]
+         "canonical" : "/ai-agents",
+         "description" : "AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.",
+         "indexable" : true,
+         "key" : "agents",
+         "keywords" : "ZCraft Studios AI guide, AI crawler guide, llms.txt, site index JSON, ai-overview JSON, ai.txt, Minecraft plugins data, Discord bot resources, structured site data",
+         "title" : "AI Agent Site Guide — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/ai-agents"
       },
       {
-        "image": "https://builtbybit.com/attachments/gemini_generated_image_mew3dbmew3dbmew3-png.1326924/?preset=cardr1",
-        "title": "LuckPerms Visual Tree",
-        "brand": "Website",
-        "summary": "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
-        "tags": ["React Flow","LuckPerms","Permissions"],
-        "status": "live",
-        "featured": true,
-        "category": "Website",
-        "links": [{"label":"View","href":"https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/","variant":"primary"}]
+         "canonical" : "/contact",
+         "description" : "Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.",
+         "indexable" : true,
+         "key" : "contact",
+         "keywords" : "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
+         "title" : "Contact — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/contact"
       },
       {
-        "image": "https://builtbybit.com/attachments/chatgpt-image-may-31-2026-11_33_37-pm-png.1353280/?preset=fullr1",
-        "title": "Z-Auth",
-        "brand": "Proxy Auth",
-        "summary": "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
-        "tags": ["Proxy","Authentication","Minecraft","Velocity","Paper"],
-        "status": "free",
-        "featured": false,
-        "category": "plugin",
-        "links": [{"label":"View","href":"https://builtbybit.com/resources/z-auth-modern-authentication-plugin.110438/","variant":"primary"}]
+         "canonical" : "/donate",
+         "description" : "Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.",
+         "indexable" : true,
+         "key" : "donate",
+         "keywords" : "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
+         "title" : "Donate — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/donate"
+      },
+      {
+         "canonical" : "/",
+         "description" : "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
+         "indexable" : true,
+         "key" : "home",
+         "keywords" : "ZCraft Studios, Minecraft plugins, Minecraft server configs, Discord bots, Paper plugins, Spigot plugins, Velocity plugins, Minecraft resources, server setup, web development",
+         "title" : "ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots",
+         "url" : "https://studio.z-craft.xyz/"
+      },
+      {
+         "canonical" : "/request",
+         "description" : "Request custom Minecraft plugins, server configs, Discord bot development, or web tools from ZCraft Studios.",
+         "indexable" : true,
+         "key" : "request",
+         "keywords" : "request Minecraft plugin, custom Minecraft plugin, server config request, Discord bot development request, custom web tool, ZCraft Studios commission",
+         "title" : "Request Custom Service — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/request"
+      },
+      {
+         "canonical" : "/resources",
+         "description" : "Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.",
+         "indexable" : true,
+         "key" : "resources",
+         "keywords" : "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
+         "title" : "Resources — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/resources"
+      },
+      {
+         "canonical" : "/team",
+         "description" : "Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.",
+         "indexable" : true,
+         "key" : "team",
+         "keywords" : "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
+         "title" : "Team — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/team"
       }
-    ],
-    "resources": [
+   ],
+   "maintenance" : {
+      "enabled" : false,
+      "global" : true,
+      "message" : "We are applying updates to the studio site. Please check back shortly.",
+      "pages" : {
+         "about" : {
+            "enabled" : false,
+            "message" : "About the studio is currently being refreshed with new storytelling and updates.",
+            "promoText" : "We’re crafting a clearer overview of what ZCraft Studios does and why it matters.",
+            "promoTitle" : "Studio story upgrade",
+            "title" : "About page maintenance"
+         },
+         "contact" : {
+            "enabled" : false,
+            "message" : "Contact details are being updated right now. Please come back soon.",
+            "promoText" : "Join Discord or email directly if you need urgent help while contact is refreshed.",
+            "promoTitle" : "Support is still available",
+            "title" : "Contact page maintenance"
+         },
+         "donate" : {
+            "enabled" : false,
+            "message" : "Donation processing is temporarily disabled while we improve checkout flow.",
+            "promoText" : "We’re updating payment experience so donations are smoother and more secure.",
+            "promoTitle" : "Support is still welcome",
+            "title" : "Donate page maintenance"
+         },
+         "home" : {
+            "enabled" : false,
+            "message" : "The site homepage is currently under maintenance. Please check back soon.",
+            "promoText" : "We’re improving the homepage experience and will be back shortly.",
+            "promoTitle" : "New studio updates are coming",
+            "title" : "Homepage maintenance"
+         },
+         "notfound" : {
+            "enabled" : false,
+            "message" : "The requested page is temporarily unavailable while we update the site.",
+            "promoText" : "We’re applying updates across the site and will be back shortly.",
+            "promoTitle" : "Thanks for your patience",
+            "title" : "Maintenance mode"
+         },
+         "request" : {
+            "enabled" : false,
+            "message" : "Request submissions are paused while we improve our intake experience.",
+            "promoText" : "Join Discord for urgent quotes and project support while the request form is updated.",
+            "promoTitle" : "Need help now?",
+            "title" : "Request page maintenance"
+         },
+         "resources" : {
+            "enabled" : false,
+            "message" : "Resource browsing is temporarily paused while we refresh our catalog.",
+            "promoText" : "We’re updating downloads and listings for a faster, cleaner experience.",
+            "promoTitle" : "Better resources are on the way",
+            "title" : "Resources maintenance"
+         },
+         "team" : {
+            "enabled" : false,
+            "message" : "The team page is under review for updated contributor details.",
+            "promoText" : "We’re polishing team bios and project roles for a stronger studio presentation.",
+            "promoTitle" : "Meet our team soon",
+            "title" : "Team page maintenance"
+         },
+         "thankyou" : {
+            "enabled" : false,
+            "message" : "Thank-you confirmation pages are being updated.",
+            "promoText" : "We’re making the post-donation experience more polished.",
+            "promoTitle" : "Gratitude page refresh",
+            "title" : "Thank-you page maintenance"
+         }
+      },
+      "promoText" : "We’re refreshing the experience with request enhancements and faster site performance.",
+      "promoTitle" : "Studio update is coming",
+      "title" : "Maintenance mode active"
+   },
+   "navigation" : [
       {
-        "image": "https://builtbybit.com/attachments/image_2026-05-06_233252176-png.1320307/?preset=cardr1",
-        "title": "Evidence Discord Bot",
-        "brand": "Bot",
-        "summary": "Best discord bot for performance and handling user cases and moderation.",
-        "tags": ["Simple","performance"],
-        "status": "5.38$",
-        "featured": true,
-        "category": "bot",
-        "links": [{"label":"View","href":"https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/","variant":"primary"}]
+         "href" : "/",
+         "label" : "home"
       },
       {
-        "image": "https://builtbybit.com/attachments/image_2026-05-12_202043575-png.1327794/?preset=cardr1",
-        "title": "Visual Config Studio",
-        "brand": "Website",
-        "summary": "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
-        "tags": ["Web","Configs","Visual"],
-        "status": "5.47$",
-        "featured": true,
-        "category": "website",
-        "links": [{"label":"View","href":"https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/","variant":"primary"}]
+         "href" : "/about",
+         "label" : "about"
       },
       {
-        "image": "https://builtbybit.com/attachments/gemini_generated_image_mew3dbmew3dbmew3-png.1326924/?preset=cardr1",
-        "title": "LuckPerms Visual Tree",
-        "brand": "Website",
-        "summary": "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
-        "tags": ["Permissions","LuckPerms","Visual"],
-        "status": "5.57$",
-        "featured": false,
-        "category": "website",
-        "links": [{"label":"View","href":"https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/","variant":"primary"}]
+         "href" : "/team",
+         "label" : "team"
       },
       {
-        "image": "https://builtbybit.com/attachments/chatgpt-image-may-31-2026-11_33_37-pm-png.1353280/?preset=fullr1",
-        "title": "Z-Auth",
-        "brand": "Proxy Auth",
-        "summary": "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
-        "tags": ["Proxy","Authentication","Minecraft","Velocity","Paper"],
-        "status": "live",
-        "featured": false,
-        "category": "plugin",
-        "links": [{"label":"View","href":"https://builtbybit.com/resources/z-auth-modern-authentication-plugin.110438/","variant":"primary"}]
+         "href" : "/resources",
+         "label" : "resources"
+      },
+      {
+         "href" : "/ai-agents",
+         "label" : "ai"
+      },
+      {
+         "href" : "/request",
+         "label" : "request"
+      },
+      {
+         "href" : "/donate",
+         "label" : "donate"
       }
-    ]
-  },
-  "reviews": {
-    "reviews": [
+   ],
+   "pages" : [
       {
-        "name": "Almotasem",
-        "handle": "@almotasem",
-        "avatar": "https://cdn.discordapp.com/avatars/1179436345370869773/32ff2e76d9946f8d6a4d116d95dd9955.webp?size=60",
-        "rating": 5,
-        "text": "Amazing work, Was available most of the day and finished work quickly.",
-        "date": "2026-5-7",
-        "project": "Minecraft Server Service Setup"
+         "canonical" : "/about",
+         "description" : "ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.",
+         "indexable" : true,
+         "key" : "about",
+         "keywords" : "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
+         "title" : "About — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/about"
+      },
+      {
+         "canonical" : "/ai-agents",
+         "description" : "AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.",
+         "indexable" : true,
+         "key" : "agents",
+         "keywords" : "ZCraft Studios AI guide, AI crawler guide, llms.txt, site index JSON, ai-overview JSON, ai.txt, Minecraft plugins data, Discord bot resources, structured site data",
+         "title" : "AI Agent Site Guide — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/ai-agents"
+      },
+      {
+         "canonical" : "/contact",
+         "description" : "Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.",
+         "indexable" : true,
+         "key" : "contact",
+         "keywords" : "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
+         "title" : "Contact — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/contact"
+      },
+      {
+         "canonical" : "/donate",
+         "description" : "Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.",
+         "indexable" : true,
+         "key" : "donate",
+         "keywords" : "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
+         "title" : "Donate — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/donate"
+      },
+      {
+         "canonical" : "/",
+         "description" : "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
+         "indexable" : true,
+         "key" : "home",
+         "keywords" : "ZCraft Studios, Minecraft plugins, Minecraft server configs, Discord bots, Paper plugins, Spigot plugins, Velocity plugins, Minecraft resources, server setup, web development",
+         "title" : "ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots",
+         "url" : "https://studio.z-craft.xyz/"
+      },
+      {
+         "canonical" : "/404",
+         "description" : "The requested ZCraft Studios page was not found. Return to Minecraft resources, custom requests, or contact options.",
+         "indexable" : false,
+         "key" : "notfound",
+         "keywords" : "ZCraft Studios 404, page not found, Minecraft resources, contact ZCraft Studios",
+         "title" : "404 — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/404"
+      },
+      {
+         "canonical" : "/request",
+         "description" : "Request custom Minecraft plugins, server configs, Discord bot development, or web tools from ZCraft Studios.",
+         "indexable" : true,
+         "key" : "request",
+         "keywords" : "request Minecraft plugin, custom Minecraft plugin, server config request, Discord bot development request, custom web tool, ZCraft Studios commission",
+         "title" : "Request Custom Service — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/request"
+      },
+      {
+         "canonical" : "/resources",
+         "description" : "Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.",
+         "indexable" : true,
+         "key" : "resources",
+         "keywords" : "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
+         "title" : "Resources — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/resources"
+      },
+      {
+         "canonical" : "/team",
+         "description" : "Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.",
+         "indexable" : true,
+         "key" : "team",
+         "keywords" : "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
+         "title" : "Team — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/team"
+      },
+      {
+         "canonical" : "/thankyou",
+         "description" : "Thank you for supporting ZCraft Studios and helping keep Minecraft plugins, configs, Discord bots, and web tools moving forward.",
+         "indexable" : false,
+         "key" : "thankyou",
+         "keywords" : "thank you ZCraft Studios, donation confirmed, PayPal donation, Minecraft development support, Discord bot support",
+         "title" : "Thank You — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/thankyou"
       }
-    ]
-  }
+   ],
+   "products" : {
+      "categories" : [
+         "Bot",
+         "Config",
+         "Plugin",
+         "Website"
+      ],
+      "projects" : [
+         {
+            "brand" : "Discord Bot",
+            "category" : "Bot",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "available",
+            "summary" : "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
+            "tags" : [
+               "Node.js",
+               "Moderation",
+               "Security"
+            ],
+            "title" : "Evidence Discord Bot"
+         },
+         {
+            "brand" : "Website",
+            "category" : "Website",
+            "featured" : true,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "live",
+            "summary" : "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
+            "tags" : [
+               "React",
+               "Vite",
+               "Tailwind",
+               "Configs"
+            ],
+            "title" : "Visual Config Studio"
+         },
+         {
+            "brand" : "Website",
+            "category" : "Website",
+            "featured" : true,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "live",
+            "summary" : "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
+            "tags" : [
+               "React Flow",
+               "LuckPerms",
+               "Permissions"
+            ],
+            "title" : "LuckPerms Visual Tree"
+         },
+         {
+            "brand" : "Proxy Auth",
+            "category" : "Plugin",
+            "featured" : false,
+            "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
+            "links" : [
+               {
+                  "href" : "https://github.com/zraxgaming/zcraft-auth",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "free",
+            "summary" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+            "tags" : [
+               "Proxy",
+               "Authentication",
+               "Minecraft",
+               "Velocity",
+               "Paper"
+            ],
+            "title" : "Z-Auth"
+         },
+         {
+            "brand" : "Minecraft Config",
+            "category" : "Config",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/essentialsx-messages-config.110869/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "available",
+            "summary" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+            "tags" : [
+               "EssentialsX",
+               "Messages",
+               "Minecraft",
+               "Config"
+            ],
+            "title" : "EssentialsX Messages Config"
+         },
+         {
+            "brand" : "Minecraft Config",
+            "category" : "Config",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "available",
+            "summary" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+            "tags" : [
+               "Maintenance",
+               "Messages",
+               "Minecraft",
+               "Config"
+            ],
+            "title" : "Modern Maintenance Messages Config"
+         },
+         {
+            "brand" : "Minecraft Config",
+            "category" : "Config",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/litebans-message-templates.111231/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "available",
+            "summary" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+            "tags" : [
+               "LiteBans",
+               "Messages",
+               "Moderation",
+               "Config"
+            ],
+            "title" : "LiteBans Message Templates"
+         },
+         {
+            "brand" : "Minecraft Config",
+            "category" : "Config",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "available",
+            "summary" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+            "tags" : [
+               "Tab",
+               "Scoreboard",
+               "Minecraft",
+               "Config"
+            ],
+            "title" : "Products Tab Config"
+         }
+      ],
+      "resources" : [
+         {
+            "brand" : "Bot",
+            "category" : "Bot",
+            "featured" : true,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "$5.38",
+            "summary" : "Best Discord bot for performance and handling user cases and moderation.",
+            "tags" : [
+               "Simple",
+               "Performance"
+            ],
+            "title" : "Evidence Discord Bot"
+         },
+         {
+            "brand" : "Website",
+            "category" : "Website",
+            "featured" : true,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "$5.47",
+            "summary" : "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
+            "tags" : [
+               "Web",
+               "Configs",
+               "Visual"
+            ],
+            "title" : "Visual Config Studio"
+         },
+         {
+            "brand" : "Website",
+            "category" : "Website",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "$5.57",
+            "summary" : "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
+            "tags" : [
+               "Permissions",
+               "LuckPerms",
+               "Visual"
+            ],
+            "title" : "LuckPerms Visual Tree"
+         },
+         {
+            "brand" : "Proxy Auth",
+            "category" : "Plugin",
+            "featured" : false,
+            "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
+            "links" : [
+               {
+                  "href" : "https://github.com/zraxgaming.zcraft-auth",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "Free",
+            "summary" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+            "tags" : [
+               "Proxy",
+               "Authentication",
+               "Minecraft",
+               "Velocity",
+               "Paper"
+            ],
+            "title" : "Z-Auth"
+         },
+         {
+            "brand" : "Config",
+            "category" : "Config",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/essentialsx-messages-config.110869/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "$4.73",
+            "summary" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+            "tags" : [
+               "EssentialsX",
+               "Messages",
+               "Minecraft"
+            ],
+            "title" : "EssentialsX Messages Config"
+         },
+         {
+            "brand" : "Config",
+            "category" : "Config",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "$3.72",
+            "summary" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+            "tags" : [
+               "Maintenance",
+               "Messages",
+               "Minecraft"
+            ],
+            "title" : "Modern Maintenance Messages Config"
+         },
+         {
+            "brand" : "Config",
+            "category" : "Config",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/litebans-message-templates.111231/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "$4.21",
+            "summary" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+            "tags" : [
+               "LiteBans",
+               "Messages",
+               "Moderation"
+            ],
+            "title" : "LiteBans Message Templates"
+         },
+         {
+            "brand" : "Config",
+            "category" : "Config",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+            "links" : [
+               {
+                  "href" : "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/",
+                  "label" : "View",
+                  "variant" : "primary"
+               }
+            ],
+            "status" : "$4.22",
+            "summary" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+            "tags" : [
+               "Tab",
+               "Scoreboard",
+               "Minecraft"
+            ],
+            "title" : "Products Tab Config"
+         }
+      ],
+      "topics" : [
+         "Authentication",
+         "Config",
+         "Configs",
+         "EssentialsX",
+         "LiteBans",
+         "LuckPerms",
+         "Maintenance",
+         "Messages",
+         "Minecraft",
+         "Moderation",
+         "Node.js",
+         "Paper",
+         "Performance",
+         "Permissions",
+         "Proxy",
+         "React",
+         "React Flow",
+         "Scoreboard",
+         "Security",
+         "Simple",
+         "Tab",
+         "Tailwind",
+         "Velocity",
+         "Visual",
+         "Vite",
+         "Web"
+      ]
+   },
+   "reviews" : [
+      {
+         "avatar" : "https://cdn.discordapp.com/avatars/1179436345370869773/32ff2e76d9946f8d6a4d116d95dd9955.webp?size=60",
+         "date" : "2026-5-7",
+         "handle" : "@almotasem",
+         "name" : "Almotasem",
+         "project" : "Minecraft Server Service Setup",
+         "rating" : 5,
+         "text" : "Amazing work, Was available most of the day and finished work quickly."
+      }
+   ],
+   "schemaVersion" : "1.0",
+   "site" : {
+      "author" : "ZCraft Studios",
+      "domain" : "https://studio.z-craft.xyz",
+      "name" : "ZCraft Studios",
+      "tagline" : "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
+      "year" : 2026
+   }
 }

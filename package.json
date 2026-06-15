@@ -2,6 +2,9 @@
   "name": "zcraft-studios",
   "version": "1.0.0",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "build": "node scripts/generate-site-index.js",
+    "generate:site-index": "node scripts/generate-site-index.js"
+  },
   "dependencies": {}
 }

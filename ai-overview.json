@@ -1,0 +1,172 @@
+{
+   "canonicalPages" : [
+      {
+         "canonical" : "/about",
+         "description" : "ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.",
+         "indexable" : true,
+         "key" : "about",
+         "keywords" : "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
+         "title" : "About — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/about"
+      },
+      {
+         "canonical" : "/ai-agents",
+         "description" : "AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.",
+         "indexable" : true,
+         "key" : "agents",
+         "keywords" : "ZCraft Studios AI guide, AI crawler guide, llms.txt, site index JSON, ai-overview JSON, ai.txt, Minecraft plugins data, Discord bot resources, structured site data",
+         "title" : "AI Agent Site Guide — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/ai-agents"
+      },
+      {
+         "canonical" : "/contact",
+         "description" : "Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.",
+         "indexable" : true,
+         "key" : "contact",
+         "keywords" : "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
+         "title" : "Contact — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/contact"
+      },
+      {
+         "canonical" : "/donate",
+         "description" : "Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.",
+         "indexable" : true,
+         "key" : "donate",
+         "keywords" : "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
+         "title" : "Donate — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/donate"
+      },
+      {
+         "canonical" : "/",
+         "description" : "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
+         "indexable" : true,
+         "key" : "home",
+         "keywords" : "ZCraft Studios, Minecraft plugins, Minecraft server configs, Discord bots, Paper plugins, Spigot plugins, Velocity plugins, Minecraft resources, server setup, web development",
+         "title" : "ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots",
+         "url" : "https://studio.z-craft.xyz/"
+      },
+      {
+         "canonical" : "/request",
+         "description" : "Request custom Minecraft plugins, server configs, Discord bot development, or web tools from ZCraft Studios.",
+         "indexable" : true,
+         "key" : "request",
+         "keywords" : "request Minecraft plugin, custom Minecraft plugin, server config request, Discord bot development request, custom web tool, ZCraft Studios commission",
+         "title" : "Request Custom Service — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/request"
+      },
+      {
+         "canonical" : "/resources",
+         "description" : "Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.",
+         "indexable" : true,
+         "key" : "resources",
+         "keywords" : "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
+         "title" : "Resources — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/resources"
+      },
+      {
+         "canonical" : "/team",
+         "description" : "Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.",
+         "indexable" : true,
+         "key" : "team",
+         "keywords" : "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
+         "title" : "Team — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/team"
+      }
+   ],
+   "categories" : [
+      "Bot",
+      "Config",
+      "Plugin",
+      "Website"
+   ],
+   "description" : "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
+   "discovery" : {
+      "ai_overview_json" : "https://studio.z-craft.xyz/ai-overview.json",
+      "ai_page" : "https://studio.z-craft.xyz/ai-agents",
+      "ai_text" : "https://studio.z-craft.xyz/ai.txt",
+      "full_site_index_json" : "https://studio.z-craft.xyz/site-index.json",
+      "llms" : "https://studio.z-craft.xyz/llms.txt",
+      "sitemap" : "https://studio.z-craft.xyz/sitemap.xml",
+      "source_config" : "https://studio.z-craft.xyz/config/info.json",
+      "source_products" : "https://studio.z-craft.xyz/config/products.json",
+      "source_reviews" : "https://studio.z-craft.xyz/config/reviews.json"
+   },
+   "featuredResources" : [
+      {
+         "brand" : "Bot",
+         "category" : "Bot",
+         "featured" : true,
+         "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+         "links" : [
+            {
+               "href" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/",
+               "label" : "View",
+               "variant" : "primary"
+            }
+         ],
+         "status" : "$5.38",
+         "summary" : "Best Discord bot for performance and handling user cases and moderation.",
+         "tags" : [
+            "Simple",
+            "Performance"
+         ],
+         "title" : "Evidence Discord Bot"
+      },
+      {
+         "brand" : "Website",
+         "category" : "Website",
+         "featured" : true,
+         "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
+         "links" : [
+            {
+               "href" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/",
+               "label" : "View",
+               "variant" : "primary"
+            }
+         ],
+         "status" : "$5.47",
+         "summary" : "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
+         "tags" : [
+            "Web",
+            "Configs",
+            "Visual"
+         ],
+         "title" : "Visual Config Studio"
+      }
+   ],
+   "generatedAt" : "Mon Jun 15 08:30:13 2026 UTC",
+   "name" : "ZCraft Studios",
+   "projectCount" : 8,
+   "resourceCount" : 8,
+   "schemaVersion" : "1.0",
+   "summary" : "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
+   "topics" : [
+      "Authentication",
+      "Config",
+      "Configs",
+      "EssentialsX",
+      "LiteBans",
+      "LuckPerms",
+      "Maintenance",
+      "Messages",
+      "Minecraft",
+      "Moderation",
+      "Node.js",
+      "Paper",
+      "Performance",
+      "Permissions",
+      "Proxy",
+      "React",
+      "React Flow",
+      "Scoreboard",
+      "Security",
+      "Simple",
+      "Tab",
+      "Tailwind",
+      "Velocity",
+      "Visual",
+      "Vite",
+      "Web"
+   ],
+   "url" : "https://studio.z-craft.xyz"
+}

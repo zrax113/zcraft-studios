@@ -1,6 +1,31 @@
-# LLMS discovery file for crawlers and AI agents
-# Location of structured site index and sitemap
-Sitemap: https://studio.z-craft.xyz/sitemap.xml
-Site-Index: https://studio.z-craft.xyz/site-index.json
-# Optional: specify preferred format
-Format: application/json
+# ZCraft Studios
+
+ZCraft Studios is a premium developer studio crafting Minecraft resources, plugins, server configs, Discord bots, and modern web experiences.
+
+Canonical site: https://studio.z-craft.xyz/
+AI agent guide: https://studio.z-craft.xyz/ai-agents
+Full generated site index JSON: https://studio.z-craft.xyz/site-index.json
+Compact AI overview JSON: https://studio.z-craft.xyz/ai-overview.json
+Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
+XML sitemap: https://studio.z-craft.xyz/sitemap.xml
+
+## Primary Pages
+
+- Home: https://studio.z-craft.xyz/
+- About: https://studio.z-craft.xyz/about
+- Team: https://studio.z-craft.xyz/team
+- Resources: https://studio.z-craft.xyz/resources
+- AI agent guide: https://studio.z-craft.xyz/ai-agents
+- Request custom work: https://studio.z-craft.xyz/request
+- Contact: https://studio.z-craft.xyz/contact
+- Donate: https://studio.z-craft.xyz/donate
+
+## Live Source Data
+
+- Site config: https://studio.z-craft.xyz/config/info.json
+- Products and resources: https://studio.z-craft.xyz/config/products.json
+- Reviews: https://studio.z-craft.xyz/config/reviews.json
+
+## Summary For AI Agents
+
+Use https://studio.z-craft.xyz/site-index.json for the fullest structured overview. It is generated from the live config and product data during build. Use https://studio.z-craft.xyz/ai-overview.json for a compact summary, or https://studio.z-craft.xyz/ai.txt when plain text is preferred.

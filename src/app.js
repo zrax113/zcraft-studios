@@ -21,9 +21,46 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
   const pageKey = document.body.getAttribute('data-page') || 'home';
+  const cleanBaseUrl = (url) => String(url || '').replace(/\/+$/, '');
+  const absoluteUrl = (baseUrl, value) => {
+    if (!value) return baseUrl + '/';
+    if (/^https?:\/\//i.test(value)) return value;
+    const path = String(value).startsWith('/') ? value : `/${value}`;
+    return baseUrl + path;
+  };
+  const pageLabel = (cfg, key, seo) => {
+    const navItem = (cfg.nav || []).find(n => (n.href || '/').replace(/\/+$/, '') === (seo.canonical || '/').replace(/\/+$/, ''));
+    return navItem?.label || (key === 'notfound' ? '404' : key);
+  };
+  const titleCase = (value) => String(value || '').replace(/\b\w/g, c => c.toUpperCase());
+  const getPageSeo = (cfg) => cfg.seo[pageKey] || cfg.seo.home;
+  const breadcrumbItemsForPage = (cfg, seo) => {
+    const baseUrl = cleanBaseUrl(cfg.site.domain);
+    const items = [{
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: baseUrl + '/'
+    }];
+
+    if (pageKey !== 'home') {
+      items.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: titleCase(pageLabel(cfg, pageKey, seo)),
+        item: absoluteUrl(baseUrl, seo.canonical)
+      });
+    }
+
+    return items;
+  };
 
   function applySEO(cfg) {
-    const seo = cfg.seo[pageKey] || cfg.seo.home;
+    const seo = getPageSeo(cfg);
+    const baseUrl = cleanBaseUrl(cfg.site.domain);
+    const pageUrl = absoluteUrl(baseUrl, seo.canonical);
+    const socialImage = absoluteUrl(baseUrl, seo.image || cfg.branding.ogImage);
+    const imageAlt = seo.imageAlt || `${cfg.site.name} brand artwork`;
     document.title = seo.title;
     
     const meta = (name, content, attr = 'name') => {
@@ -31,23 +68,46 @@
       if (!el) { el = document.createElement('meta'); el.setAttribute(attr, name); document.head.appendChild(el); }
       el.setAttribute('content', content);
     };
+    const link = (rel, href, extra = {}) => {
+      const selector =
+        `link[rel="${rel}"]` +
+        (extra.hreflang ? `[hreflang="${extra.hreflang}"]` : '') +
+        (extra.type ? `[type="${extra.type}"]` : '') +
+        (extra.title ? `[title="${extra.title}"]` : '');
+      let el = document.querySelector(selector);
+      if (!el) {
+        el = document.createElement('link');
+        el.rel = rel;
+        if (extra.hreflang) el.hreflang = extra.hreflang;
+        document.head.appendChild(el);
+      }
+      el.href = href;
+      Object.entries(extra).forEach(([key, value]) => {
+        if (key !== 'hreflang' && value != null) el.setAttribute(key, value);
+      });
+    };
     
     // Essential meta tags
     meta('description', seo.description);
-    meta('keywords', seo.keywords);
+    if (seo.keywords) meta('keywords', seo.keywords);
     meta('author', cfg.site.author);
+    meta('application-name', cfg.site.name);
+    meta('generator', cfg.site.name);
+    meta('referrer', 'strict-origin-when-cross-origin');
+    meta('color-scheme', 'dark');
     meta('theme-color', cfg.branding.themeColor);
     meta('viewport', 'width=device-width, initial-scale=1, maximum-scale=5', 'name');
-    meta('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', 'name');
-    meta('charset', 'UTF-8', 'http-equiv');
+    meta('robots', seo.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+    meta('googlebot', seo.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     
     // Open Graph tags
     meta('og:title', seo.title, 'property');
     meta('og:description', seo.description, 'property');
     meta('og:type', 'website', 'property');
-    meta('og:image', cfg.branding.ogImage, 'property');
-    meta('og:image:alt', `${cfg.site.name} - ${seo.title}`, 'property');
-    meta('og:url', cfg.site.domain + seo.canonical, 'property');
+    meta('og:image', socialImage, 'property');
+    meta('og:image:secure_url', socialImage, 'property');
+    meta('og:image:alt', imageAlt, 'property');
+    meta('og:url', pageUrl, 'property');
     meta('og:site_name', cfg.site.name, 'property');
     meta('og:locale', 'en_US', 'property');
     
@@ -55,8 +115,8 @@
     meta('twitter:card', 'summary_large_image');
     meta('twitter:title', seo.title);
     meta('twitter:description', seo.description);
-    meta('twitter:image', cfg.branding.ogImage);
-    meta('twitter:image:alt', `${cfg.site.name} - ${seo.title}`);
+    meta('twitter:image', socialImage);
+    meta('twitter:image:alt', imageAlt);
     meta('twitter:site', '@zraxgaming');
     meta('twitter:creator', '@zraxgaming');
     
@@ -73,7 +133,12 @@
     
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.appendChild(canonical); }
-    canonical.href = cfg.site.domain + seo.canonical;
+    canonical.href = pageUrl;
+    link('alternate', pageUrl, { hreflang: 'en' });
+    link('alternate', pageUrl, { hreflang: 'x-default' });
+    link('alternate', baseUrl + '/site-index.json', { type: 'application/json', title: 'Full generated site index JSON' });
+    link('alternate', baseUrl + '/ai-overview.json', { type: 'application/json', title: 'Compact AI overview JSON' });
+    link('alternate', baseUrl + '/ai.txt', { type: 'text/plain', title: 'Plain-text AI overview' });
 
     let fav = document.querySelector('link[rel="icon"]');
     if (!fav) { fav = document.createElement('link'); fav.rel = 'icon'; document.head.appendChild(fav); }
@@ -87,25 +152,10 @@
   }
 
   function applySchema(cfg) {
-    const seo = cfg.seo[pageKey] || cfg.seo.home;
-    const baseUrl = cfg.site.domain.replace(/\/+$/, '');
-    const pageUrl = baseUrl + seo.canonical;
-    const breadcrumbItems = [{
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: baseUrl + '/'
-    }];
-
-    if (pageKey !== 'home') {
-      const pageLabel = cfg.nav.find(n => n.href.replace(/\/+$/, '') === seo.canonical)?.label || pageKey;
-      breadcrumbItems.push({
-        '@type': 'ListItem',
-        position: 2,
-        name: pageLabel.charAt(0).toUpperCase() + pageLabel.slice(1),
-        item: pageUrl
-      });
-    }
+    const seo = getPageSeo(cfg);
+    const baseUrl = cleanBaseUrl(cfg.site.domain);
+    const pageUrl = absoluteUrl(baseUrl, seo.canonical);
+    const breadcrumbItems = breadcrumbItemsForPage(cfg, seo);
 
     const sameAs = (cfg.contact?.platforms || [])
       .filter(p => /^https?:\/\//.test(p.href))
@@ -135,6 +185,7 @@
         },
         {
           '@type': 'WebSite',
+          '@id': baseUrl + '#website',
           url: baseUrl,
           name: cfg.site.name,
           description: cfg.site.tagline,
@@ -146,7 +197,22 @@
           publisher: { '@type': 'Organization', name: cfg.site.name }
         },
         {
+          '@type': 'WebPage',
+          '@id': pageUrl + '#webpage',
+          url: pageUrl,
+          name: seo.title,
+          description: seo.description,
+          isPartOf: { '@type': 'WebSite', '@id': baseUrl + '#website', url: baseUrl, name: cfg.site.name },
+          about: { '@type': 'Organization', name: cfg.site.name },
+          breadcrumb: { '@id': pageUrl + '#breadcrumb' },
+          primaryImageOfPage: {
+            '@type': 'ImageObject',
+            url: absoluteUrl(baseUrl, seo.image || cfg.branding.ogImage)
+          }
+        },
+        {
           '@type': 'BreadcrumbList',
+          '@id': pageUrl + '#breadcrumb',
           itemListElement: breadcrumbItems
         },
         {
@@ -161,6 +227,25 @@
         }
       ]
     };
+
+    if (pageKey === 'resources' && cfg.resources?.length) {
+      schema['@graph'].push({
+        '@type': 'ItemList',
+        name: 'ZCraft Studios resources',
+        itemListElement: cfg.resources.map((resource, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: {
+            '@type': 'CreativeWork',
+            name: resource.title,
+            description: resource.summary,
+            image: absoluteUrl(baseUrl, resource.image),
+            url: resource.links?.[0]?.href || pageUrl,
+            keywords: (resource.tags || []).join(', ')
+          }
+        }))
+      });
+    }
 
     let script = document.querySelector('script[data-schema="jsonld"]');
     if (!script) {
@@ -185,14 +270,16 @@
 
   function topbar(cfg, currentPageKey) {
     const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
-    const pageMatch = cfg.nav.find(n => (n.href || '/').replace(/\/+$/, '') === currentPath);
-    const pageLabel = pageMatch ? pageMatch.label : (currentPageKey === 'home' ? 'home' : currentPageKey);
+    const seo = getPageSeo(cfg);
+    const crumbLabel = pageLabel(cfg, currentPageKey, seo);
     const breadcrumb = currentPageKey !== 'home' ? `
-        <div class="breadcrumbs">
-          <a href="/">home</a>
-          <span class="breadcrumb-sep">/</span>
-          <span>${esc(pageLabel)}</span>
-        </div>` : '';
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">home</a></li>
+            <li aria-hidden="true" class="breadcrumb-sep">/</li>
+            <li><a href="${esc(seo.canonical)}" aria-current="page">${esc(crumbLabel)}</a></li>
+          </ol>
+        </nav>` : '';
 
     return `
       <header class="topbar">
@@ -219,6 +306,7 @@
           <div class="footer-left"><span>// </span>${esc(cfg.footer.left)} · ${cfg.site.year}</div>
           <div class="footer-links">
             ${cfg.footer.links.map(l => `<a href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}
+            <a class="topbar-link" href="/ai-agents" title="AI agent site guide">AI Guide</a>
             <a class="topbar-link" href="/site-index.json" title="Site JSON index">Site JSON</a>
           </div>
         </div>
@@ -1118,6 +1206,78 @@
       </div>`;
   }
 
+  function renderAgents(cfg) {
+    const baseUrl = cleanBaseUrl(cfg.site.domain);
+    const seoEntries = Object.entries(cfg.seo || {})
+      .filter(([, seo]) => !seo.noindex)
+      .map(([key, seo]) => ({
+        key,
+        title: seo.title,
+        description: seo.description,
+        url: absoluteUrl(baseUrl, seo.canonical)
+      }));
+    const productCount = cfg.projects?.length || 0;
+    const resourceCount = cfg.resources?.length || 0;
+    const categories = [...new Set([...(cfg.projects || []), ...(cfg.resources || [])].map(item => item.category).filter(Boolean))];
+    const featured = (cfg.resources || []).filter(item => item.featured).slice(0, 4);
+
+    return `
+      <section class="page-hero">
+        <span class="page-label">// ai agent guide</span>
+        <h1>Structured context for crawlers, search engines, and AI agents.</h1>
+        <p class="page-copy">This page summarizes ZCraft Studios and links to the canonical machine-readable files that are generated from the site's config and product data.</p>
+      </section>
+      <div class="agents-layout">
+        <section class="agents-panel">
+          <h2>Site identity</h2>
+          <dl class="agents-facts">
+            <div><dt>Name</dt><dd>${esc(cfg.site.name)}</dd></div>
+            <div><dt>Canonical domain</dt><dd><a href="${esc(baseUrl)}">${esc(baseUrl)}</a></dd></div>
+            <div><dt>Summary</dt><dd>${esc(cfg.site.tagline)}</dd></div>
+            <div><dt>Primary topics</dt><dd>Minecraft plugins, server configs, Discord bots, web tools, commissioned development.</dd></div>
+            <div><dt>Inventory</dt><dd>${productCount} projects and ${resourceCount} resources across ${categories.length || 0} categories.</dd></div>
+          </dl>
+        </section>
+
+        <section class="agents-panel">
+          <h2>Machine-readable sources</h2>
+          <div class="agents-links">
+            <a href="/site-index.json">Live generated site index JSON</a>
+            <a href="/sitemap.xml">XML sitemap</a>
+            <a href="/llms.txt">LLMS discovery file</a>
+            <a href="/config/info.json">Site config JSON</a>
+            <a href="/config/products.json">Products and resources JSON</a>
+            <a href="/config/reviews.json">Reviews JSON</a>
+          </div>
+        </section>
+
+        <section class="agents-panel">
+          <h2>Canonical pages</h2>
+          <div class="agents-page-list">
+            ${seoEntries.map(page => `
+              <article class="agents-page-item">
+                <a href="${esc(page.url)}">${esc(page.title)}</a>
+                <p>${esc(page.description)}</p>
+              </article>
+            `).join('')}
+          </div>
+        </section>
+
+        <section class="agents-panel">
+          <h2>Featured resources</h2>
+          <div class="agents-resource-list">
+            ${featured.map(resource => `
+              <article class="agents-resource-item">
+                <strong>${esc(resource.title)}</strong>
+                <span>${esc(resource.category || resource.brand || 'resource')} · ${esc(resource.status || 'available')}</span>
+                <p>${esc(resource.summary)}</p>
+              </article>
+            `).join('') || '<p class="page-copy">No featured resources are currently configured.</p>'}
+          </div>
+        </section>
+      </div>`;
+  }
+
   function renderMaintenance(cfg, pageKey) {
     const maintenance = cfg.maintenance || {};
     const pageConfig = (maintenance.pages && maintenance.pages[pageKey]) || {};
@@ -1165,7 +1325,7 @@
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, agents: renderAgents, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 

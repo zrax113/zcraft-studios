@@ -30,6 +30,10 @@
       "href": "/resources"
     },
     {
+      "label": "ai",
+      "href": "/ai-agents"
+    },
+    {
       "label": "request",
       "href": "/request"
     },
@@ -41,57 +45,65 @@
   "seo": {
     "home": {
       "title": "ZCraft Studios \u2014 Premium Minecraft Plugins, Configs, and Discord Bots",
-      "description": "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and modern web experiences with polished UX and performance.",
-      "keywords": "ZCraft Studios, minecraft plugins, minecraft configs, discord bots, minecraft resources, game server setup, premium web development",
+      "description": "ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.",
+      "keywords": "ZCraft Studios, Minecraft plugins, Minecraft server configs, Discord bots, Paper plugins, Spigot plugins, Velocity plugins, Minecraft resources, server setup, web development",
       "canonical": "/"
     },
     "resources": {
       "title": "Resources \u2014 ZCraft Studios",
-      "description": "Premium Minecraft resources, configs, plugins and Discord bot tools designed for performance, polish, and easy deployment.",
-      "keywords": "minecraft resources, minecraft configs, minecraft plugins, discord bots, server tools, ZCraft Studios",
+      "description": "Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.",
+      "keywords": "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
       "canonical": "/resources"
+    },
+    "agents": {
+      "title": "AI Agent Site Guide \u2014 ZCraft Studios",
+      "description": "AI and crawler guide for ZCraft Studios with canonical pages, live JSON data, sitemap links, products, resources, and contact context.",
+      "keywords": "ZCraft Studios AI guide, AI crawler guide, llms.txt, site index JSON, ai-overview JSON, ai.txt, Minecraft plugins data, Discord bot resources, structured site data",
+      "canonical": "/ai-agents"
     },
     "team": {
       "title": "Team \u2014 ZCraft Studios",
-      "description": "Meet the ZCraft Studios team delivering Minecraft plugins, server configs, Discord bots, and modern web services.",
-      "keywords": "team, ZCraft Studios, minecraft developers, discord bot developers, plugin team",
+      "description": "Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.",
+      "keywords": "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
       "canonical": "/team"
     },
     "about": {
       "title": "About \u2014 ZCraft Studios",
-      "description": "ZCraft Studios is a premium development studio specializing in Minecraft plugins, server configs, Discord bots and modern web experiences.",
-      "keywords": "about ZCraft Studios, minecraft development studio, discord bot studio, plugin studio, server config experts",
+      "description": "ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.",
+      "keywords": "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
       "canonical": "/about"
     },
     "contact": {
       "title": "Contact \u2014 ZCraft Studios",
-      "description": "Contact ZCraft Studios for premium Minecraft plugins, server configs, Discord bots, and web development services.",
-      "keywords": "contact ZCraft Studios, minecraft development, discord bot support, server configuration help",
+      "description": "Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.",
+      "keywords": "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
       "canonical": "/contact"
     },
     "donate": {
       "title": "Donate \u2014 ZCraft Studios",
-      "description": "Support ZCraft Studios with a secure PayPal donation to help fund premium Minecraft plugins, configs, and Discord bot development.",
-      "keywords": "donate, ZCraft Studios, paypal donation, minecraft plugins, minecraft configs, discord bots support",
+      "description": "Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.",
+      "keywords": "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
       "canonical": "/donate"
     },
     "thankyou": {
       "title": "Thank You \u2014 ZCraft Studios",
-      "description": "Donation confirmed. Thank you for supporting ZCraft Studios and helping keep premium Minecraft plugins, configs, and bot services running.",
-      "keywords": "thank you, donation confirmed, minecraft development, ZCraft Studios, paypal donation",
-      "canonical": "/thankyou"
+      "description": "Thank you for supporting ZCraft Studios and helping keep Minecraft plugins, configs, Discord bots, and web tools moving forward.",
+      "keywords": "thank you ZCraft Studios, donation confirmed, PayPal donation, Minecraft development support, Discord bot support",
+      "canonical": "/thankyou",
+      "noindex": true
     },
     "request": {
       "title": "Request Custom Service \u2014 ZCraft Studios",
-      "description": "Submit a custom service request for Minecraft plugins, server configs, Discord bot work, or web development.",
-      "keywords": "custom service request, minecraft plugins request, minecraft configs request, discord bot development request, ZCraft Studios",
+      "description": "Request custom Minecraft plugins, server configs, Discord bot development, or web tools from ZCraft Studios.",
+      "keywords": "request Minecraft plugin, custom Minecraft plugin, server config request, Discord bot development request, custom web tool, ZCraft Studios commission",
       "canonical": "/request"
     },
     "notfound": {
       "title": "404 \u2014 ZCraft Studios",
-      "description": "Page not found.",
-      "keywords": "404, not found",
-      "canonical": "/404"
+      "description": "The requested ZCraft Studios page was not found. Return to Minecraft resources, custom requests, or contact options.",
+      "keywords": "ZCraft Studios 404, page not found, Minecraft resources, contact ZCraft Studios",
+      "canonical": "/404",
+      "noindex": true
     }
   },
   "hero": {

@@ -1,18 +1,34 @@
 User-agent: *
 Allow: /
+Disallow: /thankyou
+Disallow: /404
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-User
+Allow: /
 
 Sitemap: https://studio.z-craft.xyz/sitemap.xml
 
-# Non-standard hint for crawlers and AI agents to locate the full site JSON index.
-# Some crawlers/agents may read this custom directive to find the aggregated JSON.
-User-agent: *
-Full-Info: /site-index.json
-
-# If an AI-specific agent string is known, add a block for it. This is a fallback
-# suggestion for AI crawlers to prefer the structured JSON index.
-User-agent: AI-Agent
-Allow: /site-index.json
-Full-Info: /site-index.json
-
-# LLMS discovery file (some agents check /llms.txt)
+# Structured discovery files for crawlers and AI agents that support them.
 LLMS: /llms.txt
+Full-Info: /site-index.json
+AI-Guide: /ai-agents
+AI-Overview: /ai-overview.json
+AI-Text: /ai.txt
