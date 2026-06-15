@@ -423,7 +423,7 @@ function renderResourceDetail(resource) {
 <dl class="blog-facts">${facts.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>
 <div class="blog-body">${resourceParagraphs(resource).map((paragraph, index) => `<section><h2>${esc(headings[index] || headings[headings.length - 1] || 'Product details')}</h2><p>${esc(paragraph)}</p></section>`).join('')}</div>
 <div class="tags">${(resource.tags || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
-<div class="resource-detail-actions">${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}">${esc(link.label)}</a>`).join('')}<a class="btn btn-ghost" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || 'all resources')}</a></div>
+<div class="resource-detail-actions">${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}">${esc(link.labelOverride || page.externalLinkLabel || link.label)}</a>`).join('')}<a class="btn btn-ghost" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || 'all resources')}</a></div>
 </div>
 </article>
 <section class="faq-section"><div class="section-label">// faq</div><h2>${esc(page.faqHeading || 'What do people ask about this resource?')}</h2><div class="faq-list">${resourceFaqs(resource).map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>`;

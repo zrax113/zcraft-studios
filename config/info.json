@@ -281,6 +281,7 @@
     "detailLabel": "// resource",
     "detailsLinkLabel": "details",
     "featuredDetailsLabel": "read product details",
+    "externalLinkLabel": "visit",
     "backLabel": "all resources",
     "backHref": "/resources",
     "defaultAudience": "Minecraft communities that need reliable tooling",
@@ -757,6 +758,10 @@
       {
         "label": "discord",
         "href": "https://discord.com/users/zraxgaming"
+      },
+      {
+        "label": "blogs",
+        "href": "/blogs"
       },
       {
         "label": "donate",

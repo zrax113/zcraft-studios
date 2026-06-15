@@ -915,7 +915,6 @@
             <div class="tags">${(r.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
             <div class="resource-card-actions">
               <a class="btn btn-ghost" href="${esc(detailHref)}">${esc(detailsLabel)}</a>
-              ${(r.links||[]).map(l => `<a class="btn btn-${l.variant||'primary'}" href="${esc(l.href)}" ${/^https?:/.test(l.href)?'target="_blank" rel="noopener"':''}>${esc(l.label)}</a>`).join('')}
             </div>
           </div>
         </div>
@@ -1367,7 +1366,7 @@
         if (event.target.closest('a')) return;
         const index = parseInt(card.dataset.resourceIndex, 10);
         const resource = resources[index];
-        if (resource) openResourceDetail(resource);
+        if (resource) window.location.href = `/resources/${resourceSlug(resource)}`;
       });
     });
   }
@@ -1636,7 +1635,6 @@
           <p class="resource-featured-summary">${esc(featured.summary)}</p>
           <div class="tag-list">${(featured.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
           <a class="btn btn-ghost" href="/resources/${esc(resourceSlug(featured))}">${esc(page.featuredDetailsLabel || 'read product details')}</a>
-          ${featured.links?.[0] ? `<a class="btn btn-primary" href="${esc(featured.links[0].href)}" target="_blank" rel="noopener">${esc(featured.links[0].label)}</a>` : ''}
         </div>
       </article>` : '';
 
@@ -1706,7 +1704,7 @@
           </div>
           <div class="tags">${(resource.tags || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
           <div class="resource-detail-actions">
-            ${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}" ${/^https?:/.test(link.href)?'target="_blank" rel="noopener"':''}>${esc(link.label)}</a>`).join('')}
+            ${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}" ${/^https?:/.test(link.href)?'target="_blank" rel="noopener"':''}>${esc(link.labelOverride || page.externalLinkLabel || link.label)}</a>`).join('')}
             <a class="btn btn-ghost" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || 'all resources')}</a>
           </div>
         </div>

@@ -519,6 +519,27 @@
    "name" : "ZCraft Studios",
    "projectCount" : 8,
    "resourceCount" : 8,
+   "resourcesPage" : {
+      "backHref" : "/resources",
+      "backLabel" : "all resources",
+      "copy" : "A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly.",
+      "defaultAudience" : "Minecraft communities that need reliable tooling",
+      "defaultPlatform" : "Minecraft server environments",
+      "defaultSetupDifficulty" : "practical",
+      "defaultSupportMethod" : "ZCraft Studios contact channels",
+      "detailLabel" : "// resource",
+      "detailsLinkLabel" : "details",
+      "externalLinkLabel" : "visit",
+      "faqHeading" : "What do people ask about this resource?",
+      "featuredDetailsLabel" : "read product details",
+      "label" : "// resources",
+      "paragraphHeadings" : [
+         "What does this product do?",
+         "Who should use this resource?",
+         "How do setup and support work?"
+      ],
+      "title" : "Tools, configs, and kits built for real servers."
+   },
    "schemaVersion" : "1.0",
    "seoSupport" : {
       "copy" : "ZCraft Studios is operated as a practical development studio for Minecraft server owners, Discord communities, and creator teams. The site publishes clear service pages, product summaries, support methods, pricing or availability status, public contact paths, and generated machine-readable indexes so humans, search engines, and AI agents can verify what the studio offers.",
