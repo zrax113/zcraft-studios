@@ -1,11 +1,3 @@
 node_modules
 config/products.json
 config/content.generated.json
-resource-*.html
-blog-*.html
-legal/*.html
-*.json.bak
-ai.txt
-ai-overview.json
-site-index.json
-sitemap.xml
