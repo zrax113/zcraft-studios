@@ -4,7 +4,18 @@
     "domain": "https://studio.z-craft.xyz",
     "tagline": "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
     "author": "ZCraft Studios",
-    "year": 2026
+    "year": 2026,
+    "location": "United Arab Emirates",
+    "serviceArea": "Worldwide",
+    "primaryMarkets": [
+      "United Arab Emirates",
+      "United States",
+      "United Kingdom",
+      "Canada",
+      "Australia",
+      "Europe",
+      "Worldwide remote"
+    ]
   },
   "branding": {
     "favicon": "/favicon.ico",
@@ -30,6 +41,10 @@
       "href": "/resources"
     },
     {
+      "label": "blogs",
+      "href": "/blogs"
+    },
+    {
       "label": "request",
       "href": "/request"
     },
@@ -46,31 +61,37 @@
       "canonical": "/"
     },
     "resources": {
-      "title": "Resources \u2014 ZCraft Studios",
+      "title": "Minecraft Resources & Tools \u2014 ZCraft Studios",
       "description": "Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.",
       "keywords": "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
       "canonical": "/resources"
     },
+    "blogs": {
+      "title": "Minecraft Development Blog \u2014 ZCraft Studios",
+      "description": "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.",
+      "keywords": "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI crawler SEO, llms.txt, structured data",
+      "canonical": "/blogs"
+    },
     "team": {
-      "title": "Team \u2014 ZCraft Studios",
+      "title": "Minecraft Development Team \u2014 ZCraft Studios",
       "description": "Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.",
       "keywords": "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
       "canonical": "/team"
     },
     "about": {
-      "title": "About \u2014 ZCraft Studios",
+      "title": "About Our Minecraft Studio \u2014 ZCraft Studios",
       "description": "ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.",
       "keywords": "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
       "canonical": "/about"
     },
     "contact": {
-      "title": "Contact \u2014 ZCraft Studios",
+      "title": "Contact for Minecraft Development \u2014 ZCraft Studios",
       "description": "Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.",
       "keywords": "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
       "canonical": "/contact"
     },
     "donate": {
-      "title": "Donate \u2014 ZCraft Studios",
+      "title": "Support Minecraft Tools \u2014 ZCraft Studios",
       "description": "Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.",
       "keywords": "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
       "canonical": "/donate"
@@ -256,7 +277,61 @@
   "resourcesPage": {
     "label": "// resources",
     "title": "Tools, configs, and kits built for real servers.",
-    "copy": "A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly."
+    "copy": "A studio-grade toolkit for server operators and plugin teams. Every download is designed to ship fast and scale cleanly.",
+    "detailLabel": "// resource",
+    "detailsLinkLabel": "details",
+    "featuredDetailsLabel": "read product details",
+    "backLabel": "all resources",
+    "backHref": "/resources",
+    "defaultAudience": "Minecraft communities that need reliable tooling",
+    "defaultSupportMethod": "ZCraft Studios contact channels",
+    "defaultPlatform": "Minecraft server environments",
+    "defaultSetupDifficulty": "practical",
+    "paragraphHeadings": [
+      "What does this product do?",
+      "Who should use this resource?",
+      "How do setup and support work?"
+    ],
+    "faqHeading": "What do people ask about this resource?"
+  },
+  "seoSupport": {
+    "label": "// trust",
+    "title": "Why can clients and crawlers trust ZCraft Studios?",
+    "copy": "ZCraft Studios is operated as a practical development studio for Minecraft server owners, Discord communities, and creator teams. The site publishes clear service pages, product summaries, support methods, pricing or availability status, public contact paths, and generated machine-readable indexes so humans, search engines, and AI agents can verify what the studio offers.",
+    "geoTitle": "Where does ZCraft Studios operate?",
+    "geoCopy": "ZCraft Studios is based in the United Arab Emirates and works with clients remotely worldwide, including server owners and communities in the United States, United Kingdom, Canada, Australia, Europe, and other English-speaking Minecraft markets.",
+    "eeat": [
+      {
+        "title": "Experience",
+        "copy": "The studio publishes real Minecraft resources, server configuration packs, Discord bot tools, and web utilities with product images, supported platforms, setup difficulty, and support methods."
+      },
+      {
+        "title": "Expertise",
+        "copy": "Core work covers Paper, Spigot, Velocity, LuckPerms, EssentialsX, LiteBans, TAB, Discord, Node.js, Java, and modern browser-based configuration tools."
+      },
+      {
+        "title": "Authoritativeness",
+        "copy": "Product pages link to public resource listings, GitHub repositories, contact channels, sitemap.xml, llms.txt, ai.txt, ai-overview.json, and site-index.json."
+      },
+      {
+        "title": "Trust",
+        "copy": "Every important page is crawlable, has a canonical URL, includes structured data, uses clear headings, and explains contact, request, pricing, support, and product status where relevant."
+      }
+    ],
+    "keywords": [
+      "Minecraft plugin development UAE",
+      "Minecraft plugin development United States",
+      "Minecraft server configuration service",
+      "Discord bot development for Minecraft servers",
+      "Paper plugin developer",
+      "Spigot plugin developer",
+      "Velocity plugin developer",
+      "Minecraft server setup service",
+      "Minecraft configuration packs",
+      "ZCraft Studios E-E-A-T",
+      "AI crawler friendly Minecraft studio",
+      "Minecraft developer worldwide"
+    ]
   },
   "portfolio": {
     "featured": {

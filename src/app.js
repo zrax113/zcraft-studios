@@ -21,6 +21,14 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
   const pageKey = document.body.getAttribute('data-page') || 'home';
+  const currentSlug = () => decodeURIComponent((window.location.pathname.replace(/\/+$/, '').split('/').pop() || '').trim().replace(/\.html$/i, ''));
+  const slugify = (value) => String(value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  const resourceSlug = (resource) => resource.slug || slugify(resource.title);
+  const blogSlug = (post) => post.slug || slugify(post.title);
   const cleanBaseUrl = (url) => String(url || '').replace(/\/+$/, '');
   const absoluteUrl = (baseUrl, value) => {
     if (!value) return baseUrl + '/';
@@ -29,11 +37,48 @@
     return baseUrl + path;
   };
   const pageLabel = (cfg, key, seo) => {
+    if (key === 'resource-detail') return findResourceBySlug(cfg)?.title || 'resource';
+    if (key === 'blog-detail') return findBlogPostBySlug(cfg)?.title || 'blog';
     const navItem = (cfg.nav || []).find(n => (n.href || '/').replace(/\/+$/, '') === (seo.canonical || '/').replace(/\/+$/, ''));
     return navItem?.label || (key === 'notfound' ? '404' : key);
   };
   const titleCase = (value) => String(value || '').replace(/\b\w/g, c => c.toUpperCase());
-  const getPageSeo = (cfg) => cfg.seo[pageKey] || cfg.seo.home;
+  const findResourceBySlug = (cfg, slug = currentSlug()) => (cfg.resources || []).find(resource => resourceSlug(resource) === slug);
+  const findBlogPostBySlug = (cfg, slug = currentSlug()) => (cfg.blogPosts || []).find(post => blogSlug(post) === slug);
+  const getPageSeo = (cfg) => {
+    if (pageKey === 'resource-detail') {
+      const resource = findResourceBySlug(cfg);
+      if (resource) {
+        return {
+          title: `${resource.title} \u2014 Minecraft Resource | ZCraft Studios`,
+          description: resource.what || resource.summary,
+          keywords: [resource.title, resource.brand, resource.category, ...(resource.tags || []), ...(resource.supportedPlatforms || [])].filter(Boolean).join(', '),
+          canonical: `/resources/${resourceSlug(resource)}`,
+          image: resource.image,
+          imageAlt: `${resource.title} product image`
+        };
+      }
+    }
+    if (pageKey === 'blog-detail') {
+      const post = findBlogPostBySlug(cfg);
+      if (post) {
+        return {
+          title: `${post.title} \u2014 ZCraft Studios Blog`,
+          description: post.summary,
+          keywords: [post.title, post.category, ...(post.tags || []), ...(post.keywords || [])].filter(Boolean).join(', '),
+          canonical: `/blogs/${blogSlug(post)}`,
+          image: post.image || cfg.branding.ogImage,
+          imageAlt: post.imageAlt || `${cfg.site.name} blog artwork`
+        };
+      }
+    }
+    const seo = cfg.seo[pageKey] || cfg.seo.home;
+    const supportKeywords = cfg.seoSupport?.keywords || [];
+    return {
+      ...seo,
+      keywords: [...new Set([...(String(seo.keywords || '').split(',').map(k => k.trim()).filter(Boolean)), ...supportKeywords])].join(', ')
+    };
+  };
   const serviceTypes = [
     {
       name: 'Minecraft plugin development',
@@ -93,6 +138,177 @@
     }
     return schema;
   };
+  const pageSummaries = {
+    resources: [
+      'ZCraft Studios publishes Minecraft plugins, server configs, Discord bots, and web tools for server owners who need polished, production-ready resources.',
+      'Each product summary lists what the resource is, who it is for, supported platforms, setup difficulty, status or price, and support method.',
+      'The resources page is backed by config/products.json so search crawlers, AI agents, and the live UI can read the same product data.'
+    ],
+    about: [
+      'ZCraft Studios is a Minecraft-focused development studio building plugins, server configurations, Discord bots, and modern web tools.',
+      'The studio focuses on clean delivery, transparent scope, practical support, and production-ready releases for server operators and creators.',
+      'Core services include Paper and Spigot plugin work, Velocity network tools, Discord automation, configuration packs, and web interfaces.'
+    ],
+    team: [
+      'The ZCraft Studios team handles development, configuration, support, and product delivery for Minecraft communities and creator tools.',
+      'Team members are organized around practical roles such as plugin development, web tooling, server configuration, and community support.',
+      'The team page helps clients and crawlers understand who builds, reviews, and supports ZCraft Studios work.'
+    ],
+    request: [
+      'The request page is the best starting point for custom Minecraft plugin development, Discord bot builds, server setup, and web tool commissions.',
+      'A strong request includes platform, budget, timeline, target features, reference links, and contact details for follow-up.',
+      'ZCraft Studios uses request details to quote scope, explain limits, confirm support expectations, and plan a production-ready delivery.'
+    ],
+    donate: [
+      'The donate page lets supporters fund ZCraft Studios resources, plugins, configs, Discord bots, web tools, hosting, and ongoing support.',
+      'Donations are optional, processed through PayPal, and help keep free or low-cost Minecraft tooling available to the community.',
+      'Supporters can return to resources, contact the studio, or request custom work after completing a donation.'
+    ]
+  };
+  const pageFaqs = {
+    resources: [
+      {
+        question: 'What Minecraft resources does ZCraft Studios offer?',
+        answer: 'ZCraft Studios offers Minecraft plugins, server configuration packs, Discord bot tools, web-based configuration editors, permission tools, message templates, and scoreboard or tab resources.'
+      },
+      {
+        question: 'Who are the resources built for?',
+        answer: 'The resources are built for Minecraft server owners, network operators, staff teams, Discord communities, and creators who need clean setup, clear support, and production-ready behavior.'
+      },
+      {
+        question: 'Where is product pricing and support listed?',
+        answer: 'Pricing or free status is listed on each product card and in config/products.json. Support methods are included in the product details and usually point to BuiltByBit, GitHub, or ZCraft Studios contact channels.'
+      }
+    ],
+    about: [
+      {
+        question: 'What does ZCraft Studios do?',
+        answer: 'ZCraft Studios builds Minecraft plugins, server configs, Discord bots, web tools, and downloadable resources for server owners, creators, and community teams.'
+      },
+      {
+        question: 'What platforms does ZCraft Studios work with?',
+        answer: 'The studio works with Paper, Spigot, Velocity, Minecraft server plugins, Discord, Node.js, Java, web browsers, and common server administration tools.'
+      },
+      {
+        question: 'How does ZCraft Studios approach quality?',
+        answer: 'The studio prioritizes clear scope, production-ready behavior, performance, readable setup instructions, and support details that make each release easier to operate.'
+      }
+    ],
+    team: [
+      {
+        question: 'Who builds ZCraft Studios products?',
+        answer: 'ZCraft Studios products are built and supported by a small development team focused on Minecraft plugins, server configuration, Discord bots, web tools, and creator resources.'
+      },
+      {
+        question: 'What does the team support?',
+        answer: 'The team supports custom commissions, downloadable resources, configuration help, Discord bot workflows, and product updates through public contact channels.'
+      },
+      {
+        question: 'Can clients contact the team for custom work?',
+        answer: 'Yes. Clients should use the request or contact page to describe the project, platform, budget, timeline, and support needs.'
+      }
+    ],
+    request: [
+      {
+        question: 'What custom services can I request?',
+        answer: 'You can request Minecraft plugin development, server setup, configuration packs, Discord bot development, custom web tools, and related technical support.'
+      },
+      {
+        question: 'What details should a request include?',
+        answer: 'Include your Discord username, email, service type, platform, budget, timeline, project brief, and any reference links or existing resources.'
+      },
+      {
+        question: 'How quickly does ZCraft Studios respond?',
+        answer: 'The request page is designed for quick quote follow-up. Response timing can vary by workload, but the form asks for enough detail to review the project efficiently.'
+      }
+    ],
+    donate: [
+      {
+        question: 'What do donations support?',
+        answer: 'Donations support ZCraft Studios development time, hosting, product maintenance, free resources, documentation, and ongoing community support.'
+      },
+      {
+        question: 'Is donating required to use ZCraft Studios resources?',
+        answer: 'No. Donations are optional. Product access, free status, and pricing are listed separately on the resources page and in product data.'
+      },
+      {
+        question: 'How are donations processed?',
+        answer: 'Donations are processed through PayPal from the donate page, and successful payments redirect to a thank-you page.'
+      }
+    ]
+  };
+  const faqSchema = (faqs) => ({
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  });
+  const resourceFaqs = (resource, cfg = {}) => resource.faq || [
+    {
+      question: `What is ${resource.title}?`,
+      answer: resource.what || resource.summary
+    },
+    {
+      question: `Who is ${resource.title} for?`,
+      answer: resource.audience || cfg.resourcesPage?.defaultAudience || 'Minecraft server owners, community operators, and staff teams.'
+    },
+    {
+      question: `How do I get support for ${resource.title}?`,
+      answer: resource.supportMethod || cfg.resourcesPage?.defaultSupportMethod || 'Use the listed product link or ZCraft Studios contact channels for support.'
+    }
+  ];
+  const sentence = (value) => String(value || '').trim().replace(/[.]+$/, '');
+  const resourceParagraphs = (resource, cfg = {}) => resource.paragraphs || [
+    resource.summary,
+    resource.what ? `${resource.title} is built for ${sentence(resource.audience) || cfg.resourcesPage?.defaultAudience || 'Minecraft communities that need reliable tooling'}. It supports ${(resource.supportedPlatforms || [cfg.resourcesPage?.defaultPlatform || 'Minecraft server environments']).join(', ')} and is designed for ${resource.setupDifficulty || cfg.resourcesPage?.defaultSetupDifficulty || 'practical'} setup.` : '',
+    `Status or price: ${resource.status || 'available'}. Support method: ${sentence(resource.supportMethod) || cfg.resourcesPage?.defaultSupportMethod || 'ZCraft Studios contact channels'}.`
+  ].filter(Boolean);
+  const postKeywords = (post) => [...new Set([...(post.tags || []), ...(post.keywords || [])].filter(Boolean))];
+  const postSections = (post) => post.sections || post.body || post.paragraphs?.map((paragraph, index) => ({
+    heading: index === 0 ? 'What is the main point?' : 'What else should readers know?',
+    body: paragraph
+  })) || [];
+  const renderInlineMarkdown = (value) => esc(value)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/__([^_]+)__/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/_([^_]+)_/g, '<em>$1</em>');
+  const renderMarkdownBlock = (value) => {
+    const lines = String(value || '').split(/\r?\n/);
+    const html = [];
+    let list = [];
+    const flushList = () => {
+      if (!list.length) return;
+      html.push(`<ul>${list.map(item => `<li>${renderInlineMarkdown(item)}</li>`).join('')}</ul>`);
+      list = [];
+    };
+    lines.forEach(line => {
+      const text = line.trim();
+      if (!text) {
+        flushList();
+        return;
+      }
+      const bullet = text.match(/^[-*]\s+(.+)/);
+      if (bullet) {
+        list.push(bullet[1]);
+        return;
+      }
+      flushList();
+      if (/^###\s+/.test(text)) html.push(`<h3>${renderInlineMarkdown(text.replace(/^###\s+/, ''))}</h3>`);
+      else if (/^##\s+/.test(text)) html.push(`<h2>${renderInlineMarkdown(text.replace(/^##\s+/, ''))}</h2>`);
+      else if (/^#\s+/.test(text)) html.push(`<h1>${renderInlineMarkdown(text.replace(/^#\s+/, ''))}</h1>`);
+      else html.push(`<p>${renderInlineMarkdown(text)}</p>`);
+    });
+    flushList();
+    return html.join('');
+  };
   const breadcrumbItemsForPage = (cfg, seo) => {
     const baseUrl = cleanBaseUrl(cfg.site.domain);
     const items = [{
@@ -102,7 +318,33 @@
       item: baseUrl + '/'
     }];
 
-    if (pageKey !== 'home') {
+    if (pageKey === 'resource-detail') {
+      items.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Resources',
+        item: baseUrl + '/resources'
+      });
+      items.push({
+        '@type': 'ListItem',
+        position: 3,
+        name: pageLabel(cfg, pageKey, seo),
+        item: absoluteUrl(baseUrl, seo.canonical)
+      });
+    } else if (pageKey === 'blog-detail') {
+      items.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blogs',
+        item: baseUrl + '/blogs'
+      });
+      items.push({
+        '@type': 'ListItem',
+        position: 3,
+        name: pageLabel(cfg, pageKey, seo),
+        item: absoluteUrl(baseUrl, seo.canonical)
+      });
+    } else if (pageKey !== 'home') {
       items.push({
         '@type': 'ListItem',
         position: 2,
@@ -230,6 +472,7 @@
           logo: cfg.branding.logo,
           image: cfg.branding.logo,
           description: cfg.site.tagline,
+          areaServed: cfg.site.serviceArea || 'Worldwide',
           sameAs,
           contactPoint: {
             '@type': 'ContactPoint',
@@ -239,7 +482,8 @@
           },
           address: {
             '@type': 'PostalAddress',
-            addressCountry: 'AE'
+            addressCountry: 'AE',
+            addressLocality: cfg.site.location || 'United Arab Emirates'
           }
         },
         {
@@ -280,6 +524,7 @@
           image: cfg.branding.logo,
           description: cfg.site.tagline,
           url: baseUrl,
+          areaServed: cfg.site.serviceArea || 'Worldwide',
           telephone: cfg.contact?.platforms?.find(p => p.platform === 'email')?.handle || '+971-contact',
           email: cfg.contact?.platforms?.find(p => p.platform === 'email')?.handle || 'contact@z-craft.xyz',
           sameAs
@@ -293,6 +538,11 @@
       description: service.description,
       serviceType: service.serviceType,
       areaServed: service.areaServed,
+      availableChannel: {
+        '@type': 'ServiceChannel',
+        serviceUrl: baseUrl + '/request',
+        availableLanguage: 'English'
+      },
       provider: {
         '@type': 'Organization',
         name: cfg.site.name,
@@ -300,6 +550,30 @@
       },
       url: baseUrl + '/request'
     })));
+
+    if (cfg.seoSupport?.eeat?.length) {
+      schema['@graph'].push({
+        '@type': 'AboutPage',
+        '@id': baseUrl + '/about#eeat',
+        name: cfg.seoSupport.title,
+        description: cfg.seoSupport.copy,
+        about: cfg.seoSupport.eeat.map(item => ({
+          '@type': 'Thing',
+          name: item.title,
+          description: item.copy
+        }))
+      });
+    }
+
+    const faqs = pageKey === 'blogs' ? (cfg.blogFaq || []) : (pageFaqs[pageKey] || []);
+    const detailResource = pageKey === 'resource-detail' ? findResourceBySlug(cfg) : null;
+    const detailFaqs = pageKey === 'resource-detail' ? (detailResource ? resourceFaqs(detailResource, cfg) : []) : faqs;
+    if (detailFaqs.length) {
+      schema['@graph'].push({
+        ...faqSchema(detailFaqs),
+        '@id': pageUrl + '#faq'
+      });
+    }
 
     if (pageKey === 'resources' && cfg.resources?.length) {
       schema['@graph'].push({
@@ -312,6 +586,59 @@
         }))
       });
       schema['@graph'].push(...cfg.resources.map(resource => productSchema(resource, baseUrl, pageUrl)));
+    }
+
+    if (pageKey === 'blogs' && cfg.blogPosts?.length) {
+      schema['@graph'].push({
+        '@type': 'Blog',
+        '@id': pageUrl + '#blog',
+        name: cfg.blogPage?.title || 'ZCraft Studios Blog',
+        description: cfg.blogPage?.copy || seo.description,
+        url: pageUrl,
+        publisher: { '@type': 'Organization', name: cfg.site.name, url: baseUrl },
+        blogPost: cfg.blogPosts.map(post => ({ '@id': `${pageUrl}#${post.slug}` }))
+      });
+      schema['@graph'].push(...cfg.blogPosts.map(post => ({
+        '@type': 'BlogPosting',
+        '@id': `${pageUrl}#${post.slug}`,
+        headline: post.title,
+        description: post.summary,
+        image: post.image ? absoluteUrl(baseUrl, post.image) : absoluteUrl(baseUrl, cfg.branding.ogImage),
+        datePublished: post.date,
+        dateModified: post.updated || post.date,
+        author: { '@type': 'Organization', name: cfg.site.name },
+        publisher: { '@type': 'Organization', name: cfg.site.name, url: baseUrl },
+        mainEntityOfPage: pageUrl,
+        articleSection: post.category,
+        keywords: postKeywords(post).join(', '),
+        audience: post.audience
+      })));
+    }
+
+    if (pageKey === 'resource-detail') {
+      const resource = findResourceBySlug(cfg);
+      if (resource) schema['@graph'].push(productSchema(resource, baseUrl, pageUrl));
+    }
+
+    if (pageKey === 'blog-detail') {
+      const post = findBlogPostBySlug(cfg);
+      if (post) {
+        schema['@graph'].push({
+          '@type': 'BlogPosting',
+          '@id': `${pageUrl}#article`,
+          headline: post.title,
+          description: post.summary,
+          image: post.image ? absoluteUrl(baseUrl, post.image) : absoluteUrl(baseUrl, cfg.branding.ogImage),
+          datePublished: post.date,
+          dateModified: post.updated || post.date,
+          author: { '@type': 'Organization', name: cfg.site.name },
+          publisher: { '@type': 'Organization', name: cfg.site.name, url: baseUrl },
+          mainEntityOfPage: pageUrl,
+          articleSection: post.category,
+          keywords: postKeywords(post).join(', '),
+          audience: post.audience
+        });
+      }
     }
 
     let script = document.querySelector('script[data-schema="jsonld"]');
@@ -358,7 +685,8 @@
           <nav class="topbar-nav">
             ${cfg.nav.map(n => {
               const targetPath = (n.href || '/').replace(/\/+$/, '') || '/';
-              return `<a href="${esc(n.href)}" class="${targetPath === currentPath ? 'active' : ''}">${esc(n.label)}</a>`;
+              const isActive = targetPath === currentPath || (targetPath !== '/' && currentPath.startsWith(`${targetPath}/`));
+              return `<a href="${esc(n.href)}" class="${isActive ? 'active' : ''}">${esc(n.label)}</a>`;
             }).join('')}
           </nav>
         </div>
@@ -406,6 +734,62 @@
       </div>`;
   }
 
+  function renderSummaryBlock(pageKey, extraItems = []) {
+    const items = [...(pageSummaries[pageKey] || []), ...extraItems].filter(Boolean);
+    if (!items.length) return '';
+    return `
+      <section class="seo-summary" aria-label="Page summary">
+        <div class="section-label">// tldr</div>
+        <h2>What should you know first?</h2>
+        <ul>
+          ${items.map(item => `<li>${esc(item)}</li>`).join('')}
+        </ul>
+      </section>`;
+  }
+
+  function renderFaqBlock(pageKey, faqs = pageFaqs[pageKey] || []) {
+    if (!faqs.length) return '';
+    return `
+      <section class="faq-section" id="faq" aria-label="Frequently asked questions">
+        <div class="section-label">// faq</div>
+        <h2>What do people ask about this page?</h2>
+        <div class="faq-list">
+          ${faqs.map(faq => `
+            <article class="faq-item">
+              <h3>${esc(faq.question)}</h3>
+              <p>${esc(faq.answer)}</p>
+            </article>
+          `).join('')}
+        </div>
+      </section>`;
+  }
+
+  function renderTrustBlock(cfg) {
+    const support = cfg.seoSupport || {};
+    const items = support.eeat || [];
+    if (!items.length && !support.copy && !support.geoCopy) return '';
+    return `
+      <section class="trust-section" aria-label="Trust and service area">
+        <div class="section-label">${esc(support.label || '// trust')}</div>
+        <h2>${esc(support.title || 'Why trust this studio?')}</h2>
+        ${support.copy ? `<p>${esc(support.copy)}</p>` : ''}
+        ${support.geoTitle || support.geoCopy ? `
+          <div class="geo-panel">
+            <h3>${esc(support.geoTitle || 'Service area')}</h3>
+            <p>${esc(support.geoCopy || `${cfg.site.name} serves ${cfg.site.serviceArea || 'clients worldwide'}.`)}</p>
+            <div class="tags">${(cfg.site.primaryMarkets || []).map(area => `<span class="tag">${esc(area)}</span>`).join('')}</div>
+          </div>` : ''}
+        <div class="trust-grid">
+          ${items.map(item => `
+            <article class="trust-item">
+              <h3>${esc(item.title)}</h3>
+              <p>${esc(item.copy)}</p>
+            </article>
+          `).join('')}
+        </div>
+      </section>`;
+  }
+
   function stars(rating) {
     const full = Math.floor(rating);
     const half = rating - full >= 0.5;
@@ -437,8 +821,10 @@
       </article>`;
   }
 
-  function resourceCard(r, index) {
+  function resourceCard(r, index, cfg = {}) {
     const platforms = (r.supportedPlatforms || []).slice(0, 3).join(', ');
+    const detailHref = `/resources/${resourceSlug(r)}`;
+    const detailsLabel = cfg.resourcesPage?.detailsLinkLabel || 'details';
     return `
       <article class="resource-card" data-resource-index="${index}">
         <img class="resource-card-image" src="${esc(r.image)}" alt="${esc(r.title)}" loading="lazy" />
@@ -448,7 +834,7 @@
             <div class="resource-card-status">${esc(r.status)}</div>
           </div>
           <div class="resource-card-content">
-            <h3 class="resource-card-title">${esc(r.title)}</h3>
+            <h3 class="resource-card-title"><a href="${esc(detailHref)}">${esc(r.title)}</a></h3>
             <p class="resource-card-summary">${esc(r.summary)}</p>
             ${r.what ? `<p class="resource-card-summary">${esc(r.what)}</p>` : ''}
             <div class="resource-card-facts">
@@ -458,6 +844,7 @@
             </div>
             <div class="tags">${(r.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
             <div class="resource-card-actions">
+              <a class="btn btn-ghost" href="${esc(detailHref)}">${esc(detailsLabel)}</a>
               ${(r.links||[]).map(l => `<a class="btn btn-${l.variant||'primary'}" href="${esc(l.href)}" ${/^https?:/.test(l.href)?'target="_blank" rel="noopener"':''}>${esc(l.label)}</a>`).join('')}
             </div>
           </div>
@@ -635,6 +1022,7 @@
         <h1>Support ZCraft Studios</h1>
         <p class="page-copy">Help us keep building premium Minecraft resources, plugins, and modern web experiences.</p>
       </section>
+      ${renderSummaryBlock('donate')}
       <div class="donate-container">
         <div class="donate-hero">
           <div class="donate-hero-content">
@@ -695,7 +1083,9 @@
             </div>
           </div>
         </div>
-      </div>`;
+      </div>
+      ${renderTrustBlock(cfg)}
+      ${renderFaqBlock('donate')}`;
   }
 
   function renderThankYou(cfg) {
@@ -802,6 +1192,7 @@
         <h1>${esc(page.title || 'Request a Custom Service')}</h1>
         <p class="page-copy">${esc(page.copy || "Tell us what you need. We'll respond within 24 hours with a quote and timeline.")}</p>
       </section>
+      ${renderSummaryBlock('request')}
       <div class="request-container">
         <div class="request-layout">
           <div class="request-form-side">
@@ -832,7 +1223,9 @@
             </div>
           </div>
         </div>
-      </div>`;
+      </div>
+      ${renderTrustBlock(cfg)}
+      ${renderFaqBlock('request')}`;
   }
 
   function closeResourceDetail() {
@@ -1049,7 +1442,7 @@
       <div class="reviews-grid">${cfg.reviews.map(reviewCard).join('')}</div>
     `);
 
-    return heroHTML + servicesHTML + statsHTML + featuredHTML + ctaHTML + reviewsHTML;
+    return heroHTML + servicesHTML + statsHTML + featuredHTML + ctaHTML + renderTrustBlock(cfg) + reviewsHTML;
   }
 
   function renderAbout(cfg) {
@@ -1098,10 +1491,13 @@
         <h1>Studio-first craft for modern Minecraft products.</h1>
         <p class="page-copy">ZCraft Studios builds server systems, plugins, and web experiences for teams, communities, and creators. We combine design, performance, and polished delivery for commercial-grade releases.</p>
       </section>
+      ${renderSummaryBlock('about')}
       <div class="about-cards-grid">
         ${bioCard}
         ${skillsCard}
-      </div>`;
+      </div>
+      ${renderTrustBlock(cfg)}
+      ${renderFaqBlock('about')}`;
   }
 
   function renderPortfolio(cfg) {
@@ -1158,7 +1554,7 @@
     const resourceCards = resources
       .map((resource, index) => ({ resource, index }))
       .filter(item => item.resource !== featured)
-      .map(item => resourceCard(item.resource, item.index))
+      .map(item => resourceCard(item.resource, item.index, cfg))
       .join('');
 
     const featuredCard = featured ? `
@@ -1169,6 +1565,7 @@
           <h2 class="resource-featured-title">${esc(featured.title)}</h2>
           <p class="resource-featured-summary">${esc(featured.summary)}</p>
           <div class="tag-list">${(featured.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+          <a class="btn btn-ghost" href="/resources/${esc(resourceSlug(featured))}">${esc(page.featuredDetailsLabel || 'read product details')}</a>
           ${featured.links?.[0] ? `<a class="btn btn-primary" href="${esc(featured.links[0].href)}" target="_blank" rel="noopener">${esc(featured.links[0].label)}</a>` : ''}
         </div>
       </article>` : '';
@@ -1182,6 +1579,7 @@
         <h1>${esc(page.title || 'Tools, configs, and kits built for real servers.')}</h1>
         <p class="page-copy">${introCopy}</p>
       </section>
+      ${renderSummaryBlock('resources')}
       <div class="resources-layout">
         ${featuredCard}
         <div class="resources-intro-row">
@@ -1190,7 +1588,164 @@
         <div class="resources-grid">
           ${resourceCards || '<div class="resource-empty">No resources available yet.</div>'}
         </div>
-      </div>`;
+      </div>
+      ${renderTrustBlock(cfg)}
+      ${renderFaqBlock('resources')}`;
+  }
+
+  function renderResourceDetail(cfg) {
+    const resource = findResourceBySlug(cfg);
+    if (!resource) return renderNotFound(cfg);
+    const page = cfg.resourcesPage || {};
+    const headings = page.paragraphHeadings || [];
+    const facts = [
+      ['What it is', resource.what],
+      ['Who it is for', resource.audience],
+      ['Supported platforms', (resource.supportedPlatforms || []).join(', ')],
+      ['Price / status', resource.status],
+      ['Setup difficulty', resource.setupDifficulty],
+      ['Support method', resource.supportMethod]
+    ].filter(([, value]) => value);
+    const paragraphs = resourceParagraphs(resource, cfg);
+    return `
+      <section class="page-hero">
+        <span class="page-label">${esc(page.detailLabel || '// resource')}</span>
+        <h1>${esc(resource.title)}</h1>
+        <p class="page-copy">${esc(resource.what || resource.summary)}</p>
+      </section>
+      <article class="detail-layout">
+        <div class="detail-media">
+          <img src="${esc(resource.image)}" alt="${esc(resource.title)} product image" loading="eager" />
+        </div>
+        <div class="detail-content">
+          <div class="blog-card-meta">
+            <span>${esc(resource.category || 'Resource')}</span>
+            <span>${esc(resource.brand || 'ZCraft Studios')}</span>
+            <span>${esc(resource.status || 'Available')}</span>
+          </div>
+          <dl class="blog-facts">
+            ${facts.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join('')}
+          </dl>
+          <div class="blog-body">
+            ${paragraphs.map((paragraph, index) => `
+              <section>
+                <h2>${esc(headings[index] || headings[headings.length - 1] || 'Product details')}</h2>
+                <p>${esc(paragraph)}</p>
+              </section>
+            `).join('')}
+          </div>
+          <div class="tags">${(resource.tags || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
+          <div class="resource-detail-actions">
+            ${(resource.links || []).map(link => `<a class="btn btn-primary" href="${esc(link.href)}" ${/^https?:/.test(link.href)?'target="_blank" rel="noopener"':''}>${esc(link.label)}</a>`).join('')}
+            <a class="btn btn-ghost" href="${esc(page.backHref || '/resources')}">${esc(page.backLabel || 'all resources')}</a>
+          </div>
+        </div>
+      </article>
+      ${renderFaqBlock('resource-detail', resourceFaqs(resource, cfg))}`;
+  }
+
+  function renderBlogCard(post, cfg, open = false) {
+    const sections = postSections(post);
+    const page = cfg.blogPage || {};
+    const publisherHandle = post.publisherHandle || page.publisherHandle || cfg.contact?.primary?.handle || '@zraxgaming';
+    return `
+      <details class="blog-list-item" id="${esc(post.slug)}" ${open ? 'open' : ''}>
+        <summary>
+          <span class="blog-list-copy">
+            <a class="blog-list-title" href="/blogs/${esc(blogSlug(post))}">${esc(post.title)}</a>
+            <span class="blog-list-summary">${esc(post.summary)}</span>
+          </span>
+          <span class="blog-list-meta">
+            <span>${esc(post.date || '2026-06-15')}</span>
+            <span>${esc(publisherHandle)}</span>
+            <span>${esc(post.readingTime || page.defaultReadingTime || 'Quick read')}</span>
+          </span>
+        </summary>
+        <article class="blog-expanded">
+          ${post.image ? `<img class="blog-inline-image" src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="lazy" />` : ''}
+          <div class="blog-card-meta">
+            <span>${esc(post.category || page.publisherName || 'Studio')}</span>
+            <span>${esc(page.updatedLabel || 'Updated')} ${esc(post.updated || post.date || '2026-06-15')}</span>
+            <span>${esc(page.publisherLabel || 'Publisher')} ${esc(publisherHandle)}</span>
+          </div>
+          <dl class="blog-facts">
+            <div><dt>${esc(page.audienceLabel || 'Who it is for')}</dt><dd>${esc(post.audience || page.defaultAudience || 'Minecraft communities and creators')}</dd></div>
+            <div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.detailSourceLabel || 'config/blogs.json')}</dd></div>
+          </dl>
+          <div class="blog-body">
+            ${sections.map(section => `
+              <section>
+                <h3>${renderInlineMarkdown(section.heading)}</h3>
+                ${renderMarkdownBlock(section.body)}
+              </section>
+            `).join('')}
+          </div>
+          <div class="tags">${postKeywords(post).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
+        </article>
+      </details>`;
+  }
+
+  function renderBlogs(cfg) {
+    const page = cfg.blogPage || {};
+    const posts = cfg.blogPosts || [];
+    const categories = [...new Set(posts.map(post => post.category).filter(Boolean))];
+    const summaryItems = (page.summaryItems || []).map(item => item.replace('{categories}', categories.join(', ')));
+
+    return `
+      <section class="page-hero">
+        <span class="page-label">${esc(page.label || '// blog')}</span>
+        <h1>${esc(page.title || 'Minecraft development notes and studio updates.')}</h1>
+        <p class="page-copy">${esc(page.copy || 'Guides about Minecraft plugins, server configs, Discord bots, and ZCraft Studios resources.')}</p>
+      </section>
+      ${renderSummaryBlock('blogs', summaryItems)}
+      <div class="blogs-list" aria-label="Blog posts">
+        <div class="section-label">${esc(page.listLabel || '// posts')}</div>
+        <div class="blog-list">
+          ${posts.map((post, index) => renderBlogCard(post, cfg, index === 0)).join('') || `<div class="resource-empty">${esc(page.emptyText || 'No blog posts available yet.')}</div>`}
+        </div>
+      </div>
+      ${renderTrustBlock(cfg)}
+      ${renderFaqBlock('blogs', cfg.blogFaq || [])}`;
+  }
+
+  function renderBlogDetail(cfg) {
+    const post = findBlogPostBySlug(cfg);
+    if (!post) return renderNotFound(cfg);
+    const page = cfg.blogPage || {};
+    const publisherHandle = post.publisherHandle || page.publisherHandle || cfg.contact?.primary?.handle || '@zraxgaming';
+    const sections = postSections(post);
+    return `
+      <section class="page-hero">
+        <span class="page-label">${esc(page.label || '// blog')}</span>
+        <h1>${esc(post.title)}</h1>
+        <p class="page-copy">${esc(post.summary)}</p>
+      </section>
+      <article class="blog-detail">
+        ${post.image ? `<img class="blog-hero-image" src="${esc(post.image)}" alt="${esc(post.imageAlt || post.title)}" loading="eager" />` : ''}
+        <div class="blog-card-meta">
+          <span>${esc(post.date || '2026-06-15')}</span>
+          <span>${esc(page.updatedLabel || 'Updated')} ${esc(post.updated || post.date || '2026-06-15')}</span>
+          <span>${esc(page.publisherLabel || 'Publisher')} ${esc(publisherHandle)}</span>
+          <span>${esc(post.category || page.publisherName || 'Studio')}</span>
+          <span>${esc(post.readingTime || page.defaultReadingTime || 'Quick read')}</span>
+        </div>
+        <dl class="blog-facts">
+          <div><dt>${esc(page.audienceLabel || 'Who it is for')}</dt><dd>${esc(post.audience || page.defaultAudience || 'Minecraft communities and creators')}</dd></div>
+          <div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.detailSourceLabel || 'config/blogs.json')}</dd></div>
+        </dl>
+        <div class="blog-body">
+          ${sections.map(section => `
+            <section>
+              <h2>${renderInlineMarkdown(section.heading)}</h2>
+              ${renderMarkdownBlock(section.body)}
+            </section>
+          `).join('')}
+        </div>
+        <div class="tags">${postKeywords(post).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
+        <div class="resource-detail-actions">
+          <a class="btn btn-ghost" href="${esc(page.backHref || '/blogs')}">${esc(page.backLabel || 'all blog posts')}</a>
+        </div>
+      </article>`;
   }
 
   function renderContact(cfg) {
@@ -1247,7 +1802,8 @@
         <div class="contact-platforms-grid">
           ${platformCards}
         </div>
-      </div>`;
+      </div>
+      ${renderTrustBlock(cfg)}`;
   }
 
   function renderTeam(cfg) {
@@ -1289,9 +1845,12 @@
         <h1>Built by a small but experienced studio crew.</h1>
         <p class="page-copy">Every release is reviewed, supported, and polished for real server environments. Meet the people who ship the experience.</p>
       </section>
+      ${renderSummaryBlock('team')}
       <div class="team-pyramid">
         ${pyramidRows}
-      </div>`;
+      </div>
+      ${renderTrustBlock(cfg)}
+      ${renderFaqBlock('team')}`;
   }
 
   function renderMaintenance(cfg, pageKey) {
@@ -1341,7 +1900,7 @@
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, 'resource-detail': renderResourceDetail, blogs: renderBlogs, 'blog-detail': renderBlogDetail, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 
@@ -1395,13 +1954,17 @@
   Promise.all([
     tryFetchJson(buildConfigPaths('info.json')),
     tryFetchJson(buildConfigPaths('products.json')),
-    tryFetchJson(buildConfigPaths('reviews.json'))
-  ]).then(([info, products, reviews]) => {
+    tryFetchJson(buildConfigPaths('reviews.json')),
+    tryFetchJson(buildConfigPaths('blogs.json'))
+  ]).then(([info, products, reviews, blogs]) => {
     const cfg = {
       ...info,
       projects: products.projects || [],
       resources: products.resources || [],
-      reviews: reviews.reviews || []
+      reviews: reviews.reviews || [],
+      blogPage: blogs.page || {},
+      blogPosts: blogs.posts || [],
+      blogFaq: blogs.faq || []
     };
     applySEO(cfg);
     const app = $('#app');

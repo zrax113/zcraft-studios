@@ -16,6 +16,7 @@ Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
 - Builds Discord bots for moderation, evidence handling, automation, and community operations.
 - Builds modern web tools and websites for Minecraft servers, creators, and software products.
 - Accepts custom commissions through the request page.
+- Publishes blog posts and guides from config/blogs.json about Minecraft plugins, server configs, Discord bots, SEO, and AI crawler discovery.
 
 ## Important Pages
 
@@ -23,6 +24,7 @@ Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
 - About: https://studio.z-craft.xyz/about
 - Team: https://studio.z-craft.xyz/team
 - Resources and products: https://studio.z-craft.xyz/resources
+- Blog and guides: https://studio.z-craft.xyz/blogs
 - Request custom work: https://studio.z-craft.xyz/request
 - Contact: https://studio.z-craft.xyz/contact
 - Donate/support: https://studio.z-craft.xyz/donate
@@ -40,6 +42,15 @@ Plain-text AI overview: https://studio.z-craft.xyz/ai.txt
 
 Use https://studio.z-craft.xyz/config/products.json for the freshest product, resource, price, status, image, tag, and outbound link data.
 
+## Blog Posts And Guides
+
+- How should a Minecraft server plan a custom plugin?: custom Paper, Spigot, and Velocity plugin planning guidance. Date: 2026-06-15. Publisher handle: @zraxgaming.
+- What makes a Minecraft config resource production-ready?: Minecraft server config, setup, testing, and support guidance. Date: 2026-06-15. Publisher handle: @zraxgaming.
+- When does a Discord community need a custom bot?: Discord bot automation, moderation, evidence handling, and support guidance. Date: 2026-06-15. Publisher handle: @zraxgaming.
+- How can AI crawlers understand a studio website?: sitemap, llms.txt, structured data, ai.txt, ai-overview.json, and site-index.json guidance. Date: 2026-06-15. Publisher handle: @zraxgaming.
+
+Use https://studio.z-craft.xyz/config/blogs.json for the freshest blog titles, dates, publisher handles, summaries, tags, and article bodies.
+
 ## Pricing
 
 Some downloadable resources have fixed prices in the products JSON. Custom plugins, configs, Discord bots, and web tools are quoted per project based on scope, platform, budget, and timeline.
@@ -55,6 +66,7 @@ Discord and other contact channels are listed in https://studio.z-craft.xyz/conf
 
 - Site config: https://studio.z-craft.xyz/config/info.json
 - Products and resources: https://studio.z-craft.xyz/config/products.json
+- Blog config: https://studio.z-craft.xyz/config/blogs.json
 - Reviews: https://studio.z-craft.xyz/config/reviews.json
 - Full generated site index: https://studio.z-craft.xyz/site-index.json
 - Compact AI overview: https://studio.z-craft.xyz/ai-overview.json

@@ -12,16 +12,34 @@ Sitemap: https://studio.z-craft.xyz/sitemap.xml
 LLMS file: https://studio.z-craft.xyz/llms.txt
 Contact: https://studio.z-craft.xyz/contact
 Request custom work: https://studio.z-craft.xyz/request
+Blog: https://studio.z-craft.xyz/blogs
 
 Indexable pages:
-- About — ZCraft Studios: https://studio.z-craft.xyz/about - ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.
-- Contact — ZCraft Studios: https://studio.z-craft.xyz/contact - Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.
-- Donate — ZCraft Studios: https://studio.z-craft.xyz/donate - Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.
+- About Our Minecraft Studio — ZCraft Studios: https://studio.z-craft.xyz/about - ZCraft Studios is a development studio for Minecraft plugins, server configs, Discord bots, web tools, and creator-focused digital products.
+- Minecraft Development Blog — ZCraft Studios: https://studio.z-craft.xyz/blogs - Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.
+- Contact for Minecraft Development — ZCraft Studios: https://studio.z-craft.xyz/contact - Contact ZCraft Studios for Minecraft plugin commissions, server config help, Discord bot support, and custom web development.
+- Support Minecraft Tools — ZCraft Studios: https://studio.z-craft.xyz/donate - Support ZCraft Studios with a secure PayPal donation that helps fund Minecraft plugins, configs, Discord bots, and web tools.
 - ZCraft Studios — Premium Minecraft Plugins, Configs, and Discord Bots: https://studio.z-craft.xyz/ - ZCraft Studios builds premium Minecraft plugins, server configs, Discord bots, and web tools for polished, production-ready communities.
 - Request Custom Service — ZCraft Studios: https://studio.z-craft.xyz/request - Request custom Minecraft plugins, server configs, Discord bot development, or web tools from ZCraft Studios.
-- Resources — ZCraft Studios: https://studio.z-craft.xyz/resources - Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.
-- Team — ZCraft Studios: https://studio.z-craft.xyz/team - Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.
+- Minecraft Resources & Tools — ZCraft Studios: https://studio.z-craft.xyz/resources - Browse ZCraft Studios Minecraft plugins, server configs, Discord bot tools, and web resources built for fast deployment and clean UX.
+- Minecraft Development Team — ZCraft Studios: https://studio.z-craft.xyz/team - Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.
+
+Resource detail pages:
+- Evidence Discord Bot: https://studio.z-craft.xyz/resources/evidence-discord-bot - Discord evidence and case management bot for moderation teams.
+- Visual Config Studio: https://studio.z-craft.xyz/resources/visual-config-studio - Web-based visual configuration editor for Minecraft plugin configs.
+- LuckPerms Visual Tree: https://studio.z-craft.xyz/resources/luckperms-visual-tree - Visual LuckPerms permission tree editor and debugging workspace.
+- Z-Auth: https://studio.z-craft.xyz/resources/z-auth - Proxy-first authentication plugin for Minecraft networks.
+- EssentialsX Messages Config: https://studio.z-craft.xyz/resources/essentialsx-messages-config - Modern player-facing message configuration for EssentialsX.
+- Modern Maintenance Messages Config: https://studio.z-craft.xyz/resources/modern-maintenance-messages-config - Polished maintenance message configuration for Minecraft servers.
+- LiteBans Message Templates: https://studio.z-craft.xyz/resources/litebans-message-templates - Professional LiteBans moderation and punishment message templates.
+- Products Tab Config: https://studio.z-craft.xyz/resources/products-tab-config - Premium tab and scoreboard configuration for Minecraft servers.
+
+Blog posts:
+- How should a Minecraft server plan a custom plugin? (2026-06-15, @zraxgaming): A practical checklist for server owners who want a custom Paper, Spigot, or Velocity plugin without vague scope, surprise costs, or fragile launch behavior. https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning
+- What makes a Minecraft config resource production-ready? (2026-06-15, @zraxgaming): A short guide to clean Minecraft server configs, message packs, permission layouts, maintenance templates, and scoreboard resources that are easy to install and support. https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs
+- When does a Discord community need a custom bot? (2026-06-15, @zraxgaming): How to decide when a Discord bot should be custom-built for evidence handling, moderation workflows, automation, and community operations. https://studio.z-craft.xyz/blogs/discord-bot-community-automation
+- How can AI crawlers understand a studio website? (2026-06-15, @zraxgaming): Why ZCraft Studios publishes sitemap, llms.txt, ai.txt, site-index.json, structured data, and clear page summaries for search engines and AI agents. https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site
 
 Featured resources:
-- Evidence Discord Bot (Bot, $5.38): Best Discord bot for performance and handling user cases and moderation.; platforms: Discord, Node.js; setup: Easy; support: BuiltByBit resource page and ZCraft Studios contact channels.
-- Visual Config Studio (Website, $5.47): Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.; platforms: Web browser, Minecraft plugin configs; setup: Easy; support: BuiltByBit resource page and ZCraft Studios contact channels.
+- Evidence Discord Bot (Bot, $5.38): Best Discord bot for performance and handling user cases and moderation.
+- Visual Config Studio (Website, $5.47): Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.

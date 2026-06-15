@@ -1,4 +1,206 @@
 {
+   "blogs" : {
+      "faq" : [
+         {
+            "answer" : "The blog explains Minecraft plugin development, server configuration, Discord bot development, web tools, product resources, SEO, and AI crawler discovery for ZCraft Studios.",
+            "question" : "What is the ZCraft Studios blog about?"
+         },
+         {
+            "answer" : "Minecraft server owners, community operators, Discord staff teams, creators, and AI agents can use the blog to understand ZCraft Studios services, products, planning process, and support details.",
+            "question" : "Who should read these articles?"
+         },
+         {
+            "answer" : "Yes. Blog data comes from config/blogs.json and is included in the generated site-index.json, ai-overview.json, ai.txt, sitemap, and llms.txt discovery surfaces.",
+            "question" : "Is the blog content included in the site index JSON?"
+         }
+      ],
+      "page" : {
+         "audienceLabel" : "Who it is for",
+         "backHref" : "/blogs",
+         "backLabel" : "all blog posts",
+         "copy" : "Clear, practical articles about Minecraft plugins, Discord bots, server configuration, ZCraft Studios resources, and how server owners can plan cleaner technical launches.",
+         "defaultReadingTime" : "Quick read",
+         "detailSourceLabel" : "config/blogs.json",
+         "emptyText" : "No blog posts available yet.",
+         "label" : "// blog",
+         "listLabel" : "// posts",
+         "publisherHandle" : "@zraxgaming",
+         "publisherLabel" : "Publisher",
+         "publisherName" : "ZCraft Studios",
+         "sourceLabel" : "Source config",
+         "summaryHeading" : "What should you know first?",
+         "summaryItems" : [
+            "Blog posts are loaded from config/blogs.json, so the live page and generated AI discovery files share the same article data.",
+            "Covered topics are generated from blog categories and tags."
+         ],
+         "title" : "Minecraft development notes, guides, and studio updates.",
+         "updatedLabel" : "Updated"
+      },
+      "posts" : [
+         {
+            "audience" : "Minecraft server owners, network managers, and creators requesting custom plugin development.",
+            "category" : "Minecraft Plugins",
+            "date" : "2026-06-15",
+            "featured" : true,
+            "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
+            "imageAlt" : "Minecraft plugin planning and proxy authentication resource artwork",
+            "keywords" : [
+               "Minecraft custom plugin",
+               "Paper plugin development",
+               "Spigot plugin development",
+               "Velocity plugin development",
+               "Minecraft server plugin planning",
+               "custom Minecraft development"
+            ],
+            "publisherHandle" : "@zraxgaming",
+            "readingTime" : "4 min read",
+            "sections" : [
+               {
+                  "body" : "Write the exact **player action**, staff action, command, permission, storage requirement, and failure case before development starts. A clear plugin request should explain who uses the feature, when it runs, what data it saves, and what should happen if the server restarts or a dependency is missing.\n- Include the target platform.\n- Include the expected commands.\n- Include the support and update expectations.",
+                  "heading" : "What should the plugin do?"
+               },
+               {
+                  "body" : "Name the target server software and version range. Paper, Spigot, Velocity, and proxy networks can need different event handling, commands, permissions, and deployment steps, so platform clarity helps the quote and timeline stay accurate.",
+                  "heading" : "Which platforms need support?"
+               }
+            ],
+            "slug" : "minecraft-custom-plugin-planning",
+            "summary" : "A practical checklist for server owners who want a custom Paper, Spigot, or Velocity plugin without vague scope, surprise costs, or fragile launch behavior.",
+            "tags" : [
+               "Minecraft plugins",
+               "Paper",
+               "Spigot",
+               "Velocity",
+               "Custom development"
+            ],
+            "title" : "How should a Minecraft server plan a custom plugin?",
+            "updated" : "2026-06-15",
+            "url" : "https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning"
+         },
+         {
+            "audience" : "Server operators using EssentialsX, LiteBans, TAB, LuckPerms, and similar Minecraft tools.",
+            "category" : "Server Configuration",
+            "date" : "2026-06-15",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
+            "imageAlt" : "Minecraft server configuration and scoreboard resource artwork",
+            "keywords" : [
+               "Minecraft server configs",
+               "Minecraft configuration resource",
+               "EssentialsX messages",
+               "LiteBans templates",
+               "TAB configuration",
+               "LuckPerms server setup"
+            ],
+            "publisherHandle" : "@zraxgaming",
+            "readingTime" : "3 min read",
+            "sections" : [
+               {
+                  "body" : "A strong config resource explains supported plugins, setup difficulty, required files, placeholders, support method, and what the server owner should edit after download. The goal is fast deployment without guessing.",
+                  "heading" : "How should a config be documented?"
+               },
+               {
+                  "body" : "Commands, placeholders, color formatting, permission groups, reload behavior, and player-facing messages should be checked in a real server environment before the resource is published or installed on a production network.",
+                  "heading" : "What should be tested before release?"
+               }
+            ],
+            "slug" : "production-ready-minecraft-configs",
+            "summary" : "A short guide to clean Minecraft server configs, message packs, permission layouts, maintenance templates, and scoreboard resources that are easy to install and support.",
+            "tags" : [
+               "Minecraft configs",
+               "EssentialsX",
+               "LiteBans",
+               "TAB",
+               "LuckPerms"
+            ],
+            "title" : "What makes a Minecraft config resource production-ready?",
+            "updated" : "2026-06-15",
+            "url" : "https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs"
+         },
+         {
+            "audience" : "Discord staff teams, Minecraft communities, and moderation departments.",
+            "category" : "Discord Bots",
+            "date" : "2026-06-15",
+            "featured" : false,
+            "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
+            "imageAlt" : "Discord moderation evidence bot artwork",
+            "keywords" : [
+               "Discord bot development",
+               "custom Discord bot",
+               "Discord moderation bot",
+               "evidence bot",
+               "community automation",
+               "Node.js Discord bot"
+            ],
+            "publisherHandle" : "@zraxgaming",
+            "readingTime" : "3 min read",
+            "sections" : [
+               {
+                  "body" : "Custom bots are strongest when they replace repeated staff work: evidence logs, case tracking, role workflows, alerts, ticket routing, or moderation reports. The best requests describe every command and permission level.",
+                  "heading" : "What should the bot automate?"
+               },
+               {
+                  "body" : "Bot support should include hosting expectations, setup steps, environment variables, permission requirements, and a clear contact method for bug reports or small changes after launch.",
+                  "heading" : "How should support work?"
+               }
+            ],
+            "slug" : "discord-bot-community-automation",
+            "summary" : "How to decide when a Discord bot should be custom-built for evidence handling, moderation workflows, automation, and community operations.",
+            "tags" : [
+               "Discord bot",
+               "Moderation",
+               "Automation",
+               "Evidence bot",
+               "Node.js"
+            ],
+            "title" : "When does a Discord community need a custom bot?",
+            "updated" : "2026-06-15",
+            "url" : "https://studio.z-craft.xyz/blogs/discord-bot-community-automation"
+         },
+         {
+            "audience" : "AI agents, search crawlers, site auditors, and developers checking ZCraft Studios metadata.",
+            "category" : "SEO",
+            "date" : "2026-06-15",
+            "featured" : false,
+            "image" : "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
+            "imageAlt" : "ZCraft Studios AI crawler and SEO discovery artwork",
+            "keywords" : [
+               "AI crawler SEO",
+               "llms.txt",
+               "site-index.json",
+               "structured data",
+               "AI agents",
+               "ChatGPT crawler",
+               "PerplexityBot",
+               "ClaudeBot"
+            ],
+            "publisherHandle" : "@zraxgaming",
+            "readingTime" : "4 min read",
+            "sections" : [
+               {
+                  "body" : "Crawlers should use sitemap.xml for page discovery, llms.txt for a concise site explanation, ai-overview.json for compact machine-readable context, and site-index.json for the full generated index.",
+                  "heading" : "Which files should crawlers read first?"
+               },
+               {
+                  "body" : "Config-driven content keeps page metadata, product descriptions, blog posts, summaries, and AI discovery files aligned. When configs change, the generated index can update from the same source data.",
+                  "heading" : "Why keep data in config files?"
+               }
+            ],
+            "slug" : "ai-crawler-friendly-studio-site",
+            "summary" : "Why ZCraft Studios publishes sitemap, llms.txt, ai.txt, site-index.json, structured data, and clear page summaries for search engines and AI agents.",
+            "tags" : [
+               "SEO",
+               "llms.txt",
+               "structured data",
+               "AI agents",
+               "sitemap"
+            ],
+            "title" : "How can AI crawlers understand a studio website?",
+            "updated" : "2026-06-15",
+            "url" : "https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site"
+         }
+      ]
+   },
    "branding" : {
       "favicon" : "/favicon.ico",
       "logo" : "https://i.postimg.cc/Bn1xPNRW/IMG-3484.png",
@@ -73,7 +275,7 @@
    },
    "crawlerGuidance" : {
       "contactUrl" : "https://studio.z-craft.xyz/contact",
-      "lastGenerated" : "Mon Jun 15 08:53:41 2026 UTC",
+      "lastGenerated" : "Mon Jun 15 10:05:08 2026Z",
       "preferredSummary" : "ZCraft Studios is A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
       "pricingNote" : "Downloadable resource prices are listed in products.resources[].status when available. Custom commissions are quoted per project.",
       "primaryAudience" : "Minecraft server owners, community operators, creators, and teams needing plugins, configs, Discord bots, or web tools.",
@@ -94,15 +296,91 @@
       "full_site_index_json" : "https://studio.z-craft.xyz/site-index.json",
       "llms" : "https://studio.z-craft.xyz/llms.txt",
       "sitemap" : "https://studio.z-craft.xyz/sitemap.xml",
+      "source_blogs" : "https://studio.z-craft.xyz/config/blogs.json",
       "source_config" : "https://studio.z-craft.xyz/config/info.json",
       "source_products" : "https://studio.z-craft.xyz/config/products.json",
       "source_reviews" : "https://studio.z-craft.xyz/config/reviews.json"
    },
-   "generatedAt" : "Mon Jun 15 08:53:41 2026 UTC",
+   "generatedAt" : "Mon Jun 15 10:05:08 2026Z",
+   "generatedDetailPages" : [
+      {
+         "sourceConfig" : "config/products.json",
+         "title" : "Evidence Discord Bot",
+         "type" : "resource",
+         "url" : "https://studio.z-craft.xyz/resources/evidence-discord-bot"
+      },
+      {
+         "sourceConfig" : "config/products.json",
+         "title" : "Visual Config Studio",
+         "type" : "resource",
+         "url" : "https://studio.z-craft.xyz/resources/visual-config-studio"
+      },
+      {
+         "sourceConfig" : "config/products.json",
+         "title" : "LuckPerms Visual Tree",
+         "type" : "resource",
+         "url" : "https://studio.z-craft.xyz/resources/luckperms-visual-tree"
+      },
+      {
+         "sourceConfig" : "config/products.json",
+         "title" : "Z-Auth",
+         "type" : "resource",
+         "url" : "https://studio.z-craft.xyz/resources/z-auth"
+      },
+      {
+         "sourceConfig" : "config/products.json",
+         "title" : "EssentialsX Messages Config",
+         "type" : "resource",
+         "url" : "https://studio.z-craft.xyz/resources/essentialsx-messages-config"
+      },
+      {
+         "sourceConfig" : "config/products.json",
+         "title" : "Modern Maintenance Messages Config",
+         "type" : "resource",
+         "url" : "https://studio.z-craft.xyz/resources/modern-maintenance-messages-config"
+      },
+      {
+         "sourceConfig" : "config/products.json",
+         "title" : "LiteBans Message Templates",
+         "type" : "resource",
+         "url" : "https://studio.z-craft.xyz/resources/litebans-message-templates"
+      },
+      {
+         "sourceConfig" : "config/products.json",
+         "title" : "Products Tab Config",
+         "type" : "resource",
+         "url" : "https://studio.z-craft.xyz/resources/products-tab-config"
+      },
+      {
+         "sourceConfig" : "config/blogs.json",
+         "title" : "How should a Minecraft server plan a custom plugin?",
+         "type" : "blog",
+         "url" : "https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning"
+      },
+      {
+         "sourceConfig" : "config/blogs.json",
+         "title" : "What makes a Minecraft config resource production-ready?",
+         "type" : "blog",
+         "url" : "https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs"
+      },
+      {
+         "sourceConfig" : "config/blogs.json",
+         "title" : "When does a Discord community need a custom bot?",
+         "type" : "blog",
+         "url" : "https://studio.z-craft.xyz/blogs/discord-bot-community-automation"
+      },
+      {
+         "sourceConfig" : "config/blogs.json",
+         "title" : "How can AI crawlers understand a studio website?",
+         "type" : "blog",
+         "url" : "https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site"
+      }
+   ],
    "generatedFrom" : [
       "config/info.json",
       "config/products.json",
-      "config/reviews.json"
+      "config/reviews.json",
+      "config/blogs.json"
    ],
    "indexablePages" : [
       {
@@ -111,8 +389,17 @@
          "indexable" : true,
          "key" : "about",
          "keywords" : "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
-         "title" : "About — ZCraft Studios",
+         "title" : "About Our Minecraft Studio — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/about"
+      },
+      {
+         "canonical" : "/blogs",
+         "description" : "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.",
+         "indexable" : true,
+         "key" : "blogs",
+         "keywords" : "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI crawler SEO, llms.txt, structured data",
+         "title" : "Minecraft Development Blog — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/blogs"
       },
       {
          "canonical" : "/contact",
@@ -120,7 +407,7 @@
          "indexable" : true,
          "key" : "contact",
          "keywords" : "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
-         "title" : "Contact — ZCraft Studios",
+         "title" : "Contact for Minecraft Development — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/contact"
       },
       {
@@ -129,7 +416,7 @@
          "indexable" : true,
          "key" : "donate",
          "keywords" : "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
-         "title" : "Donate — ZCraft Studios",
+         "title" : "Support Minecraft Tools — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/donate"
       },
       {
@@ -156,7 +443,7 @@
          "indexable" : true,
          "key" : "resources",
          "keywords" : "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
-         "title" : "Resources — ZCraft Studios",
+         "title" : "Minecraft Resources & Tools — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/resources"
       },
       {
@@ -165,7 +452,7 @@
          "indexable" : true,
          "key" : "team",
          "keywords" : "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
-         "title" : "Team — ZCraft Studios",
+         "title" : "Minecraft Development Team — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/team"
       }
    ],
@@ -260,6 +547,10 @@
          "label" : "resources"
       },
       {
+         "href" : "/blogs",
+         "label" : "blogs"
+      },
+      {
          "href" : "/request",
          "label" : "request"
       },
@@ -275,8 +566,17 @@
          "indexable" : true,
          "key" : "about",
          "keywords" : "about ZCraft Studios, Minecraft development studio, Discord bot studio, plugin studio, server config experts, web tools studio",
-         "title" : "About — ZCraft Studios",
+         "title" : "About Our Minecraft Studio — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/about"
+      },
+      {
+         "canonical" : "/blogs",
+         "description" : "Read ZCraft Studios guides for Minecraft plugin development, server configuration, Discord bots, web tools, SEO, and AI crawler discovery.",
+         "indexable" : true,
+         "key" : "blogs",
+         "keywords" : "Minecraft development blog, Minecraft plugin guides, Minecraft server configuration, Discord bot development, ZCraft Studios blog, AI crawler SEO, llms.txt, structured data",
+         "title" : "Minecraft Development Blog — ZCraft Studios",
+         "url" : "https://studio.z-craft.xyz/blogs"
       },
       {
          "canonical" : "/contact",
@@ -284,7 +584,7 @@
          "indexable" : true,
          "key" : "contact",
          "keywords" : "contact ZCraft Studios, Minecraft plugin commission, Discord bot support, server configuration help, custom Minecraft development, web development contact",
-         "title" : "Contact — ZCraft Studios",
+         "title" : "Contact for Minecraft Development — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/contact"
       },
       {
@@ -293,7 +593,7 @@
          "indexable" : true,
          "key" : "donate",
          "keywords" : "donate to ZCraft Studios, PayPal donation, support Minecraft plugins, support Minecraft configs, support Discord bots, creator tools",
-         "title" : "Donate — ZCraft Studios",
+         "title" : "Support Minecraft Tools — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/donate"
       },
       {
@@ -329,7 +629,7 @@
          "indexable" : true,
          "key" : "resources",
          "keywords" : "Minecraft resources, Minecraft configs, Minecraft plugins, Discord bot tools, BuiltByBit resources, LuckPerms editor, EssentialsX messages, LiteBans templates, ZCraft Studios",
-         "title" : "Resources — ZCraft Studios",
+         "title" : "Minecraft Resources & Tools — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/resources"
       },
       {
@@ -338,7 +638,7 @@
          "indexable" : true,
          "key" : "team",
          "keywords" : "ZCraft Studios team, Minecraft developers, Discord bot developers, plugin developers, server config specialists, web development team",
-         "title" : "Team — ZCraft Studios",
+         "title" : "Minecraft Development Team — ZCraft Studios",
          "url" : "https://studio.z-craft.xyz/team"
       },
       {
@@ -372,44 +672,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/evidence-discord-bot",
             "schema" : {
                "@type" : "SoftwareApplication",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Discord, Node.js"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "available"
-                  }
-               ],
                "applicationCategory" : "Bot",
                "audience" : "Discord communities, staff teams, and moderation departments.",
                "description" : "Discord evidence and case management bot for moderation teams.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
                "name" : "Evidence Discord Bot",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "available"
-               },
                "operatingSystem" : "Discord, Node.js",
-               "url" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/"
+               "url" : "https://studio.z-craft.xyz/resources/evidence-discord-bot"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "evidence-discord-bot",
             "status" : "available",
             "summary" : "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -438,44 +713,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/visual-config-studio",
             "schema" : {
                "@type" : "SoftwareApplication",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Web browser, Minecraft plugin configs"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "live"
-                  }
-               ],
                "applicationCategory" : "Website",
                "audience" : "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
                "description" : "Web-based visual configuration editor for Minecraft plugin configs.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
                "name" : "Visual Config Studio",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "live"
-               },
                "operatingSystem" : "Web browser, Minecraft plugin configs",
-               "url" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/"
+               "url" : "https://studio.z-craft.xyz/resources/visual-config-studio"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "visual-config-studio",
             "status" : "live",
             "summary" : "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -505,44 +755,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/luckperms-visual-tree",
             "schema" : {
                "@type" : "SoftwareApplication",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Web browser, LuckPerms, Minecraft servers"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "live"
-                  }
-               ],
                "applicationCategory" : "Website",
                "audience" : "Minecraft server owners and staff managing permission groups and inheritance.",
                "description" : "Visual LuckPerms permission tree editor and debugging workspace.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
                "name" : "LuckPerms Visual Tree",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "live"
-               },
                "operatingSystem" : "Web browser, LuckPerms, Minecraft servers",
-               "url" : "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/"
+               "url" : "https://studio.z-craft.xyz/resources/luckperms-visual-tree"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "luckperms-visual-tree",
             "status" : "live",
             "summary" : "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -572,44 +797,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/z-auth",
             "schema" : {
                "@type" : "SoftwareApplication",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Velocity, Paper, Minecraft proxy networks"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Moderate"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "GitHub repository issues and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "free"
-                  }
-               ],
                "applicationCategory" : "Plugin",
                "audience" : "Minecraft networks that need proxy-level login protection and synced auth state.",
                "description" : "Proxy-first authentication plugin for Minecraft networks.",
                "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
                "name" : "Z-Auth",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "free"
-               },
                "operatingSystem" : "Velocity, Paper, Minecraft proxy networks",
-               "url" : "https://github.com/zraxgaming/zcraft-auth"
+               "url" : "https://studio.z-craft.xyz/resources/z-auth"
             },
             "setupDifficulty" : "Moderate",
+            "slug" : "z-auth",
             "status" : "free",
             "summary" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
             "supportMethod" : "GitHub repository issues and ZCraft Studios contact channels.",
@@ -641,44 +841,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/essentialsx-messages-config",
             "schema" : {
                "@type" : "Product",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Minecraft, EssentialsX"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "available"
-                  }
-               ],
                "applicationCategory" : "Config",
                "audience" : "Minecraft server owners who want cleaner command, chat, and player messages.",
                "description" : "Modern player-facing message configuration for EssentialsX.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
                "name" : "EssentialsX Messages Config",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "available"
-               },
                "operatingSystem" : "Minecraft, EssentialsX",
-               "url" : "https://builtbybit.com/resources/essentialsx-messages-config.110869/"
+               "url" : "https://studio.z-craft.xyz/resources/essentialsx-messages-config"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "essentialsx-messages-config",
             "status" : "available",
             "summary" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -708,44 +883,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/modern-maintenance-messages-config",
             "schema" : {
                "@type" : "Product",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Minecraft, Maintenance message configs"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "available"
-                  }
-               ],
                "applicationCategory" : "Config",
                "audience" : "Minecraft server owners who need professional maintenance-mode messaging.",
                "description" : "Polished maintenance message configuration for Minecraft servers.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
                "name" : "Modern Maintenance Messages Config",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "available"
-               },
                "operatingSystem" : "Minecraft, Maintenance message configs",
-               "url" : "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/"
+               "url" : "https://studio.z-craft.xyz/resources/modern-maintenance-messages-config"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "modern-maintenance-messages-config",
             "status" : "available",
             "summary" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -775,44 +925,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/litebans-message-templates",
             "schema" : {
                "@type" : "Product",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Minecraft, LiteBans"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "available"
-                  }
-               ],
                "applicationCategory" : "Config",
                "audience" : "Minecraft moderation teams using LiteBans for punishments and alerts.",
                "description" : "Professional LiteBans moderation and punishment message templates.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
                "name" : "LiteBans Message Templates",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "available"
-               },
                "operatingSystem" : "Minecraft, LiteBans",
-               "url" : "https://builtbybit.com/resources/litebans-message-templates.111231/"
+               "url" : "https://studio.z-craft.xyz/resources/litebans-message-templates"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "litebans-message-templates",
             "status" : "available",
             "summary" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -842,44 +967,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/products-tab-config",
             "schema" : {
                "@type" : "Product",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Minecraft, TAB plugin, Scoreboard systems"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "available"
-                  }
-               ],
                "applicationCategory" : "Config",
                "audience" : "Minecraft server owners who want a polished player list and scoreboard layout.",
                "description" : "Premium tab and scoreboard configuration for Minecraft servers.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
                "name" : "Products Tab Config",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "available"
-               },
                "operatingSystem" : "Minecraft, TAB plugin, Scoreboard systems",
-               "url" : "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/"
+               "url" : "https://studio.z-craft.xyz/resources/products-tab-config"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "products-tab-config",
             "status" : "available",
             "summary" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -912,44 +1012,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/evidence-discord-bot",
             "schema" : {
                "@type" : "SoftwareApplication",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Discord, Node.js"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "$5.38"
-                  }
-               ],
                "applicationCategory" : "Bot",
                "audience" : "Discord communities, staff teams, and moderation departments.",
                "description" : "Discord evidence and case management bot for moderation teams.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
                "name" : "Evidence Discord Bot",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "$5.38"
-               },
                "operatingSystem" : "Discord, Node.js",
-               "url" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/"
+               "url" : "https://studio.z-craft.xyz/resources/evidence-discord-bot"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "evidence-discord-bot",
             "status" : "$5.38",
             "summary" : "Best Discord bot for performance and handling user cases and moderation.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -977,44 +1052,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/visual-config-studio",
             "schema" : {
                "@type" : "SoftwareApplication",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Web browser, Minecraft plugin configs"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "$5.47"
-                  }
-               ],
                "applicationCategory" : "Website",
                "audience" : "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
                "description" : "Web-based visual configuration editor for Minecraft plugin configs.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
                "name" : "Visual Config Studio",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "$5.47"
-               },
                "operatingSystem" : "Web browser, Minecraft plugin configs",
-               "url" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/"
+               "url" : "https://studio.z-craft.xyz/resources/visual-config-studio"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "visual-config-studio",
             "status" : "$5.47",
             "summary" : "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -1043,44 +1093,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/luckperms-visual-tree",
             "schema" : {
                "@type" : "SoftwareApplication",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Web browser, LuckPerms, Minecraft servers"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "$5.57"
-                  }
-               ],
                "applicationCategory" : "Website",
                "audience" : "Minecraft server owners and staff managing permission groups and inheritance.",
                "description" : "Visual LuckPerms permission tree editor and debugging workspace.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
                "name" : "LuckPerms Visual Tree",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "$5.57"
-               },
                "operatingSystem" : "Web browser, LuckPerms, Minecraft servers",
-               "url" : "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/"
+               "url" : "https://studio.z-craft.xyz/resources/luckperms-visual-tree"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "luckperms-visual-tree",
             "status" : "$5.57",
             "summary" : "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -1110,44 +1135,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/z-auth",
             "schema" : {
                "@type" : "SoftwareApplication",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Velocity, Paper, Minecraft proxy networks"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Moderate"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "GitHub repository issues and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "Free"
-                  }
-               ],
                "applicationCategory" : "Plugin",
                "audience" : "Minecraft networks that need proxy-level login protection and synced auth state.",
                "description" : "Proxy-first authentication plugin for Minecraft networks.",
                "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
                "name" : "Z-Auth",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "Free"
-               },
                "operatingSystem" : "Velocity, Paper, Minecraft proxy networks",
-               "url" : "https://github.com/zraxgaming/zcraft-auth"
+               "url" : "https://studio.z-craft.xyz/resources/z-auth"
             },
             "setupDifficulty" : "Moderate",
+            "slug" : "z-auth",
             "status" : "Free",
             "summary" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
             "supportMethod" : "GitHub repository issues and ZCraft Studios contact channels.",
@@ -1179,44 +1179,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/essentialsx-messages-config",
             "schema" : {
                "@type" : "Product",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Minecraft, EssentialsX"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "$4.73"
-                  }
-               ],
                "applicationCategory" : "Config",
                "audience" : "Minecraft server owners who want cleaner command, chat, and player messages.",
                "description" : "Modern player-facing message configuration for EssentialsX.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
                "name" : "EssentialsX Messages Config",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "$4.73"
-               },
                "operatingSystem" : "Minecraft, EssentialsX",
-               "url" : "https://builtbybit.com/resources/essentialsx-messages-config.110869/"
+               "url" : "https://studio.z-craft.xyz/resources/essentialsx-messages-config"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "essentialsx-messages-config",
             "status" : "$4.73",
             "summary" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -1245,44 +1220,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/modern-maintenance-messages-config",
             "schema" : {
                "@type" : "Product",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Minecraft, Maintenance message configs"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "$3.72"
-                  }
-               ],
                "applicationCategory" : "Config",
                "audience" : "Minecraft server owners who need professional maintenance-mode messaging.",
                "description" : "Polished maintenance message configuration for Minecraft servers.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
                "name" : "Modern Maintenance Messages Config",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "$3.72"
-               },
                "operatingSystem" : "Minecraft, Maintenance message configs",
-               "url" : "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/"
+               "url" : "https://studio.z-craft.xyz/resources/modern-maintenance-messages-config"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "modern-maintenance-messages-config",
             "status" : "$3.72",
             "summary" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -1311,44 +1261,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/litebans-message-templates",
             "schema" : {
                "@type" : "Product",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Minecraft, LiteBans"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "$4.21"
-                  }
-               ],
                "applicationCategory" : "Config",
                "audience" : "Minecraft moderation teams using LiteBans for punishments and alerts.",
                "description" : "Professional LiteBans moderation and punishment message templates.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
                "name" : "LiteBans Message Templates",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "$4.21"
-               },
                "operatingSystem" : "Minecraft, LiteBans",
-               "url" : "https://builtbybit.com/resources/litebans-message-templates.111231/"
+               "url" : "https://studio.z-craft.xyz/resources/litebans-message-templates"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "litebans-message-templates",
             "status" : "$4.21",
             "summary" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -1377,44 +1302,19 @@
                   "variant" : "primary"
                }
             ],
+            "pageUrl" : "https://studio.z-craft.xyz/resources/products-tab-config",
             "schema" : {
                "@type" : "Product",
-               "additionalProperty" : [
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Supported platforms",
-                     "value" : "Minecraft, TAB plugin, Scoreboard systems"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Setup difficulty",
-                     "value" : "Easy"
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Support method",
-                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
-                  },
-                  {
-                     "@type" : "PropertyValue",
-                     "name" : "Price or status",
-                     "value" : "$4.22"
-                  }
-               ],
                "applicationCategory" : "Config",
                "audience" : "Minecraft server owners who want a polished player list and scoreboard layout.",
                "description" : "Premium tab and scoreboard configuration for Minecraft servers.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
                "name" : "Products Tab Config",
-               "offers" : {
-                  "@type" : "Offer",
-                  "availability" : "https://schema.org/InStock",
-                  "price" : "$4.22"
-               },
                "operatingSystem" : "Minecraft, TAB plugin, Scoreboard systems",
-               "url" : "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/"
+               "url" : "https://studio.z-craft.xyz/resources/products-tab-config"
             },
             "setupDifficulty" : "Easy",
+            "slug" : "products-tab-config",
             "status" : "$4.22",
             "summary" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
             "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
@@ -1473,10 +1373,60 @@
       }
    ],
    "schemaVersion" : "1.0",
+   "seoSupport" : {
+      "copy" : "ZCraft Studios is operated as a practical development studio for Minecraft server owners, Discord communities, and creator teams. The site publishes clear service pages, product summaries, support methods, pricing or availability status, public contact paths, and generated machine-readable indexes so humans, search engines, and AI agents can verify what the studio offers.",
+      "eeat" : [
+         {
+            "copy" : "The studio publishes real Minecraft resources, server configuration packs, Discord bot tools, and web utilities with product images, supported platforms, setup difficulty, and support methods.",
+            "title" : "Experience"
+         },
+         {
+            "copy" : "Core work covers Paper, Spigot, Velocity, LuckPerms, EssentialsX, LiteBans, TAB, Discord, Node.js, Java, and modern browser-based configuration tools.",
+            "title" : "Expertise"
+         },
+         {
+            "copy" : "Product pages link to public resource listings, GitHub repositories, contact channels, sitemap.xml, llms.txt, ai.txt, ai-overview.json, and site-index.json.",
+            "title" : "Authoritativeness"
+         },
+         {
+            "copy" : "Every important page is crawlable, has a canonical URL, includes structured data, uses clear headings, and explains contact, request, pricing, support, and product status where relevant.",
+            "title" : "Trust"
+         }
+      ],
+      "geoCopy" : "ZCraft Studios is based in the United Arab Emirates and works with clients remotely worldwide, including server owners and communities in the United States, United Kingdom, Canada, Australia, Europe, and other English-speaking Minecraft markets.",
+      "geoTitle" : "Where does ZCraft Studios operate?",
+      "keywords" : [
+         "Minecraft plugin development UAE",
+         "Minecraft plugin development United States",
+         "Minecraft server configuration service",
+         "Discord bot development for Minecraft servers",
+         "Paper plugin developer",
+         "Spigot plugin developer",
+         "Velocity plugin developer",
+         "Minecraft server setup service",
+         "Minecraft configuration packs",
+         "ZCraft Studios E-E-A-T",
+         "AI crawler friendly Minecraft studio",
+         "Minecraft developer worldwide"
+      ],
+      "label" : "// trust",
+      "title" : "Why can clients and crawlers trust ZCraft Studios?"
+   },
    "site" : {
       "author" : "ZCraft Studios",
       "domain" : "https://studio.z-craft.xyz",
+      "location" : "United Arab Emirates",
       "name" : "ZCraft Studios",
+      "primaryMarkets" : [
+         "United Arab Emirates",
+         "United States",
+         "United Kingdom",
+         "Canada",
+         "Australia",
+         "Europe",
+         "Worldwide remote"
+      ],
+      "serviceArea" : "Worldwide",
       "tagline" : "A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
       "year" : 2026
    }

@@ -16,6 +16,8 @@
     { "source": "/contact/", "destination": "/contact.html" },
     { "source": "/resources", "destination": "/resources.html" },
     { "source": "/resources/", "destination": "/resources.html" },
+    { "source": "/blogs", "destination": "/blogs.html" },
+    { "source": "/blogs/", "destination": "/blogs.html" },
     { "source": "/donate", "destination": "/donate.html" },
     { "source": "/donate/", "destination": "/donate.html" },
     { "source": "/thankyou", "destination": "/thankyou.html" },

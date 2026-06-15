@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://studio.z-craft.xyz/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/blogs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/donate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://studio.z-craft.xyz/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://studio.z-craft.xyz/about</loc>
+    <loc>https://studio.z-craft.xyz/request</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/resources</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://studio.z-craft.xyz/team</loc>
@@ -16,29 +41,69 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://studio.z-craft.xyz/resources</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://studio.z-craft.xyz/ai-agents</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://studio.z-craft.xyz/request</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://studio.z-craft.xyz/resources/evidence-discord-bot</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://studio.z-craft.xyz/contact</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://studio.z-craft.xyz/resources/visual-config-studio</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://studio.z-craft.xyz/donate</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://studio.z-craft.xyz/resources/luckperms-visual-tree</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/resources/z-auth</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/resources/essentialsx-messages-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/resources/modern-maintenance-messages-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/resources/litebans-message-templates</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/resources/products-tab-config</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/blogs/minecraft-custom-plugin-planning</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/blogs/discord-bot-community-automation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://studio.z-craft.xyz/blogs/ai-crawler-friendly-studio-site</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://studio.z-craft.xyz/site-index.json</loc>
