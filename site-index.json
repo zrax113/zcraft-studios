@@ -73,7 +73,7 @@
    },
    "crawlerGuidance" : {
       "contactUrl" : "https://studio.z-craft.xyz/contact",
-      "lastGenerated" : "Mon Jun 15 08:45:12 2026 UTC",
+      "lastGenerated" : "Mon Jun 15 08:53:41 2026 UTC",
       "preferredSummary" : "ZCraft Studios is A premium developer studio crafting Minecraft resources, plugins, and modern web experiences.",
       "pricingNote" : "Downloadable resource prices are listed in products.resources[].status when available. Custom commissions are quoted per project.",
       "primaryAudience" : "Minecraft server owners, community operators, creators, and teams needing plugins, configs, Discord bots, or web tools.",
@@ -98,7 +98,7 @@
       "source_products" : "https://studio.z-craft.xyz/config/products.json",
       "source_reviews" : "https://studio.z-craft.xyz/config/reviews.json"
    },
-   "generatedAt" : "Mon Jun 15 08:45:12 2026 UTC",
+   "generatedAt" : "Mon Jun 15 08:53:41 2026 UTC",
    "generatedFrom" : [
       "config/info.json",
       "config/products.json",
@@ -360,6 +360,7 @@
       ],
       "projects" : [
          {
+            "audience" : "Discord communities, staff teams, and moderation departments.",
             "brand" : "Discord Bot",
             "category" : "Bot",
             "featured" : false,
@@ -373,8 +374,31 @@
             ],
             "schema" : {
                "@type" : "SoftwareApplication",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Discord, Node.js"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "available"
+                  }
+               ],
                "applicationCategory" : "Bot",
-               "description" : "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
+               "audience" : "Discord communities, staff teams, and moderation departments.",
+               "description" : "Discord evidence and case management bot for moderation teams.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
                "name" : "Evidence Discord Bot",
                "offers" : {
@@ -382,18 +406,27 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "available"
                },
+               "operatingSystem" : "Discord, Node.js",
                "url" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "available",
             "summary" : "Efficient and secure Discord bot for managing evidence in community moderation, built with Node.js.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Discord",
+               "Node.js"
+            ],
             "tags" : [
                "Node.js",
                "Moderation",
                "Security"
             ],
-            "title" : "Evidence Discord Bot"
+            "title" : "Evidence Discord Bot",
+            "what" : "Discord evidence and case management bot for moderation teams."
          },
          {
+            "audience" : "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
             "brand" : "Website",
             "category" : "Website",
             "featured" : true,
@@ -406,9 +439,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "SoftwareApplication",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Web browser, Minecraft plugin configs"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "live"
+                  }
+               ],
                "applicationCategory" : "Website",
-               "description" : "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
+               "audience" : "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
+               "description" : "Web-based visual configuration editor for Minecraft plugin configs.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
                "name" : "Visual Config Studio",
                "offers" : {
@@ -416,19 +472,28 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "live"
                },
+               "operatingSystem" : "Web browser, Minecraft plugin configs",
                "url" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "live",
             "summary" : "No-code Minecraft plugin configuration suite with smart auto-detection, live validation, and production-ready export tools.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Web browser",
+               "Minecraft plugin configs"
+            ],
             "tags" : [
                "React",
                "Vite",
                "Tailwind",
                "Configs"
             ],
-            "title" : "Visual Config Studio"
+            "title" : "Visual Config Studio",
+            "what" : "Web-based visual configuration editor for Minecraft plugin configs."
          },
          {
+            "audience" : "Minecraft server owners and staff managing permission groups and inheritance.",
             "brand" : "Website",
             "category" : "Website",
             "featured" : true,
@@ -441,9 +506,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "SoftwareApplication",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Web browser, LuckPerms, Minecraft servers"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "live"
+                  }
+               ],
                "applicationCategory" : "Website",
-               "description" : "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
+               "audience" : "Minecraft server owners and staff managing permission groups and inheritance.",
+               "description" : "Visual LuckPerms permission tree editor and debugging workspace.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
                "name" : "LuckPerms Visual Tree",
                "offers" : {
@@ -451,18 +539,28 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "live"
                },
+               "operatingSystem" : "Web browser, LuckPerms, Minecraft servers",
                "url" : "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "live",
             "summary" : "Interactive no-code permission studio for LuckPerms with hierarchy visualization, drag-and-drop inheritance, conflict debugging, and simulation tools.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Web browser",
+               "LuckPerms",
+               "Minecraft servers"
+            ],
             "tags" : [
                "React Flow",
                "LuckPerms",
                "Permissions"
             ],
-            "title" : "LuckPerms Visual Tree"
+            "title" : "LuckPerms Visual Tree",
+            "what" : "Visual LuckPerms permission tree editor and debugging workspace."
          },
          {
+            "audience" : "Minecraft networks that need proxy-level login protection and synced auth state.",
             "brand" : "Proxy Auth",
             "category" : "Plugin",
             "featured" : false,
@@ -475,9 +573,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "SoftwareApplication",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Velocity, Paper, Minecraft proxy networks"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Moderate"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "GitHub repository issues and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "free"
+                  }
+               ],
                "applicationCategory" : "Plugin",
-               "description" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+               "audience" : "Minecraft networks that need proxy-level login protection and synced auth state.",
+               "description" : "Proxy-first authentication plugin for Minecraft networks.",
                "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
                "name" : "Z-Auth",
                "offers" : {
@@ -485,10 +606,18 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "free"
                },
+               "operatingSystem" : "Velocity, Paper, Minecraft proxy networks",
                "url" : "https://github.com/zraxgaming/zcraft-auth"
             },
+            "setupDifficulty" : "Moderate",
             "status" : "free",
             "summary" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+            "supportMethod" : "GitHub repository issues and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Velocity",
+               "Paper",
+               "Minecraft proxy networks"
+            ],
             "tags" : [
                "Proxy",
                "Authentication",
@@ -496,9 +625,11 @@
                "Velocity",
                "Paper"
             ],
-            "title" : "Z-Auth"
+            "title" : "Z-Auth",
+            "what" : "Proxy-first authentication plugin for Minecraft networks."
          },
          {
+            "audience" : "Minecraft server owners who want cleaner command, chat, and player messages.",
             "brand" : "Minecraft Config",
             "category" : "Config",
             "featured" : false,
@@ -511,9 +642,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "Product",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Minecraft, EssentialsX"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "available"
+                  }
+               ],
                "applicationCategory" : "Config",
-               "description" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+               "audience" : "Minecraft server owners who want cleaner command, chat, and player messages.",
+               "description" : "Modern player-facing message configuration for EssentialsX.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
                "name" : "EssentialsX Messages Config",
                "offers" : {
@@ -521,19 +675,28 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "available"
                },
+               "operatingSystem" : "Minecraft, EssentialsX",
                "url" : "https://builtbybit.com/resources/essentialsx-messages-config.110869/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "available",
             "summary" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Minecraft",
+               "EssentialsX"
+            ],
             "tags" : [
                "EssentialsX",
                "Messages",
                "Minecraft",
                "Config"
             ],
-            "title" : "EssentialsX Messages Config"
+            "title" : "EssentialsX Messages Config",
+            "what" : "Modern player-facing message configuration for EssentialsX."
          },
          {
+            "audience" : "Minecraft server owners who need professional maintenance-mode messaging.",
             "brand" : "Minecraft Config",
             "category" : "Config",
             "featured" : false,
@@ -546,9 +709,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "Product",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Minecraft, Maintenance message configs"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "available"
+                  }
+               ],
                "applicationCategory" : "Config",
-               "description" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+               "audience" : "Minecraft server owners who need professional maintenance-mode messaging.",
+               "description" : "Polished maintenance message configuration for Minecraft servers.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
                "name" : "Modern Maintenance Messages Config",
                "offers" : {
@@ -556,19 +742,28 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "available"
                },
+               "operatingSystem" : "Minecraft, Maintenance message configs",
                "url" : "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "available",
             "summary" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Minecraft",
+               "Maintenance message configs"
+            ],
             "tags" : [
                "Maintenance",
                "Messages",
                "Minecraft",
                "Config"
             ],
-            "title" : "Modern Maintenance Messages Config"
+            "title" : "Modern Maintenance Messages Config",
+            "what" : "Polished maintenance message configuration for Minecraft servers."
          },
          {
+            "audience" : "Minecraft moderation teams using LiteBans for punishments and alerts.",
             "brand" : "Minecraft Config",
             "category" : "Config",
             "featured" : false,
@@ -581,9 +776,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "Product",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Minecraft, LiteBans"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "available"
+                  }
+               ],
                "applicationCategory" : "Config",
-               "description" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+               "audience" : "Minecraft moderation teams using LiteBans for punishments and alerts.",
+               "description" : "Professional LiteBans moderation and punishment message templates.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
                "name" : "LiteBans Message Templates",
                "offers" : {
@@ -591,19 +809,28 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "available"
                },
+               "operatingSystem" : "Minecraft, LiteBans",
                "url" : "https://builtbybit.com/resources/litebans-message-templates.111231/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "available",
             "summary" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Minecraft",
+               "LiteBans"
+            ],
             "tags" : [
                "LiteBans",
                "Messages",
                "Moderation",
                "Config"
             ],
-            "title" : "LiteBans Message Templates"
+            "title" : "LiteBans Message Templates",
+            "what" : "Professional LiteBans moderation and punishment message templates."
          },
          {
+            "audience" : "Minecraft server owners who want a polished player list and scoreboard layout.",
             "brand" : "Minecraft Config",
             "category" : "Config",
             "featured" : false,
@@ -616,9 +843,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "Product",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Minecraft, TAB plugin, Scoreboard systems"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "available"
+                  }
+               ],
                "applicationCategory" : "Config",
-               "description" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+               "audience" : "Minecraft server owners who want a polished player list and scoreboard layout.",
+               "description" : "Premium tab and scoreboard configuration for Minecraft servers.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
                "name" : "Products Tab Config",
                "offers" : {
@@ -626,21 +876,31 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "available"
                },
+               "operatingSystem" : "Minecraft, TAB plugin, Scoreboard systems",
                "url" : "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "available",
             "summary" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Minecraft",
+               "TAB plugin",
+               "Scoreboard systems"
+            ],
             "tags" : [
                "Tab",
                "Scoreboard",
                "Minecraft",
                "Config"
             ],
-            "title" : "Products Tab Config"
+            "title" : "Products Tab Config",
+            "what" : "Premium tab and scoreboard configuration for Minecraft servers."
          }
       ],
       "resources" : [
          {
+            "audience" : "Discord communities, staff teams, and moderation departments.",
             "brand" : "Bot",
             "category" : "Bot",
             "featured" : true,
@@ -654,8 +914,31 @@
             ],
             "schema" : {
                "@type" : "SoftwareApplication",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Discord, Node.js"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "$5.38"
+                  }
+               ],
                "applicationCategory" : "Bot",
-               "description" : "Best Discord bot for performance and handling user cases and moderation.",
+               "audience" : "Discord communities, staff teams, and moderation departments.",
+               "description" : "Discord evidence and case management bot for moderation teams.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-07_30_13-pm-png.1360149/?preset=cardr1",
                "name" : "Evidence Discord Bot",
                "offers" : {
@@ -663,17 +946,26 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "$5.38"
                },
+               "operatingSystem" : "Discord, Node.js",
                "url" : "https://builtbybit.com/resources/evidence-bot-discord-case-evidence.106805/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "$5.38",
             "summary" : "Best Discord bot for performance and handling user cases and moderation.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Discord",
+               "Node.js"
+            ],
             "tags" : [
                "Simple",
                "Performance"
             ],
-            "title" : "Evidence Discord Bot"
+            "title" : "Evidence Discord Bot",
+            "what" : "Discord evidence and case management bot for moderation teams."
          },
          {
+            "audience" : "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
             "brand" : "Website",
             "category" : "Website",
             "featured" : true,
@@ -686,9 +978,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "SoftwareApplication",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Web browser, Minecraft plugin configs"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "$5.47"
+                  }
+               ],
                "applicationCategory" : "Website",
-               "description" : "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
+               "audience" : "Minecraft server owners, plugin teams, and operators who want no-code config editing.",
+               "description" : "Web-based visual configuration editor for Minecraft plugin configs.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_11-pm-png.1360336/?preset=cardr1",
                "name" : "Visual Config Studio",
                "offers" : {
@@ -696,18 +1011,27 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "$5.47"
                },
+               "operatingSystem" : "Web browser, Minecraft plugin configs",
                "url" : "https://builtbybit.com/resources/visual-config-studio-plugin-configs.107379/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "$5.47",
             "summary" : "Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Web browser",
+               "Minecraft plugin configs"
+            ],
             "tags" : [
                "Web",
                "Configs",
                "Visual"
             ],
-            "title" : "Visual Config Studio"
+            "title" : "Visual Config Studio",
+            "what" : "Web-based visual configuration editor for Minecraft plugin configs."
          },
          {
+            "audience" : "Minecraft server owners and staff managing permission groups and inheritance.",
             "brand" : "Website",
             "category" : "Website",
             "featured" : false,
@@ -720,9 +1044,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "SoftwareApplication",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Web browser, LuckPerms, Minecraft servers"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "$5.57"
+                  }
+               ],
                "applicationCategory" : "Website",
-               "description" : "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
+               "audience" : "Minecraft server owners and staff managing permission groups and inheritance.",
+               "description" : "Visual LuckPerms permission tree editor and debugging workspace.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_56_02-pm-1-png.1360338/?preset=cardr1",
                "name" : "LuckPerms Visual Tree",
                "offers" : {
@@ -730,33 +1077,66 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "$5.57"
                },
+               "operatingSystem" : "Web browser, LuckPerms, Minecraft servers",
                "url" : "https://builtbybit.com/resources/luckperms-visual-editor-modern-permiss.107523/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "$5.57",
             "summary" : "Premium LuckPerms visual permission editor with interactive hierarchy management and debugging tools.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Web browser",
+               "LuckPerms",
+               "Minecraft servers"
+            ],
             "tags" : [
                "Permissions",
                "LuckPerms",
                "Visual"
             ],
-            "title" : "LuckPerms Visual Tree"
+            "title" : "LuckPerms Visual Tree",
+            "what" : "Visual LuckPerms permission tree editor and debugging workspace."
          },
          {
+            "audience" : "Minecraft networks that need proxy-level login protection and synced auth state.",
             "brand" : "Proxy Auth",
             "category" : "Plugin",
             "featured" : false,
             "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
             "links" : [
                {
-                  "href" : "https://github.com/zraxgaming.zcraft-auth",
+                  "href" : "https://github.com/zraxgaming/zcraft-auth",
                   "label" : "View",
                   "variant" : "primary"
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "SoftwareApplication",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Velocity, Paper, Minecraft proxy networks"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Moderate"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "GitHub repository issues and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "Free"
+                  }
+               ],
                "applicationCategory" : "Plugin",
-               "description" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+               "audience" : "Minecraft networks that need proxy-level login protection and synced auth state.",
+               "description" : "Proxy-first authentication plugin for Minecraft networks.",
                "image" : "https://i.postimg.cc/ydgXct23/Chat-GPT-Image-Jun-6-2026-09-47-27-AM.png",
                "name" : "Z-Auth",
                "offers" : {
@@ -764,10 +1144,18 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "Free"
                },
-               "url" : "https://github.com/zraxgaming.zcraft-auth"
+               "operatingSystem" : "Velocity, Paper, Minecraft proxy networks",
+               "url" : "https://github.com/zraxgaming/zcraft-auth"
             },
+            "setupDifficulty" : "Moderate",
             "status" : "Free",
             "summary" : "Proxy-first authentication for Minecraft networks. Authenticates players at the proxy, syncs login state securely across backend servers, and blocks movement, commands, inventory, and combat until login completes.",
+            "supportMethod" : "GitHub repository issues and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Velocity",
+               "Paper",
+               "Minecraft proxy networks"
+            ],
             "tags" : [
                "Proxy",
                "Authentication",
@@ -775,9 +1163,11 @@
                "Velocity",
                "Paper"
             ],
-            "title" : "Z-Auth"
+            "title" : "Z-Auth",
+            "what" : "Proxy-first authentication plugin for Minecraft networks."
          },
          {
+            "audience" : "Minecraft server owners who want cleaner command, chat, and player messages.",
             "brand" : "Config",
             "category" : "Config",
             "featured" : false,
@@ -790,9 +1180,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "Product",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Minecraft, EssentialsX"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "$4.73"
+                  }
+               ],
                "applicationCategory" : "Config",
-               "description" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+               "audience" : "Minecraft server owners who want cleaner command, chat, and player messages.",
+               "description" : "Modern player-facing message configuration for EssentialsX.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-2-2026-10_30_26-pm-png.1357272/?preset=cardr1",
                "name" : "EssentialsX Messages Config",
                "offers" : {
@@ -800,18 +1213,27 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "$4.73"
                },
+               "operatingSystem" : "Minecraft, EssentialsX",
                "url" : "https://builtbybit.com/resources/essentialsx-messages-config.110869/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "$4.73",
             "summary" : "Modern EssentialsX messages configuration designed to improve server chat, commands, and player-facing messages.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Minecraft",
+               "EssentialsX"
+            ],
             "tags" : [
                "EssentialsX",
                "Messages",
                "Minecraft"
             ],
-            "title" : "EssentialsX Messages Config"
+            "title" : "EssentialsX Messages Config",
+            "what" : "Modern player-facing message configuration for EssentialsX."
          },
          {
+            "audience" : "Minecraft server owners who need professional maintenance-mode messaging.",
             "brand" : "Config",
             "category" : "Config",
             "featured" : false,
@@ -824,9 +1246,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "Product",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Minecraft, Maintenance message configs"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "$3.72"
+                  }
+               ],
                "applicationCategory" : "Config",
-               "description" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+               "audience" : "Minecraft server owners who need professional maintenance-mode messaging.",
+               "description" : "Polished maintenance message configuration for Minecraft servers.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-02_27_28-pm-png.1360061/?preset=cardr1",
                "name" : "Modern Maintenance Messages Config",
                "offers" : {
@@ -834,18 +1279,27 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "$3.72"
                },
+               "operatingSystem" : "Minecraft, Maintenance message configs",
                "url" : "https://builtbybit.com/resources/modern-maintenance-messages-config.111208/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "$3.72",
             "summary" : "Clean and modern maintenance message configuration for Minecraft servers with polished player-facing text.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Minecraft",
+               "Maintenance message configs"
+            ],
             "tags" : [
                "Maintenance",
                "Messages",
                "Minecraft"
             ],
-            "title" : "Modern Maintenance Messages Config"
+            "title" : "Modern Maintenance Messages Config",
+            "what" : "Polished maintenance message configuration for Minecraft servers."
          },
          {
+            "audience" : "Minecraft moderation teams using LiteBans for punishments and alerts.",
             "brand" : "Config",
             "category" : "Config",
             "featured" : false,
@@ -858,9 +1312,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "Product",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Minecraft, LiteBans"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "$4.21"
+                  }
+               ],
                "applicationCategory" : "Config",
-               "description" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+               "audience" : "Minecraft moderation teams using LiteBans for punishments and alerts.",
+               "description" : "Professional LiteBans moderation and punishment message templates.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-5-2026-09_25_00-pm-png.1360274/?preset=cardr1",
                "name" : "LiteBans Message Templates",
                "offers" : {
@@ -868,18 +1345,27 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "$4.21"
                },
+               "operatingSystem" : "Minecraft, LiteBans",
                "url" : "https://builtbybit.com/resources/litebans-message-templates.111231/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "$4.21",
             "summary" : "Professional LiteBans message templates for cleaner punishments, alerts, and moderation messages.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Minecraft",
+               "LiteBans"
+            ],
             "tags" : [
                "LiteBans",
                "Messages",
                "Moderation"
             ],
-            "title" : "LiteBans Message Templates"
+            "title" : "LiteBans Message Templates",
+            "what" : "Professional LiteBans moderation and punishment message templates."
          },
          {
+            "audience" : "Minecraft server owners who want a polished player list and scoreboard layout.",
             "brand" : "Config",
             "category" : "Config",
             "featured" : false,
@@ -892,9 +1378,32 @@
                }
             ],
             "schema" : {
-               "@type" : "CreativeWork",
+               "@type" : "Product",
+               "additionalProperty" : [
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Supported platforms",
+                     "value" : "Minecraft, TAB plugin, Scoreboard systems"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Setup difficulty",
+                     "value" : "Easy"
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Support method",
+                     "value" : "BuiltByBit resource page and ZCraft Studios contact channels."
+                  },
+                  {
+                     "@type" : "PropertyValue",
+                     "name" : "Price or status",
+                     "value" : "$4.22"
+                  }
+               ],
                "applicationCategory" : "Config",
-               "description" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+               "audience" : "Minecraft server owners who want a polished player list and scoreboard layout.",
+               "description" : "Premium tab and scoreboard configuration for Minecraft servers.",
                "image" : "https://builtbybit.com/attachments/chatgpt-image-jun-14-2026-03_53_10-pm-png.1372069/?preset=fullr1",
                "name" : "Products Tab Config",
                "offers" : {
@@ -902,16 +1411,25 @@
                   "availability" : "https://schema.org/InStock",
                   "price" : "$4.22"
                },
+               "operatingSystem" : "Minecraft, TAB plugin, Scoreboard systems",
                "url" : "https://builtbybit.com/resources/premium-tab-scoreboard-configuration.112501/"
             },
+            "setupDifficulty" : "Easy",
             "status" : "$4.22",
             "summary" : "Premium tab scoreboard configuration for Minecraft servers with a clean, polished layout and professional player-facing design.",
+            "supportMethod" : "BuiltByBit resource page and ZCraft Studios contact channels.",
+            "supportedPlatforms" : [
+               "Minecraft",
+               "TAB plugin",
+               "Scoreboard systems"
+            ],
             "tags" : [
                "Tab",
                "Scoreboard",
                "Minecraft"
             ],
-            "title" : "Products Tab Config"
+            "title" : "Products Tab Config",
+            "what" : "Premium tab and scoreboard configuration for Minecraft servers."
          }
       ],
       "topics" : [

@@ -23,5 +23,5 @@ Indexable pages:
 - Team — ZCraft Studios: https://studio.z-craft.xyz/team - Meet the ZCraft Studios team behind Minecraft plugins, server configs, Discord bots, and modern web development services.
 
 Featured resources:
-- Evidence Discord Bot (Bot, $5.38): Best Discord bot for performance and handling user cases and moderation.
-- Visual Config Studio (Website, $5.47): Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.
+- Evidence Discord Bot (Bot, $5.38): Best Discord bot for performance and handling user cases and moderation.; platforms: Discord, Node.js; setup: Easy; support: BuiltByBit resource page and ZCraft Studios contact channels.
+- Visual Config Studio (Website, $5.47): Advanced visual configuration editor for Minecraft plugins with schema detection, validation, and export tooling.; platforms: Web browser, Minecraft plugin configs; setup: Easy; support: BuiltByBit resource page and ZCraft Studios contact channels.

@@ -34,6 +34,65 @@
   };
   const titleCase = (value) => String(value || '').replace(/\b\w/g, c => c.toUpperCase());
   const getPageSeo = (cfg) => cfg.seo[pageKey] || cfg.seo.home;
+  const serviceTypes = [
+    {
+      name: 'Minecraft plugin development',
+      description: 'Custom Paper, Spigot, Velocity, and proxy plugin development for Minecraft servers and networks.',
+      serviceType: 'Software development',
+      areaServed: 'Worldwide'
+    },
+    {
+      name: 'Discord bot development',
+      description: 'Custom Discord bots for moderation, evidence handling, automation, and community operations.',
+      serviceType: 'Bot development',
+      areaServed: 'Worldwide'
+    },
+    {
+      name: 'Minecraft server configuration services',
+      description: 'Server setup, configuration tuning, message packs, permission tools, tab layouts, and moderation templates.',
+      serviceType: 'Server configuration',
+      areaServed: 'Worldwide'
+    }
+  ];
+  const parsePrice = (status) => {
+    const text = String(status || '').trim();
+    if (!text) return null;
+    if (/free/i.test(text)) return { price: '0', priceCurrency: 'USD' };
+    const match = text.match(/\$?\s*([0-9]+(?:\.[0-9]+)?)/);
+    return match ? { price: match[1], priceCurrency: 'USD' } : null;
+  };
+  const productSchema = (item, baseUrl, fallbackUrl) => {
+    const offer = parsePrice(item.status);
+    const schema = {
+      '@type': item.category === 'Bot' || item.category === 'Plugin' || item.category === 'Website' ? 'SoftwareApplication' : 'Product',
+      name: item.title,
+      description: item.what || item.summary,
+      image: absoluteUrl(baseUrl, item.image),
+      url: item.links?.[0]?.href || fallbackUrl,
+      brand: { '@type': 'Brand', name: item.brand || 'ZCraft Studios' },
+      category: item.category || item.brand || 'Minecraft resource',
+      audience: item.audience,
+      applicationCategory: item.category,
+      operatingSystem: (item.supportedPlatforms || []).join(', ') || 'Minecraft server environments',
+      keywords: (item.tags || []).join(', '),
+      additionalProperty: [
+        { '@type': 'PropertyValue', name: 'Supported platforms', value: (item.supportedPlatforms || []).join(', ') },
+        { '@type': 'PropertyValue', name: 'Setup difficulty', value: item.setupDifficulty || 'Varies by product' },
+        { '@type': 'PropertyValue', name: 'Support method', value: item.supportMethod || 'ZCraft Studios contact channels' },
+        { '@type': 'PropertyValue', name: 'Price or status', value: item.status || 'Available' }
+      ].filter(prop => prop.value)
+    };
+    if (offer) {
+      schema.offers = {
+        '@type': 'Offer',
+        price: offer.price,
+        priceCurrency: offer.priceCurrency,
+        availability: 'https://schema.org/InStock',
+        url: item.links?.[0]?.href || fallbackUrl
+      };
+    }
+    return schema;
+  };
   const breadcrumbItemsForPage = (cfg, seo) => {
     const baseUrl = cleanBaseUrl(cfg.site.domain);
     const items = [{
@@ -228,6 +287,20 @@
       ]
     };
 
+    schema['@graph'].push(...serviceTypes.map(service => ({
+      '@type': 'Service',
+      name: service.name,
+      description: service.description,
+      serviceType: service.serviceType,
+      areaServed: service.areaServed,
+      provider: {
+        '@type': 'Organization',
+        name: cfg.site.name,
+        url: baseUrl
+      },
+      url: baseUrl + '/request'
+    })));
+
     if (pageKey === 'resources' && cfg.resources?.length) {
       schema['@graph'].push({
         '@type': 'ItemList',
@@ -235,16 +308,10 @@
         itemListElement: cfg.resources.map((resource, index) => ({
           '@type': 'ListItem',
           position: index + 1,
-          item: {
-            '@type': 'CreativeWork',
-            name: resource.title,
-            description: resource.summary,
-            image: absoluteUrl(baseUrl, resource.image),
-            url: resource.links?.[0]?.href || pageUrl,
-            keywords: (resource.tags || []).join(', ')
-          }
+          item: productSchema(resource, baseUrl, pageUrl)
         }))
       });
+      schema['@graph'].push(...cfg.resources.map(resource => productSchema(resource, baseUrl, pageUrl)));
     }
 
     let script = document.querySelector('script[data-schema="jsonld"]');
@@ -371,6 +438,7 @@
   }
 
   function resourceCard(r, index) {
+    const platforms = (r.supportedPlatforms || []).slice(0, 3).join(', ');
     return `
       <article class="resource-card" data-resource-index="${index}">
         <img class="resource-card-image" src="${esc(r.image)}" alt="${esc(r.title)}" loading="lazy" />
@@ -382,6 +450,12 @@
           <div class="resource-card-content">
             <h3 class="resource-card-title">${esc(r.title)}</h3>
             <p class="resource-card-summary">${esc(r.summary)}</p>
+            ${r.what ? `<p class="resource-card-summary">${esc(r.what)}</p>` : ''}
+            <div class="resource-card-facts">
+              ${platforms ? `<span>${esc(platforms)}</span>` : ''}
+              ${r.setupDifficulty ? `<span>${esc(r.setupDifficulty)} setup</span>` : ''}
+              ${r.status ? `<span>${esc(r.status)}</span>` : ''}
+            </div>
             <div class="tags">${(r.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
             <div class="resource-card-actions">
               ${(r.links||[]).map(l => `<a class="btn btn-${l.variant||'primary'}" href="${esc(l.href)}" ${/^https?:/.test(l.href)?'target="_blank" rel="noopener"':''}>${esc(l.label)}</a>`).join('')}
@@ -770,6 +844,14 @@
 
   function openResourceDetail(resource) {
     closeResourceDetail();
+    const productFacts = [
+      ['What it is', resource.what],
+      ['Who it is for', resource.audience],
+      ['Supported platforms', (resource.supportedPlatforms || []).join(', ')],
+      ['Price / status', resource.status],
+      ['Setup difficulty', resource.setupDifficulty],
+      ['Support method', resource.supportMethod]
+    ].filter(([, value]) => value);
     const overlay = document.createElement('div');
     overlay.id = 'resource-detail-overlay';
     overlay.className = 'resource-detail-overlay';
@@ -786,6 +868,14 @@
           </div>
           <h2 class="resource-detail-title">${esc(resource.title)}</h2>
           <div class="resource-detail-copy">${parseBBCode(esc(resource.summary))}</div>
+          <dl class="resource-detail-facts">
+            ${productFacts.map(([label, value]) => `
+              <div>
+                <dt>${esc(label)}</dt>
+                <dd>${esc(value)}</dd>
+              </div>
+            `).join('')}
+          </dl>
           <div class="tags">${(resource.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
           <div class="resource-detail-actions">
             ${(resource.links||[]).map(l => `<a class="btn btn-primary" href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}
