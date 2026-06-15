@@ -37,7 +37,7 @@ Resource detail pages:
 - Premium TAB Scoreboard Config: https://studio.z-craft.xyz/resources/premium-tab-scoreboard-config - Premium tab and scoreboard configuration for Minecraft servers.
 
 Blog posts:
-- What makes a Minecraft config resource production-ready? (2026-06-15, @ZCraftStudios): A short guide to clean Minecraft server configs, message packs, permission layouts, maintenance templates, and scoreboard resources that are easy to install and support. https://studio.z-craft.xyz/blogs/production-ready-minecraft-configs
+- Why Every Pro Minecraft Server Starts With a Building Planner And You Should Too (2026-06-15, @ZCraftStudios): A professional Minecraft server is not built by guessing. Learn why building planners, blueprints, schematics, dashboards, and config workflows help serious server owners avoid messy launches and build systems that scale. https://studio.z-craft.xyz/blogs/why-pro-minecraft-servers-start-with-building-planner
 
 Legal pages:
 - Terms and Conditions: https://studio.z-craft.xyz/legal/terms - These terms explain how ZCraft Studios handles custom service requests, downloadable resources, dashboards, Discord bots, Minecraft configs, support, acceptable use, payments, ownership, and limitations.
