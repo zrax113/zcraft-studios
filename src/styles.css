@@ -1604,6 +1604,14 @@ footer { border-top: 1px solid var(--border); padding: 24px; margin-top: 32px; p
   overflow: hidden;
 }
 
+.legal-list-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: start;
+  padding: 18px;
+}
+
 .blog-list-item summary {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;

@@ -1,0 +1,188 @@
+{
+  "page": {
+    "label": "// legal",
+    "publisherName": "ZCraft Studios",
+    "publisherHandle": "@zraxgaming",
+    "jurisdiction": "United Arab Emirates",
+    "serviceArea": "Worldwide remote",
+    "contactEmail": "zain@z-craft.xyz",
+    "contactUrl": "/contact",
+    "sourceLabel": "Source config",
+    "sourceValue": "config/legal.json",
+    "updatedLabel": "Last updated",
+    "effectiveLabel": "Effective date",
+    "backLabel": "contact ZCraft Studios",
+    "backHref": "/contact",
+    "footerLinks": [
+      {
+        "label": "terms",
+        "href": "/legal/terms"
+      },
+      {
+        "label": "privacy",
+        "href": "/legal/privacy"
+      },
+      {
+        "label": "refunds",
+        "href": "/legal/refunds"
+      }
+    ]
+  },
+  "pages": [
+    {
+      "slug": "terms",
+      "title": "Terms of Service",
+      "seoTitle": "Terms of Service \u2014 ZCraft Studios",
+      "description": "Read the ZCraft Studios terms for Minecraft plugin development, Discord bot services, server configuration resources, web tools, commissions, support, and acceptable use.",
+      "keywords": [
+        "ZCraft Studios terms",
+        "Minecraft plugin terms of service",
+        "Discord bot development terms",
+        "Minecraft server configuration terms",
+        "custom development agreement",
+        "commission terms"
+      ],
+      "effectiveDate": "2026-06-15",
+      "updated": "2026-06-15",
+      "summary": "These terms explain how ZCraft Studios handles custom development requests, downloadable resources, support, acceptable use, payments, ownership, and limitations.",
+      "sections": [
+        {
+          "heading": "Who do these terms apply to?",
+          "body": "These terms apply when you visit the ZCraft Studios website, request custom work, purchase or download resources, contact the studio, donate, or use information published on the site. By using the site or starting a project request, you agree to follow these terms."
+        },
+        {
+          "heading": "What services does ZCraft Studios provide?",
+          "body": "ZCraft Studios provides **Minecraft plugin development**, server configuration services, Discord bot development, web tools, setup support, and downloadable resources. Custom work is scoped per project based on platform, features, timeline, budget, and support needs."
+        },
+        {
+          "heading": "How do custom requests and quotes work?",
+          "body": "A request is not accepted until ZCraft Studios confirms scope, price, timeline, deliverables, and support expectations. Quotes may change if the requested scope changes, if missing details are discovered, or if third-party platform limits affect delivery."
+        },
+        {
+          "heading": "What are client responsibilities?",
+          "body": "Clients must provide accurate project details, platform versions, plugin lists, access requirements, and testing feedback. Clients are responsible for maintaining backups, checking compatibility with their own server stack, and using delivered files lawfully."
+        },
+        {
+          "heading": "What is not allowed?",
+          "body": "You may not use ZCraft Studios work for malware, credential theft, griefing tools, unauthorized access, harassment, spam, evasion of platform rules, or illegal activity. ZCraft Studios may refuse or stop work that creates safety, legal, or abuse risks."
+        },
+        {
+          "heading": "What limits apply?",
+          "body": "Services and resources are provided with reasonable care, but Minecraft servers, Discord, hosting providers, third-party plugins, APIs, and marketplaces can change. ZCraft Studios is not responsible for outages, platform changes, user misuse, or third-party service failures."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Are custom commissions automatically accepted?",
+          "answer": "No. A request becomes accepted only after ZCraft Studios confirms the scope, timeline, price, and delivery expectations."
+        },
+        {
+          "question": "Can ZCraft Studios refuse a project?",
+          "answer": "Yes. Projects can be refused if they are unsafe, abusive, illegal, unclear, outside scope, or incompatible with available time and support capacity."
+        }
+      ]
+    },
+    {
+      "slug": "privacy",
+      "title": "Privacy Policy",
+      "seoTitle": "Privacy Policy \u2014 ZCraft Studios",
+      "description": "Read how ZCraft Studios handles contact details, project request data, Discord usernames, email addresses, analytics, payments, and third-party service links.",
+      "keywords": [
+        "ZCraft Studios privacy policy",
+        "Minecraft development privacy",
+        "Discord bot privacy",
+        "project request data",
+        "contact form privacy",
+        "PayPal donation privacy"
+      ],
+      "effectiveDate": "2026-06-15",
+      "updated": "2026-06-15",
+      "summary": "This policy explains what data ZCraft Studios may collect, why it is used, how third-party services may process it, and how to contact the studio about privacy questions.",
+      "sections": [
+        {
+          "heading": "What information may be collected?",
+          "body": "ZCraft Studios may collect information you submit through forms or direct contact, including Discord username, email address, project type, target platform, budget, timeline, references, request details, support messages, and donation-related confirmation details."
+        },
+        {
+          "heading": "How is the information used?",
+          "body": "Information is used to respond to messages, prepare quotes, deliver custom work, provide support, improve resources, prevent abuse, maintain records, and keep the website and services reliable."
+        },
+        {
+          "heading": "Which third-party services may be involved?",
+          "body": "The site may link to or use services such as Discord, PayPal, GitHub, BuiltByBit, image hosting, Vercel, browser fonts, and other infrastructure providers. Those services may process data according to their own policies."
+        },
+        {
+          "heading": "Are payments stored by ZCraft Studios?",
+          "body": "Payment processing is handled by third-party payment providers such as PayPal. ZCraft Studios does not need to store full payment card details on this website."
+        },
+        {
+          "heading": "How long is data kept?",
+          "body": "Project and contact records may be kept as long as needed for support, accounting, dispute handling, security, and operational history. You can contact ZCraft Studios to ask about correction or deletion where practical and legally allowed."
+        },
+        {
+          "heading": "How can privacy questions be sent?",
+          "body": "Privacy questions can be sent through the contact page or by email at `zain@z-craft.xyz`. Include enough context to identify the request without sending unnecessary sensitive information."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Does ZCraft Studios sell personal information?",
+          "answer": "No. ZCraft Studios does not sell personal information. Data is used for contact, quotes, support, delivery, security, and operations."
+        },
+        {
+          "question": "Does Discord or PayPal process data separately?",
+          "answer": "Yes. If you use Discord, PayPal, GitHub, BuiltByBit, or other third-party services, those providers may process data under their own privacy policies."
+        }
+      ]
+    },
+    {
+      "slug": "refunds",
+      "title": "Refund and Cancellation Policy",
+      "seoTitle": "Refund and Cancellation Policy \u2014 ZCraft Studios",
+      "description": "Read the ZCraft Studios refund, cancellation, revision, support, and digital product policy for Minecraft resources, Discord bots, server configs, and custom development.",
+      "keywords": [
+        "ZCraft Studios refund policy",
+        "Minecraft plugin refund policy",
+        "custom development cancellation",
+        "digital product refunds",
+        "Minecraft resource support",
+        "commission refund terms"
+      ],
+      "effectiveDate": "2026-06-15",
+      "updated": "2026-06-15",
+      "summary": "This policy explains how refunds, cancellations, revisions, donations, support, and digital product issues are handled for ZCraft Studios resources and custom work.",
+      "sections": [
+        {
+          "heading": "How are downloadable resources handled?",
+          "body": "Downloadable digital resources may have limited refund eligibility once files, links, licenses, or access have been delivered. If a resource has a technical issue, contact ZCraft Studios with the product name, platform, version, screenshots, logs, and setup details."
+        },
+        {
+          "heading": "How are custom project cancellations handled?",
+          "body": "Custom project cancellation depends on project stage. Work that has already been planned, designed, coded, configured, tested, delivered, or reserved in the schedule may not be fully refundable. Any refund is reviewed against completed work and agreed scope."
+        },
+        {
+          "heading": "What about revisions?",
+          "body": "Reasonable fixes for confirmed bugs or agreed deliverables are handled through the support method listed for the product or project. New features, changed requirements, platform changes, or extra integrations may require a new quote."
+        },
+        {
+          "heading": "Are donations refundable?",
+          "body": "Donations are voluntary support for the studio and are generally not treated as purchases of a specific product or deliverable. If a donation was accidental, contact ZCraft Studios quickly with the payment details and context."
+        },
+        {
+          "heading": "What information is needed for a refund review?",
+          "body": "Include your order or payment reference, product or project name, contact method, issue description, screenshots, logs, platform versions, and steps to reproduce the problem."
+        }
+      ],
+      "faq": [
+        {
+          "question": "Are all digital product purchases refundable?",
+          "answer": "Not always. Refund eligibility depends on delivery status, marketplace rules, technical issue evidence, and whether the issue can be resolved through support."
+        },
+        {
+          "question": "Do new feature requests count as refunds or fixes?",
+          "answer": "No. New features, changed scope, and extra integrations are usually treated as new work or quoted revisions."
+        }
+      ]
+    }
+  ]
+}

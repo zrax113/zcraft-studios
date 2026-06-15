@@ -29,6 +29,7 @@
     .replace(/^-+|-+$/g, '');
   const resourceSlug = (resource) => resource.slug || slugify(resource.title);
   const blogSlug = (post) => post.slug || slugify(post.title);
+  const legalSlug = (page) => page.slug || slugify(page.title);
   const cleanBaseUrl = (url) => String(url || '').replace(/\/+$/, '');
   const absoluteUrl = (baseUrl, value) => {
     if (!value) return baseUrl + '/';
@@ -39,12 +40,14 @@
   const pageLabel = (cfg, key, seo) => {
     if (key === 'resource-detail') return findResourceBySlug(cfg)?.title || 'resource';
     if (key === 'blog-detail') return findBlogPostBySlug(cfg)?.title || 'blog';
+    if (key === 'legal-detail') return findLegalPageBySlug(cfg)?.title || 'legal';
     const navItem = (cfg.nav || []).find(n => (n.href || '/').replace(/\/+$/, '') === (seo.canonical || '/').replace(/\/+$/, ''));
     return navItem?.label || (key === 'notfound' ? '404' : key);
   };
   const titleCase = (value) => String(value || '').replace(/\b\w/g, c => c.toUpperCase());
   const findResourceBySlug = (cfg, slug = currentSlug()) => (cfg.resources || []).find(resource => resourceSlug(resource) === slug);
   const findBlogPostBySlug = (cfg, slug = currentSlug()) => (cfg.blogPosts || []).find(post => blogSlug(post) === slug);
+  const findLegalPageBySlug = (cfg, slug = currentSlug()) => (cfg.legalPages || []).find(page => legalSlug(page) === slug);
   const getPageSeo = (cfg) => {
     if (pageKey === 'resource-detail') {
       const resource = findResourceBySlug(cfg);
@@ -71,6 +74,29 @@
           imageAlt: post.imageAlt || `${cfg.site.name} blog artwork`
         };
       }
+    }
+    if (pageKey === 'legal-detail') {
+      const legalPage = findLegalPageBySlug(cfg);
+      if (legalPage) {
+        return {
+          title: legalPage.seoTitle || `${legalPage.title} \u2014 ${cfg.site.name}`,
+          description: legalPage.description || legalPage.summary,
+          keywords: [legalPage.title, ...(legalPage.keywords || [])].filter(Boolean).join(', '),
+          canonical: `/legal/${legalSlug(legalPage)}`,
+          image: cfg.branding.ogImage,
+          imageAlt: `${cfg.site.name} legal policy artwork`
+        };
+      }
+    }
+    if (pageKey === 'legal-overview') {
+      return {
+        title: `Legal Policies \u2014 ${cfg.site.name}`,
+        description: `Legal policies for ${cfg.site.name}, including terms of service, privacy policy, refunds, cancellations, support, and digital product information.`,
+        keywords: (cfg.legalPages || []).flatMap(page => [page.title, ...(page.keywords || [])]).filter(Boolean).join(', '),
+        canonical: '/legal',
+        image: cfg.branding.ogImage,
+        imageAlt: `${cfg.site.name} legal policy artwork`
+      };
     }
     const seo = cfg.seo[pageKey] || cfg.seo.home;
     const supportKeywords = cfg.seoSupport?.keywords || [];
@@ -337,6 +363,19 @@
         position: 2,
         name: 'Blogs',
         item: baseUrl + '/blogs'
+      });
+      items.push({
+        '@type': 'ListItem',
+        position: 3,
+        name: pageLabel(cfg, pageKey, seo),
+        item: absoluteUrl(baseUrl, seo.canonical)
+      });
+    } else if (pageKey === 'legal-detail') {
+      items.push({
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Legal',
+        item: baseUrl + '/legal'
       });
       items.push({
         '@type': 'ListItem',
@@ -641,6 +680,32 @@
       }
     }
 
+    if (pageKey === 'legal-detail') {
+      const legalPage = findLegalPageBySlug(cfg);
+      if (legalPage) {
+        schema['@graph'].push({
+          '@type': 'WebPage',
+          '@id': `${pageUrl}#policy`,
+          name: legalPage.title,
+          description: legalPage.summary || legalPage.description,
+          url: pageUrl,
+          datePublished: legalPage.effectiveDate,
+          dateModified: legalPage.updated || legalPage.effectiveDate,
+          publisher: { '@type': 'Organization', name: cfg.site.name, url: baseUrl },
+          about: {
+            '@type': 'Thing',
+            name: `${cfg.site.name} ${legalPage.title}`
+          }
+        });
+        if (legalPage.faq?.length) {
+          schema['@graph'].push({
+            ...faqSchema(legalPage.faq),
+            '@id': pageUrl + '#faq'
+          });
+        }
+      }
+    }
+
     let script = document.querySelector('script[data-schema="jsonld"]');
     if (!script) {
       script = document.createElement('script');
@@ -695,12 +760,17 @@
   }
 
   function footer(cfg) {
+    const legalLinks = cfg.legalPage?.footerLinks || [];
+    const links = [...(cfg.footer.links || []), ...legalLinks];
     return `
       <footer>
         <div class="footer-inner">
           <div class="footer-left"><span>// </span>${esc(cfg.footer.left)} · ${cfg.site.year}</div>
           <div class="footer-links">
-            ${cfg.footer.links.map(l => `<a href="${esc(l.href)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join('')}
+            ${links.map(l => {
+              const external = /^https?:|^mailto:/.test(l.href);
+              return `<a href="${esc(l.href)}" ${external ? 'target="_blank" rel="noopener"' : ''}>${esc(l.label)}</a>`;
+            }).join('')}
           </div>
         </div>
       </footer>`;
@@ -1748,6 +1818,73 @@
       </article>`;
   }
 
+  function renderLegalDetail(cfg) {
+    const legalPage = findLegalPageBySlug(cfg);
+    if (!legalPage) return renderNotFound(cfg);
+    const page = cfg.legalPage || {};
+    return `
+      <section class="page-hero">
+        <span class="page-label">${esc(page.label || '// legal')}</span>
+        <h1>${esc(legalPage.title)}</h1>
+        <p class="page-copy">${esc(legalPage.summary || legalPage.description)}</p>
+      </section>
+      <article class="legal-detail">
+        <div class="blog-card-meta">
+          <span>${esc(page.effectiveLabel || 'Effective date')} ${esc(legalPage.effectiveDate || legalPage.updated || '')}</span>
+          <span>${esc(page.updatedLabel || 'Last updated')} ${esc(legalPage.updated || legalPage.effectiveDate || '')}</span>
+          <span>${esc(page.publisherName || cfg.site.name)}</span>
+          <span>${esc(page.jurisdiction || cfg.site.location || 'Worldwide')}</span>
+        </div>
+        <dl class="blog-facts">
+          <div><dt>Contact</dt><dd>${esc(page.contactEmail || cfg.contact?.platforms?.find(p => p.platform === 'email')?.handle || 'zain@z-craft.xyz')}</dd></div>
+          <div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.sourceValue || 'config/legal.json')}</dd></div>
+          <div><dt>Service area</dt><dd>${esc(page.serviceArea || cfg.site.serviceArea || 'Worldwide')}</dd></div>
+        </dl>
+        <div class="blog-body">
+          ${(legalPage.sections || []).map(section => `
+            <section>
+              <h2>${renderInlineMarkdown(section.heading)}</h2>
+              ${renderMarkdownBlock(section.body)}
+            </section>
+          `).join('')}
+        </div>
+        <div class="tags">${(legalPage.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
+        <div class="resource-detail-actions">
+          <a class="btn btn-primary" href="${esc(page.contactUrl || '/contact')}">contact</a>
+          <a class="btn btn-ghost" href="${esc(page.backHref || '/contact')}">${esc(page.backLabel || 'contact ZCraft Studios')}</a>
+        </div>
+      </article>
+      ${renderFaqBlock('legal-detail', legalPage.faq || [])}`;
+  }
+
+  function renderLegalOverview(cfg) {
+    const page = cfg.legalPage || {};
+    const pages = cfg.legalPages || [];
+    return `
+      <section class="page-hero">
+        <span class="page-label">${esc(page.label || '// legal')}</span>
+        <h1>Legal Policies</h1>
+        <p class="page-copy">Terms, privacy, refund, cancellation, support, and digital product policies for ${esc(cfg.site.name)}.</p>
+      </section>
+      <div class="blogs-list" aria-label="Legal policies">
+        <div class="section-label">${esc(page.label || '// legal')}</div>
+        <div class="blog-list">
+          ${pages.map(item => `
+            <article class="blog-list-item legal-list-card">
+              <div class="blog-list-copy">
+                <a class="blog-list-title" href="/legal/${esc(legalSlug(item))}">${esc(item.title)}</a>
+                <span class="blog-list-summary">${esc(item.summary || item.description)}</span>
+              </div>
+              <div class="blog-list-meta">
+                <span>${esc(page.updatedLabel || 'Last updated')} ${esc(item.updated || item.effectiveDate || '')}</span>
+                <span>${esc(page.publisherName || cfg.site.name)}</span>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      </div>`;
+  }
+
   function renderContact(cfg) {
     const c = cfg.contact;
 
@@ -1900,7 +2037,7 @@
       </div>`;
   }
 
-  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, 'resource-detail': renderResourceDetail, blogs: renderBlogs, 'blog-detail': renderBlogDetail, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
+  const PAGES = { home: renderHome, about: renderAbout, portfolio: renderPortfolio, resources: renderResources, 'resource-detail': renderResourceDetail, blogs: renderBlogs, 'blog-detail': renderBlogDetail, 'legal-overview': renderLegalOverview, 'legal-detail': renderLegalDetail, donate: renderDonate, thankyou: renderThankYou, request: renderRequest, contact: renderContact, team: renderTeam, notfound: renderNotFound };
 
   /* ---------- BOOT ---------- */
 
@@ -1955,8 +2092,9 @@
     tryFetchJson(buildConfigPaths('info.json')),
     tryFetchJson(buildConfigPaths('products.json')),
     tryFetchJson(buildConfigPaths('reviews.json')),
-    tryFetchJson(buildConfigPaths('blogs.json'))
-  ]).then(([info, products, reviews, blogs]) => {
+    tryFetchJson(buildConfigPaths('blogs.json')),
+    tryFetchJson(buildConfigPaths('legal.json'))
+  ]).then(([info, products, reviews, blogs, legal]) => {
     const cfg = {
       ...info,
       projects: products.projects || [],
@@ -1964,7 +2102,9 @@
       reviews: reviews.reviews || [],
       blogPage: blogs.page || {},
       blogPosts: blogs.posts || [],
-      blogFaq: blogs.faq || []
+      blogFaq: blogs.faq || [],
+      legalPage: legal.page || {},
+      legalPages: legal.pages || []
     };
     applySEO(cfg);
     const app = $('#app');

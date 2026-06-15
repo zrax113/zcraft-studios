@@ -185,6 +185,7 @@ const info = readJson('config/info.json');
 const products = readJson('config/products.json');
 const reviews = readJson('config/reviews.json');
 const blogs = readJson('config/blogs.json');
+const legal = readJson('config/legal.json');
 const baseUrl = info.site.domain.replace(/\/+$/, '');
 
 const pages = Object.entries(info.seo || {})
@@ -219,6 +220,14 @@ const blogPosts = (blogs.posts || []).map(post => ({
   url: `${baseUrl}/blogs/${post.slug || slugify(post.title)}`,
   sections: post.sections || post.body || []
 }));
+const legalPages = (legal.pages || []).map(page => ({
+  ...page,
+  slug: page.slug || slugify(page.title),
+  url: `${baseUrl}/legal/${page.slug || slugify(page.title)}`,
+  keywords: page.keywords || [],
+  sections: page.sections || [],
+  faq: page.faq || []
+}));
 
 const categories = [...new Set([...projects, ...resources]
   .map(item => item.category)
@@ -241,13 +250,14 @@ const discovery = {
   source_config: `${baseUrl}/config/info.json`,
   source_products: `${baseUrl}/config/products.json`,
   source_reviews: `${baseUrl}/config/reviews.json`,
-  source_blogs: `${baseUrl}/config/blogs.json`
+  source_blogs: `${baseUrl}/config/blogs.json`,
+  source_legal: `${baseUrl}/config/legal.json`
 };
 
 const siteIndex = {
   schemaVersion: '1.0',
   generatedAt,
-  generatedFrom: ['config/info.json', 'config/products.json', 'config/reviews.json', 'config/blogs.json'],
+  generatedFrom: ['config/info.json', 'config/products.json', 'config/reviews.json', 'config/blogs.json', 'config/legal.json'],
   site: info.site,
   branding: info.branding,
   discovery,
@@ -280,6 +290,12 @@ const siteIndex = {
       title: post.title,
       url: post.url,
       sourceConfig: 'config/blogs.json'
+    })),
+    ...legalPages.map(page => ({
+      type: 'legal',
+      title: page.title,
+      url: page.url,
+      sourceConfig: 'config/legal.json'
     }))
   ],
   indexablePages,
@@ -294,6 +310,10 @@ const siteIndex = {
     page: blogs.page || {},
     posts: blogPosts,
     faq: blogs.faq || []
+  },
+  legal: {
+    page: legal.page || {},
+    pages: legalPages
   },
   seoSupport: info.seoSupport || {},
   reviews: reviews.reviews || [],
@@ -318,7 +338,8 @@ const overview = {
   latestBlogPosts: blogPosts.slice(0, 5),
   generatedDetailPages: [
     ...resources.map(resource => resource.pageUrl),
-    ...blogPosts.map(post => post.url)
+    ...blogPosts.map(post => post.url),
+    ...legalPages.map(page => page.url)
   ],
   discovery
 };
@@ -348,6 +369,9 @@ const plainLines = [
   '',
   'Blog posts:',
   ...blogPosts.map(post => `- ${post.title} (${post.date}, ${post.publisherHandle}): ${post.summary} ${post.url}`),
+  '',
+  'Legal pages:',
+  ...legalPages.map(page => `- ${page.title}: ${page.url} - ${page.summary || page.description}`),
   '',
   'Featured resources:',
   ...resources
@@ -419,6 +443,19 @@ ${post.image ? `<img class="blog-hero-image" src="${esc(post.image)}" alt="${esc
 </article>`;
 }
 
+function renderLegalDetail(pageData) {
+  const page = legal.page || {};
+  return `<section class="page-hero"><span class="page-label">${esc(page.label || '// legal')}</span><h1>${esc(pageData.title)}</h1><p class="page-copy">${esc(pageData.summary || pageData.description)}</p></section>
+<article class="legal-detail">
+<div class="blog-card-meta"><span>${esc(page.effectiveLabel || 'Effective date')} ${esc(pageData.effectiveDate || pageData.updated || '')}</span><span>${esc(page.updatedLabel || 'Last updated')} ${esc(pageData.updated || pageData.effectiveDate || '')}</span><span>${esc(page.publisherName || info.site.name)}</span><span>${esc(page.jurisdiction || info.site.location || 'Worldwide')}</span></div>
+<dl class="blog-facts"><div><dt>Contact</dt><dd>${esc(page.contactEmail || 'zain@z-craft.xyz')}</dd></div><div><dt>${esc(page.sourceLabel || 'Source config')}</dt><dd>${esc(page.sourceValue || 'config/legal.json')}</dd></div><div><dt>Service area</dt><dd>${esc(page.serviceArea || info.site.serviceArea || 'Worldwide')}</dd></div></dl>
+<div class="blog-body">${(pageData.sections || []).map(section => `<section><h2>${renderInlineMarkdown(section.heading)}</h2>${renderMarkdownBlock(section.body)}</section>`).join('')}</div>
+<div class="tags">${(pageData.keywords || []).map(tag => `<span class="tag">${esc(tag)}</span>`).join('')}</div>
+<div class="resource-detail-actions"><a class="btn btn-primary" href="${esc(page.contactUrl || '/contact')}">contact</a><a class="btn btn-ghost" href="${esc(page.backHref || '/contact')}">${esc(page.backLabel || 'contact ZCraft Studios')}</a></div>
+</article>
+${pageData.faq?.length ? `<section class="faq-section"><div class="section-label">// faq</div><h2>What do people ask about this page?</h2><div class="faq-list">${pageData.faq.map(faq => `<article class="faq-item"><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join('')}</div></section>` : ''}`;
+}
+
 ensureDir('resources');
 resources.forEach(resource => {
   writeText(`resources/${resource.slug}.html`, pageShell({
@@ -451,11 +488,28 @@ blogPosts.forEach(post => {
   }));
 });
 
+ensureDir('legal');
+legalPages.forEach(pageData => {
+  writeText(`legal/${pageData.slug}.html`, pageShell({
+    page: 'legal-detail',
+    seo: {
+      title: pageData.seoTitle || `${pageData.title} — ${info.site.name}`,
+      description: pageData.description || pageData.summary,
+      keywords: [pageData.title, ...(pageData.keywords || [])].filter(Boolean).join(', '),
+      canonical: `/legal/${pageData.slug}`,
+      image: info.branding.ogImage,
+      imageAlt: `${info.site.name} legal policy artwork`
+    },
+    body: renderLegalDetail(pageData)
+  }));
+});
+
 const sitemapUrls = [
   ...indexablePages.map(page => ({ loc: page.url, changefreq: page.key === 'home' ? 'weekly' : 'monthly', priority: page.key === 'home' ? '1.0' : page.key === 'resources' ? '0.9' : page.key === 'blogs' ? '0.8' : '0.7' })),
   { loc: `${baseUrl}/ai-agents`, changefreq: 'weekly', priority: '0.9' },
   ...resources.map(resource => ({ loc: resource.pageUrl, changefreq: 'weekly', priority: '0.8' })),
   ...blogPosts.map(post => ({ loc: post.url, changefreq: 'weekly', priority: '0.7' })),
+  ...legalPages.map(page => ({ loc: page.url, changefreq: 'monthly', priority: '0.5' })),
   { loc: `${baseUrl}/site-index.json`, changefreq: 'daily', priority: '0.6' },
   { loc: `${baseUrl}/ai-overview.json`, changefreq: 'daily', priority: '0.6' },
   { loc: `${baseUrl}/ai.txt`, changefreq: 'daily', priority: '0.6' },
